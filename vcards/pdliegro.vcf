@@ -1,0 +1,38 @@
+BEGIN:VCARD
+VERSION:2.1
+N;LANGUAGE=en-us:Di Liegro;Paul
+FN:Paul Di Liegro
+ORG:Prescriptive Data Solutions
+TITLE:Senior Account Executive
+TEL;CELL;VOICE:(972) 741-5580
+ADR;WORK;PREF;ENCODING=QUOTED-PRINTABLE:;;825 Watters Creek Blvd.=0D=0A=
+Building M=0D=0A=
+Suite 250;Allen;TX;75013;United States of America
+LABEL;WORK;PREF;ENCODING=QUOTED-PRINTABLE:825 Watters Creek Blvd.=0D=0A=
+Building M=0D=0A=
+Suite 250=0D=0A=
+Allen, TX 75013
+X-MS-OL-DEFAULT-POSTAL-ADDRESS:2
+EMAIL;PREF;INTERNET:pdiliegro@prescriptive.solutions
+X-MS-CARDPICTURE;TYPE=JPEG;ENCODING=BASE64:
+ /9j/4AAQSkZJRgABAQEAwADAAAD/2wBDAAcFBQYFBAcGBQYIBwcIChELCgkJChUPEAwRGBUa
+ GRgVGBcbHichGx0lHRcYIi4iJSgpKywrGiAvMy8qMicqKyr/2wBDAQcICAoJChQLCxQqHBgc
+ KioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKioqKir/wAAR
+ CACEAB8DASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAA
+ AgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkK
+ FhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWG
+ h4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl
+ 5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREA
+ AgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYk
+ NOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOE
+ hYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk
+ 5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD37zMsQP8A9dDSKg9TUI7mmmgCRXMj89PS
+ knbAAFOiHeo5Pnmx6UAKeAKae1OJyaQcmgCZflSoYxliTUsp2x4/CovuxZ7mgANPiGWphqaI
+ YGaAGXB5AFMl4ULSt883tmmSnL0AP71MPljyeuKhUZNSuC64HTuaAIo+pJpvls7Z6VJhY1/v
+ VE8jNQBYXafurUcpOcZ49KkQfL9aixvk/GgAk4QCoiPSppMZ+b8hUZfHC8D2oAst8kfrxUak
+ sev5U+c9BTF4TP40ARucsaYetOpp60ATzHL0PxHim43OPeiQ5xQAymnrTqaetAFhQvJFI6ZP
+ BoTgZPrmoyf50ABQimlT3FO3H1o8w+goAlP+r/Coj0oooASmnrRRQB//2Q==
+
+X-MS-OL-DESIGN;CHARSET=utf-8:<card xmlns="http://schemas.microsoft.com/office/outlook/12/electronicbusinesscards" ver="1.0" layout="left" bgcolor="ffffff"><img xmlns="" align="fit" area="16" use="cardpicture"/><fld xmlns="" prop="name" align="left" dir="ltr" style="b" color="000000" size="10"/><fld xmlns="" prop="org" align="left" dir="ltr" color="000000" size="8"/><fld xmlns="" prop="title" align="left" dir="ltr" color="000000" size="8"/><fld xmlns="" prop="blank" size="8"/><fld xmlns="" prop="telcell" align="left" dir="ltr" color="d48d2a" size="8"><label align="right" color="626262">Mobile</label></fld><fld xmlns="" prop="email" align="left" dir="ltr" color="d48d2a" size="8"/><fld xmlns="" prop="blank" size="8"/><fld xmlns="" prop="addrwork" align="left" dir="ltr" color="000000" size="8"/><fld xmlns="" prop="blank" size="8"/><fld xmlns="" prop="blank" size="8"/><fld xmlns="" prop="blank" size="8"/><fld xmlns="" prop="blank" size="8"/><fld xmlns="" prop="blank" size="8"/><fld xmlns="" prop="blank" size="8"/><fld xmlns="" prop="blank" size="8"/><fld xmlns="" prop="blank" size="8"/></card>
+REV:20181204T151254Z
+END:VCARD
