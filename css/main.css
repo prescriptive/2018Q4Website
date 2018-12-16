@@ -1096,6 +1096,7 @@ input[type="submit"] {
 	margin: 0 auto 20px;
 }
 
+/* honeypot field */
 .form-group.important {
 	display: none;
 }
