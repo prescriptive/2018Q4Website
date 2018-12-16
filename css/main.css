@@ -1099,6 +1099,10 @@ input[type="submit"] {
 	margin: 0 auto;
 }
 
+.recaptcha {
+	margin: 0 auto 20px;
+}
+
 /*hero section*/
 
 .hero {
