@@ -1,0 +1,15 @@
+begin:vcard
+version:3.0
+prodid:Microsoft-MacOutlook/10.12.0.181014
+UID:63BA0735-B0C7-4507-AF3F-E0AD291EA0D6
+fn;charset=utf-8:Dennis Davison
+n;charset=utf-8:Davison;Dennis;;;
+title;charset=utf-8:National Sales
+office;charset=utf-8:Austin
+org;charset=utf-8:Prescriptive Data Solutions;Business Development
+url;charset=utf-8;type=work:www.prescriptive.solutions
+adr;charset=utf-8;type=work;type=pref:;;20079 Stone Oak Pkwy.\, Ste 1105;Austin;TX;78258;United States
+label;charset=utf-8;type=work;type=pref:20079 Stone Oak Pkwy.\, Ste 1105\nAustin\, TX 78258\nUnited States
+tel;charset=utf-8;type=cell:512.554.6215
+email;charset=utf-8;type=internet;type=pref;type=work:ddavison@prescriptive.solutions
+end:vcard
