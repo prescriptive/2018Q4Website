@@ -1092,7 +1092,7 @@ input[type="submit"] {
 }
 
 .recaptcha {
-	margin: 0 0 20px auto;
+	margin: 0 0 20px;
 }
 
 .btn.btn-submit {
@@ -1100,7 +1100,7 @@ input[type="submit"] {
 	padding: 13px 32px;
 	font-size: 16px;
 	border: 0;
-	margin: 0 0 0 auto;
+	margin: 0 auto 0 0;
 }
 
 /*hero section*/
@@ -1755,11 +1755,6 @@ input[type="submit"] {
 
 	.btn.btn-md {
 		padding: 16px 27px;
-	}
-
-	.recaptcha {
-		float:left;
-		margin: 0 auto 0;
 	}
 
 	.hero {
