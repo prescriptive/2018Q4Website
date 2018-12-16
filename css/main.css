@@ -1091,17 +1091,16 @@ input[type="submit"] {
 	background-color: #3d3f46;
 }
 
+.recaptcha {
+	margin: 0 0 20px auto;
+}
+
 .btn.btn-submit {
 	display: block;
 	padding: 13px 32px;
 	font-size: 16px;
 	border: 0;
-	margin: 0 auto;
-}
-
-.recaptcha {
-	display: block;
-	margin: 0 auto 20px;
+	margin: 0 0 0 auto;
 }
 
 /*hero section*/
@@ -1758,8 +1757,9 @@ input[type="submit"] {
 		padding: 16px 27px;
 	}
 
-	.btn.btn-submit {
-		margin: 0;
+	.recaptcha {
+		float:left;
+		margin: 0 auto 0;
 	}
 
 	.hero {
