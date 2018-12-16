@@ -1096,6 +1096,10 @@ input[type="submit"] {
 	margin: 0 auto 20px;
 }
 
+.form-group.important {
+	display: none;
+}
+
 .btn.btn-submit {
 	display: block;
 	padding: 13px 32px;
