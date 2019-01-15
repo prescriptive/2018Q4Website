@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby + Netlify CMS Starter',
-    siteUrl: `https://sad-kilby-6b60f1.netlify.com`,
+    title: 'Prescriptive',
+    siteUrl: `https://pre-gatsby-staging--prescriptive-solutions-2018q4website.netlify.com`,
   },
   plugins: [
     {
