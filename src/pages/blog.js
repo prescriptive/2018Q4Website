@@ -16,6 +16,7 @@ export default class BlogPage extends React.Component {
     return (
       <Layout>
         	<Helmet>
+          <title>Blog | Prescriptive</title>
 	        <body class="innermenu" />
   	      </Helmet>
         <section className="section">
