@@ -46,20 +46,20 @@ module.exports = {
         plugins: [],
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-google-tagmanager`,
-    //   options: {
-    //     id: "YOUR_GOOGLE_TAGMANAGER_ID",
+    {
+      resolve: `gatsby-plugin-google-tagmanager`,
+      options: {
+        id: "GTM-KWP5GHG",
   
-    //     // Include GTM in development.
-    //     // Defaults to false meaning GTM will only be loaded in production.
-    //     includeInDevelopment: false,
+        // Include GTM in development.
+        // Defaults to false meaning GTM will only be loaded in production.
+        includeInDevelopment: false,
   
-    //     // Specify optional GTM environment details.
-    //     gtmAuth: "YOUR_GOOGLE_TAGMANAGER_ENVIROMENT_AUTH_STRING",
-    //     gtmPreview: "YOUR_GOOGLE_TAGMANAGER_ENVIROMENT_PREVIEW_NAME",
-    //   },
-    // },
+        // Specify optional GTM environment details.
+        // gtmAuth: "YOUR_GOOGLE_TAGMANAGER_ENVIROMENT_AUTH_STRING",
+        // gtmPreview: "YOUR_GOOGLE_TAGMANAGER_ENVIROMENT_PREVIEW_NAME",
+      },
+    },
     `gatsby-plugin-netlify-cms`,
     `gatsby-plugin-sitemap`,
     'gatsby-plugin-netlify', // make sure to keep it last in the array
