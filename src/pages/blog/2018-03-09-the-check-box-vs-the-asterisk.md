@@ -10,8 +10,7 @@ description: >-
   Does your solution do this? Absolutely, there’s the check box right there!
 
   Compare our solution to our competitors? See that, we have way more check
-  boxes. They’ve got like ten, we have dozens and we add more checkboxes all the
-  time!  We have a whole team that check boxes all day long!
+  boxes.
 tags:
   - Amazon Web Services
   - BCDR
