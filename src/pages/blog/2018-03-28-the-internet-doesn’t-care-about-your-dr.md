@@ -1,10 +1,17 @@
 ---
 templateKey: blog-post
 title: The Internet Doesn’t Care About Your DR!
-author: Terry Murray
+author: Ian Evans
 image: ''
 date: 2018-03-28T12:00:00.000Z
-description: I love it when things just work!
+description: >-
+  Today I was looking forward to sitting down and working more on Zerto DR into
+  Azure. I had my schedule (and more importantly my mind) clear and ready to go.
+  I woke up checked email, shuttled the kiddos off to school and grabbed a bite.
+  Everything was ready!
+
+
+  Wrong!
 tags:
   - disaster-recovery
 ---
