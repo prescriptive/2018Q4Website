@@ -2426,6 +2426,7 @@ h1.thetitle{
 	font-size:23px;
 	margin-top:60px;
 	margin-bottom:60px;
+	display:none;
 }
 .blog-share span{
 	margin-bottom:20px;
