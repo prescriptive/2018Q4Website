@@ -248,11 +248,11 @@ export const HomePageTemplate = ({ title, intro, services, content, contentCompo
 							<div class="contact">
 								<div class="contact-item">
 									<strong>Email</strong>
-									<Link to="mailto:info@prescriptive.solutions">info@prescriptive.solutions</Link>
+									<a href="mailto:info@prescriptive.solutions">info@prescriptive.solutions</a>
 								</div>
 								<div class="contact-item">
 									<strong>Phone</strong>
-									<Link to="tel:8882523182">888.252.3182</Link>
+									<a href="tel:8882523182">888.252.3182</a>
 								</div>
 								<div class="contact-item">
 									<strong>Fax</strong>
