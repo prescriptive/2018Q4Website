@@ -216,10 +216,7 @@ export const HomePageTemplate = ({ title, intro, services, content, contentCompo
         <h2>Contact Us</h2>
         <p>Thank you for your interest in Prescriptive Data Solutions. For more information, please fill out the following form and we'll get back to you as soon as we can. We look forward to hearing from you!</p>
       </div>
-      <form name="contact2" method="POST" class="form-validation" novalidate="novalidate" netlify-honeypot="bot-field" data-netlify-recaptcha="true" data-netlify="true">
-								<div class="form-group important">
-										 <label>Important: </label><input name="important" />
-								</div>
+      <form name="contact2" method="POST" class="form-validation" novalidate="novalidate" netlify-honeypot="bot-field" data-netlify="true">
 								<div class="form-group">
 									<label for="name" class="lb-name">First Name *</label>
 									<input type="text" name="name" id="name" class="form-control" data-required="true" data-interactive="true" />
