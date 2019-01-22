@@ -216,7 +216,9 @@ export const HomePageTemplate = ({ title, intro, services, content, contentCompo
         <h2>Contact Us</h2>
         <p>Thank you for your interest in Prescriptive Data Solutions. For more information, please fill out the following form and we'll get back to you as soon as we can. We look forward to hearing from you!</p>
       </div>
-      <form name="contact2" method="POST" class="form-validation" novalidate="novalidate" netlify-honeypot="bot-field" data-netlify="true">
+      <form name="contact5" method="post" netlify-honeypot="bot-field" data-netlify="true">
+			<input type="hidden" name="form-name" value="contact5" />
+			<p hidden> <label htmlFor="bot-field">Don’t fill this out:{' '}<input name="bot-field" /> </label> </p>
 								<div class="form-group">
 									<label for="name" class="lb-name">First Name *</label>
 									<input type="text" name="name" id="name" class="form-control" data-required="true" data-interactive="true" />
@@ -237,8 +239,6 @@ export const HomePageTemplate = ({ title, intro, services, content, contentCompo
 									<label for="textarea" class="lb-message">Message*</label>
 									<textarea name="textarea" id="textarea" class="textarea form-control" data-required="true" data-trim="true"/>
 								</div>
-								<div data-netlify-recaptcha="true"></div>
-								<input type="hidden" name="bot-field" />
 								<div>
 									<button type="submit" class="btn btn-submit">Send Message</button>
 								</div>
