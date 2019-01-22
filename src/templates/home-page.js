@@ -240,7 +240,7 @@ export const HomePageTemplate = ({ title, intro, services, content, contentCompo
 									<label for="textarea" class="lb-message">Message*</label>
 									<textarea name="textarea" id="textarea" class="textarea form-control" data-required="true" data-trim="true"/>
 								</div>
-								<div data-netlify-recaptcha="true"></div>
+								<input type="hidden" name="bot-field" />
 								<div>
 									<button type="submit" class="btn btn-submit">Send Message</button>
 								</div>
