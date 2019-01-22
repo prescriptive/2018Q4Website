@@ -32,6 +32,8 @@ import partner33 from '../images/img33.png'
 import partner34 from '../images/img34.png'
 import partner35 from '../images/img35.png'
 import cta36 from '../images/img36.png'
+import dell from '../images/dell-tech-white.png'
+import hp from '../images/white_hp.png'
 
 export const HomePageTemplate = ({ title, intro, services, content, contentComponent }) => {
   return (
@@ -319,6 +321,8 @@ export const HomePageTemplate = ({ title, intro, services, content, contentCompo
 						<div class="partner-item"><img src={partner33} alt="veeam" /></div>
 						<div class="partner-item"><img src={partner34} alt="vmware" /></div>
 						<div class="partner-item"><img src={partner35} alt="zerto" /></div>
+						<div class="partner-item"><img width="200" src={dell} alt="zerto" /></div>
+						<div class="partner-item"><img width="200" src={hp} alt="zerto" /></div>
 					</div>
 				</div>
 
