@@ -314,10 +314,9 @@
 								<p>Thank you for your interest in Prescriptive Data Solutions. For more information, please fill out the following form and we'll get back to you as soon as we can. We look forward to hearing from you!</p>
 							</div>
 
-							<form name="contact3" method="POST" class="form-validation" novalidate="novalidate" netlify-honeypot="important" data-netlify="true">
-								<div class="form-group important">
-										 <label>Important: </label><input name="important" />
-								</div>
+							<form name="contact3" method="post" netlify-honeypot="bot-field" data-netlify="true">
+								<input type="hidden" name="form-name" value="contact3" />
+								<p hidden> <label htmlFor="bot-field">Don’t fill this out:{' '}<input name="bot-field" /> </label> </p>
 								<div class="form-group">
 									<label for="name" class="lb-name">First Name *</label>
 									<input type="text" name="name" id="name" class="form-control" data-required="true" data-interactive="true"/>
