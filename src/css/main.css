@@ -2464,3 +2464,7 @@ h1.thetitle{
 		color:white;
 	}
   }
+      	.partner-item {
+		margin: 0 27px 34px;
+		max-width:196px;
+	}
