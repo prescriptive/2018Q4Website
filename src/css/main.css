@@ -2468,3 +2468,8 @@ h1.thetitle{
 		margin: 0 27px 34px;
 		max-width:196px;
 	}
+	.list{
+		background-color: transparent !important;
+    	border-radius: 0px !important;
+    	box-shadow: 0px !important: 
+	}
