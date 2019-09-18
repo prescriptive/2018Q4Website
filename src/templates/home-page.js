@@ -43,6 +43,12 @@ import cta36 from '../images/img36.png'
 import dell from '../images/dell-tech-white.png'
 import hp from '../images/white_hp.png'
 
+import beyond from '../images/beyondtrust-white.svg'
+import atrium from '../images/datrium-white.svg'
+
+
+
+
 export const HomePageTemplate = ({ title, intro, services, content, contentComponent }) => {
   return (
 <main id="main" className="main">
@@ -336,6 +342,8 @@ export const HomePageTemplate = ({ title, intro, services, content, contentCompo
 						<div class="partner-item"><img src={partner39} alt="mimecast" /></div>
 						<div class="partner-item"><img src={partner40} alt="proofpoint" /></div>
 						<div class="partner-item"><img src={partner41} alt="varonis" /></div>
+						<div class="partner-item"><img src={beyond} alt="beyond" /></div>
+						<div class="partner-item"><img src={atrium} alt="atrium" /></div>
 					</div>
 				</div>
 
