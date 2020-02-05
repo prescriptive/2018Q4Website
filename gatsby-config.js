@@ -1,3 +1,8 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+const { apiEndpoint } = require("./prismic-config")
+var repo = /([^\/]+)\.prismic\.io\/graphql/.exec(apiEndpoint)
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -13,8 +18,40 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    // {
+    //   resolve: `gatsby-source-prismic`,
+    //   options: {
+    //     repositoryName: `prescriptive`,
+    //     accessToken: `${process.env.API_KEY}`,
+    //     linkResolver: ({ node, key, value }) => post => `/${post.uid}`,
+    //   },
+    // },
+    {
+      resolve: `gatsby-source-prismic-graphql`,
+      options: {
+        repositoryName: repo[1], // Loads the repo name from prismic configuration
+        path: "/preview",
+        previews: true,
+        //accessToken: '...',
+        pages: [
+          // {
+          //   type: "pa",
+          //   match: "/:uid",
+          //   path: "/page",
+          //   component: require.resolve("./src/templates/page.js"),
+          // },
+          {
+            type: "Blog_post",
+            match: "/blog/:uid",
+            path: "/blogpost", // Important that this is different from other generated pages, so not '/blog'
+            component: require.resolve("./src/templates/post.js"),
+          },
+        ],
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-sass`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
