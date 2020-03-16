@@ -1,0 +1,26 @@
+@mixin cta-button($bg) {
+  background-color: $bg;
+  color: white;
+  padding: 12px 30px;
+  border: thin solid white;
+  border-radius: 4px;
+  text-decoration: none;
+  &:hover {
+    background: lighten($bg, 8%);
+    transition: all 0.3s ease;
+  }
+  &:active {
+    background: lighten($bg, 25%);
+  }
+}
+@mixin tablet {
+  @media only screen and (max-width: $tablet-width) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media only screen and (max-width: $mobile-width) {
+    @content;
+  }
+}

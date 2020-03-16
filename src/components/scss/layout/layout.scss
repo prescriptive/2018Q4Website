@@ -1,0 +1,35 @@
+* {
+  box-sizing: border-box;
+  transition: 0.3s;
+}
+body {
+  margin: 0px;
+  font-family: "Roboto";
+  font-weight: 400;
+}
+h1 {
+  font-family: "Libre Franklin";
+  font-weight: 800;
+  font-size: 54px;
+  line-height: 72px;
+}
+h2 {
+  font-family: "Libre Franklin";
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 48px;
+}
+h3 {
+  font-family: "Roboto";
+  font-weight: 500;
+}
+a {
+  text-decoration: none;
+}
+p {
+  font-size: 18px;
+  color: $darkGray;
+}
+.cta-button {
+  @include cta-button($darkGray);
+}

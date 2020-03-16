@@ -1,93 +1,46 @@
 import React from "react"
-import { RichText } from "prismic-reactjs"
-import { linkResolver } from "../utils/linkResolver"
-import { Helmet } from "react-helmet"
 import { graphql } from "gatsby"
-import Img from "gatsby-image"
 import Layout from "../components/layout"
+import * as variable from "../components/variables"
+import styled from "styled-components"
+import Container from "../components/container"
+import SEO from "../components/seo"
+import { Link, RichText, Date } from "prismic-reactjs"
+import Img from "gatsby-image"
+import Image from "../components/slices/ImageSlice"
 import Text from "../components/slices/TextSlice"
 import Quote from "../components/slices/QuoteSlice"
-import Image from "../components/slices/ImageSlice"
-export const query = graphql`
-  query BlogPostQuery($uid: String) {
-    prismic {
-      allBlog_posts(uid: $uid) {
-        edges {
-          node {
-            _meta {
-              uid
-              id
-            }
-            body {
-              ... on PRISMIC_Blog_postBodyQuote {
-                type
-                label
-                primary {
-                  quote
-                }
-              }
-              ... on PRISMIC_Blog_postBodyText {
-                type
-                label
-                primary {
-                  text
-                }
-              }
-              ... on PRISMIC_Blog_postBodyImage {
-                type
-                label
-                primary {
-                  image
-                  caption
-                  imageSharp {
-                    childImageSharp {
-                      fluid(maxWidth: 800) {
-                        ...GatsbyImageSharpFluid
-                      }
-                    }
-                  }
-                }
-              }
-            }
-            main_imageSharp {
-              childImageSharp {
-                fluid(maxWidth: 800) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            main_image
-            release_date
-            teaser
-            title
-          }
-        }
-      }
-    }
-  }
-`
+import Video from "../components/slices/VideoSlice"
+
+// Sort and display the different slice options
 const PostSlices = ({ slices }) => {
   return slices.map((slice, index) => {
     const res = (() => {
-      switch (slice.type) {
+      switch (slice.slice_type) {
         case "text":
           return (
-            <div key={index} className="slice-wrapper">
+            <div key={index} className="slice-wrapper slice-text">
               {<Text slice={slice} />}
             </div>
           )
 
         case "quote":
           return (
-            <div key={index} className="slice-wrapper">
+            <div key={index} className="slice-wrapper slice-quote">
               {<Quote slice={slice} />}
             </div>
           )
 
         case "image":
           return (
-            <div key={index} className="slice-wrapper">
+            <div key={index} className="slice-wrapper slice-image">
               {<Image slice={slice} />}
+            </div>
+          )
+        case "video":
+          return (
+            <div key={index} className="slice-wrapper slice-video">
+              {<Video slice={slice} />}
             </div>
           )
 
@@ -98,33 +51,107 @@ const PostSlices = ({ slices }) => {
     return res
   })
 }
-const RenderBody = ({ blogPost }) => (
-  <React.Fragment>
-    <article className="blog-post-article">
-      {RichText.render(blogPost.title, linkResolver)}
-      {blogPost.main_imageSharp && (
-        <Img fluid={blogPost.main_imageSharp.childImageSharp.fluid} />
-      )}
-      {blogPost.body && <PostSlices slices={blogPost.body} />}
-    </article>
 
-    <div data-wio-id={blogPost._meta.id}></div>
-  </React.Fragment>
-)
-
-const BlogPost = props => {
-  const doc = props.data.prismic.allBlog_posts.edges.slice(0, 1).pop()
-  if (!doc) return null
+const PageStyle = styled.div`
+  section {
+    padding: ${variable.sectionPadding};
+  }
+`
+const Post = ({ data }) => {
+  const { page } = data
+  const { site } = data
 
   return (
     <Layout>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>{RichText.asText(doc.node.title)}</title>
-      </Helmet>
-      <RenderBody blogPost={doc.node} />
+      <SEO site={site} page={page} />
+      <PageStyle>
+        <Container>
+          <div className="main-image">
+            {page.data.main_image && <Img fluid={page.data.main_image.fluid} />}
+          </div>
+          <h1>{page.data.title.text}</h1>
+        </Container>
+        {page.data.body && <PostSlices slices={page.data.body} />}
+      </PageStyle>
     </Layout>
   )
 }
-
-export default BlogPost
+export default Post
+export const postQuery = graphql`
+  query PostBySlug($uid: String!) {
+    page: prismicBlogPost(uid: { eq: $uid }) {
+      uid
+      data {
+        title {
+          text
+        }
+        main_image {
+          fluid(maxWidth: 1920) {
+            srcWebp
+            srcSetWebp
+            srcSet
+            src
+            sizes
+            base64
+            aspectRatio
+          }
+        }
+        body {
+          ... on PrismicBlogPostBodyVideo {
+            slice_type
+            id
+            primary {
+              video_embed {
+                embed_url
+              }
+            }
+          }
+          ... on PrismicBlogPostBodyImage {
+            slice_type
+            id
+            primary {
+              image {
+                fluid(maxWidth: 1920) {
+                  srcWebp
+                  srcSetWebp
+                  srcSet
+                  src
+                  sizes
+                  base64
+                  aspectRatio
+                }
+              }
+            }
+          }
+          ... on PrismicBlogPostBodyText {
+            slice_type
+            id
+            primary {
+              text {
+                html
+              }
+            }
+          }
+        }
+      }
+    }
+    site: allPrismicSiteInformation {
+      nodes {
+        data {
+          description {
+            text
+          }
+          site_url {
+            text
+          }
+          site_title {
+            text
+          }
+          twitter_author {
+            text
+          }
+        }
+      }
+    }
+  }
+`

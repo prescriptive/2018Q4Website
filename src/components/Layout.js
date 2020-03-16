@@ -8,9 +8,11 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
+import Header from "../components/regions/header"
+import Footer from "../components/regions/footer"
+import PageTransition from "gatsby-v2-plugin-page-transitions"
 
-// import Header from "./regions/header"
-import "./layout.css"
+import "../components/scss/layout/layout.scss"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -25,10 +27,11 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
-      <div>
+      <PageTransition>
+        <Header siteTitle={data.site.siteMetadata.title} />
         <main>{children}</main>
-      </div>
+        <Footer />
+      </PageTransition>
     </>
   )
 }

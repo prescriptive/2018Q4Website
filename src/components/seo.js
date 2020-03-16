@@ -10,22 +10,24 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ description, lang, meta, title }) {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-          }
-        }
-      }
-    `
-  )
+function SEO({ site, page, lang, meta }) {
+  const metaDescription =
+    page.data.meta_description || site.nodes[0].data.description[0].text
+  const title = page.data.meta_title || page.data.title.text
+  const siteName = site.nodes[0].data.site_title[0].text
+  const twitterAuthor = site.nodes[0].data.twitter_author[0].text
+  const siteUrl = site.nodes[0].data.site_url[0].text
+  var uid = page.uid
+  var path = "/"
 
-  const metaDescription = description || site.siteMetadata.description
+  if (page.type == "blog_post") {
+    path = "/blog/"
+  }
+  if (page.uid == "home") {
+    uid = ""
+    path = ""
+  }
+  const canonical = siteUrl + path + uid
 
   return (
     <Helmet
@@ -33,7 +35,13 @@ function SEO({ description, lang, meta, title }) {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`%s | ${siteName}`}
+      link={[
+        {
+          rel: "canonical",
+          href: canonical,
+        },
+      ]}
       meta={[
         {
           name: `description`,
@@ -57,7 +65,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: twitterAuthor,
         },
         {
           name: `twitter:title`,
@@ -75,14 +83,6 @@ function SEO({ description, lang, meta, title }) {
 SEO.defaultProps = {
   lang: `en`,
   meta: [],
-  description: ``,
-}
-
-SEO.propTypes = {
-  description: PropTypes.string,
-  lang: PropTypes.string,
-  meta: PropTypes.arrayOf(PropTypes.object),
-  title: PropTypes.string.isRequired,
 }
 
 export default SEO
