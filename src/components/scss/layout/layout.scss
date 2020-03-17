@@ -31,5 +31,8 @@ p {
   color: $darkGray;
 }
 .cta-button {
-  @include cta-button($darkGray);
+  a{
+    @include cta-button($darkGray);
+  }
+  
 }

@@ -70,7 +70,7 @@ const HeaderStyle = styled.header`
     align-items: center;
     li {
       list-style: none;
-      margin-right: 60px;
+      margin-right: 50px;
       &:last-child {
         margin-right: 0px;
         a {

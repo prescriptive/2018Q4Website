@@ -10,6 +10,8 @@
     font-size: 27px;
     line-height: 36px;
     color: white;
+    display:block;
+    margin: 20px 0px;
   }
   @include mobile() {
     .section-content {
