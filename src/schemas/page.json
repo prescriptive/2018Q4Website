@@ -223,7 +223,7 @@
               "entity_type": {
                 "type": "Select",
                 "config": {
-                  "options": ["Blog Post"],
+                  "options": ["Blog Post", "Leadership"],
                   "label": "Entity Type"
                 }
               },

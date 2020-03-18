@@ -129,6 +129,30 @@ const Page = ({ data }) => {
 export default Page
 export const postQuery = graphql`
   query PageBySlug($uid: String!) {
+    leadership: allPrismicLeadership {
+      nodes {
+        data {
+          bio {
+            text
+          }
+          linkedin {
+            url
+          }
+          name {
+            text
+          }
+          photo {
+            url
+          }
+          title {
+            text
+          }
+          twitter {
+            url
+          }
+        }
+      }
+    }
     page: prismicPa(uid: { eq: $uid }) {
       uid
       id
