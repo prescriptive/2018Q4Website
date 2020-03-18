@@ -22,7 +22,8 @@
           "columns_section": [],
           "left_right_section": [],
           "entity_query": [],
-          "slideshow": []
+          "slideshow": [],
+          "block_reference": []
         },
         "choices": {
           "basic_section": {
@@ -85,7 +86,11 @@
                   "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
                   "allowTargetBlank": true,
                   "label": "Content",
-                  "labels": ["cta-button", "right-align", "center-align"]
+                  "labels": [
+                    "cta-button",
+                    "right-align",
+                    "center-align"
+                  ]
                 }
               }
             },
@@ -170,7 +175,12 @@
                 "config": {
                   "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
                   "allowTargetBlank": true,
-                  "label": "Left Content"
+                  "label": "Left Content",
+                  "labels": [
+                    "cta-button",
+                    "right-align",
+                    "center-align"
+                  ]
                 }
               },
               "right_background_image": {
@@ -186,7 +196,12 @@
                 "config": {
                   "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
                   "allowTargetBlank": true,
-                  "label": "Right Content"
+                  "label": "Right Content",
+                  "labels": [
+                    "cta-button",
+                    "right-align",
+                    "center-align"
+                  ]
                 }
               }
             },
@@ -223,7 +238,10 @@
               "entity_type": {
                 "type": "Select",
                 "config": {
-                  "options": ["Blog Post", "Leadership"],
+                  "options": [
+                    "Blog Post",
+                    "Leadership"
+                  ],
                   "label": "Entity Type"
                 }
               },
@@ -275,6 +293,26 @@
                 }
               }
             }
+          },
+          "block_reference": {
+            "type": "Slice",
+            "fieldset": "Block Reference",
+            "description": "Place reusable blocks.",
+            "icon": "branding_watermark",
+            "display": "grid",
+            "non-repeat": {
+              "block_reference": {
+                "type": "Link",
+                "config": {
+                  "select": "document",
+                  "customtypes": [
+                    "block"
+                  ],
+                  "label": "Block Reference"
+                }
+              }
+            },
+            "repeat": {}
           }
         }
       }

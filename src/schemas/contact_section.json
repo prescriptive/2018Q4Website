@@ -1,0 +1,57 @@
+{
+  "Main" : {
+    "body" : {
+      "type" : "Slices",
+      "fieldset" : "Slice zone",
+      "config" : {
+        "labels" : { },
+        "choices" : {
+          "left_right_section" : {
+            "type" : "Slice",
+            "fieldset" : "Left Right Section",
+            "description" : "Left Right Section",
+            "icon" : "chrome_reader_mode",
+            "display" : "grid",
+            "non-repeat" : {
+              "left_background_image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : { },
+                  "thumbnails" : [ ],
+                  "label" : "Left Background Image"
+                }
+              },
+              "left_content" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+                  "allowTargetBlank" : true,
+                  "label" : "Left Content"
+                }
+              },
+              "right_background_image" : {
+                "type" : "Image",
+                "config" : {
+                  "constraint" : { },
+                  "thumbnails" : [ ],
+                  "label" : "Right Background Image",
+                                    "labels" : [ "cta-button", "right-align", "center-align" ]
+                }
+              },
+              "right_content" : {
+                "type" : "StructuredText",
+                "config" : {
+                  "multi" : "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+                  "allowTargetBlank" : true,
+                  "label" : "Right Content",
+                                    "labels" : [ "cta-button", "right-align", "center-align" ]
+                }
+              }
+            },
+            "repeat" : { }
+          }
+        }
+      }
+    }
+  }
+}
