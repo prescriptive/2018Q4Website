@@ -15,20 +15,10 @@ import PageTransition from "gatsby-v2-plugin-page-transitions"
 import "../components/scss/layout/layout.scss"
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
-
   return (
     <>
       <PageTransition>
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Header />
         <main>{children}</main>
         <Footer />
       </PageTransition>

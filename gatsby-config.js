@@ -107,7 +107,6 @@ module.exports = {
     },
     `gatsby-v2-plugin-page-transitions`,
     `gatsby-plugin-offline`,
-    `gatsby-plugin-sitemap`,
     "gatsby-plugin-netlify",
   ],
 }
