@@ -40,7 +40,10 @@
     "react-dom": "^16.12.0",
     "react-fontawesome": "^1.7.1",
     "react-helmet": "^5.2.1",
+    "react-masonry-component": "^6.2.1",
     "react-responsive-embed": "^2.1.0",
+    "react-stack-grid": "^0.7.1",
+    "react-stonecutter": "^0.3.10",
     "react-youtube": "^7.9.0",
     "styled-components": "^5.0.1"
   },

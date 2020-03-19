@@ -6,12 +6,36 @@ import HtmlRender from "../../utils/htmlSerializer"
 import linkResolver from "../../utils/linkResolver"
 import { RichText } from "prismic-reactjs"
 import * as variable from "../variables"
+import Masonry from "react-masonry-component"
+const masonryOptions = {
+  transitionDuration: 0,
+}
+
 const PrismicDOM = require("prismic-dom")
 const ColumnStyle = styled.div`
   .column {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    img {
+      max-width: 100%;
+    }
+    .column-item {
+      padding: 20px;
+      border: 1px solid white;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:nth-child(even) {
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+      }
+      &:nth-child(odd) {
+        border-top-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+    }
   }
   .column-count-2 {
     .column-item {
@@ -47,7 +71,6 @@ const ColumnStyle = styled.div`
 `
 
 function ColumnsSectionSlice({ slice }) {
-  console.log(slice)
   var fluid = null
   var bgColor = null
   var columnCount = null
@@ -65,6 +88,7 @@ function ColumnsSectionSlice({ slice }) {
     items = slice.items
   }
   const spans = []
+
   // items = slice.items
   return (
     <div>
@@ -72,6 +96,33 @@ function ColumnsSectionSlice({ slice }) {
         <BackgroundImage Tag="section" fluid={fluid}>
           <ColumnStyle>
             <Container>
+              <section>
+                {slice.primary.section_title.text && (
+                  <h2>{slice.primary.section_title.text}</h2>
+                )}
+                <div className={"column column-count-" + columnCount}>
+                  {slice.items &&
+                    slice.items.map((item, index) => (
+                      <li
+                        key={index}
+                        className="column-item"
+                        dangerouslySetInnerHTML={{
+                          __html: item.content.html,
+                        }}
+                      />
+                    ))}
+                </div>
+              </section>
+            </Container>
+          </ColumnStyle>
+        </BackgroundImage>
+      )}
+      {!fluid && (
+        <ColumnStyle
+          style={{ backgroundColor: slice.primary.background_color }}
+        >
+          <Container>
+            <section>
               {slice.primary.section_title.text && (
                 <h2>{slice.primary.section_title.text}</h2>
               )}
@@ -85,28 +136,8 @@ function ColumnsSectionSlice({ slice }) {
                     />
                   ))}
               </div>
-            </Container>
-          </ColumnStyle>
-        </BackgroundImage>
-      )}
-      {!fluid && (
-        <ColumnStyle
-          style={{ backgroundColor: slice.primary.background_color }}
-        >
-          <Container>
-            {slice.primary.section_title.text && (
-              <h2>{slice.primary.section_title.text}</h2>
-            )}
-            <div className={"column column-count-" + columnCount}>
-              {slice.items &&
-                slice.items.map((item, index) => (
-                  <div
-                    key={index}
-                    className="column-item"
-                    dangerouslySetInnerHTML={{ __html: item.content.html }}
-                  />
-                ))}
-            </div>
+            </section>
+            ``
           </Container>
         </ColumnStyle>
       )}

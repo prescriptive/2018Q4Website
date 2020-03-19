@@ -4,14 +4,18 @@ import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
 import BlogPostTeaser from "../entities/blog_post/BlogPostTeaser"
 import LeadershipTeaser from "../entities/leadership/LeadershipTeaser"
+import * as variable from "../variables"
 
 const EntityQueryStyle = styled.div`
   display: flex;
   flex-wrap: wrap;
   article {
     margin-bottom: 40px;
-    flex-basis: calc((100%) / 3 - 14px);
+    width: calc((100%) / 3 - 14px);
     margin-right: 20px;
+    @media (max-width: ${variable.mobileWidth}) {
+      width: 100%;
+    }
     &:nth-child(3n + 3) {
       margin-right: 0px;
     }
