@@ -11,7 +11,7 @@ import Fade from "@material-ui/core/Fade"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import * as variable from "../variables"
-import MobileMenu from "../mobilemenu"
+import MobileMenu from "../mobileMenu"
 
 var FA = require("react-fontawesome")
 
