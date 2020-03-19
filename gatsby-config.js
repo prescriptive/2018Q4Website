@@ -25,6 +25,7 @@ module.exports = {
           pa: require("./src/schemas/page.json"),
           blog_post: require("./src/schemas/blog_post.json"),
           main_navigation: require("./src/schemas/main_navigation.json"),
+          leadership: require("./src/schemas/leadership.json"),
         },
       },
     },
@@ -100,7 +101,7 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-          families: ["Roboto:400,500", "Libre Franklin:800,900"],
+          families: ["Roboto:400,500,700,900", "Libre Franklin:800,900"],
         },
       },
     },

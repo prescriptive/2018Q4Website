@@ -148,6 +148,7 @@ export const postQuery = graphql`
         data {
           bio {
             text
+            html
           }
           linkedin {
             url
@@ -157,6 +158,16 @@ export const postQuery = graphql`
           }
           photo {
             url
+            fixed(width: 98, height: 98) {
+              base64
+              aspectRatio
+              width
+              height
+              src
+              srcSet
+              srcWebp
+              srcSetWebp
+            }
           }
           title {
             text
