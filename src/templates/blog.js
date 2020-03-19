@@ -77,6 +77,7 @@ export const postQuery = graphql`
             text
           }
           main_image {
+            url
             fluid(maxWidth: 800) {
               srcWebp
               srcSetWebp
