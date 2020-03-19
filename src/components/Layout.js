@@ -16,13 +16,11 @@ import "../components/scss/layout/layout.scss"
 
 const Layout = ({ children }) => {
   return (
-    <>
-      <PageTransition>
-        <Header />
-        <main>{children}</main>
-        <Footer />
-      </PageTransition>
-    </>
+    <PageTransition>
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </PageTransition>
   )
 }
 
