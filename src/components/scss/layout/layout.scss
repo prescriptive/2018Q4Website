@@ -31,7 +31,6 @@ p {
   font-size: 18px;
   color: $darkGray;
 }
-
 .cta-button {
   a {
     @include cta-button($darkGray);
