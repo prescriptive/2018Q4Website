@@ -14,8 +14,30 @@ const LeftRightStyle = styled.div`
   section {
     width: 50%;
     box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    &:nth-child(1) {
+      justify-content: flex-end;
+    }
+    &:nth-child(2) {
+      justify-content: flex-start;
+    }
     @media (max-width: ${variable.mobileWidth}) {
       width: 100%;
+    }
+    > div {
+      max-width: calc(${variable.desktopWidth} / 2);
+      display: block;
+      padding: 0px 20px;
+      margin: 0;
+      width: 100%;
+      @media (max-width: ${variable.tabletWidth}) {
+        max-width: calc(${variable.tabletWidth} / 2);
+      }
+
+      @media (max-width: ${variable.mobileWidth}) {
+        max-width: calc(${variable.mobileWidth} / 1);
+      }
     }
   }
 `

@@ -5,6 +5,7 @@ import * as variable from "../components/variables"
 import styled from "styled-components"
 import Container from "../components/container"
 import "../components/scss/page/home.scss"
+import "../components/scss/page/about.scss"
 import { Link, RichText, Date } from "prismic-reactjs"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
@@ -18,7 +19,7 @@ import LeftRightSlice from "../components/slices/LeftRightSlice"
 import EntityQuerySlice from "../components/slices/EntityQuerySlice"
 
 // Sort and display the different slice options
-const PostSlices = ({ slices, blog }) => {
+const PostSlices = ({ slices, blog, leadership }) => {
   return slices.map((slice, index) => {
     const res = (() => {
       switch (slice.slice_type) {
@@ -67,7 +68,13 @@ const PostSlices = ({ slices, blog }) => {
               key={index}
               className="slice-wrapper slice-entity-query"
             >
-              {<EntityQuerySlice slice={slice} blog={blog} />}
+              {
+                <EntityQuerySlice
+                  slice={slice}
+                  blog={blog}
+                  leadership={leadership}
+                />
+              }
             </div>
           )
 
@@ -117,11 +124,18 @@ const Page = ({ data }) => {
   const { page } = data
   const { site } = data
   const { blog } = data
+  const { leadership } = data
   return (
     <Layout>
       <SEO site={site} page={page} />
       <PageStyle>
-        {page.data.body && <PostSlices slices={page.data.body} blog={blog} />}
+        {page.data.body && (
+          <PostSlices
+            slices={page.data.body}
+            blog={blog}
+            leadership={leadership}
+          />
+        )}
       </PageStyle>
     </Layout>
   )

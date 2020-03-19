@@ -10,7 +10,7 @@
     font-size: 27px;
     line-height: 36px;
     color: white;
-    display:block;
+    display: block;
     margin: 20px 0px;
   }
   @include mobile() {
@@ -149,39 +149,74 @@
     }
   }
 }
-#slice-id-05d3277b-30ed-52b8-8fcd-ddedfc3b4383 {
+#id-05d3277b-30ed-52b8-8fcd-ddedfc3b4383 {
   section {
-    background-size: contain;
-    min-height: 363px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    &:before {
-      background-size: 370px;
+    &:nth-child(1) {
+      width: 35%;
+      @include mobile() {
+        width: 100%;
+      }
+      > div {
+        max-width: calc(#{$desktop-width} * 0.35);
+        @include tablet() {
+          max-width: calc(#{$tablet-width} * 0.35);
+        }
+        @include mobile() {
+          max-width: calc(#{$mobile-width});
+        }
+      }
+      a {
+        color: $darkGray;
+      }
     }
-    h2 {
-      font-family: "Libre Franklin";
-      font-style: normal;
-      font-weight: 800;
-      font-size: 54px;
-      line-height: 72px;
-      color: $darkGray;
-      margin-bottom: 40px;
-    }
-    p {
-      margin: 0px;
-    }
-    a {
-      background-color: $darkGray;
-      color: white;
-      padding: 15px 30px;
-      border-radius: 4px;
-      margin-top: 40px;
-      display: inline-block;
-      &:hover {
-        background: lighten($darkGray, 8%);
-        transition: all 0.3s ease;
+    &:nth-child(2) {
+      > div {
+        max-width: calc(#{$desktop-width} * 0.65);
+        @include tablet() {
+          max-width: calc(#{$tablet-width} * 0.65);
+        }
+        @include mobile() {
+          max-width: calc(#{$mobile-width});
+        }
+      }
+      width: 65%;
+      background-size: contain;
+      min-height: 363px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include mobile() {
+        width: 100%;
+      }
+      &:before {
+        background-size: 370px;
+      }
+      h2 {
+        font-family: "Libre Franklin";
+        font-style: normal;
+        font-weight: 800;
+        font-size: 54px;
+        line-height: 72px;
+        color: $darkGray;
+        margin-bottom: 40px;
+        text-align: right;
+      }
+      p {
+        margin: 0px;
+        text-align: right;
+      }
+      a {
+        background-color: $darkGray;
+        color: white;
+        padding: 15px 30px;
+        border-radius: 4px;
+        margin-top: 40px;
+        display: inline-block;
+        &:hover {
+          background: lighten($darkGray, 8%);
+          transition: all 0.3s ease;
+        }
       }
     }
   }
