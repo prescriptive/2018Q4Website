@@ -77,8 +77,12 @@ export const postQuery = graphql`
             text
           }
           main_image {
-            fluid(maxWidth: 800) {
-              ...GatsbyPrismicImageFluid
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 800) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
             }
           }
           title {

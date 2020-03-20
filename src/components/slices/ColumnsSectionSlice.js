@@ -6,10 +6,6 @@ import HtmlRender from "../../utils/htmlSerializer"
 import linkResolver from "../../utils/linkResolver"
 import { RichText } from "prismic-reactjs"
 import * as variable from "../variables"
-import Masonry from "react-masonry-component"
-const masonryOptions = {
-  transitionDuration: 0,
-}
 
 const PrismicDOM = require("prismic-dom")
 const ColumnStyle = styled.div`
