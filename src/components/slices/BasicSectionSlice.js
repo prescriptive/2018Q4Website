@@ -51,6 +51,7 @@ const BasicStyle = styled.div`
 `
 
 export const BasicSectionSlice = ({ slice }) => {
+  console.log(slice)
   const videoOptions = {
     playerVars: {
       autoplay: 1,
@@ -66,8 +67,8 @@ export const BasicSectionSlice = ({ slice }) => {
   var bg_video = null
   var video_id = null
   var bg_video_image = false
-  if (slice.primary.background_image != null) {
-    fluid = slice.primary.background_image.fluid
+  if (slice.primary.background_image.localFile != null) {
+    fluid = slice.primary.background_image.localFile.childImageSharp.fluid
   }
   if (slice.primary.background_video != null) {
     bg_video = slice.primary.background_video.url

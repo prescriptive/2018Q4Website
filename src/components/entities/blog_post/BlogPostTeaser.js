@@ -18,8 +18,8 @@ export const BlogPostTeaser = ({ post }) => {
   return (
     <BlogPostTeaserStyle>
       <Link to={"/blog/" + post.uid}>
-        {post.data.main_image.fluid && (
-          <Img fluid={post.data.main_image.fluid} />
+        {post.data.main_image.localFile && (
+          <Img fluid={post.data.main_image.localFile.childImageSharp.fluid} />
         )}
         {post.data.title.text && <h2>{post.data.title.text}</h2>}
         {post.data.release_date && (

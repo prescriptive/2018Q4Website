@@ -86,14 +86,12 @@ export const postQuery = graphql`
           text
         }
         main_image {
-          fluid(maxWidth: 1920) {
-            srcWebp
-            srcSetWebp
-            srcSet
-            src
-            sizes
-            base64
-            aspectRatio
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 1920) {
+                ...GatsbyImageSharpFluid
+              }
+            }
           }
         }
         body {
@@ -111,14 +109,12 @@ export const postQuery = graphql`
             id
             primary {
               image {
-                fluid(maxWidth: 1920) {
-                  srcWebp
-                  srcSetWebp
-                  srcSet
-                  src
-                  sizes
-                  base64
-                  aspectRatio
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 1920) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
                 }
               }
             }

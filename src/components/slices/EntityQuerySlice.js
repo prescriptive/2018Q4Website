@@ -81,8 +81,8 @@ export const EntityQuerySlice = ({ slice, blog, leadership }) => {
   }
   console.log(slice)
 
-  if (slice.primary.background_image != null) {
-    fluid = slice.primary.background_image.fluid
+  if (slice.primary.background_image.localFile != null) {
+    fluid = slice.primary.background_image.localFile.childImageSharp.fluid
   }
 
   if (slice.primary.background_color != null) {

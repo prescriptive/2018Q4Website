@@ -16,22 +16,6 @@ const ColumnStyle = styled.div`
     img {
       max-width: 100%;
     }
-    .column-item {
-      padding: 20px;
-      border: 1px solid white;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      &:nth-child(even) {
-        border-top-right-radius: 20px;
-        border-bottom-left-radius: 20px;
-      }
-      &:nth-child(odd) {
-        border-top-left-radius: 20px;
-        border-bottom-right-radius: 20px;
-      }
-    }
   }
   .column-count-2 {
     .column-item {
@@ -71,8 +55,8 @@ function ColumnsSectionSlice({ slice }) {
   var bgColor = null
   var columnCount = null
   var items = null
-  if (slice.primary.background_image != null) {
-    fluid = slice.primary.background_image.fluid
+  if (slice.primary.background_image.localFile != null) {
+    fluid = slice.primary.background_image.localFile.childImageSharp.fluid
   }
   if (slice.primary.background_color != null) {
     bgColor = slice.primary.background_color
@@ -99,7 +83,7 @@ function ColumnsSectionSlice({ slice }) {
                 <div className={"column column-count-" + columnCount}>
                   {slice.items &&
                     slice.items.map((item, index) => (
-                      <li
+                      <div
                         key={index}
                         className="column-item"
                         dangerouslySetInnerHTML={{

@@ -77,7 +77,7 @@ export const LeadershipTeaser = ({ post }) => {
       {console.log(post)}
       <div class="photo-name">
         <div class="leader-photo">
-          <Img fixed={post.data.photo.fixed} />
+          <Img fixed={post.data.photo.localFile.childImageSharp.fixed} />
         </div>
         <div class="leader-name-title">
           <div class="leader-name">{post.data.name.text}</div>

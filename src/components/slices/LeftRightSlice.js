@@ -45,10 +45,10 @@ const LeftRightStyle = styled.div`
 function returnLeft(primary) {
   return (
     <React.Fragment>
-      {primary.left_background_image.fluid && (
+      {primary.left_background_image.localFile&& (
         <BackgroundImage
           Tag="section"
-          fluid={primary.left_background_image.fluid}
+          fluid={primary.left_background_image.localFile.childImageSharp.fluid}
         >
           <Container>
             {primary.left_content && (
@@ -60,7 +60,7 @@ function returnLeft(primary) {
           </Container>
         </BackgroundImage>
       )}
-      {!primary.left_background_image.fluid && (
+      {!primary.left_background_image.localFile && (
         <section>
           <Container>
             {primary.left_content && (
@@ -79,10 +79,10 @@ function returnLeft(primary) {
 function returnRight(primary) {
   return (
     <React.Fragment>
-      {primary.right_background_image.fluid && (
+      {primary.right_background_image.localFile && (
         <BackgroundImage
           Tag="section"
-          fluid={primary.right_background_image.fluid}
+          fluid={primary.right_background_image.localFile.childImageSharp.fluid}
         >
           <Container>
             {primary.right_content && (
@@ -94,7 +94,7 @@ function returnRight(primary) {
           </Container>
         </BackgroundImage>
       )}
-      {!primary.right_background_image.fluid && (
+      {!primary.right_background_image.localFile && (
         <section>
           <Container>
             {primary.right_content && (

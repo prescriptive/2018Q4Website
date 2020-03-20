@@ -158,15 +158,12 @@ export const postQuery = graphql`
           }
           photo {
             url
-            fixed(width: 98, height: 98) {
-              base64
-              aspectRatio
-              width
-              height
-              src
-              srcSet
-              srcWebp
-              srcSetWebp
+            localFile {
+              childImageSharp {
+                fixed(width: 98, height: 98) {
+                  ...GatsbyImageSharpFixed
+                }
+              }
             }
           }
           title {
@@ -200,14 +197,12 @@ export const postQuery = graphql`
             slice_type
             items {
               image {
-                fluid {
-                  srcWebp
-                  srcSetWebp
-                  srcSet
-                  src
-                  sizes
-                  base64
-                  aspectRatio
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 1920) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
                 }
               }
               image_copy {
@@ -226,14 +221,12 @@ export const postQuery = graphql`
               font_color
               background_color
               background_image {
-                fluid(maxWidth: 1920) {
-                  srcWebp
-                  srcSetWebp
-                  srcSet
-                  src
-                  sizes
-                  base64
-                  aspectRatio
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 1920) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
                 }
               }
               background_video {
@@ -258,14 +251,12 @@ export const postQuery = graphql`
               }
               background_color
               background_image {
-                fluid(maxWidth: 1920) {
-                  srcWebp
-                  srcSetWebp
-                  srcSet
-                  src
-                  sizes
-                  base64
-                  aspectRatio
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 1920) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
                 }
               }
             }
@@ -277,14 +268,12 @@ export const postQuery = graphql`
               background_color
               column_count
               background_image {
-                fluid(maxWidth: 1920) {
-                  srcWebp
-                  srcSetWebp
-                  srcSet
-                  src
-                  sizes
-                  base64
-                  aspectRatio
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 1920) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
                 }
               }
               section_title {
@@ -304,25 +293,21 @@ export const postQuery = graphql`
             slice_type
             primary {
               left_background_image {
-                fluid(maxWidth: 1920) {
-                  srcWebp
-                  srcSetWebp
-                  srcSet
-                  src
-                  sizes
-                  base64
-                  aspectRatio
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 1920) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
                 }
               }
               right_background_image {
-                fluid(maxWidth: 1920) {
-                  srcWebp
-                  srcSetWebp
-                  srcSet
-                  src
-                  sizes
-                  base64
-                  aspectRatio
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 1920) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
                 }
               }
               right_content {
@@ -367,14 +352,12 @@ export const postQuery = graphql`
           }
           main_image {
             url
-            fluid(maxWidth: 1920) {
-              srcWebp
-              srcSetWebp
-              srcSet
-              src
-              sizes
-              base64
-              aspectRatio
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 1920) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
             }
           }
         }

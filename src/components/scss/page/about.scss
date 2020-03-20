@@ -32,6 +32,30 @@
     color: white;
     margin-bottom: 60px;
   }
+  .column {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    img {
+      max-width: 100%;
+    }
+    .column-item {
+      padding: 20px;
+      border: 1px solid white;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:nth-child(even) {
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+      }
+      &:nth-child(odd) {
+        border-top-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+      }
+    }
+  }
 }
 
 #id-3a00cc54-c4df-505b-acf6-bb1ef0723d12 {
