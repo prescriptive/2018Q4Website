@@ -23,7 +23,8 @@
           "left_right_section": [],
           "entity_query": [],
           "slideshow": [],
-          "block_reference": []
+          "block_reference": [],
+          "contact": []
         },
         "choices": {
           "basic_section": {
@@ -240,7 +241,8 @@
                 "config": {
                   "options": [
                     "Blog Post",
-                    "Leadership"
+                    "Leadership",
+                    "Job"
                   ],
                   "label": "Entity Type"
                 }
@@ -294,24 +296,13 @@
               }
             }
           },
-          "block_reference": {
+          "contact": {
             "type": "Slice",
-            "fieldset": "Block Reference",
-            "description": "Place reusable blocks.",
-            "icon": "branding_watermark",
+            "fieldset": "Contact",
+            "description": "Contact Slice",
+            "icon": "contact_mail",
             "display": "grid",
-            "non-repeat": {
-              "block_reference": {
-                "type": "Link",
-                "config": {
-                  "select": "document",
-                  "customtypes": [
-                    "block"
-                  ],
-                  "label": "Block Reference"
-                }
-              }
-            },
+            "non-repeat": {},
             "repeat": {}
           }
         }
