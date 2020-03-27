@@ -81,11 +81,12 @@ export const BasicSectionSlice = ({ slice }) => {
     }
   }
   if (
-    slice.primary.background_video == null &&
-    slice.primary.background_image == null &&
-    slice.primary.youtube_background == null
+    slice.primary.background_video.url == null &&
+    slice.primary.background_image.localFile == null &&
+    slice.primary.youtube_background.url == null
   ) {
     bg_video_image = true
+    console.log("true")
   }
   if (slice.primary.background_color != null) {
     bg_color = slice.primary.background_color
@@ -162,6 +163,12 @@ export const BasicSectionSlice = ({ slice }) => {
         <div style={{ backgroundColor: bg_color }}>
           <Container>
             <section>
+              {slice.primary.section_title.text && h1_title && (
+                <h1>{slice.primary.section_title.text}</h1>
+              )}
+              {slice.primary.section_title.text && !h1_title && (
+                <h2>{slice.primary.section_title.text}</h2>
+              )}
               <div
                 className="section-content"
                 dangerouslySetInnerHTML={{ __html: slice.primary.content.html }}

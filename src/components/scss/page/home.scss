@@ -5,6 +5,9 @@
   .section-content {
     max-width: 605px;
   }
+  h1 {
+    color: white;
+  }
   p {
     font-weight: 500;
     font-size: 27px;
@@ -34,8 +37,8 @@
       font-size: 36px;
       line-height: 44px;
       margin-top: 48px;
-      width:100%;
-      padding:0px 20px;
+      width: 100%;
+      padding: 0px 24px;
     }
     ul {
       padding: 0px 30px 0px 50px;
@@ -89,6 +92,9 @@
           max-width: calc(#{$mobile-width} / 1);
         }
       }
+      h2 {
+        color: white;
+      }
       ol {
         padding: 0px;
         li {
@@ -97,6 +103,7 @@
           display: flex;
           font-size: 18px;
           line-height: 24px;
+          color: white;
           &:before {
             background-color: white;
             color: $medLightGray;
@@ -209,17 +216,21 @@
         text-align: right;
       }
       a {
-        background-color: $darkGray;
-        color: white;
-        padding: 15px 30px;
-        border-radius: 4px;
-        margin-top: 40px;
         display: inline-block;
-        &:hover {
-          background: lighten($darkGray, 8%);
-          transition: all 0.3s ease;
-        }
+        margin-top: 40px;
       }
+      // a {
+      //   background-color: $darkGray;
+      //   color: white;
+      //   padding: 15px 30px;
+      //   border-radius: 4px;
+      //   margin-top: 40px;
+      //   display: inline-block;
+      //   &:hover {
+      //     background: lighten($darkGray, 8%);
+      //     transition: all 0.3s ease;
+      //   }
+      // }
     }
   }
 }

@@ -117,7 +117,6 @@ function ColumnsSectionSlice({ slice }) {
                   ))}
               </div>
             </section>
-            ``
           </Container>
         </ColumnStyle>
       )}

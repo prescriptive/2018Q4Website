@@ -6,6 +6,8 @@ import styled from "styled-components"
 import Container from "../components/container"
 import "../components/scss/page/home.scss"
 import "../components/scss/page/about.scss"
+import "../components/scss/page/solutions.scss"
+import "../components/scss/page/careers.scss"
 import { Link, RichText, Date } from "prismic-reactjs"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
@@ -19,7 +21,7 @@ import LeftRightSlice from "../components/slices/LeftRightSlice"
 import EntityQuerySlice from "../components/slices/EntityQuerySlice"
 
 // Sort and display the different slice options
-const PostSlices = ({ slices, blog, leadership }) => {
+const PostSlices = ({ slices, blog, leadership, job }) => {
   return slices.map((slice, index) => {
     const res = (() => {
       switch (slice.slice_type) {
@@ -68,11 +70,13 @@ const PostSlices = ({ slices, blog, leadership }) => {
               key={index}
               className="slice-wrapper slice-entity-query"
             >
+              {console.log(job)}
               {
                 <EntityQuerySlice
                   slice={slice}
                   blog={blog}
                   leadership={leadership}
+                  job={job}
                 />
               }
             </div>
@@ -125,6 +129,7 @@ const Page = ({ data }) => {
   const { site } = data
   const { blog } = data
   const { leadership } = data
+  const { job } = data
   return (
     <Layout>
       <SEO site={site} page={page} />
@@ -134,6 +139,7 @@ const Page = ({ data }) => {
             slices={page.data.body}
             blog={blog}
             leadership={leadership}
+            job={job}
           />
         )}
       </PageStyle>
@@ -143,6 +149,25 @@ const Page = ({ data }) => {
 export default Page
 export const postQuery = graphql`
   query PageBySlug($uid: String!) {
+    job: allPrismicJob {
+      nodes {
+        uid
+        data {
+          description {
+            html
+          }
+          location {
+            text
+          }
+          teaser_description {
+            html
+          }
+          title {
+            text
+          }
+        }
+      }
+    }
     leadership: allPrismicLeadership {
       nodes {
         data {

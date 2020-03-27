@@ -13,6 +13,11 @@ exports.createPages = async ({ graphql, actions }) => {
           uid
         }
       }
+      job: allPrismicJob {
+        nodes {
+          uid
+        }
+      }
     }
   `)
   const postsPerPage = 9
@@ -34,6 +39,16 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/blog/${node.uid}`,
       component: postTemplate,
+      context: {
+        uid: node.uid,
+      },
+    })
+  })
+  const jobTemplate = path.resolve("src/templates/job.js")
+  pages.data.job.nodes.forEach(node => {
+    createPage({
+      path: `/job-opportunity/${node.uid}`,
+      component: jobTemplate,
       context: {
         uid: node.uid,
       },

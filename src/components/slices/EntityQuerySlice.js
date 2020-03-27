@@ -4,6 +4,7 @@ import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
 import BlogPostTeaser from "../entities/blog_post/BlogPostTeaser"
 import LeadershipTeaser from "../entities/leadership/LeadershipTeaser"
+import JobTeaser from "../entities/job/JobTeaser"
 import * as variable from "../variables"
 
 const EntityQueryStyle = styled.div`
@@ -23,7 +24,7 @@ const EntityQueryStyle = styled.div`
 `
 
 // Sort and display the different slice options
-const EntityResult = ({ slice, blog, leadership }) => {
+const EntityResult = ({ slice, blog, leadership, job }) => {
   // return slices.map((slice, index) => {
   //   const res = () => {
   //     switch (slice.slice_type) {
@@ -36,6 +37,7 @@ const EntityResult = ({ slice, blog, leadership }) => {
   //     }
   //   }
   // })
+  console.log(job)
   if (slice.primary.entity_type == "Leadership") {
     return leadership.nodes
       .slice(0, slice.primary.entity_count)
@@ -52,13 +54,19 @@ const EntityResult = ({ slice, blog, leadership }) => {
       ))
   }
 
+  if (slice.primary.entity_type == "Job") {
+    return job.nodes
+      .slice(0, slice.primary.entity_count)
+      .map((post, index) => <JobTeaser post={post} key={index}></JobTeaser>)
+  }
+
   // {blog.nodes.slice(0, entityCount).map((post, index) => (
   //   <BlogPostTeaser post={post} key={index}></BlogPostTeaser>
   // ))}
   // console.log("te" + slice)
 }
 
-export const EntityQuerySlice = ({ slice, blog, leadership }) => {
+export const EntityQuerySlice = ({ slice, blog, leadership, job }) => {
   var fluid = null
 
   var h1_title = false
@@ -108,7 +116,12 @@ export const EntityQuerySlice = ({ slice, blog, leadership }) => {
             <section>
               {h1_title && <h1>{slice.primary.section_title.text}</h1>}
               {!h1_title && <h2>{slice.primary.section_title.text}</h2>}
-              <EntityResult slice={slice} blog={blog} leadership={leadership} />
+              <EntityResult
+                slice={slice}
+                blog={blog}
+                leadership={leadership}
+                job={job}
+              />
               <EntityQueryStyle>
                 {blog.nodes.slice(0, entityCount).map((post, index) => (
                   <BlogPostTeaser post={post} key={index}></BlogPostTeaser>
@@ -129,6 +142,7 @@ export const EntityQuerySlice = ({ slice, blog, leadership }) => {
                   slice={slice}
                   blog={blog}
                   leadership={leadership}
+                  job={job}
                 />
               </EntityQueryStyle>
             </section>

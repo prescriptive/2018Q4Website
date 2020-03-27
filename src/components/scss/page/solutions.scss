@@ -1,0 +1,111 @@
+#slice-id-98a90861-1d5b-5082-b9f3-b9c68220f651 {
+  section {
+    padding: 0px;
+    > div {
+      min-height: 360px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      h2 {
+        color: white;
+        font-weight: 800;
+        font-size: 54px;
+        line-height: 72px;
+      }
+    }
+  }
+}
+
+#slice-id-15bd2f5a-08d4-5f04-b5fc-5adf474ab29c {
+  h2 {
+    color: $darkGray;
+    text-align: center;
+  }
+  .column {
+    h2 {
+      font-family: Libre Franklin;
+      font-style: normal;
+      font-weight: 900;
+      font-size: 36px;
+      line-height: 44px;
+      margin-top: 48px;
+      width: 100%;
+      padding: 0px 24px;
+      margin-bottom: 0px;
+    }
+    h4 {
+      padding: 0px 24px;
+      text-align: center;
+      color: $red;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 27px;
+      line-height: 36px;
+      margin: 0px;
+      margin-bottom: 60px;
+    }
+    p {
+      padding: 0px 24px;
+      &.block-img {
+        padding: 48px 20px;
+      }
+    }
+  }
+  .column-item {
+    background-color: white;
+    padding-bottom: 48px;
+  }
+  .block-img {
+    text-align: center;
+    background-color: $blueGray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 20px;
+    margin: 0px;
+    img {
+      height: 120px;
+    }
+  }
+}
+
+#slice-id-7697f079-38de-5a45-b430-ffb8075598e0 {
+  h2 {
+    margin: 0px 0px;
+  }
+}
+
+#id-bbd4154a-e750-59bc-a0e4-534f11a08353 {
+  section {
+    &:nth-child(1) {
+      background-color: $medLightGray;
+      h2 {
+        color: white;
+        font-weight: 900;
+        font-size: 27px;
+        line-height: 36px;
+      }
+      p {
+        color: white;
+      }
+    }
+    &:nth-child(2) {
+      &:before {
+        background-size: 528px 402px !important;
+      }
+    }
+  }
+}
+
+#id-3a891da3-f60b-5fea-a4f9-602ed1226ee0 {
+  section {
+    &:nth-child(2) {
+      h2 {
+        font-weight: 900;
+        font-size: 27px;
+        line-height: 36px;
+      }
+    }
+  }
+}
