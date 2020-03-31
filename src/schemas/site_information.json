@@ -128,5 +128,63 @@
         }
       }
     }
+  },
+  "Contact": {
+    "email1": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph",
+        "label": "Email"
+      }
+    },
+    "phone": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph",
+        "label": "Phone"
+      }
+    },
+    "fax": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph",
+        "label": "Fax"
+      }
+    },
+    "contact_form_embed": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "preformatted",
+        "label": "Contact Form Embed"
+      }
+    },
+    "san_antonio_address": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "label": "San Antonio Address"
+      }
+    },
+    "san_antonia_map_embed": {
+      "type": "StructuredText",
+      "config": {
+        "single": "preformatted",
+        "label": "San Antonia Map Embed"
+      }
+    },
+    "dallas_fort_worth_address": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+        "label": "Dallas Fort Worth Address"
+      }
+    },
+    "dalles_fort_worth_map_embed": {
+      "type": "StructuredText",
+      "config": {
+        "single": "preformatted",
+        "label": "Dalles Fort Worth Map Embed"
+      }
+    }
   }
 }
