@@ -9,6 +9,9 @@ const FooterStyle = styled.footer`
   background-color: ${variable.darkGray};
   text-align: center;
   color: white;
+  div {
+    color: white;
+  }
 `
 
 export const Footer = () => {

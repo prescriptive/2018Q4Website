@@ -41,12 +41,17 @@ const LeftRightStyle = styled.div`
       }
     }
   }
+  .section-embed {
+    iframe {
+      max-width: 100%;
+    }
+  }
 `
 
 function returnLeft(primary) {
   return (
     <React.Fragment>
-      {primary.left_background_image.localFile&& (
+      {primary.left_background_image.localFile && (
         <BackgroundImage
           Tag="section"
           fluid={primary.left_background_image.localFile.childImageSharp.fluid}
@@ -62,9 +67,8 @@ function returnLeft(primary) {
               <div
                 className="section-embed"
                 dangerouslySetInnerHTML={{ __html: primary.embed.text }}
-                />
+              />
             )}
-
           </Container>
         </BackgroundImage>
       )}
@@ -78,18 +82,26 @@ function returnLeft(primary) {
               />
             )}
             {primary.embed && (
-
               <div
                 className="section-embed"
                 dangerouslySetInnerHTML={{ __html: primary.embed.text }}
-                />
+              />
             )}
             {primary.active_campaign_form_number && (
               <div>
-              <Helmet>
-                <script src={"https://prescriptivesolutions.activehosted.com/f/embed.php?id="+primary.active_campaign_form_number} type="text/javascript" charset="utf-8"></script>
-              </Helmet>
-              <div class={"_form_"+primary.active_campaign_form_number}></div>
+                <Helmet>
+                  <script
+                    src={
+                      "https://prescriptivesolutions.activehosted.com/f/embed.php?id=" +
+                      primary.active_campaign_form_number
+                    }
+                    type="text/javascript"
+                    charset="utf-8"
+                  ></script>
+                </Helmet>
+                <div
+                  class={"_form_" + primary.active_campaign_form_number}
+                ></div>
               </div>
             )}
           </Container>
@@ -118,7 +130,7 @@ function returnRight(primary) {
               <div
                 className="section-embed"
                 dangerouslySetInnerHTML={{ __html: primary.right_embed.text }}
-                />
+              />
             )}
           </Container>
         </BackgroundImage>
@@ -136,7 +148,7 @@ function returnRight(primary) {
               <div
                 className="section-embed"
                 dangerouslySetInnerHTML={{ __html: primary.right_embed.text }}
-                />
+              />
             )}
           </Container>
         </section>

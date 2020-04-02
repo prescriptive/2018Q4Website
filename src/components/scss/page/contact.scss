@@ -1,8 +1,17 @@
-#id-44cf1ca4-04ea-5525-b75d-9f4f05f5d1d1{
+#id-44cf1ca4-04ea-5525-b75d-9f4f05f5d1d1 {
   max-width: $desktop-width;
   display: flex;
-  padding: 0px 20px;
+  padding: 80px 20px;
   margin: 0 auto;
+  background-image: url(../../../images/contact-bg.png);
+  background-size: cover;
+  color: $medGray;
+  h2 {
+    color: $medGray;
+  }
+  p {
+    color: $medGray;
+  }
   @media (max-width: $tablet-width) {
     max-width: $tablet-width;
   }
@@ -10,28 +19,154 @@
     max-width: $mobile-width;
     padding: 0px 15px;
   }
-  section{
-    width:calc(70% - 100px);
-    padding:0px;
-    &:nth-child(1){
-
-      > div{
-        max-width :100%;
+  section {
+    padding: 0px;
+    &:nth-child(1) {
+      width: calc(70% - 100px);
+      @include mobile() {
+        width: calc(100%);
       }
-      form{
-        padding:0px;
-        width:100%;
-        margin:0px;
+      > div {
+        max-width: 100%;
+        padding: 0px;
+      }
+      form {
+        padding: 0px;
+        width: 100%;
+        margin: 0px;
+        background-color: transparent !important;
+        color: $medGray;
+        ._button-wrapper {
+          display: flex;
+          justify-content: flex-end;
+          button {
+            background-color: $greenGray !important;
+            padding: 10px 25px !important;
+          }
+        }
+        ._form_element {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 20px;
+          label {
+            width: 100px;
+            text-align: right;
+            color: $medGray;
+            font-weight: normal;
+          }
+          ._field-wrapper {
+            width: calc(100% - 120px);
+            input,
+            textarea {
+              border: 0px;
+              border-bottom: thin solid $medGray;
+              border-radius: 0px;
+              background-color: transparent !important;
+            }
+          }
+        }
       }
     }
-    &:nth-child(2){
-      width:30%;
-      > div{
-        max-width :100%;
+    &:nth-child(2) {
+      width: 30%;
+      @include mobile() {
+        width: calc(100%);
+        margin-top: 40px;
       }
-      .section-content{
-        background-color:$lightGray;
-        padding:48px 30px;
+      > div {
+        max-width: 100%;
+        padding: 0px;
+      }
+      .section-content {
+        background-color: $lightGray;
+        padding: 48px 30px;
+        p {
+          margin: 0px 0px 10px 0px;
+          word-break: break-all;
+          strong {
+            color: $medGray;
+          }
+        }
+      }
+    }
+  }
+}
+
+#id-c58e3da0-6830-5201-8d6b-714f70483d8d {
+  background-color: $offWhite;
+  color: $medGray;
+  h2 {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 27px;
+    line-height: 36px;
+    color: $medGray;
+  }
+  p {
+    color: $medGray;
+  }
+}
+
+#id-1d60b490-1153-57b6-96f1-2c233eeb5d45 {
+  section {
+    &:nth-child(1) {
+      width: 35%;
+      @include mobile() {
+        width: 100%;
+      }
+      > div {
+        max-width: calc(#{$desktop-width} * 0.35);
+        @include tablet() {
+          max-width: calc(#{$tablet-width} * 0.35);
+        }
+        @include mobile() {
+          max-width: calc(#{$mobile-width});
+        }
+      }
+      a {
+        color: $darkGray;
+      }
+    }
+    &:nth-child(2) {
+      > div {
+        max-width: calc(#{$desktop-width} * 0.65);
+        @include tablet() {
+          max-width: calc(#{$tablet-width} * 0.65);
+        }
+        @include mobile() {
+          max-width: calc(#{$mobile-width});
+        }
+      }
+      width: 65%;
+      background-size: contain;
+      min-height: 363px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include mobile() {
+        width: 100%;
+      }
+      &:before {
+        background-size: 370px;
+      }
+      h2 {
+        font-family: "Libre Franklin";
+        font-style: normal;
+        font-weight: 800;
+        font-size: 54px;
+        line-height: 72px;
+        color: $darkGray;
+        margin-bottom: 40px;
+        text-align: right;
+      }
+      p {
+        margin: 0px;
+        text-align: right;
+      }
+      a {
+        margin-top: 40px;
+        display: inline-block;
       }
     }
   }
