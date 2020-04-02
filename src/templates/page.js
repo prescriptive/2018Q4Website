@@ -8,6 +8,7 @@ import "../components/scss/page/home.scss"
 import "../components/scss/page/about.scss"
 import "../components/scss/page/solutions.scss"
 import "../components/scss/page/careers.scss"
+import "../components/scss/page/contact.scss"
 import { Link, RichText, Date } from "prismic-reactjs"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
@@ -317,6 +318,13 @@ export const postQuery = graphql`
             id
             slice_type
             primary {
+              embed {
+                text
+              }
+              right_embed {
+                text
+              }
+              active_campaign_form_number
               left_background_image {
                 localFile {
                   childImageSharp {

@@ -171,6 +171,19 @@
                   "label": "Left Background Image"
                 }
               },
+              "embed": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "preformatted",
+                  "label": "Embed"
+                }
+              },
+              "active_campaign_form_number": {
+                "type": "Number",
+                "config": {
+                  "label": "Active Campaign Form Number"
+                }
+              },
               "left_content": {
                 "type": "StructuredText",
                 "config": {
@@ -190,6 +203,13 @@
                   "constraint": {},
                   "thumbnails": [],
                   "label": "Right Background Image"
+                }
+              },
+              "right_embed": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "preformatted",
+                  "label": "Right Embed"
                 }
               },
               "right_content": {

@@ -1,0 +1,38 @@
+#id-44cf1ca4-04ea-5525-b75d-9f4f05f5d1d1{
+  max-width: $desktop-width;
+  display: flex;
+  padding: 0px 20px;
+  margin: 0 auto;
+  @media (max-width: $tablet-width) {
+    max-width: $tablet-width;
+  }
+  @media (max-width: $mobile-width) {
+    max-width: $mobile-width;
+    padding: 0px 15px;
+  }
+  section{
+    width:calc(70% - 100px);
+    padding:0px;
+    &:nth-child(1){
+
+      > div{
+        max-width :100%;
+      }
+      form{
+        padding:0px;
+        width:100%;
+        margin:0px;
+      }
+    }
+    &:nth-child(2){
+      width:30%;
+      > div{
+        max-width :100%;
+      }
+      .section-content{
+        background-color:$lightGray;
+        padding:48px 30px;
+      }
+    }
+  }
+}

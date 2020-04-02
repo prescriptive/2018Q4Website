@@ -6,6 +6,7 @@ import HtmlRender from "../../utils/htmlSerializer"
 import linkResolver from "../../utils/linkResolver"
 import { RichText } from "prismic-reactjs"
 import * as variable from "../variables"
+import Helmet from "react-helmet"
 
 const LeftRightStyle = styled.div`
   display: flex;
@@ -57,6 +58,13 @@ function returnLeft(primary) {
                 dangerouslySetInnerHTML={{ __html: primary.left_content.html }}
               />
             )}
+            {primary.embed && (
+              <div
+                className="section-embed"
+                dangerouslySetInnerHTML={{ __html: primary.embed.text }}
+                />
+            )}
+
           </Container>
         </BackgroundImage>
       )}
@@ -68,6 +76,21 @@ function returnLeft(primary) {
                 className="section-content"
                 dangerouslySetInnerHTML={{ __html: primary.left_content.html }}
               />
+            )}
+            {primary.embed && (
+
+              <div
+                className="section-embed"
+                dangerouslySetInnerHTML={{ __html: primary.embed.text }}
+                />
+            )}
+            {primary.active_campaign_form_number && (
+              <div>
+              <Helmet>
+                <script src={"https://prescriptivesolutions.activehosted.com/f/embed.php?id="+primary.active_campaign_form_number} type="text/javascript" charset="utf-8"></script>
+              </Helmet>
+              <div class={"_form_"+primary.active_campaign_form_number}></div>
+              </div>
             )}
           </Container>
         </section>
@@ -91,6 +114,12 @@ function returnRight(primary) {
                 dangerouslySetInnerHTML={{ __html: primary.right_content.html }}
               />
             )}
+            {primary.right_embed && (
+              <div
+                className="section-embed"
+                dangerouslySetInnerHTML={{ __html: primary.right_embed.text }}
+                />
+            )}
           </Container>
         </BackgroundImage>
       )}
@@ -102,6 +131,12 @@ function returnRight(primary) {
                 className="section-content"
                 dangerouslySetInnerHTML={{ __html: primary.right_content.html }}
               />
+            )}
+            {primary.right_embed && (
+              <div
+                className="section-embed"
+                dangerouslySetInnerHTML={{ __html: primary.right_embed.text }}
+                />
             )}
           </Container>
         </section>
