@@ -6,6 +6,9 @@
   border-radius: 4px;
   text-decoration: none;
   display:inline-block;
+  a{
+    color:white;
+  }
   &:hover {
     background: lighten($bg, 8%);
     transition: all 0.3s ease;
