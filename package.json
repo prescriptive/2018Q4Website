@@ -22,6 +22,7 @@
     "gatsby-plugin-sass": "^2.1.28",
     "gatsby-plugin-sharp": "^2.4.5",
     "gatsby-plugin-sitemap": "^2.2.27",
+    "gatsby-plugin-styled-components": "^3.2.1",
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-remark-embed-youtube": "0.0.7",
     "gatsby-remark-responsive-iframe": "^2.2.32",
