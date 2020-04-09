@@ -6,6 +6,8 @@ import styled from "styled-components"
 import Container from "../components/container"
 import BlogPostTeaser from "../components/entities/blog_post/BlogPostTeaser"
 import { Link } from "gatsby"
+import BackgroundImage from "gatsby-background-image"
+import BgImage from "../images/blogbg.png"
 
 const BlogStyle = styled.div`
   .blog-container {
@@ -13,11 +15,45 @@ const BlogStyle = styled.div`
     flex-wrap: wrap;
     article {
       margin-bottom: 40px;
-      flex-basis: calc((100%) / 3 - 14px);
-      margin-right: 20px;
-      &:nth-child(3n + 3) {
+      @media (min-width: ${variable.tabletWidth}) {
+        width: calc((100%) / 3 - 14px);
+        margin-right: 20px;
+        &:nth-child(3n + 3) {
+          margin-right: 0px;
+        }
+      }
+      @media (max-width: ${variable.tabletWidth}) {
+        width: calc((100%) / 2 - 10px);
+        margin-right: 20px;
+        &:nth-child(2n + 2) {
+          margin-right: 0px;
+        }
+      }
+      @media (max-width: ${variable.mobileWidth}) {
+        width: 100%;
         margin-right: 0px;
       }
+    }
+  }
+  .next {
+    margin: 0px 0px 40px 0px;
+    display: block;
+  }
+  .prev {
+    margin: 0px 0px 40px 0px;
+    display: block;
+  }
+`
+const BlogHeader = styled.div`
+  background-image: url(${BgImage});
+  margin-bottom: 40px;
+  .blog-header-container {
+    min-height: 360px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    h1 {
+      color: white;
     }
   }
 `
@@ -34,21 +70,27 @@ class Blog extends React.Component {
 
     return (
       <Layout>
+        <BlogHeader>
+          <Container>
+            <div className="blog-header-container">
+              <h1>Insights</h1>
+            </div>
+          </Container>
+        </BlogHeader>
         <Container>
           <BlogStyle>
-            <h1>Blog</h1>
             <div className="blog-container">
               {blog.nodes.map((post, index) => (
                 <BlogPostTeaser post={post} key={index}></BlogPostTeaser>
               ))}
             </div>
             {!isFirst && (
-              <Link to={prevPage} rel="prev">
+              <Link to={prevPage} className="prev" rel="prev">
                 ← Previous Page
               </Link>
             )}
             {!isLast && (
-              <Link to={nextPage} rel="next">
+              <Link to={nextPage} className="next" rel="next">
                 Next Page →
               </Link>
             )}
