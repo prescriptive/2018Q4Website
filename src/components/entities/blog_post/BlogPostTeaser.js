@@ -3,6 +3,7 @@ import * as variable from "../../variables"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
+import BackgroundImage from "gatsby-background-image"
 
 const BlogPostTeaserStyle = styled.article`
   padding: 35px;
@@ -27,6 +28,24 @@ const BlogPostTeaserStyle = styled.article`
   }
   .blog-teaser-image {
     margin-bottom: 20px;
+  }
+  .cta-button {
+    position: absolute;
+    bottom: 35px;
+    right: 35px;
+  }
+  .blog-teaser-image-container {
+    height: 175px;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: ${variable.medGray};
+  }
+  .gatsby-image-wrapper {
+    width: 100%;
+    height: 100%;
+    &:before {
+      background-size: cover;
+    }
   }
   .blog-teaser-links {
     display: inline-block;
@@ -64,12 +83,15 @@ const BlogPostTeaserStyle = styled.article`
 export const BlogPostTeaser = ({ post }) => {
   return (
     <BlogPostTeaserStyle>
-      {post.data.main_image.localFile && (
-        <Img
-          className="blog-teaser-image"
-          fluid={post.data.main_image.localFile.childImageSharp.fluid}
-        />
-      )}
+      <div className="blog-teaser-image-container">
+        {post.data.main_image.localFile && (
+          <BackgroundImage
+            Tag="section"
+            fluid={post.data.main_image.localFile.childImageSharp.fluid}
+          ></BackgroundImage>
+        )}
+      </div>
+
       <Link className="blog-teaser-title" to={"/blog/" + post.uid}>
         {post.data.title.text && <h2>{post.data.title.text}</h2>}
       </Link>
@@ -91,7 +113,7 @@ export const BlogPostTeaser = ({ post }) => {
           dangerouslySetInnerHTML={{ __html: post.data.teaser.html }}
         />
       )}
-      <Link className="blog-teaser-links" to={"/blog/" + post.uid}>
+      <Link className="cta-button" to={"/blog/" + post.uid}>
         Read Full Article
       </Link>
     </BlogPostTeaserStyle>
