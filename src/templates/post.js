@@ -63,11 +63,16 @@ const Post = ({ data }) => {
 
   return (
     <Layout>
-      <SEO site={site} page={page} />
+      {/* <SEO site={site} page={page} /> */}
       <PageStyle>
         <Container>
+          {console.log(page)}
           <div className="main-image">
-            {page.data.main_image && <Img fluid={page.data.main_image.fluid} />}
+            {page.data.main_image && (
+              <Img
+                fluid={page.data.main_image.localFile.childImageSharp.fluid}
+              />
+            )}
           </div>
           <h1>{page.data.title.text}</h1>
         </Container>
