@@ -5,9 +5,9 @@
   border: thin solid white;
   border-radius: 4px;
   text-decoration: none;
-  display:inline-block;
-  a{
-    color:white;
+  display: inline-block;
+  a {
+    color: white;
   }
   &:hover {
     background: lighten($bg, 8%);
@@ -25,6 +25,12 @@
 
 @mixin mobile {
   @media only screen and (max-width: $mobile-width) {
+    @content;
+  }
+}
+
+@mixin mobilesmall {
+  @media only screen and (max-width: $mobile-width-small) {
     @content;
   }
 }

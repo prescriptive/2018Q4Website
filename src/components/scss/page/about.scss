@@ -35,7 +35,7 @@
   .column {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     img {
       max-width: 100%;
     }
@@ -46,14 +46,41 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      &:nth-child(even) {
-        border-top-right-radius: 20px;
-        border-bottom-left-radius: 20px;
+      border-top-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+      margin-right: 10px;
+      &:nth-child(5n) {
+        margin-right: 0px;
+        @include tablet() {
+          margin-right: 10px;
+        }
       }
-      &:nth-child(odd) {
-        border-top-left-radius: 20px;
-        border-bottom-right-radius: 20px;
+      @include tablet() {
+        width: calc(100% / 3 - 10px) !important;
+        &:nth-child(3n) {
+          margin-right: 0px;
+          @include mobile() {
+            margin-right: 10px;
+          }
+        }
       }
+      @include mobile() {
+        width: calc(100% / 2 - 10px) !important;
+        &:nth-child(2n) {
+          margin-right: 0px;
+        }
+      }
+      p.block-img {
+        text-align: center;
+      }
+      // &:nth-child(even) {
+      //   border-top-right-radius: 20px;
+      //   border-bottom-left-radius: 20px;
+      // }
+      // &:nth-child(odd) {
+      //   border-top-left-radius: 20px;
+      //   border-bottom-right-radius: 20px;
+      // }
     }
   }
 }
