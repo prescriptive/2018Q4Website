@@ -38,6 +38,11 @@
 
 #slice-id-0cb8616d-6939-52e9-a015-666db481d338 {
   background-color: $lightGray;
+  section {
+    @include mobile() {
+      padding: 20px 0px;
+    }
+  }
   h2 {
     color: $darkGray;
     text-align: center;
