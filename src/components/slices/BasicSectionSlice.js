@@ -111,7 +111,10 @@ export const BasicSectionSlice = ({ slice }) => {
           fluid={fluid}
           style={{ backgroundColor: bg_color }}
         >
-          <Container style={{ color: font_color }}>
+          <Container
+            className="basic-slice-container"
+            style={{ color: font_color }}
+          >
             {slice.primary.section_title.text && h1_title && (
               <h1>{slice.primary.section_title.text}</h1>
             )}

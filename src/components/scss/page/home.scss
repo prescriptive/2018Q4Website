@@ -1,6 +1,12 @@
 #slice-id-a97a71d1-00ac-5848-bb00-31f609d8539a {
   section {
-    padding: 168px 0px;
+    padding: 0px 0px;
+  }
+  .basic-slice-container {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    min-height: calc(100vh - 155px);
   }
   .section-content {
     max-width: 605px;
@@ -215,7 +221,7 @@
         margin: 0px;
         text-align: right;
       }
-      .cta-button{
+      .cta-button {
         display: inline-block;
         margin-top: 40px;
       }
