@@ -9,9 +9,11 @@ import * as variable from "../variables"
 import Helmet from "react-helmet"
 
 const LeftRightStyle = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  .left-right-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
   section {
     width: 50%;
     box-sizing: border-box;
@@ -163,8 +165,10 @@ export const LeftRightSlice = ({ slice }) => {
       id={"id-" + slice.id}
       className="slice-wrapper slice-left-right"
     >
-      {returnLeft(slice.primary)}
-      {returnRight(slice.primary)}
+      <div className="left-right-container">
+        {returnLeft(slice.primary)}
+        {returnRight(slice.primary)}
+      </div>
     </LeftRightStyle>
   )
 }

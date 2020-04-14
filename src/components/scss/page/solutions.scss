@@ -109,3 +109,68 @@
     }
   }
 }
+
+#id-99c630d1-9757-5982-9809-f25f6ddf2e50 {
+  section {
+    &:nth-child(1) {
+      width: 35%;
+      @include mobile() {
+        width: 100%;
+      }
+      > div {
+        max-width: calc(#{$desktop-width} * 0.35);
+        @include tablet() {
+          max-width: calc(#{$tablet-width} * 0.35);
+        }
+        @include mobile() {
+          max-width: calc(#{$mobile-width});
+        }
+      }
+      a {
+        color: $darkGray;
+      }
+    }
+    &:nth-child(2) {
+      > div {
+        max-width: calc(#{$desktop-width} * 0.65);
+        @include tablet() {
+          max-width: calc(#{$tablet-width} * 0.65);
+        }
+        @include mobile() {
+          max-width: calc(#{$mobile-width});
+        }
+      }
+      width: 65%;
+      background-size: contain;
+      min-height: 363px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include mobile() {
+        width: 100%;
+      }
+      &:before {
+        background-size: 370px;
+      }
+      h2 {
+        font-family: "Libre Franklin";
+        font-style: normal;
+        font-weight: 800;
+        font-size: 54px;
+        line-height: 72px;
+        color: $darkGray;
+        margin-bottom: 40px;
+        text-align: right;
+      }
+      p {
+        margin: 0px;
+        text-align: right;
+      }
+      .cta-button {
+        margin-top: 40px;
+        display: inline-block;
+      }
+    }
+  }
+}

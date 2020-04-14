@@ -1,11 +1,13 @@
 #id-44cf1ca4-04ea-5525-b75d-9f4f05f5d1d1 {
-  max-width: $desktop-width;
-  display: flex;
-  padding: 80px 20px;
-  margin: 0 auto;
   background-image: url(../../../images/contact-bg.png);
   background-size: cover;
   color: $medGray;
+  .left-right-container {
+    max-width: $desktop-width;
+    display: flex;
+    padding: 80px 20px;
+    margin: 0 auto;
+  }
   h2 {
     color: $medGray;
   }
@@ -164,7 +166,7 @@
         margin: 0px;
         text-align: right;
       }
-      a {
+      .cta-button {
         margin-top: 40px;
         display: inline-block;
       }

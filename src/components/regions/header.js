@@ -87,6 +87,10 @@ const HeaderStyle = styled.header`
           &:hover {
             background-color: ${variable.medGray};
             transition: all 0.3s ease;
+            color: white;
+          }
+          &[aria-current] {
+            color: white;
           }
         }
       }
@@ -96,6 +100,12 @@ const HeaderStyle = styled.header`
         font-size: 18px;
         text-transform: uppercase;
         font-weight: 400;
+        &:hover {
+          color: ${variable.red};
+        }
+        &[aria-current] {
+          color: ${variable.red};
+        }
       }
     }
   }
