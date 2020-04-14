@@ -40,6 +40,9 @@ const HeaderStyle = styled.header`
   .header-social-container {
     background-color: ${variable.darkGray};
     padding: 12px 0px;
+    @media (max-width: ${variable.mobileWidth}) {
+      display: none;
+    }
     .social-container {
       display: flex;
       justify-content: flex-end;
@@ -51,17 +54,20 @@ const HeaderStyle = styled.header`
   }
   .header-container {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     padding-top: 24px;
     padding-bottom: 24px;
   }
   .logo {
-    width: 293px;
+    max-width: 293px;
     img {
       max-width: 100%;
     }
+  }
+  .mobile-menu-container {
+    width: 55px;
+    margin-left: 20px;
   }
   ul.main-menu {
     display: flex;
@@ -220,7 +226,9 @@ export const Header = () => {
         <Link className="logo" to="/">
           <img src={logo} />
         </Link>
-        <MobileMenu />
+        <div className="mobile-menu-container">
+          <MobileMenu />
+        </div>
         <ul className="main-menu">
           {nav.map((menuitem, index) => (
             <li key={index}>{menuRender(menuitem, classes)}</li>
