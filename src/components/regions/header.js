@@ -40,7 +40,7 @@ const HeaderStyle = styled.header`
   .header-social-container {
     background-color: ${variable.darkGray};
     padding: 12px 0px;
-    @media (max-width: ${variable.mobileWidth}) {
+    @media (max-width: ${variable.tabletWidth}) {
       display: none;
     }
     .social-container {
