@@ -94,6 +94,7 @@
       &:before {
         background-size: 528px 402px !important;
       }
+      background-color: $offWhite;
     }
   }
 }
@@ -101,10 +102,17 @@
 #id-3a891da3-f60b-5fea-a4f9-602ed1226ee0 {
   section {
     &:nth-child(2) {
+      min-height: 513px;
+      background-color: $medLightGray;
+      color: white;
       h2 {
         font-weight: 900;
         font-size: 27px;
+        color: white;
         line-height: 36px;
+      }
+      p {
+        color: white;
       }
     }
   }
