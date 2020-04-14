@@ -10,6 +10,13 @@
   }
   .section-content {
     max-width: 605px;
+    p {
+      &:nth-child(1) {
+        @include tablet() {
+          display: none;
+        }
+      }
+    }
   }
   h1 {
     color: white;
