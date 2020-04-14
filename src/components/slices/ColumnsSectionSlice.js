@@ -42,10 +42,16 @@ const ColumnStyle = styled.div`
       width: calc(100% / 6 - 10px);
     }
   }
-  @media (max-width: ${variable.mobileWidth}) {
+  @media (max-width: ${variable.tabletWidth}) {
+    .column-item {
+      width: calc(100% / 2 - 10px) !important;
+      margin-bottom: 20px;
+    }
+  }
+  @media (max-width: ${variable.mobileWidthSmall}) {
     .column-item {
       width: 100% !important;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
   }
 `
