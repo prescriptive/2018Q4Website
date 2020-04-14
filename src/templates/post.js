@@ -68,7 +68,7 @@ const Post = ({ data }) => {
         <Container>
           {console.log(page)}
           <div className="main-image">
-            {page.data.main_image && (
+            {page.data.main_image.localFile && (
               <Img
                 fluid={page.data.main_image.localFile.childImageSharp.fluid}
               />
