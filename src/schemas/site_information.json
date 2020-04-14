@@ -105,6 +105,13 @@
                   "label": "Link",
                   "placeholder": "Select Link..."
                 }
+              },
+              "relative_link": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "paragraph",
+                  "label": "Relative Link"
+                }
               }
             },
             "repeat": {

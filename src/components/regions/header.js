@@ -130,11 +130,20 @@ function menuRender(menuitem, classes) {
       </HtmlTooltip>
     )
   } else {
-    return (
-      <Link to={menuitem.primary.link.uid}>
-        {menuitem.primary.label[0].text}
-      </Link>
-    )
+    if (menuitem.primary.link.uid) {
+      return (
+        <Link to={menuitem.primary.link.uid}>
+          {menuitem.primary.label[0].text}
+        </Link>
+      )
+    }
+    if (menuitem.primary.relative_link[0]) {
+      return (
+        <Link to={menuitem.primary.relative_link[0].text}>
+          {menuitem.primary.label[0].text}
+        </Link>
+      )
+    }
   }
 }
 export const Header = () => {
@@ -150,6 +159,9 @@ export const Header = () => {
                 }
                 link {
                   uid
+                }
+                relative_link {
+                  text
                 }
               }
               items {
