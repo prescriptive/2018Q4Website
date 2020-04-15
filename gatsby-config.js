@@ -1,7 +1,7 @@
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
-const prismicHtmlSerializer = require('./src/gatsby/htmlSerializer')
+const prismicHtmlSerializer = require("./src/gatsby/htmlSerializer")
 
 module.exports = {
   siteMetadata: {
@@ -109,11 +109,18 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     {
-      resolve: "gatsby-plugin-web-font-loader",
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
       options: {
-        google: {
-          families: ["Roboto:400,500,700,900", "Libre Franklin:800,900"],
-        },
+        fonts: [
+          {
+            family: `Roboto`,
+            varients: [`400`, `500`, `700`, `900`],
+          },
+          {
+            family: `Libre Franklin`,
+            variants: [`800`, `900`],
+          },
+        ],
       },
     },
     `gatsby-v2-plugin-page-transitions`,
