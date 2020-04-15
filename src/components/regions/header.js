@@ -74,6 +74,7 @@ const HeaderStyle = styled.header`
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    padding:0px;
     li {
       list-style: none;
       margin-right: 50px;
