@@ -36,6 +36,7 @@ module.exports = {
           main_navigation: require("./src/schemas/main_navigation.json"),
           leadership: require("./src/schemas/leadership.json"),
           job: require("./src/schemas/job.json"),
+          block: require("./src/schemas/block.json"),
         },
       },
     },

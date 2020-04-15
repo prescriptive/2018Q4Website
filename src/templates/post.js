@@ -60,13 +60,12 @@ const PageStyle = styled.div`
 const Post = ({ data }) => {
   const { page } = data
   const { site } = data
-
+  console.log(page)
   return (
     <Layout>
       {/* <SEO site={site} page={page} /> */}
       <PageStyle>
         <Container>
-          {console.log(page)}
           <div className="main-image">
             {page.data.main_image.localFile && (
               <Img
@@ -89,6 +88,47 @@ export const postQuery = graphql`
       data {
         title {
           text
+        }
+        block_reference {
+          document {
+            ... on PrismicBlock {
+              id
+              data {
+                body {
+                  ... on PrismicBlockBodyBasicSection {
+                    id
+                    slice_type
+                    primary {
+                      background_color
+                      background_image {
+                        localFile {
+                          childImageSharp {
+                            fluid {
+                              src
+                            }
+                          }
+                        }
+                      }
+                      background_video {
+                        url
+                      }
+                      content {
+                        html
+                      }
+                      font_color
+                      h1_title
+                      section_title {
+                        text
+                      }
+                      youtube_background {
+                        embed_url
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
         main_image {
           localFile {

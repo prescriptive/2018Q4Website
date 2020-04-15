@@ -146,5 +146,15 @@
         "placeholder": "Meta Description..."
       }
     }
+  },
+  "Sidebar": {
+    "block_reference": {
+      "type": "Link",
+      "config": {
+        "select": "document",
+        "customtypes": ["block"],
+        "label": "Block Reference"
+      }
+    }
   }
 }
