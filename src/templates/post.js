@@ -11,6 +11,8 @@ import Image from "../components/slices/ImageSlice"
 import Text from "../components/slices/TextSlice"
 import Quote from "../components/slices/QuoteSlice"
 import Video from "../components/slices/VideoSlice"
+import BasicSectionSlice from "../components/slices/BasicSectionSlice"
+import BgImage from "../images/blogbg.png"
 
 // Sort and display the different slice options
 const PostSlices = ({ slices }) => {
@@ -43,7 +45,16 @@ const PostSlices = ({ slices }) => {
               {<Video slice={slice} />}
             </div>
           )
-
+        case "basic_section":
+          return (
+            <div
+              id={"slice-id-" + slice.id}
+              key={index}
+              className="slice-wrapper slice-basic"
+            >
+              {<BasicSectionSlice slice={slice} />}
+            </div>
+          )
         default:
           return
       }
@@ -53,29 +64,107 @@ const PostSlices = ({ slices }) => {
 }
 
 const PageStyle = styled.div`
-  section {
-    padding: ${variable.sectionPadding};
+  padding-bottom: ${variable.sectionPadding};
+  .blog-post-container {
+    display: flex;
+    justify-content: space-between;
+    -webkit-box-pack: justify;
+    @media (max-width: ${variable.mobileWidth}) {
+      flex-direction: column;
+    }
+    .blog-post-left {
+      width: 75%;
+      @media (max-width: ${variable.tabletWidth}) {
+        width: 65%;
+      }
+      @media (max-width: ${variable.mobileWidth}) {
+        width: 100%;
+      }
+    }
+    .blog-post-right {
+      width: calc(25% - 20px);
+      top: 60px;
+      position: sticky;
+      align-self: flex-start;
+      @media (max-width: ${variable.tabletWidth}) {
+        width: calc(35% - 20px);
+      }
+      @media (max-width: ${variable.mobileWidth}) {
+        width: 100%;
+        margin-top: 40px;
+      }
+    }
+  }
+  h1 {
+    margin-top: 0px;
+  }
+  h2 {
+    margin-bottom: 0px;
+  }
+`
+
+const BlogHeader = styled.div`
+  background-image: url(${BgImage});
+  margin-bottom: 40px;
+  .blog-header-container {
+    min-height: 360px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    .blog-post-image-title {
+      color: white;
+      font-family: "Libre Franklin";
+      font-weight: 800;
+      font-size: 54px;
+      line-height: 72px;
+      margin-bottom: 20px;
+    }
   }
 `
 const Post = ({ data }) => {
   const { page } = data
   const { site } = data
+  const { defaultBlock } = data
+
   console.log(page)
   return (
     <Layout>
-      {/* <SEO site={site} page={page} /> */}
+      <SEO site={site} page={page} />
+      <BlogHeader>
+        <Container>
+          <div className="blog-header-container">
+            <div className="blog-post-image-title">Insights</div>
+          </div>
+        </Container>
+      </BlogHeader>
       <PageStyle>
         <Container>
-          <div className="main-image">
-            {page.data.main_image.localFile && (
-              <Img
-                fluid={page.data.main_image.localFile.childImageSharp.fluid}
-              />
+          <div className="blog-post-container">
+            <div className="blog-post-left">
+              <div className="main-image">
+                {page.data.main_image.localFile && (
+                  <Img
+                    fluid={page.data.main_image.localFile.childImageSharp.fluid}
+                  />
+                )}
+              </div>
+              <h1>{page.data.title.text}</h1>
+              {page.data.body && <PostSlices slices={page.data.body} />}
+            </div>
+            {page.data.block_reference.document && (
+              <div className="blog-post-right">
+                <PostSlices
+                  slices={page.data.block_reference.document.data.body}
+                />
+              </div>
+            )}
+            {!page.data.block_reference.document && (
+              <div className="blog-post-right">
+                <PostSlices slices={defaultBlock.data.body} />
+              </div>
             )}
           </div>
-          <h1>{page.data.title.text}</h1>
         </Container>
-        {page.data.body && <PostSlices slices={page.data.body} />}
       </PageStyle>
     </Layout>
   )
@@ -83,6 +172,44 @@ const Post = ({ data }) => {
 export default Post
 export const postQuery = graphql`
   query PostBySlug($uid: String!) {
+    defaultBlock: prismicBlock(
+      id: { eq: "ec237610-ff7b-583b-9a83-076cc4920623" }
+    ) {
+      data {
+        body {
+          ... on PrismicBlockBodyBasicSection {
+            id
+            slice_type
+            primary {
+              background_color
+              background_image {
+                localFile {
+                  childImageSharp {
+                    fluid {
+                      src
+                    }
+                  }
+                }
+              }
+              background_video {
+                url
+              }
+              content {
+                html
+              }
+              font_color
+              h1_title
+              section_title {
+                text
+              }
+              youtube_background {
+                embed_url
+              }
+            }
+          }
+        }
+      }
+    }
     page: prismicBlogPost(uid: { eq: $uid }) {
       uid
       data {

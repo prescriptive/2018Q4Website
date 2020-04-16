@@ -5,7 +5,7 @@ import Container from "../container"
 import { Link, RichText, Date } from "prismic-reactjs"
 import YouTube from "react-youtube"
 import ResponsiveEmbed from "react-responsive-embed"
-
+import "../scss/block/defaultBlogCta.scss"
 const BasicStyle = styled.div`
   .video-container-outer {
     .video-container {
