@@ -6,9 +6,10 @@ import Container from "../container"
 
 export const ImageSlice = ({ slice }) => {
   return (
-    <Container className="image-slice">
-      <Img fluid={slice.primary.image.localFile.childImageSharp.fluid} />
-    </Container>
+    <Img
+      className="image-slice"
+      fluid={slice.primary.image.localFile.childImageSharp.fluid}
+    />
   )
 }
 
