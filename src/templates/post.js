@@ -106,7 +106,7 @@ const PageStyle = styled.div`
   }
   img {
     border-radius: 4px;
-    overdlow: hidden;
+    overflow: hidden;
   }
 `
 
@@ -132,8 +132,6 @@ const Post = ({ data }) => {
   const { page } = data
   const { site } = data
   const { defaultBlock } = data
-
-  console.log(page)
   return (
     <Layout>
       <SEO site={site} page={page} />
