@@ -6,7 +6,7 @@ import { usePrismicPreview } from "gatsby-source-prismic"
 const PreviewPage = ({ location }) => {
   const { isPreview, previewData, path } = usePrismicPreview({
     // The repositoryName value from your `gatsby-config.js`.
-    repositoryName: `prescriptive`,
+    repositoryName: "prescriptive",
   })
 
   // This useEffect runs when values from usePrismicPreview update. When

@@ -12,6 +12,9 @@ const LeadershipTeaserStyle = styled.article`
   padding-bottom: 90px;
   position: relative;
   border-radius: 4px;
+  .gatsby-image-wrapper {
+    border-radius: 4px;
+  }
   .photo-name {
     display: flex;
     align-items: center;
