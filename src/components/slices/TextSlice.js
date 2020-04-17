@@ -5,10 +5,10 @@ import Container from "../container"
 
 export const TextSlice = ({ slice }) => {
   return (
-    <div className="text-slice">
-
-      {RichText.render(slice.primary.text.html, linkResolver)}
-      </div>
+    <div
+      className="text-slice"
+      dangerouslySetInnerHTML={{ __html: slice.primary.text.html }}
+    />
   )
 }
 
