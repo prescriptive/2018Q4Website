@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useMemo } from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import * as variable from "../components/variables"
@@ -13,6 +13,11 @@ import Quote from "../components/slices/QuoteSlice"
 import Video from "../components/slices/VideoSlice"
 import BasicSectionSlice from "../components/slices/BasicSectionSlice"
 import BgImage from "../images/blogbg.png"
+import { mergePrismicPreviewData } from "gatsby-source-prismic"
+
+// Returns true if we're in a browser, false otherwise. This will help guard
+// against SSR issues when building the site.
+const IS_BROWSER = typeof window !== "undefined"
 
 // Sort and display the different slice options
 const PostSlices = ({ slices }) => {
@@ -128,10 +133,20 @@ const BlogHeader = styled.div`
     }
   }
 `
-const Post = ({ data }) => {
-  const { page } = data
-  const { site } = data
-  const { defaultBlock } = data
+const Post = ({ data: staticData }) => {
+  const { page } = staticData
+  const { site } = staticData
+  const { defaultBlock } = staticData
+  const data = useMemo(() => {
+    // If we're not in a browser (i.e. we're in SSR) or preview data has not been
+    // set, use the non-preview static data.
+    if (!IS_BROWSER || !window.__PRISMIC_PREVIEW_DATA__) return staticData
+
+    return mergePrismicPreviewData({
+      staticData,
+      previewData: window.__PRISMIC_PREVIEW_DATA__,
+    })
+  }, [staticData])
   return (
     <Layout>
       <SEO site={site} page={page} />
