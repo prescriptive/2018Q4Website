@@ -80,6 +80,9 @@ const PageStyle = styled.div`
       @media (max-width: ${variable.mobileWidth}) {
         width: 100%;
       }
+      .main-image {
+        margin-bottom: 40px;
+      }
     }
     .blog-post-right {
       width: calc(25% - 20px);
