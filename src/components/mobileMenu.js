@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import { StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import * as variable from "../components/variables"
+import Container from "../components/container"
 
 const MobileContainer = styled.div`
   display: none;
@@ -23,16 +24,20 @@ const MobileContainer = styled.div`
     margin: 0px 0px 20px 0px !important;
     padding: 0px;
     list-style: none;
+    text-align: left;
     &:focus {
       outline: none !important;
     }
     a {
       display: block !important;
-      text-align: center;
-      color: #000000;
+      text-align: left;
+      color: ${variable.darkGray};
       text-decoration: none;
       &:focus {
         outline: none !important;
+      }
+      &.active {
+        color: ${variable.red};
       }
     }
     ul {
@@ -43,11 +48,17 @@ const MobileContainer = styled.div`
       padding: 0px;
     }
   }
+  .menu-container {
+    padding: 40px 30px;
+    img {
+      max-width: 150px;
+    }
+  }
   @media (max-width: ${variable.tabletWidth}) {
     display: block;
     .bm-menu-wrap {
       top: 0px;
-      width: 100% !important;
+      // width: 100% !important;
       ul {
         margin-top: 10px;
         li {
@@ -76,7 +87,19 @@ const MobileContainer = styled.div`
     display: block;
   }
 `
-
+const SubMenuReturn = ({ submenuitem, index }) => {
+  if (submenuitem.sub_nav_link_label[0].text != "Dummy") {
+    return (
+      <li key={index}>
+        <Link to={submenuitem.sub_nav_link.uid}>
+          {submenuitem.sub_nav_link_label[0].text}
+        </Link>
+      </li>
+    )
+  } else {
+    return ""
+  }
+}
 class Mobilemenu extends React.Component {
   constructor(props) {
     super(props)
@@ -146,35 +169,43 @@ class Mobilemenu extends React.Component {
                 right
                 noOverlay
                 isOpen={this.state.menuOpen}
+                width={240}
                 onStateChange={state => this.handleStateChange(state)}
               >
-                <li>
-                  <Link to="/" onClick={() => this.toggleMenu()}>
-                    <img src={data.logo.nodes[0].data.logo.url} />
-                  </Link>
-                </li>
-                {data.nav.nodes[0].data.nav.map((menuitem, index) => (
-                  <li key={index}>
+                <div className="menu-container">
+                  <li>
                     <Link
-                      activeStyle={{ color: variable.darkgray }}
-                      to={menuitem.primary.link.uid}
+                      to="/"
+                      activeClassName="active"
                       onClick={() => this.toggleMenu()}
                     >
-                      {menuitem.primary.label[0].text}
+                      Home
                     </Link>
-                    {menuitem.items[0].sub_nav_link.uid && (
-                      <ul className="sub-menu">
-                        {menuitem.items.map((submenuitem, index) => (
-                          <li key={index}>
-                            <Link to={submenuitem.sub_nav_link.uid}>
-                              {submenuitem.sub_nav_link_label[0].text}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
                   </li>
-                ))}
+                  {data.nav.nodes[0].data.nav.map((menuitem, index) => (
+                    <li key={index}>
+                      <Link
+                        activeStyle={{ color: variable.darkgray }}
+                        to={menuitem.primary.link.uid}
+                        onClick={() => this.toggleMenu()}
+                        activeClassName="active"
+                      >
+                        {menuitem.primary.label[0].text}
+                      </Link>
+
+                      {menuitem.items[0].sub_nav_link.uid && (
+                        <ul className="sub-menu">
+                          {menuitem.items.map((submenuitem, index) => (
+                            <SubMenuReturn
+                              submenuitem={submenuitem}
+                              index={index}
+                            />
+                          ))}
+                        </ul>
+                      )}
+                    </li>
+                  ))}
+                </div>
               </Menu>
             </MobileContainer>
           </>
