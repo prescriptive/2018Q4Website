@@ -14,6 +14,9 @@ const EntityQueryStyle = styled.div`
     margin-bottom: 40px;
     width: calc((100%) / 3 - 14px);
     margin-right: 20px;
+    @media (max-width: ${variable.tabletWidth}) {
+      width: calc((100%) / 2 - 20px);
+    }
     @media (max-width: ${variable.mobileWidth}) {
       width: 100%;
     }

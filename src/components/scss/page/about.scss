@@ -56,8 +56,8 @@
         }
       }
       @include tablet() {
-        width: calc(100% / 3 - 10px) !important;
-        &:nth-child(3n) {
+        width: calc(100% / 2 - 10px) !important;
+        &:nth-child(2n) {
           margin-right: 0px;
           @include mobile() {
             margin-right: 10px;
