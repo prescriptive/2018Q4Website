@@ -82,6 +82,8 @@
       .section-content {
         background-color: $lightGray;
         padding: 48px 30px;
+        border-radius: 4px;
+        overflow: hidden;
         p {
           margin: 0px 0px 10px 0px;
           word-break: break-all;

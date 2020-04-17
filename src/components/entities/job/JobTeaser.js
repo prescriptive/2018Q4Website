@@ -7,7 +7,7 @@ import Img from "gatsby-image"
 var FA = require("react-fontawesome")
 
 const JobTeaserStyle = styled.article`
-
+  border-radius:4px;
   background-color: white;
   a{
     display:block;

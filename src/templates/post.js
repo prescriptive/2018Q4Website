@@ -101,6 +101,10 @@ const PageStyle = styled.div`
   h2 {
     margin-bottom: 0px;
   }
+  img {
+    border-radius: 4px;
+    overdlow: hidden;
+  }
 `
 
 const BlogHeader = styled.div`

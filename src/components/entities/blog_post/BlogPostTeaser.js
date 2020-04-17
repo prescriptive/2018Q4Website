@@ -12,6 +12,7 @@ const BlogPostTeaserStyle = styled.article`
   color: ${variable.darkGray};
   text-decoration: none;
   position: relative;
+  border-radius: 4px;
   .blog-teaser-title {
     display: block;
     h2 {

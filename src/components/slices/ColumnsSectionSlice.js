@@ -16,10 +16,15 @@ const ColumnStyle = styled.div`
     img {
       max-width: 100%;
     }
+    .column-item {
+      border-radius: 4px;
+      overflow: hidden;
+    }
   }
   .column-count-2 {
     .column-item {
       width: calc(100% / 2 - 10px);
+      overflow: hidden;
     }
   }
   .column-count-3 {
