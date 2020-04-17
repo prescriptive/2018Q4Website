@@ -6,9 +6,9 @@ const prismicHtmlSerializer = require("./src/gatsby/htmlSerializer")
 
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Prescriptive Solutions`,
+    description: `Prescriptive Data Solutions helps our enterprise customers connect, secure, transform and scale through information technology consulting, solutions, integration, and managed services.`,
+    author: `Digett`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
