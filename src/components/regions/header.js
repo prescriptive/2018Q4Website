@@ -74,7 +74,7 @@ const HeaderStyle = styled.header`
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    padding:0px;
+    padding: 0px;
     li {
       list-style: none;
       margin-right: 50px;
@@ -117,7 +117,6 @@ const HeaderStyle = styled.header`
   }
 `
 function menuRender(menuitem, classes) {
-  console.log(menuitem)
   if (
     menuitem.items[0].sub_nav_link_label[0] &&
     menuitem.items[0].sub_nav_link_label[0].text != "Dummy"
@@ -226,7 +225,7 @@ export const Header = () => {
         <div class="header-social-container">
           <Container>
             <div class="social-container">
-              <a href={twitter}>
+              <a href={twitter} target="_blank">
                 <FA name="twitter" />
               </a>
             </div>
