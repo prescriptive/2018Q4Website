@@ -50,6 +50,9 @@ const MobileContainer = styled.div`
   }
   .menu-container {
     padding: 40px 30px;
+    &:focus {
+      outline: none !important;
+    }
     img {
       max-width: 150px;
     }

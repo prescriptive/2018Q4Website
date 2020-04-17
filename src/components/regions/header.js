@@ -52,6 +52,7 @@ const HeaderStyle = styled.header`
       font-size: 30px;
     }
   }
+  background-color: ${variable.offWhite};
   .header-container {
     display: flex;
     justify-content: space-between;
