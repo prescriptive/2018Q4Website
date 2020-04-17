@@ -134,6 +134,9 @@ class Mobilemenu extends React.Component {
                       label {
                         text
                       }
+                      relative_link {
+                        text
+                      }
                       link {
                         uid
                       }
@@ -184,15 +187,26 @@ class Mobilemenu extends React.Component {
                   </li>
                   {data.nav.nodes[0].data.nav.map((menuitem, index) => (
                     <li key={index}>
-                      <Link
-                        activeStyle={{ color: variable.darkgray }}
-                        to={menuitem.primary.link.uid}
-                        onClick={() => this.toggleMenu()}
-                        activeClassName="active"
-                      >
-                        {menuitem.primary.label[0].text}
-                      </Link>
-
+                      {menuitem.primary.link.uid && (
+                        <Link
+                          activeStyle={{ color: variable.darkgray }}
+                          to={menuitem.primary.link.uid}
+                          onClick={() => this.toggleMenu()}
+                          activeClassName="active"
+                        >
+                          {menuitem.primary.label[0].text}
+                        </Link>
+                      )}
+                      {!menuitem.primary.link.uid && (
+                        <Link
+                          activeStyle={{ color: variable.darkgray }}
+                          to={menuitem.primary.relative_link[0].text}
+                          onClick={() => this.toggleMenu()}
+                          activeClassName="active"
+                        >
+                          {menuitem.primary.label[0].text}
+                        </Link>
+                      )}
                       {menuitem.items[0].sub_nav_link.uid && (
                         <ul className="sub-menu">
                           {menuitem.items.map((submenuitem, index) => (
