@@ -38,3 +38,6 @@ p {
 .cta-button {
   @include cta-button($darkGray);
 }
+._form {
+  display: none;
+}

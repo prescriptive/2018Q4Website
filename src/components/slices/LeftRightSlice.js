@@ -9,6 +9,9 @@ import * as variable from "../variables"
 import Helmet from "react-helmet"
 
 const LeftRightStyle = styled.div`
+  ._form {
+    display: block;
+  }
   .left-right-container {
     display: flex;
     flex-wrap: wrap;
@@ -52,7 +55,6 @@ const LeftRightStyle = styled.div`
 
 export const addActive = id => {
   if (typeof window !== "undefined") {
-    //do work
     var script = document.createElement("script")
     script.type = "text/javascript"
     script.src =
@@ -100,26 +102,11 @@ function returnLeft(primary) {
                 dangerouslySetInnerHTML={{ __html: primary.embed.text }}
               />
             )}
-            {/* {primary.active_campaign_form_number && (
-              <div>
-                <Helmet>
-                  <script
-                    src={
-                      "https://prescriptivesolutions.activehosted.com/f/embed.php?id=" +
-                      primary.active_campaign_form_number
-                    }
-                    type="text/javascript"
-                    charset="utf-8"
-                  ></script>
-                </Helmet>
-                <div
-                  class={"_form_" + primary.active_campaign_form_number}
-                ></div>
+            {primary.active_campaign_form_number && (
+              <div class={"_form_" + primary.active_campaign_form_number}>
+                {addActive(primary.active_campaign_form_number)}
               </div>
-            )} */}
-            <div class={"_form_" + primary.active_campaign_form_number}>
-              {addActive(primary.active_campaign_form_number)}
-            </div>
+            )}
           </Container>
         </section>
       )}
