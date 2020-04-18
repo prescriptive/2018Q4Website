@@ -91,7 +91,7 @@ function returnLeft(primary) {
             )}
             {primary.active_campaign_form_number && (
               <div>
-                <Helmet>
+                {/* <Helmet>
                   <script
                     src={
                       "https://prescriptivesolutions.activehosted.com/f/embed.php?id=" +
@@ -100,7 +100,7 @@ function returnLeft(primary) {
                     type="text/javascript"
                     charset="utf-8"
                   ></script>
-                </Helmet>
+                </Helmet> */}
                 <div
                   class={"_form_" + primary.active_campaign_form_number}
                 ></div>
