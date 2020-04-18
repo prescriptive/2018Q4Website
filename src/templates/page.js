@@ -21,7 +21,6 @@ import BasicSectionSlice from "../components/slices/BasicSectionSlice"
 import ColumnSectionSlice from "../components/slices/ColumnsSectionSlice"
 import LeftRightSlice from "../components/slices/LeftRightSlice"
 import EntityQuerySlice from "../components/slices/EntityQuerySlice"
-import Helmet from "react-helmet"
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, blog, leadership, job }) => {
@@ -136,13 +135,6 @@ const Page = ({ data }) => {
   return (
     <Layout>
       <SEO site={site} page={page} />
-      <Helmet>
-        <script
-          src="https://prescriptivesolutions.activehosted.com/f/embed.php?id=1"
-          type="text/javascript"
-          charset="utf-8"
-        ></script>
-      </Helmet>
       <PageStyle>
         {page.data.body && (
           <PostSlices

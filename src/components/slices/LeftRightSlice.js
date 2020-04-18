@@ -53,6 +53,16 @@ const LeftRightStyle = styled.div`
 function returnLeft(primary) {
   return (
     <React.Fragment>
+      <Helmet>
+        <script
+          src={
+            "https://prescriptivesolutions.activehosted.com/f/embed.php?id=" +
+            primary.active_campaign_form_number
+          }
+          type="text/javascript"
+          charset="utf-8"
+        ></script>
+      </Helmet>
       {primary.left_background_image.localFile && (
         <BackgroundImage
           Tag="section"
@@ -101,9 +111,19 @@ function returnLeft(primary) {
                     charset="utf-8"
                   ></script>
                 </Helmet> */}
-                <div
-                  class={"_form_" + primary.active_campaign_form_number}
-                ></div>
+                {/* <div
+                  className="ac"
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      '<script src="https://prescriptivesolutions.activehosted.com/f/embed.php?id=1" type="text/javascript" charset="utf-8"></script>',
+                  }}
+                /> */}
+                <div class="_form_1"></div>
+                {/* <script
+                  src="https://prescriptivesolutions.activehosted.com/f/embed.php?id=1"
+                  type="text/javascript"
+                  charset="utf-8"
+                ></script> */}
               </div>
             )}
           </Container>
