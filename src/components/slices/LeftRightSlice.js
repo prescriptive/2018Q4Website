@@ -50,19 +50,20 @@ const LeftRightStyle = styled.div`
   }
 `
 
+export const addActive = id => {
+  if (typeof window !== "undefined") {
+    //do work
+    var script = document.createElement("script")
+    script.type = "text/javascript"
+    script.src =
+      "https://prescriptivesolutions.activehosted.com/f/embed.php?id=" + id
+    document.getElementsByTagName("head")[0].appendChild(script)
+  }
+}
+
 function returnLeft(primary) {
   return (
     <React.Fragment>
-      <Helmet>
-        <script
-          src={
-            "https://prescriptivesolutions.activehosted.com/f/embed.php?id=" +
-            primary.active_campaign_form_number
-          }
-          type="text/javascript"
-          charset="utf-8"
-        ></script>
-      </Helmet>
       {primary.left_background_image.localFile && (
         <BackgroundImage
           Tag="section"
@@ -99,9 +100,9 @@ function returnLeft(primary) {
                 dangerouslySetInnerHTML={{ __html: primary.embed.text }}
               />
             )}
-            {primary.active_campaign_form_number && (
+            {/* {primary.active_campaign_form_number && (
               <div>
-                {/* <Helmet>
+                <Helmet>
                   <script
                     src={
                       "https://prescriptivesolutions.activehosted.com/f/embed.php?id=" +
@@ -110,22 +111,15 @@ function returnLeft(primary) {
                     type="text/javascript"
                     charset="utf-8"
                   ></script>
-                </Helmet> */}
-                {/* <div
-                  className="ac"
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      '<script src="https://prescriptivesolutions.activehosted.com/f/embed.php?id=1" type="text/javascript" charset="utf-8"></script>',
-                  }}
-                /> */}
-                <div class="_form_1"></div>
-                {/* <script
-                  src="https://prescriptivesolutions.activehosted.com/f/embed.php?id=1"
-                  type="text/javascript"
-                  charset="utf-8"
-                ></script> */}
+                </Helmet>
+                <div
+                  class={"_form_" + primary.active_campaign_form_number}
+                ></div>
               </div>
-            )}
+            )} */}
+            <div class={"_form_" + primary.active_campaign_form_number}>
+              {addActive(primary.active_campaign_form_number)}
+            </div>
           </Container>
         </section>
       )}
