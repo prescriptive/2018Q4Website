@@ -12,7 +12,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 function SEO({ site, page, lang, meta }) {
   const metaDescription =
-    page.data.meta_description
+    page.data.meta_description || ''
   const title = page.data.meta_title || page.data.title.text
   const siteName = site.nodes[0].data.site_title[0].text
   const twitterAuthor = site.nodes[0].data.twitter_author[0].text
