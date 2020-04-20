@@ -135,7 +135,6 @@ const Post = ({ data }) => {
   const { page } = data
   const { site } = data
   const { defaultBlock } = data
-  console.log(page)
   return (
     <Layout>
       <SEO site={site} page={page} />
@@ -225,6 +224,8 @@ export const postQuery = graphql`
         title {
           text
         }
+        meta_description
+        meta_title
         block_reference {
           document {
             ... on PrismicBlock {

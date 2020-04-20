@@ -8,6 +8,7 @@ import BlogPostTeaser from "../components/entities/blog_post/BlogPostTeaser"
 import { Link } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
 import BgImage from "../images/blogbg.png"
+import SEO from "../components/seo"
 
 const BlogStyle = styled.div`
   .blog-container {
@@ -67,9 +68,10 @@ class Blog extends React.Component {
     const prevPage =
       currentPage - 1 === 1 ? "/blog" : "/blog/" + (currentPage - 1).toString()
     const nextPage = "/blog/" + (currentPage + 1).toString()
-
+    const page = {data:{meta_title:"Insights", meta_description:""}};
     return (
       <Layout>
+              <SEO site={site} page={page} />
         <BlogHeader>
           <Container>
             <div className="blog-header-container">
