@@ -7,9 +7,11 @@
     display: flex;
     padding: 80px 20px;
     margin: 0 auto;
+    align-items: flex-start;
   }
   h1 {
     color: $medGray;
+    margin-top: 0px;
   }
   p {
     color: $medGray;
