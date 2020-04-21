@@ -49,27 +49,27 @@ module.exports = {
             }
         }`,
 
-        resolveSiteUrl: ({site, allSitePage}) => {
+        resolveSiteUrl: ({ site, allSitePage }) => {
           //Alternativly, you may also pass in an environment variable (or any location) at the beginning of your `gatsby-config.js`.
           return site.siteMetadata.siteUrl
         },
-        serialize: ({ site, allPrismicPa }) =>
-        allPrismicPa.edges.map(edge => {
+        serialize: ({ site, allPrismicPa, allPrismicBlogPost }) => {
+          allPrismicPa.edges.map(edge => {
             return {
               url: `${site.siteMetadata.siteUrl}/${edge.node.uid}`,
               changefreq: `daily`,
               priority: 0.7,
             }
-          }),
-          serialize: ({ site, allPrismicBlogPost }) =>
+          })
           allPrismicBlogPost.edges.map(edge => {
-              return {
-                url: `${site.siteMetadata.siteUrl}/blog/${edge.node.uid}`,
-                changefreq: `daily`,
-                priority: 0.7,
-              }
-            })
-      }
+            return {
+              url: `${site.siteMetadata.siteUrl}/blog/${edge.node.uid}`,
+              changefreq: `daily`,
+              priority: 0.7,
+            }
+          })
+        },
+      },
     },
     {
       resolve: `gatsby-source-filesystem`,
