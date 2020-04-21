@@ -54,20 +54,22 @@ module.exports = {
           return site.siteMetadata.siteUrl
         },
         serialize: ({ site, allPrismicPa, allPrismicBlogPost }) => {
+          let pages = []
           allPrismicPa.edges.map(edge => {
-            return {
+            pages.push({
               url: `${site.siteMetadata.siteUrl}/${edge.node.uid}`,
               changefreq: `daily`,
               priority: 0.7,
-            }
+            })
           })
           allPrismicBlogPost.edges.map(edge => {
-            return {
+            pages.push({
               url: `${site.siteMetadata.siteUrl}/blog/${edge.node.uid}`,
               changefreq: `daily`,
               priority: 0.7,
-            }
+            })
           })
+          return pages
         },
       },
     },
