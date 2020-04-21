@@ -9,9 +9,68 @@ module.exports = {
     title: `Prescriptive Solutions`,
     description: `Prescriptive Data Solutions helps our enterprise customers connect, secure, transform and scale through information technology consulting, solutions, integration, and managed services.`,
     author: `Digett`,
+    siteUrl: `https://prescriptive.solutions`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        output: `/sitemap.xml`,
+        // Exclude specific pages or groups of pages using glob parameters
+        // See: https://github.com/isaacs/minimatch
+        // The example below will exclude the single `path/to/page` and all routes beginning with `category`
+        exclude: [`/category/*`, `/path/to/page`],
+        query: `
+          {
+            site {
+              siteMetadata {
+                siteUrl
+              }
+            }
+            allSitePage {
+              nodes {
+                path
+              }
+            }
+            allPrismicPa(filter: {data: {do_not_index: {eq: false}}}) {
+              edges {
+                node {
+                  uid
+                }
+              }
+            }
+            allPrismicBlogPost{
+              edges {
+                node {
+                  uid
+                }
+              }
+            }
+        }`,
+
+        resolveSiteUrl: ({site, allSitePage}) => {
+          //Alternativly, you may also pass in an environment variable (or any location) at the beginning of your `gatsby-config.js`.
+          return site.siteMetadata.siteUrl
+        },
+        serialize: ({ site, allPrismicPa }) =>
+        allPrismicPa.edges.map(edge => {
+            return {
+              url: `${site.siteMetadata.siteUrl}/${edge.node.uid}`,
+              changefreq: `daily`,
+              priority: 0.7,
+            }
+          }),
+          serialize: ({ site, allPrismicBlogPost }) =>
+          allPrismicBlogPost.edges.map(edge => {
+              return {
+                url: `${site.siteMetadata.siteUrl}/blog/${edge.node.uid}`,
+                changefreq: `daily`,
+                priority: 0.7,
+              }
+            })
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

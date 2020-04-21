@@ -343,6 +343,13 @@
         "label": "Meta Description",
         "placeholder": "Meta Description..."
       }
+    },
+    "do_not_index": {
+      "type": "Boolean",
+      "config": {
+        "default_value": false,
+        "label": "Do Not Index"
+      }
     }
   }
 }

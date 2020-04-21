@@ -11,6 +11,12 @@ import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
 function SEO({ site, page, lang, meta }) {
+  var noIndex = 'index'
+  if(page.data.do_not_index){
+    if(page.data.do_not_index == true){
+      var noIndex = 'noindex'
+    }
+  }
   const metaDescription =
     page.data.meta_description || ''
   const title = page.data.meta_title || page.data.title.text
@@ -46,6 +52,10 @@ function SEO({ site, page, lang, meta }) {
         {
           name: `description`,
           content: metaDescription,
+        },
+        {
+          name: `robots`,
+          content: noIndex,
         },
         {
           property: `og:title`,

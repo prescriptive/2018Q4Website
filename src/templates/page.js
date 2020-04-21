@@ -136,6 +136,7 @@ const Page = ({ data }) => {
     <Layout>
       <SEO site={site} page={page} />
       <PageStyle>
+
         {page.data.body && (
           <PostSlices
             slices={page.data.body}
@@ -209,6 +210,7 @@ export const postQuery = graphql`
       data {
         meta_title
         meta_description
+        do_not_index
         title {
           text
         }
