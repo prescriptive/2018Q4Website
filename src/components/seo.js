@@ -17,6 +17,11 @@ function SEO({ site, page, lang, meta }) {
       var noIndex = 'noindex'
     }
   }
+  console.log(page)
+  var ogImage = ''
+  if(page.data.main_image.url){
+    ogImage = page.data.main_image.url 
+  }
   const metaDescription =
     page.data.meta_description || ''
   const title = page.data.meta_title || page.data.title.text
@@ -58,16 +63,24 @@ function SEO({ site, page, lang, meta }) {
           content: noIndex,
         },
         {
+          property: `og:image`,
+          content: ogImage,
+        },
+        {
           property: `og:title`,
           content: title,
         },
         {
-          property: `og:description`,
-          content: metaDescription,
+          property: `og:type`,
+          content: 'article',
         },
         {
-          property: `og:type`,
-          content: `website`,
+          property: `og:title`,
+          content: title,
+        },
+        {
+          property: `og:url`,
+          content: canonical,
         },
         {
           name: `twitter:card`,

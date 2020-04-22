@@ -268,6 +268,7 @@ export const postQuery = graphql`
           }
         }
         main_image {
+          url
           localFile {
             childImageSharp {
               fluid(maxWidth: 1920) {
