@@ -109,7 +109,6 @@ class Mobilemenu extends React.Component {
     this.state = {
       menuOpen: false,
     }
-    console.log(this)
   }
 
   handleStateChange(state) {

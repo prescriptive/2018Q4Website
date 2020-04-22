@@ -51,7 +51,6 @@ const BasicStyle = styled.div`
 `
 
 export const BasicSectionSlice = ({ slice }) => {
-  console.log(slice)
   const videoOptions = {
     playerVars: {
       autoplay: 1,
@@ -86,7 +85,6 @@ export const BasicSectionSlice = ({ slice }) => {
     slice.primary.youtube_background.url == null
   ) {
     bg_video_image = true
-    console.log("true")
   }
   if (slice.primary.background_color != null) {
     bg_color = slice.primary.background_color
@@ -99,7 +97,6 @@ export const BasicSectionSlice = ({ slice }) => {
   }
   // const content = slice.primary.content.raw.map(function(slice, index) {
   //   if (slice.type === "heading1") {
-  //     console.log(slice)
   //     return <h1>{RichText.render(slice)}</h1>
   //   }
   // })

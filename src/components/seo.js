@@ -11,19 +11,18 @@ import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
 function SEO({ site, page, lang, meta }) {
-  var noIndex = 'index'
-  if(page.data.do_not_index){
-    if(page.data.do_not_index == true){
-      var noIndex = 'noindex'
+  var noIndex = "index"
+  if (page.data.do_not_index) {
+    if (page.data.do_not_index == true) {
+      var noIndex = "noindex"
     }
   }
   console.log(page)
-  var ogImage = ''
-  if(page.data.main_image.url){
-    ogImage = page.data.main_image.url 
+  var ogImage = ""
+  if (page.data.main_image) {
+    ogImage = page.data.main_image.url
   }
-  const metaDescription =
-    page.data.meta_description || ''
+  const metaDescription = page.data.meta_description || ""
   const title = page.data.meta_title || page.data.title.text
   const siteName = site.nodes[0].data.site_title[0].text
   const twitterAuthor = site.nodes[0].data.twitter_author[0].text
@@ -72,7 +71,7 @@ function SEO({ site, page, lang, meta }) {
         },
         {
           property: `og:type`,
-          content: 'article',
+          content: "article",
         },
         {
           property: `og:title`,
