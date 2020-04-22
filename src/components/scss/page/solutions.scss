@@ -124,6 +124,7 @@
       width: 35%;
       @include mobile() {
         width: 100%;
+        display: none;
       }
       > div {
         max-width: calc(#{$desktop-width} * 0.35);

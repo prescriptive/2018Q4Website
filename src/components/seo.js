@@ -17,7 +17,6 @@ function SEO({ site, page, lang, meta }) {
       var noIndex = "noindex"
     }
   }
-  console.log(page)
   var ogImage = ""
   if (page.data.main_image) {
     ogImage = page.data.main_image.url
