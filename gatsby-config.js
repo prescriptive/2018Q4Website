@@ -9,7 +9,7 @@ module.exports = {
     title: `Prescriptive Solutions`,
     description: `Prescriptive Data Solutions helps our enterprise customers connect, secure, transform and scale through information technology consulting, solutions, integration, and managed services.`,
     author: `Digett`,
-    siteUrl: `https://prescriptive.solutions`,
+    siteUrl: `https://revamp--prescriptive-solutions-2018q4website.netlify.app`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -71,6 +71,16 @@ module.exports = {
           })
           return pages
         },
+      },
+    },
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host:
+          "https://revamp--prescriptive-solutions-2018q4website.netlify.app",
+        sitemap:
+          "https://revamp--prescriptive-solutions-2018q4website.netlify.app/sitemap.xml",
+        policy: [{ userAgent: "*", allow: "/" }],
       },
     },
     {

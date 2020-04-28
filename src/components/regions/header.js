@@ -223,7 +223,7 @@ export const Header = () => {
         <div class="header-social-container">
           <Container>
             <div class="social-container">
-              <a href={twitter} target="_blank">
+              <a href={twitter} target="_blank" rel="noreferrer">
                 <FontAwesomeIcon icon={faTwitter} />
               </a>
             </div>
@@ -232,7 +232,7 @@ export const Header = () => {
       )}
       <Container className="header-container">
         <Link className="logo" to="/">
-          <img src={logo} />
+          <img alt="logo home" src={logo} />
         </Link>
         <div className="mobile-menu-container">
           <MobileMenu />

@@ -169,7 +169,6 @@ class Mobilemenu extends React.Component {
         render={data => (
           <>
             <MobileContainer>
-              <a href="#" className="bm-burger-button .hamburger-box"></a>
               <Menu
                 right
                 noOverlay
@@ -178,48 +177,52 @@ class Mobilemenu extends React.Component {
                 onStateChange={state => this.handleStateChange(state)}
               >
                 <div className="menu-container">
-                  <li>
-                    <Link
-                      to="/"
-                      activeClassName="active"
-                      onClick={() => this.toggleMenu()}
-                    >
-                      Home
-                    </Link>
-                  </li>
-                  {data.nav.nodes[0].data.nav.map((menuitem, index) => (
-                    <li key={index}>
-                      {menuitem.primary.link.uid && (
-                        <Link
-                          activeStyle={{ color: variable.darkgray }}
-                          to={menuitem.primary.link.uid}
-                          onClick={() => this.toggleMenu()}
-                          activeClassName="active"
-                        >
-                          {menuitem.primary.label[0].text}
-                        </Link>
-                      )}
-                      {!menuitem.primary.link.uid && (
-                        <Link
-                          activeStyle={{ color: variable.darkgray }}
-                          to={menuitem.primary.relative_link[0].text}
-                          onClick={() => this.toggleMenu()}
-                          activeClassName="active"
-                        >
-                          {menuitem.primary.label[0].text}
-                        </Link>
-                      )}
-                      {menuitem.items[0].sub_nav_link.uid && (
-                        <ul className="sub-menu">
-                          {menuitem.items.map((submenuitem, index) => (
-                            <SubMenuReturn
-                              submenuitem={submenuitem}
-                              index={index}
-                            />
-                          ))}
-                        </ul>
-                      )}
+                  <ul>
+                    <li>
+                      <Link
+                        to="/"
+                        activeClassName="active"
+                        onClick={() => this.toggleMenu()}
+                      >
+                        Home
+                      </Link>
                     </li>
+                  </ul>
+                  {data.nav.nodes[0].data.nav.map((menuitem, index) => (
+                    <ul>
+                      <li key={index}>
+                        {menuitem.primary.link.uid && (
+                          <Link
+                            activeStyle={{ color: variable.darkgray }}
+                            to={menuitem.primary.link.uid}
+                            onClick={() => this.toggleMenu()}
+                            activeClassName="active"
+                          >
+                            {menuitem.primary.label[0].text}
+                          </Link>
+                        )}
+                        {!menuitem.primary.link.uid && (
+                          <Link
+                            activeStyle={{ color: variable.darkgray }}
+                            to={menuitem.primary.relative_link[0].text}
+                            onClick={() => this.toggleMenu()}
+                            activeClassName="active"
+                          >
+                            {menuitem.primary.label[0].text}
+                          </Link>
+                        )}
+                        {menuitem.items[0].sub_nav_link.uid && (
+                          <ul className="sub-menu">
+                            {menuitem.items.map((submenuitem, index) => (
+                              <SubMenuReturn
+                                submenuitem={submenuitem}
+                                index={index}
+                              />
+                            ))}
+                          </ul>
+                        )}
+                      </li>
+                    </ul>
                   ))}
                 </div>
               </Menu>
