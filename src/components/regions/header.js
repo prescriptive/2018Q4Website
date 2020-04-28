@@ -12,8 +12,8 @@ import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import * as variable from "../variables"
 import MobileMenu from "../mobileMenu"
-
-var FA = require("react-fontawesome")
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faTwitter } from "@fortawesome/free-brands-svg-icons"
 
 const HtmlTooltip = withStyles(theme => ({
   tooltip: {
@@ -47,9 +47,11 @@ const HeaderStyle = styled.header`
       display: flex;
       justify-content: flex-end;
     }
-    .fa {
-      color: white;
+    svg {
       font-size: 30px;
+      path {
+        color: white;
+      }
     }
   }
   background-color: ${variable.offWhite};
@@ -227,7 +229,7 @@ export const Header = () => {
           <Container>
             <div class="social-container">
               <a href={twitter} target="_blank">
-                <FA name="twitter" />
+                <FontAwesomeIcon icon={faTwitter} />
               </a>
             </div>
           </Container>
