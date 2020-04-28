@@ -219,11 +219,6 @@ export const Header = () => {
   const classes = useStyles()
   return (
     <HeaderStyle className="header">
-      <link
-        href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-        rel="stylesheet"
-      />
-
       {twitter && (
         <div class="header-social-container">
           <Container>
