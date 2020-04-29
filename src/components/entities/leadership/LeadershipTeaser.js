@@ -3,8 +3,9 @@ import * as variable from "../../variables"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
-
-var FA = require("react-fontawesome")
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faTwitter } from "@fortawesome/free-brands-svg-icons"
+import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons"
 
 const LeadershipTeaserStyle = styled.article`
   background-color: white;
@@ -55,6 +56,12 @@ const LeadershipTeaserStyle = styled.article`
     position: absolute;
     bottom: 30px;
     right: 30px;
+    svg {
+      font-size: 30px;
+      path {
+        color: white;
+      }
+    }
     a {
       color: white;
       background: ${variable.darkGray};
@@ -96,11 +103,11 @@ export const LeadershipTeaser = ({ post }) => {
         dangerouslySetInnerHTML={{ __html: post.data.bio.html }}
       />
       <div class="leader-social">
-        <a target="_blank" href={post.data.twitter.url}>
-          <FA name="twitter" />
+        <a target="_blank" href={post.data.twitter.url} rel="noreferrer">
+          <FontAwesomeIcon icon={faTwitter} />
         </a>
         <a target="_blank" href={post.data.linkedin.url}>
-          <FA name="linkedin" />
+          <FontAwesomeIcon icon={faLinkedinIn} />
         </a>
       </div>
     </LeadershipTeaserStyle>
