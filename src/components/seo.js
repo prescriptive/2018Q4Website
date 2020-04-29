@@ -37,7 +37,6 @@ function SEO({ site, page, lang, meta }) {
     path = ""
   }
   const canonical = siteUrl + path + uid
-
   return (
     <Helmet
       htmlAttributes={{

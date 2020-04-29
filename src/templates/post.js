@@ -220,6 +220,7 @@ export const postQuery = graphql`
     }
     page: prismicBlogPost(uid: { eq: $uid }) {
       uid
+      type
       data {
         title {
           text
