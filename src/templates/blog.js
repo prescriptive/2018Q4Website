@@ -7,7 +7,7 @@ import Container from "../components/container"
 import BlogPostTeaser from "../components/entities/blog_post/BlogPostTeaser"
 import { Link } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
-import BgImage from "../images/blogbg.png"
+import BgImage from "../images/blogbg.webp"
 import SEO from "../components/seo"
 
 const BlogStyle = styled.div`
@@ -68,10 +68,15 @@ class Blog extends React.Component {
     const prevPage =
       currentPage - 1 === 1 ? "/blog" : "/blog/" + (currentPage - 1).toString()
     const nextPage = "/blog/" + (currentPage + 1).toString()
-    const page = {data:{meta_title:"Insights", meta_description:""}};
+    const page = {
+      data: {
+        meta_title: site.nodes[0].data.meta_title[0].text,
+        meta_description: site.nodes[0].data.meta_description[0].text,
+      },
+    }
     return (
       <Layout>
-              <SEO site={site} page={page} />
+        <SEO site={site} page={page} />
         <BlogHeader>
           <Container>
             <div className="blog-header-container">
@@ -138,6 +143,12 @@ export const postQuery = graphql`
     site: allPrismicSiteInformation {
       nodes {
         data {
+          meta_title {
+            text
+          }
+          meta_description {
+            text
+          }
           description {
             text
           }

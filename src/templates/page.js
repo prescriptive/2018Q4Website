@@ -359,6 +359,12 @@ export const postQuery = graphql`
     site: allPrismicSiteInformation {
       nodes {
         data {
+          meta_title {
+            text
+          }
+          meta_description {
+            text
+          }
           description {
             text
           }
