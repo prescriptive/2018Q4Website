@@ -6,6 +6,7 @@ import { Link, RichText, Date } from "prismic-reactjs"
 import YouTube from "react-youtube"
 import ResponsiveEmbed from "react-responsive-embed"
 import "../scss/block/defaultBlogCta.scss"
+
 const BasicStyle = styled.div`
   .video-container-outer {
     .video-container {
@@ -66,13 +67,13 @@ export const BasicSectionSlice = ({ slice }) => {
   var bg_video = null
   var video_id = null
   var bg_video_image = false
-  if (slice.primary.background_image.localFile != null) {
-    fluid = slice.primary.background_image.localFile.childImageSharp.fluid
+  if (slice.primary.background_imageSharp != null) {
+    fluid = slice.primary.background_imageSharp.childImageSharp.fluid
   }
   if (slice.primary.background_video != null) {
     bg_video = slice.primary.background_video.url
   }
-  if (slice.primary.youtube_background.embed_url != null) {
+  if (slice.primary.youtube_background != null) {
     var video_id = slice.primary.youtube_background.embed_url.split("v=")[1]
     var ampersandPosition = video_id.indexOf("&")
     if (ampersandPosition != -1) {
@@ -80,9 +81,9 @@ export const BasicSectionSlice = ({ slice }) => {
     }
   }
   if (
-    slice.primary.background_video.url == null &&
-    slice.primary.background_image.localFile == null &&
-    slice.primary.youtube_background.url == null
+    slice.primary.background_video == null &&
+    slice.primary.background_image == null &&
+    slice.primary.youtube_background == null
   ) {
     bg_video_image = true
   }
@@ -112,16 +113,13 @@ export const BasicSectionSlice = ({ slice }) => {
             className="basic-slice-container"
             style={{ color: font_color }}
           >
-            {slice.primary.section_title.text && h1_title && (
-              <h1>{slice.primary.section_title.text}</h1>
+            {slice.primary.section_title && h1_title && (
+              <h1>{slice.primary.section_title[0].text}</h1>
             )}
-            {slice.primary.section_title.text && !h1_title && (
+            {slice.primary.section_title && !h1_title && (
               <h2>{slice.primary.section_title.text}</h2>
             )}
-            <div
-              className="section-content"
-              dangerouslySetInnerHTML={{ __html: slice.primary.content.html }}
-            />
+            <div>{RichText.render(slice.primary.content)}</div>
           </Container>
         </BackgroundImage>
       )}

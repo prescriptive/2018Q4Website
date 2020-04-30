@@ -14,14 +14,12 @@ import Video from "../components/slices/VideoSlice"
 import BasicSectionSlice from "../components/slices/BasicSectionSlice"
 import BgImage from "../images/blogbg.png"
 
-// Returns true if we're in a browser, false otherwise. This will help guard
-// against SSR issues when building the site.
-
 // Sort and display the different slice options
-const PostSlices = ({ slices }) => {
+const PostSlices = ({ slices, id }) => {
   return slices.map((slice, index) => {
+    console.log(slice)
     const res = (() => {
-      switch (slice.slice_type) {
+      switch (slice.type) {
         case "text":
           return (
             <div key={index} className="slice-wrapper slice-text">
@@ -51,7 +49,7 @@ const PostSlices = ({ slices }) => {
         case "basic_section":
           return (
             <div
-              id={"slice-id-" + slice.id}
+              id={"slice-id-" + id}
               key={index}
               className="slice-wrapper slice-basic"
             >
@@ -131,13 +129,15 @@ const BlogHeader = styled.div`
     }
   }
 `
+
 const Post = ({ data }) => {
-  const { page } = data
-  const { site } = data
-  const { defaultBlock } = data
+  const { node } = data.page.allBlog_posts.edges[0]
+  // const { site } = data
+  const defaultBlock = data.defaultBlock.allBlocks.edges[0].node
+  console.log(defaultBlock)
   return (
     <Layout>
-      <SEO site={site} page={page} />
+      {/* <SEO site={site} page={page} /> */}
       <BlogHeader>
         <Container>
           <div className="blog-header-container">
@@ -150,25 +150,26 @@ const Post = ({ data }) => {
           <div className="blog-post-container">
             <div className="blog-post-left">
               <div className="main-image">
-                {page.data.main_image.localFile && (
-                  <Img
-                    fluid={page.data.main_image.localFile.childImageSharp.fluid}
-                  />
+                {node.main_imageSharp && (
+                  <Img fluid={node.main_imageSharp.childImageSharp.fluid} />
                 )}
               </div>
-              <h1>{page.data.title.text}</h1>
-              {page.data.body && <PostSlices slices={page.data.body} />}
+              <h1>{node.title[0].text}</h1>
+              {node.body && <PostSlices slices={node.body} />}
             </div>
-            {page.data.block_reference.document && (
+            {/* {page.data.block_reference.document && (
               <div className="blog-post-right">
                 <PostSlices
                   slices={page.data.block_reference.document.data.body}
                 />
               </div>
-            )}
-            {!page.data.block_reference.document && (
+            )} */}
+            {!node.block_reference && (
               <div className="blog-post-right">
-                <PostSlices slices={defaultBlock.data.body} />
+                <PostSlices
+                  slices={defaultBlock.body}
+                  id={defaultBlock._meta.id}
+                />
               </div>
             )}
           </div>
@@ -177,158 +178,143 @@ const Post = ({ data }) => {
     </Layout>
   )
 }
+
 export default Post
 export const postQuery = graphql`
   query PostBySlug($uid: String!) {
-    defaultBlock: prismicBlock(
-      id: { eq: "ec237610-ff7b-583b-9a83-076cc4920623" }
-    ) {
-      data {
-        body {
-          ... on PrismicBlockBodyBasicSection {
-            id
-            slice_type
-            primary {
-              background_color
-              background_image {
-                localFile {
-                  childImageSharp {
-                    fluid {
-                      src
+    defaultBlock: prismic {
+      allBlocks(id: "XpeHQBIAACEArsdV") {
+        edges {
+          node {
+            title
+            _meta {
+              id
+            }
+            body {
+              ... on PRISMIC_BlockBodyBasic_section {
+                type
+                label
+                primary {
+                  background_color
+                  background_imageSharp {
+                    childImageSharp {
+                      fluid {
+                        src
+                      }
+                    }
+                  }
+                  background_image
+                  content
+                  font_color
+                  h1_title
+                  section_title
+                  youtube_background
+                  background_video {
+                    ... on PRISMIC__ExternalLink {
+                      _linkType
+                      url
                     }
                   }
                 }
-              }
-              background_video {
-                url
-              }
-              content {
-                html
-              }
-              font_color
-              h1_title
-              section_title {
-                text
-              }
-              youtube_background {
-                embed_url
               }
             }
           }
         }
       }
     }
-    page: prismicBlogPost(uid: { eq: $uid }) {
-      uid
-      type
-      data {
-        title {
-          text
-        }
-        meta_description
-        meta_title
-        block_reference {
-          document {
-            ... on PrismicBlock {
-              id
-              data {
+    page: prismic {
+      allBlog_posts(uid: $uid) {
+        edges {
+          node {
+            title
+            _meta {
+              uid
+            }
+            block_reference {
+              ... on PRISMIC_Block {
+                title
+                _linkType
                 body {
-                  ... on PrismicBlockBodyBasicSection {
-                    id
-                    slice_type
+                  ... on PRISMIC_BlockBodyBasic_section {
+                    type
+                    label
                     primary {
                       background_color
-                      background_image {
-                        localFile {
-                          childImageSharp {
-                            fluid {
-                              src
-                            }
+                      background_imageSharp {
+                        childImageSharp {
+                          fluid(maxWidth: 1920) {
+                            ...GatsbyImageSharpFluid_withWebp_tracedSVG
                           }
                         }
                       }
-                      background_video {
-                        url
-                      }
-                      content {
-                        html
-                      }
+                      content
                       font_color
                       h1_title
-                      section_title {
-                        text
+                      section_title
+                      youtube_background
+                      background_video {
+                        ... on PRISMIC__ExternalLink {
+                          _linkType
+                          url
+                        }
                       }
-                      youtube_background {
-                        embed_url
+                    }
+                  }
+                }
+                _meta {
+                  id
+                  type
+                }
+              }
+            }
+            body {
+              ... on PRISMIC_Blog_postBodyText {
+                type
+                label
+                primary {
+                  text
+                }
+              }
+              ... on PRISMIC_Blog_postBodyQuote {
+                type
+                label
+                primary {
+                  quote
+                }
+              }
+              ... on PRISMIC_Blog_postBodyImage {
+                type
+                label
+                primary {
+                  image
+                  imageSharp {
+                    childImageSharp {
+                      fluid(maxWidth: 1920) {
+                        ...GatsbyImageSharpFluid_withWebp_tracedSVG
                       }
                     }
                   }
                 }
               }
-            }
-          }
-        }
-        main_image {
-          url
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 1920) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-        body {
-          ... on PrismicBlogPostBodyVideo {
-            slice_type
-            id
-            primary {
-              video_embed {
-                embed_url
-              }
-            }
-          }
-          ... on PrismicBlogPostBodyImage {
-            slice_type
-            id
-            primary {
-              image {
-                localFile {
-                  childImageSharp {
-                    fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
+              ... on PRISMIC_Blog_postBodyVideo {
+                type
+                label
+                primary {
+                  video_embed
                 }
               }
             }
-          }
-          ... on PrismicBlogPostBodyText {
-            slice_type
-            id
-            primary {
-              text {
-                html
+            main_image
+            main_imageSharp {
+              childImageSharp {
+                fluid(maxWidth: 1920) {
+                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                }
               }
             }
-          }
-        }
-      }
-    }
-    site: allPrismicSiteInformation {
-      nodes {
-        data {
-          description {
-            text
-          }
-          site_url {
-            text
-          }
-          site_title {
-            text
-          }
-          twitter_author {
-            text
+            release_date
+            meta_title
+            meta_description
           }
         }
       }

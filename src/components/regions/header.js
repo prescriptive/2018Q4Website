@@ -11,7 +11,7 @@ import Fade from "@material-ui/core/Fade"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import * as variable from "../variables"
-import MobileMenu from "../mobileMenu"
+// import MobileMenu from "../mobileMenu"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTwitter } from "@fortawesome/free-brands-svg-icons"
 
@@ -121,8 +121,8 @@ const HeaderStyle = styled.header`
 `
 function menuRender(menuitem, classes) {
   if (
-    menuitem.items[0].sub_nav_link_label[0] &&
-    menuitem.items[0].sub_nav_link_label[0].text != "Dummy"
+    menuitem.fields[0].sub_nav_link_label &&
+    menuitem.fields[0].sub_nav_link_label[0].text != "Dummy"
   ) {
     return (
       <HtmlTooltip
@@ -130,7 +130,7 @@ function menuRender(menuitem, classes) {
         interactive
         title={
           <React.Fragment>
-            {menuitem.items.map((submenuitem, index) => (
+            {menuitem.fields.map((submenuitem, index) => (
               <div key={index}>
                 <Link
                   className={classes.button}
@@ -149,14 +149,14 @@ function menuRender(menuitem, classes) {
       </HtmlTooltip>
     )
   } else {
-    if (menuitem.primary.link.uid) {
+    if (menuitem.primary.link) {
       return (
-        <Link to={menuitem.primary.link.uid}>
+        <Link to={menuitem.primary.link._meta.uid}>
           {menuitem.primary.label[0].text}
         </Link>
       )
     }
-    if (menuitem.primary.relative_link[0]) {
+    if (menuitem.primary.relative_link) {
       return (
         <Link to={menuitem.primary.relative_link[0].text}>
           {menuitem.primary.label[0].text}
@@ -168,53 +168,78 @@ function menuRender(menuitem, classes) {
 export const Header = () => {
   const data = useStaticQuery(graphql`
     query {
-      nav: allPrismicSiteInformation {
-        nodes {
-          data {
-            nav {
-              primary {
-                label {
-                  text
-                }
-                link {
-                  uid
-                }
-                relative_link {
-                  text
-                }
-              }
-              items {
-                sub_nav_link {
-                  uid
-                  url
-                }
-                sub_nav_link_label {
-                  text
+      nav: prismic {
+        allSite_informations {
+          edges {
+            node {
+              nav {
+                ... on PRISMIC_Site_informationNavNav_item {
+                  type
+                  label
+                  fields {
+                    sub_nav_link {
+                      ... on PRISMIC_Pa {
+                        title
+                        meta_title
+                        _meta {
+                          uid
+                        }
+                        _linkType
+                      }
+                      ... on PRISMIC__ExternalLink {
+                        _linkType
+                        url
+                      }
+                    }
+                    sub_nav_link_label
+                  }
+                  primary {
+                    relative_link
+                    link {
+                      ... on PRISMIC__ExternalLink {
+                        _linkType
+                        url
+                      }
+                      _linkType
+                      ... on PRISMIC_Pa {
+                        title
+                        meta_title
+                        _meta {
+                          uid
+                        }
+                      }
+                    }
+                    label
+                  }
                 }
               }
             }
           }
         }
       }
-      logo: allPrismicSiteInformation {
-        nodes {
-          data {
-            logo {
-              url
-            }
-            twitter {
-              url
+      logo: prismic {
+        allSite_informations {
+          edges {
+            node {
+              logo
+              twitter {
+                ... on PRISMIC__ExternalLink {
+                  _linkType
+                  url
+                }
+              }
             }
           }
         }
       }
     }
   `)
-  const nav = data.nav.nodes[0].data.nav
-  const logo = data.logo.nodes[0].data.logo.url
+  const nav = data.nav.allSite_informations.edges[0].node.nav
+  const logo = data.logo.allSite_informations.edges[0].node.logo.url
+  console.log(nav)
   var twitter = null
-  if (data.logo.nodes[0].data.twitter.url) {
-    var twitter = data.logo.nodes[0].data.twitter.url
+  if (data.logo.allSite_informations.edges[0].node.twitter) {
+    var twitter = data.logo.allSite_informations.edges[0].node.twitter.url
   }
   const classes = useStyles()
   return (
@@ -234,9 +259,9 @@ export const Header = () => {
         <Link className="logo" to="/">
           <img alt="logo home" src={logo} />
         </Link>
-        <div className="mobile-menu-container">
+        {/* <div className="mobile-menu-container">
           <MobileMenu />
-        </div>
+        </div> */}
         <ul className="main-menu">
           {nav.map((menuitem, index) => (
             <li key={index}>{menuRender(menuitem, classes)}</li>

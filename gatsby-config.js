@@ -1,7 +1,6 @@
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
-const prismicHtmlSerializer = require("./src/gatsby/htmlSerializer")
 // const linkResolver = require("./src/utils/linkResolver")
 
 module.exports = {
@@ -13,66 +12,6 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: `gatsby-plugin-sitemap`,
-      options: {
-        output: `/sitemap.xml`,
-        // Exclude specific pages or groups of pages using glob parameters
-        // See: https://github.com/isaacs/minimatch
-        // The example below will exclude the single `path/to/page` and all routes beginning with `category`
-        exclude: [`/category/*`, `/path/to/page`],
-        query: `
-          {
-            site {
-              siteMetadata {
-                siteUrl
-              }
-            }
-            allSitePage {
-              nodes {
-                path
-              }
-            }
-            allPrismicPa(filter: {data: {do_not_index: {eq: false}}}) {
-              edges {
-                node {
-                  uid
-                }
-              }
-            }
-            allPrismicBlogPost{
-              edges {
-                node {
-                  uid
-                }
-              }
-            }
-        }`,
-
-        resolveSiteUrl: ({ site, allSitePage }) => {
-          //Alternativly, you may also pass in an environment variable (or any location) at the beginning of your `gatsby-config.js`.
-          return site.siteMetadata.siteUrl
-        },
-        serialize: ({ site, allPrismicPa, allPrismicBlogPost }) => {
-          let pages = []
-          allPrismicPa.edges.map(edge => {
-            pages.push({
-              url: `${site.siteMetadata.siteUrl}/${edge.node.uid}`,
-              changefreq: `daily`,
-              priority: 0.7,
-            })
-          })
-          allPrismicBlogPost.edges.map(edge => {
-            pages.push({
-              url: `${site.siteMetadata.siteUrl}/blog/${edge.node.uid}`,
-              changefreq: `daily`,
-              priority: 0.7,
-            })
-          })
-          return pages
-        },
-      },
-    },
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {
@@ -91,25 +30,21 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-prismic`,
+      resolve: "gatsby-source-prismic-graphql",
       options: {
-        shouldDownloadImage: ({ node, key, value }) => {
-          // Return true to download the image or false to skip.
-          return true
-        },
-        linkResolver: () => post => `/${post.uid}`,
-        // PrismJS highlighting for labels and slices
-        htmlSerializer: () => prismicHtmlSerializer,
-        repositoryName: `prescriptive`,
-        accessToken: `${process.env.API_KEY}`,
-        schemas: {
-          pa: require("./src/schemas/page.json"),
-          blog_post: require("./src/schemas/blog_post.json"),
-          main_navigation: require("./src/schemas/main_navigation.json"),
-          leadership: require("./src/schemas/leadership.json"),
-          job: require("./src/schemas/job.json"),
-          block: require("./src/schemas/block.json"),
-        },
+        repositoryName: "prescriptive", // required
+        defaultLang: "en-us", // optional, but recommended
+        pages: [
+          {
+            type: "Blog_post", // TypeName from prismic
+            match: "/blog/:uid", // pages will be generated under this pattern
+            component: require.resolve("./src/templates/post.js"),
+            sharpKeys: [
+              /image|main_image|logo|photo|picture/, // (default)
+              "profilepic",
+            ],
+          },
+        ],
       },
     },
     `gatsby-transformer-sharp`,
