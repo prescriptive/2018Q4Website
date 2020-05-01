@@ -245,9 +245,9 @@ export const Header = () => {
   return (
     <HeaderStyle className="header">
       {twitter && (
-        <div class="header-social-container">
+        <div className="header-social-container">
           <Container>
-            <div class="social-container">
+            <div className="social-container">
               <a href={twitter} target="_blank" rel="noreferrer">
                 <FontAwesomeIcon icon={faTwitter} />
               </a>

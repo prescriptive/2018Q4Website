@@ -52,6 +52,7 @@ const BasicStyle = styled.div`
 `
 
 export const BasicSectionSlice = ({ slice }) => {
+  console.log(slice)
   const videoOptions = {
     playerVars: {
       autoplay: 1,
@@ -109,6 +110,7 @@ export const BasicSectionSlice = ({ slice }) => {
           fluid={fluid}
           style={{ backgroundColor: bg_color }}
         >
+          {console.log(fluid)}
           <Container
             className="basic-slice-container"
             style={{ color: font_color }}

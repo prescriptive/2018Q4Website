@@ -17,7 +17,6 @@ import BgImage from "../images/blogbg.png"
 // Sort and display the different slice options
 const PostSlices = ({ slices, id }) => {
   return slices.map((slice, index) => {
-    console.log(slice)
     const res = (() => {
       switch (slice.type) {
         case "text":
@@ -131,10 +130,11 @@ const BlogHeader = styled.div`
 `
 
 const Post = ({ data }) => {
+  const prismicContent = data.page.allBlog_posts.edges[0]
+  if (!prismicContent) return null
   const { node } = data.page.allBlog_posts.edges[0]
   // const { site } = data
   const defaultBlock = data.defaultBlock.allBlocks.edges[0].node
-  console.log(defaultBlock)
   return (
     <Layout>
       {/* <SEO site={site} page={page} /> */}
@@ -181,7 +181,7 @@ const Post = ({ data }) => {
 
 export default Post
 export const postQuery = graphql`
-  query PostBySlug($uid: String!) {
+  query PostBySlug($uid: String!, $lang: String) {
     defaultBlock: prismic {
       allBlocks(id: "XpeHQBIAACEArsdV") {
         edges {
@@ -198,8 +198,8 @@ export const postQuery = graphql`
                   background_color
                   background_imageSharp {
                     childImageSharp {
-                      fluid {
-                        src
+                      fluid(maxWidth: 1920) {
+                        ...GatsbyImageSharpFluid_withWebp_tracedSVG
                       }
                     }
                   }
@@ -223,7 +223,7 @@ export const postQuery = graphql`
       }
     }
     page: prismic {
-      allBlog_posts(uid: $uid) {
+      allBlog_posts(uid: $uid, lang: $lang) {
         edges {
           node {
             title

@@ -34,10 +34,12 @@ module.exports = {
       options: {
         repositoryName: "prescriptive", // required
         defaultLang: "en-us", // optional, but recommended
+        previews: false, // optional, default: false
         pages: [
           {
             type: "Blog_post", // TypeName from prismic
             match: "/blog/:uid", // pages will be generated under this pattern
+            path: "/blog",
             component: require.resolve("./src/templates/post.js"),
             sharpKeys: [
               /image|main_image|logo|photo|picture/, // (default)
