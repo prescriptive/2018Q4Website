@@ -43,7 +43,26 @@ module.exports = {
             component: require.resolve("./src/templates/post.js"),
             sharpKeys: [
               /image|main_image|logo|photo|picture/, // (default)
-              "profilepic",
+            ],
+          },
+          {
+            type: "Pa", // TypeName from prismic
+            match: "/:uid", // pages will be generated under this pattern
+            filter: data => !data.node._meta.uid == "home",
+            path: "/",
+            component: require.resolve("./src/templates/page.js"),
+            sharpKeys: [
+              /image|main_image|logo|photo|picture/, // (default)
+            ],
+          },
+          {
+            type: "Pa", // TypeName from prismic
+            match: "/", // pages will be generated under this pattern
+            filter: data => data.node._meta.uid == "home",
+            path: "/",
+            component: require.resolve("./src/templates/page.js"),
+            sharpKeys: [
+              /image|main_image|logo|photo|picture/, // (default)
             ],
           },
         ],
