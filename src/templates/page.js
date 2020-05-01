@@ -128,7 +128,8 @@ const PageStyle = styled.div`
   }
 `
 const Page = ({ data }) => {
-  console.log(data)
+  const prismicContent = data.page.allPas.edges[0]
+  if (!prismicContent) return null
   const { node } = data.page.allPas.edges[0]
   return (
     <Layout>
