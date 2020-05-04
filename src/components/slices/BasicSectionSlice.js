@@ -121,7 +121,9 @@ export const BasicSectionSlice = ({ slice }) => {
             {slice.primary.section_title && !h1_title && (
               <h2>{slice.primary.section_title.text}</h2>
             )}
-            <div>{RichText.render(slice.primary.content)}</div>
+            <div className="section-content">
+              {RichText.render(slice.primary.content)}
+            </div>
           </Container>
         </BackgroundImage>
       )}
@@ -163,16 +165,17 @@ export const BasicSectionSlice = ({ slice }) => {
         <div style={{ backgroundColor: bg_color }}>
           <Container>
             <section>
-              {slice.primary.section_title.text && h1_title && (
-                <h1>{slice.primary.section_title.text}</h1>
+              {slice.primary.section_title && h1_title && (
+                <h1>{slice.primary.section_title[0].text}</h1>
               )}
-              {slice.primary.section_title.text && !h1_title && (
-                <h2>{slice.primary.section_title.text}</h2>
+              {slice.primary.section_title && !h1_title && (
+                <h2>{slice.primary.section_title[0].text}</h2>
               )}
-              <div
-                className="section-content"
-                dangerouslySetInnerHTML={{ __html: slice.primary.content.html }}
-              />
+              {slice.primary.content && (
+                <div className="section-content">
+                  {RichText.render(slice.primary.content)}
+                </div>
+              )}
             </section>
           </Container>
         </div>

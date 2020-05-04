@@ -18,14 +18,17 @@ import Text from "../components/slices/TextSlice"
 import Quote from "../components/slices/QuoteSlice"
 import Video from "../components/slices/VideoSlice"
 import BasicSectionSlice from "../components/slices/BasicSectionSlice"
-// import ColumnSectionSlice from "../components/slices/ColumnsSectionSlice"
-// import LeftRightSlice from "../components/slices/LeftRightSlice"
-// import EntityQuerySlice from "../components/slices/EntityQuerySlice"
+import ColumnSectionSlice from "../components/slices/ColumnsSectionSlice"
+import LeftRightSlice from "../components/slices/LeftRightSlice"
+import EntityQuerySlice from "../components/slices/EntityQuerySlice"
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, blog, leadership, job }) => {
   return slices.map((slice, index) => {
-    console.log(slice)
+    var sliceID = ""
+    if (slice.primary.slice_id) {
+      var sliceID = slice.primary.slice_id[0].text
+    }
     const res = (() => {
       switch (slice.type) {
         // case "text":
@@ -58,7 +61,7 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
         case "basic_section":
           return (
             <div
-              id={"slice-id-" + slice.primary.slice_id[0].text}
+              id={"slice-id-" + sliceID}
               key={index}
               className="slice-wrapper slice-basic"
             >
@@ -66,24 +69,23 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
             </div>
           )
 
-        // case "entity_query":
-        //   return (
-        //     <div
-        //       id={"slice-id-" + slice.id}
-        //       key={index}
-        //       className="slice-wrapper slice-entity-query"
-        //     >
-        //       {console.log(job)}
-        //       {
-        //         <EntityQuerySlice
-        //           slice={slice}
-        //           blog={blog}
-        //           leadership={leadership}
-        //           job={job}
-        //         />
-        //       }
-        //     </div>
-        //   )
+        case "entity_query":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-entity-query"
+            >
+              {
+                <EntityQuerySlice
+                  slice={slice}
+                  blog={blog}
+                  leadership={leadership}
+                  job={job}
+                />
+              }
+            </div>
+          )
 
         // case "slideshow":
         //   return (
@@ -96,23 +98,27 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
         //     </div>
         //   )
 
-        // case "columns_section":
-        //   return (
-        //     <div
-        //       id={"slice-id-" + slice.id}
-        //       key={index}
-        //       className="slice-wrapper slice-columns"
-        //     >
-        //       {<ColumnSectionSlice slice={slice} />}
-        //     </div>
-        //   )
+        case "columns_section":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-columns"
+            >
+              {<ColumnSectionSlice slice={slice} />}
+            </div>
+          )
 
-        // case "left_right_section":
-        //   return (
-        //     <div key={index} className="slice-wrapper slice-left-right">
-        //       {<LeftRightSlice key={index} slice={slice} />}
-        //     </div>
-        //   )
+        case "left_right_section":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-left-right"
+            >
+              {<LeftRightSlice slice={slice} />}
+            </div>
+          )
 
         default:
           return
@@ -131,16 +137,71 @@ const Page = ({ data }) => {
   const prismicContent = data.page.allPas.edges[0]
   if (!prismicContent) return null
   const { node } = data.page.allPas.edges[0]
+  const leadership = data.leadership.allLeaderships.edges
+  const job = data.job.allJobs.edges
   return (
     <Layout>
       {/* <SEO site={site} page={page} /> */}
-      <PageStyle>{node.body && <PostSlices slices={node.body} />}</PageStyle>
+      <PageStyle>
+        {node.body && (
+          <PostSlices slices={node.body} job={job} leadership={leadership} />
+        )}
+      </PageStyle>
     </Layout>
   )
 }
 export default Page
 export const postQuery = graphql`
   query PageQuery($uid: String!, $lang: String) {
+    leadership: prismic {
+      allLeaderships {
+        edges {
+          node {
+            _meta {
+              uid
+            }
+            bio
+            linkedin {
+              ... on PRISMIC__ExternalLink {
+                _linkType
+                url
+              }
+            }
+            name
+            photoSharp {
+              childImageSharp {
+                fixed(width: 98, height: 98) {
+                  ...GatsbyImageSharpFixed_withWebp_tracedSVG
+                }
+              }
+            }
+            photo
+            title
+            twitter {
+              ... on PRISMIC__ExternalLink {
+                _linkType
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+    job: prismic {
+      allJobs {
+        edges {
+          node {
+            title
+            teaser_description
+            location
+            description
+            _meta {
+              uid
+            }
+          }
+        }
+      }
+    }
     page: prismic {
       allPas(uid: $uid, lang: $lang) {
         edges {

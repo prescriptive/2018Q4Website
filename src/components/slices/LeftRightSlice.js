@@ -2,11 +2,8 @@ import styled from "styled-components"
 import React from "react"
 import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
-import HtmlRender from "../../utils/htmlSerializer"
-import linkResolver from "../../utils/linkResolver"
 import { RichText } from "prismic-reactjs"
 import * as variable from "../variables"
-import Helmet from "react-helmet"
 
 const LeftRightStyle = styled.div`
   ._form {
@@ -64,42 +61,41 @@ export const addActive = id => {
 }
 
 function returnLeft(primary) {
+  console.log(primary)
   return (
     <React.Fragment>
-      {primary.left_background_image.localFile && (
+      {primary.left_background_imageSharp && (
         <BackgroundImage
           Tag="section"
-          fluid={primary.left_background_image.localFile.childImageSharp.fluid}
+          fluid={primary.left_background_imageSharp.childImageSharp.fluid}
         >
           <Container>
             {primary.left_content && (
-              <div
-                className="section-content"
-                dangerouslySetInnerHTML={{ __html: primary.left_content.html }}
-              />
+              <div className="section-content">
+                {RichText.render(primary.left_content)}
+              </div>
             )}
             {primary.embed && (
               <div
                 className="section-embed"
-                dangerouslySetInnerHTML={{ __html: primary.embed.text }}
+                dangerouslySetInnerHTML={{ __html: primary.embed[0].text }}
               />
             )}
           </Container>
         </BackgroundImage>
       )}
-      {!primary.left_background_image.localFile && (
+      {!primary.left_background_imageSharp && (
         <section>
           <Container>
             {primary.left_content && (
-              <div
-                className="section-content"
-                dangerouslySetInnerHTML={{ __html: primary.left_content.html }}
-              />
+              <div className="section-content">
+                {RichText.render(primary.left_content)}
+              </div>
             )}
             {primary.embed && (
               <div
                 className="section-embed"
-                dangerouslySetInnerHTML={{ __html: primary.embed.text }}
+                dangerouslySetInnerHTML={{ __html: primary.embed[0].text }}
               />
             )}
             {primary.active_campaign_form_number && (
@@ -117,40 +113,42 @@ function returnLeft(primary) {
 function returnRight(primary) {
   return (
     <React.Fragment>
-      {primary.right_background_image.localFile && (
+      {primary.right_background_imageSharp && (
         <BackgroundImage
           Tag="section"
-          fluid={primary.right_background_image.localFile.childImageSharp.fluid}
+          fluid={primary.right_background_imageSharp.childImageSharp.fluid}
         >
           <Container>
             {primary.right_content && (
-              <div
-                className="section-content"
-                dangerouslySetInnerHTML={{ __html: primary.right_content.html }}
-              />
+              <div className="section-content">
+                {RichText.render(primary.right_content)}
+              </div>
             )}
             {primary.right_embed && (
               <div
                 className="section-embed"
-                dangerouslySetInnerHTML={{ __html: primary.right_embed.text }}
+                dangerouslySetInnerHTML={{
+                  __html: primary.right_embed[0].text,
+                }}
               />
             )}
           </Container>
         </BackgroundImage>
       )}
-      {!primary.right_background_image.localFile && (
+      {!primary.right_background_imageSharp && (
         <section>
           <Container>
             {primary.right_content && (
-              <div
-                className="section-content"
-                dangerouslySetInnerHTML={{ __html: primary.right_content.html }}
-              />
+              <div className="section-content">
+                {RichText.render(primary.right_content)}
+              </div>
             )}
             {primary.right_embed && (
               <div
                 className="section-embed"
-                dangerouslySetInnerHTML={{ __html: primary.right_embed.text }}
+                dangerouslySetInnerHTML={{
+                  __html: primary.right_embed[0].text,
+                }}
               />
             )}
           </Container>
@@ -162,10 +160,7 @@ function returnRight(primary) {
 
 export const LeftRightSlice = ({ slice }) => {
   return (
-    <LeftRightStyle
-      id={"id-" + slice.id}
-      className="slice-wrapper slice-left-right"
-    >
+    <LeftRightStyle>
       <div className="left-right-container">
         {returnLeft(slice.primary)}
         {returnRight(slice.primary)}

@@ -2,9 +2,7 @@ import styled from "styled-components"
 import React from "react"
 import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
-import HtmlRender from "../../utils/htmlSerializer"
-import linkResolver from "../../utils/linkResolver"
-import { RichText } from "prismic-reactjs"
+import { Link, RichText, Date } from "prismic-reactjs"
 import * as variable from "../variables"
 
 const PrismicDOM = require("prismic-dom")
@@ -66,8 +64,8 @@ function ColumnsSectionSlice({ slice }) {
   var bgColor = null
   var columnCount = null
   var items = null
-  if (slice.primary.background_image.localFile != null) {
-    fluid = slice.primary.background_image.localFile.childImageSharp.fluid
+  if (slice.primary.background_imageSharp != null) {
+    fluid = slice.primary.background_imageSharp.childImageSharp.fluid
   }
   if (slice.primary.background_color != null) {
     bgColor = slice.primary.background_color
@@ -75,10 +73,9 @@ function ColumnsSectionSlice({ slice }) {
   if (slice.primary.column_count != null) {
     columnCount = slice.primary.column_count
   }
-  if (slice.items != null) {
-    items = slice.items
+  if (slice.fields != null) {
+    items = slice.fields
   }
-  const spans = []
 
   // items = slice.items
   return (
@@ -88,19 +85,15 @@ function ColumnsSectionSlice({ slice }) {
           <ColumnStyle>
             <Container>
               <section>
-                {slice.primary.section_title.text && (
-                  <h2>{slice.primary.section_title.text}</h2>
+                {slice.primary.section_title[0].text && (
+                  <h2>{slice.primary.section_title[0].text}</h2>
                 )}
                 <div className={"column column-count-" + columnCount}>
-                  {slice.items &&
-                    slice.items.map((item, index) => (
-                      <div
-                        key={index}
-                        className="column-item"
-                        dangerouslySetInnerHTML={{
-                          __html: item.content.html,
-                        }}
-                      />
+                  {items &&
+                    items.map((item, index) => (
+                      <div key={index} className="column-item">
+                        {RichText.render(item.content)}
+                      </div>
                     ))}
                 </div>
               </section>
@@ -114,17 +107,16 @@ function ColumnsSectionSlice({ slice }) {
         >
           <Container>
             <section>
-              {slice.primary.section_title.text && (
-                <h2>{slice.primary.section_title.text}</h2>
+              {slice.primary.section_title && (
+                <h2>{slice.primary.section_title[0].text}</h2>
               )}
               <div className={"column column-count-" + columnCount}>
-                {slice.items &&
-                  slice.items.map((item, index) => (
-                    <div
-                      key={index}
-                      className="column-item"
-                      dangerouslySetInnerHTML={{ __html: item.content.html }}
-                    />
+                {console.log(items)}
+                {items &&
+                  items.map((item, index) => (
+                    <div key={index} className="column-item">
+                      {RichText.render(item.content)}
+                    </div>
                   ))}
               </div>
             </section>

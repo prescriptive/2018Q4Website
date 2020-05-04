@@ -1,4 +1,4 @@
-#id-44cf1ca4-04ea-5525-b75d-9f4f05f5d1d1 {
+#slice-id-contact-top {
   background-image: url(../../../images/contact-bg.png);
   background-size: cover;
   color: $medGray;
@@ -99,7 +99,7 @@
   }
 }
 
-#id-c58e3da0-6830-5201-8d6b-714f70483d8d {
+#slice-id-contact-google {
   background-color: $offWhite;
   color: $medGray;
   h2 {
@@ -114,7 +114,7 @@
   }
 }
 
-#id-1d60b490-1153-57b6-96f1-2c233eeb5d45 {
+#slice-id-contact-contact {
   section {
     &:nth-child(1) {
       width: 35%;

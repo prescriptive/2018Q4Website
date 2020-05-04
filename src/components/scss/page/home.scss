@@ -1,4 +1,4 @@
-#slice-id-a97a71d1-00ac-5848-bb00-31f609d8539a {
+#slice-id-home-hero {
   section {
     padding: 0px 0px;
   }
@@ -36,7 +36,7 @@
   }
 }
 
-#slice-id-0cb8616d-6939-52e9-a015-666db481d338 {
+#slice-id-home-it-solution {
   background-color: $lightGray;
   section {
     @include mobile() {
@@ -85,7 +85,7 @@
     }
   }
 }
-#id-dfbfe3d8-3abe-56e6-9498-9d2937d6993e {
+#slice-id-home-process {
   section {
     &:nth-child(2) {
       @include mobile() {
@@ -176,7 +176,7 @@
     }
   }
 }
-#id-05d3277b-30ed-52b8-8fcd-ddedfc3b4383 {
+#slice-id-contact-slice {
   section {
     &:nth-child(1) {
       width: 35%;
