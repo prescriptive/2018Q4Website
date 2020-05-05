@@ -236,7 +236,6 @@ export const Header = () => {
   `)
   const nav = data.nav.allSite_informations.edges[0].node.nav
   const logo = data.logo.allSite_informations.edges[0].node.logo.url
-  console.log(nav)
   var twitter = null
   if (data.logo.allSite_informations.edges[0].node.twitter) {
     var twitter = data.logo.allSite_informations.edges[0].node.twitter.url

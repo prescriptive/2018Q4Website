@@ -4,7 +4,10 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
 import BackgroundImage from "gatsby-background-image"
-
+import { RichText } from "prismic-reactjs"
+import { faCalendar } from "@fortawesome/free-solid-svg-icons"
+import { faUser } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 const BlogPostTeaserStyle = styled.article`
   padding: 35px;
   padding-bottom: 85px;
@@ -76,7 +79,7 @@ const BlogPostTeaserStyle = styled.article`
     font-weight: 700;
     font-size: 18px;
   }
-  i {
+  svg {
     margin-right: 7px;
     font-size: 20px;
   }
@@ -85,36 +88,33 @@ export const BlogPostTeaser = ({ post }) => {
   return (
     <BlogPostTeaserStyle>
       <div className="blog-teaser-image-container">
-        {post.data.main_image.localFile && (
+        {post.node.main_imageSharp && (
           <BackgroundImage
             Tag="section"
-            fluid={post.data.main_image.localFile.childImageSharp.fluid}
+            fluid={post.node.main_imageSharp.childImageSharp.fluid}
           ></BackgroundImage>
         )}
       </div>
 
-      <Link className="blog-teaser-title" to={"/blog/" + post.uid}>
-        {post.data.title.text && <h2>{post.data.title.text}</h2>}
+      <Link className="blog-teaser-title" to={"/blog/" + post.node._meta.uid}>
+        {post.node.title[0].text && <h2>{post.node.title[0].text}</h2>}
       </Link>
-      {post.data.release_date && (
+      {post.node.release_date && (
         <div className="release-date">
-          <i class="fa fa-calendar"></i>
-          {post.data.release_date}
+          <FontAwesomeIcon icon={faCalendar} />
+          {post.node.release_date}
         </div>
       )}
-      {post.data.author && (
+      {post.node.author && (
         <div className="blog-author">
-          <i class="fa fa-user"></i>
-          {post.data.author.text}
+          <FontAwesomeIcon icon={faUser} />
+          {post.node.author[0].text}
         </div>
       )}
-      {post.data.teaser && (
-        <div
-          className="blog-teaser"
-          dangerouslySetInnerHTML={{ __html: post.data.teaser.html }}
-        />
+      {post.node.teaser && (
+        <div className="blog-teaser">{RichText.render(post.node.teaser)}</div>
       )}
-      <Link className="cta-button" to={"/blog/" + post.uid}>
+      <Link className="cta-button" to={"/blog/" + post.node._meta.uid}>
         Read Full Article
       </Link>
     </BlogPostTeaserStyle>

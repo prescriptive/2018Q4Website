@@ -222,8 +222,8 @@ export const postQuery = graphql`
                   background_image
                   background_imageSharp {
                     childImageSharp {
-                      fluid {
-                        src
+                      fluid(maxWidth: 1920) {
+                        ...GatsbyImageSharpFluid_withWebp_tracedSVG
                       }
                     }
                   }
@@ -252,8 +252,8 @@ export const postQuery = graphql`
                   background_image
                   background_imageSharp {
                     childImageSharp {
-                      fluid {
-                        src
+                      fluid(maxWidth: 1920) {
+                        ...GatsbyImageSharpFluid_withWebp_tracedSVG
                       }
                     }
                   }
@@ -274,8 +274,8 @@ export const postQuery = graphql`
                   left_background_image
                   left_background_imageSharp {
                     childImageSharp {
-                      fluid {
-                        src
+                      fluid(maxWidth: 1920) {
+                        ...GatsbyImageSharpFluid_withWebp_tracedSVG
                       }
                     }
                   }
@@ -283,8 +283,8 @@ export const postQuery = graphql`
                   right_background_image
                   right_background_imageSharp {
                     childImageSharp {
-                      fluid {
-                        src
+                      fluid(maxWidth: 1920) {
+                        ...GatsbyImageSharpFluid_withWebp_tracedSVG
                       }
                     }
                   }
@@ -300,8 +300,8 @@ export const postQuery = graphql`
                   background_image
                   background_imageSharp {
                     childImageSharp {
-                      fluid {
-                        src
+                      fluid(maxWidth: 1920) {
+                        ...GatsbyImageSharpFluid_withWebp_tracedSVG
                       }
                     }
                   }
@@ -318,16 +318,16 @@ export const postQuery = graphql`
                   image
                   imageSharp {
                     childImageSharp {
-                      fluid {
-                        src
+                      fluid(maxWidth: 1920) {
+                        ...GatsbyImageSharpFluid_withWebp_tracedSVG
                       }
                     }
                   }
                   image_copy
                   image_copySharp {
                     childImageSharp {
-                      fluid {
-                        src
+                      fluid(maxWidth: 1920) {
+                        ...GatsbyImageSharpFluid_withWebp_tracedSVG
                       }
                     }
                   }
