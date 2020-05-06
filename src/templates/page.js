@@ -139,9 +139,10 @@ const Page = ({ data }) => {
   const { node } = data.page.allPas.edges[0]
   const leadership = data.leadership.allLeaderships.edges
   const job = data.job.allJobs.edges
+  const site = data.site.allSite_informations.edges[0].node
   return (
     <Layout>
-      {/* <SEO site={site} page={page} /> */}
+      <SEO site={site} page={node} />
       <PageStyle>
         {node.body && (
           <PostSlices slices={node.body} job={job} leadership={leadership} />
@@ -153,6 +154,18 @@ const Page = ({ data }) => {
 export default Page
 export const postQuery = graphql`
   query PageQuery($uid: String!, $lang: String) {
+    site: prismic {
+      allSite_informations {
+        edges {
+          node {
+            description
+            site_url
+            site_title
+            twitter_author
+          }
+        }
+      }
+    }
     leadership: prismic {
       allLeaderships {
         edges {

@@ -14,7 +14,7 @@ const JobStyle = styled.div`
   }
 `
 const Job = ({ data }) => {
-  const prismicContent = data.page.allJobs.edges[0]
+  const prismicContent = data.job.allJobs.edges[0]
   if (!prismicContent) return null
   const job = data.job.allJobs.edges[0].node
   const site = data.site.allSite_informations.edges[0].node
