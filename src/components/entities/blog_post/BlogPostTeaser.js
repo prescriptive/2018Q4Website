@@ -96,7 +96,10 @@ export const BlogPostTeaser = ({ post }) => {
         )}
       </div>
 
-      <Link className="blog-teaser-title" to={"/blog/" + post.node._meta.uid}>
+      <Link
+        className="blog-teaser-title"
+        to={"/insights/" + post.node._meta.uid}
+      >
         {post.node.title[0].text && <h2>{post.node.title[0].text}</h2>}
       </Link>
       {post.node.release_date && (
