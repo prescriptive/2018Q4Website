@@ -65,6 +65,15 @@ module.exports = {
               /image|main_image|logo|photo|picture/, // (default)
             ],
           },
+          {
+            type: "Job", // TypeName from prismic
+            match: "/job-opportunity/:uid", // pages will be generated under this pattern
+            path: "/job",
+            component: require.resolve("./src/templates/job.js"),
+            sharpKeys: [
+              /image|main_image|logo|photo|picture/, // (default)
+            ],
+          },
         ],
       },
     },

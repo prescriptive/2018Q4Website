@@ -101,6 +101,20 @@ export const postQuery = graphql`
         }
       }
     }
+    site: prismic {
+      allSite_informations {
+        edges {
+          node {
+            description
+            site_url
+            site_title
+            twitter_author
+            meta_description
+            meta_title
+          }
+        }
+      }
+    }
   }
 `
 
@@ -125,10 +139,31 @@ const Bloger = props => {
   //     .load({ variables: { after: getCursorFromDocumentIndex(page) } })
   //     .then(res => setData(res.data))
   // }, [page])
+  // const page = {
+  //   data: {
+  //     meta_title:
+  //       props.data.prismic.allSite_informations.edges[0].node.meta_title[0]
+  //         .text,
+  //     meta_description:
+  //       props.data.prismic.allSite_informations.edges[0].node
+  //         .meta_description[0].text,
+  //   },
+  // }
+  // const site = props.data.prismic.allSite_informations.edges[0].node
 
+  const site = props.data.site.allSite_informations.edges[0].node
+  const page = {
+    meta_title: site.meta_title[0].text,
+    meta_description: site.meta_description[0].text,
+    _meta: {
+      uid: "insights",
+    },
+  }
+
+  console.log(props)
   return (
     <Layout>
-      {/* <SEO site={site} page={page} /> */}
+      <SEO site={site} page={page} />
       <BlogHeader>
         <Container>
           <div className="blog-header-container">

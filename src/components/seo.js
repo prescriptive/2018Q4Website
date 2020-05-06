@@ -11,22 +11,27 @@ import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
 function SEO({ site, page, lang, meta }) {
+  console.log(page)
   var noIndex = "index"
-  if (page.data.do_not_index) {
-    if (page.data.do_not_index == true) {
+  if (page.do_not_index) {
+    if (page.do_not_index == true) {
       var noIndex = "noindex"
     }
   }
   var ogImage = ""
-  if (page.data.main_image) {
-    ogImage = page.data.main_image.url
+  if (page.main_image) {
+    ogImage = page.main_image.url
   }
-  const metaDescription = page.data.meta_description || ""
-  const title = page.data.meta_title || page.data.title.text
-  const siteName = site.nodes[0].data.site_title[0].text
-  const twitterAuthor = site.nodes[0].data.twitter_author[0].text
-  const siteUrl = site.nodes[0].data.site_url[0].text
-  var uid = page.uid
+  var metaDescription = ""
+  if (page.meta_description) {
+    var metaDescription = page.meta_description[0].text
+  }
+
+  const title = page.meta_title || page.title[0].text
+  const siteName = site.site_title[0].text
+  const twitterAuthor = site.twitter_author[0].text
+  const siteUrl = site.site_url[0].text
+  var uid = page._meta.uid
   var path = "/"
 
   if (page.type == "blog_post") {

@@ -11,7 +11,7 @@ import Fade from "@material-ui/core/Fade"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import * as variable from "../variables"
-// import MobileMenu from "../mobileMenu"
+import MobileMenu from "../mobileMenu"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTwitter } from "@fortawesome/free-brands-svg-icons"
 
@@ -258,9 +258,9 @@ export const Header = () => {
         <Link className="logo" to="/">
           <img alt="logo home" src={logo} />
         </Link>
-        {/* <div className="mobile-menu-container">
+        <div className="mobile-menu-container">
           <MobileMenu />
-        </div> */}
+        </div>
         <ul className="main-menu">
           {nav.map((menuitem, index) => (
             <li key={index}>{menuRender(menuitem, classes)}</li>
