@@ -114,7 +114,7 @@ export const BlogPostTeaser = ({ post }) => {
       {post.node.teaser && (
         <div className="blog-teaser">{RichText.render(post.node.teaser)}</div>
       )}
-      <Link className="cta-button" to={"/blog/" + post.node._meta.uid}>
+      <Link className="cta-button" to={"/insights/" + post.node._meta.uid}>
         Read Full Article
       </Link>
     </BlogPostTeaserStyle>

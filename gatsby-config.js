@@ -38,8 +38,8 @@ module.exports = {
         pages: [
           {
             type: "Blog_post", // TypeName from prismic
-            match: "/blog/:uid", // pages will be generated under this pattern
-            path: "/blog",
+            match: "/insights/:uid", // pages will be generated under this pattern
+            path: "/insights",
             component: require.resolve("./src/templates/post.js"),
             sharpKeys: [
               /image|main_image|logo|photo|picture/, // (default)
