@@ -135,9 +135,10 @@ const Post = ({ data }) => {
   const { node } = data.page.allBlog_posts.edges[0]
   // const { site } = data
   const defaultBlock = data.defaultBlock.allBlocks.edges[0].node
+  const site = data.site.allSite_informations.edges[0].node
   return (
     <Layout>
-      {/* <SEO site={site} page={page} /> */}
+      <SEO site={site} page={node} />
       <BlogHeader>
         <Container>
           <div className="blog-header-container">
@@ -182,6 +183,18 @@ const Post = ({ data }) => {
 export default Post
 export const postQuery = graphql`
   query PostBySlug($uid: String!, $lang: String) {
+    site: prismic {
+      allSite_informations {
+        edges {
+          node {
+            description
+            site_url
+            site_title
+            twitter_author
+          }
+        }
+      }
+    }
     defaultBlock: prismic {
       allBlocks(id: "XpeHQBIAACEArsdV") {
         edges {

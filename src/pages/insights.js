@@ -159,8 +159,6 @@ const Bloger = props => {
       uid: "insights",
     },
   }
-
-  console.log(props)
   return (
     <Layout>
       <SEO site={site} page={page} />
