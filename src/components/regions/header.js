@@ -8,12 +8,13 @@ import { withStyles, makeStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
 import Tooltip from "@material-ui/core/Tooltip"
 import Fade from "@material-ui/core/Fade"
-import { useStaticQuery, graphql } from "gatsby"
+import { StaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import * as variable from "../variables"
 import MobileMenu from "../mobileMenu"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTwitter } from "@fortawesome/free-brands-svg-icons"
+import { withPreview } from "gatsby-source-prismic-graphql"
 
 const HtmlTooltip = withStyles(theme => ({
   tooltip: {
@@ -119,7 +120,7 @@ const HeaderStyle = styled.header`
     }
   }
 `
-function menuRender(menuitem, classes) {
+function menuRender(menuitem) {
   if (
     menuitem.fields[0].sub_nav_link_label &&
     menuitem.fields[0].sub_nav_link_label[0].text != "Dummy"
@@ -132,10 +133,7 @@ function menuRender(menuitem, classes) {
           <React.Fragment>
             {menuitem.fields.map((submenuitem, index) => (
               <div key={index}>
-                <Link
-                  className={classes.button}
-                  to={submenuitem.sub_nav_link.uid}
-                >
+                <Link to={submenuitem.sub_nav_link.uid}>
                   {submenuitem.sub_nav_link_label[0].text}
                 </Link>
               </div>
@@ -165,67 +163,58 @@ function menuRender(menuitem, classes) {
     }
   }
 }
-export const Header = () => {
-  const data = useStaticQuery(graphql`
-    query {
-      nav: prismic {
-        allSite_informations {
-          edges {
-            node {
-              nav {
-                ... on PRISMIC_Site_informationNavNav_item {
-                  type
-                  label
-                  fields {
-                    sub_nav_link {
-                      ... on PRISMIC_Pa {
-                        title
-                        meta_title
-                        _meta {
-                          uid
-                        }
-                        _linkType
-                      }
-                      ... on PRISMIC__ExternalLink {
-                        _linkType
-                        url
-                      }
-                    }
-                    sub_nav_link_label
-                  }
-                  primary {
-                    relative_link
-                    link {
-                      ... on PRISMIC__ExternalLink {
-                        _linkType
-                        url
-                      }
-                      _linkType
-                      ... on PRISMIC_Pa {
-                        title
-                        meta_title
-                        _meta {
-                          uid
-                        }
-                      }
-                    }
-                    label
-                  }
-                }
+
+const query2 = graphql`
+  query {
+    prismic {
+      allSite_informations {
+        edges {
+          node {
+            logo
+            twitter {
+              ... on PRISMIC__ExternalLink {
+                _linkType
+                url
               }
             }
-          }
-        }
-      }
-      logo: prismic {
-        allSite_informations {
-          edges {
-            node {
-              logo
-              twitter {
-                ... on PRISMIC__ExternalLink {
-                  _linkType
-                  url
+            nav {
+              ... on PRISMIC_Site_informationNavNav_item {
+                type
+                label
+                fields {
+                  sub_nav_link {
+                    ... on PRISMIC_Pa {
+                      title
+                      meta_title
+                      _meta {
+                        uid
+                      }
+                      _linkType
+                    }
+                    ... on PRISMIC__ExternalLink {
+                      _linkType
+                      url
+                    }
+                  }
+                  sub_nav_link_label
+                }
+                primary {
+                  relative_link
+                  link {
+                    ... on PRISMIC__ExternalLink {
+                      _linkType
+                      url
+                    }
+                    _linkType
+                    ... on PRISMIC_Pa {
+                      title
+                      meta_title
+                      _meta {
+                        uid
+                      }
+                    }
+                  }
+                  label
                 }
               }
             }
@@ -233,42 +222,50 @@ export const Header = () => {
         }
       }
     }
-  `)
-  const nav = data.nav.allSite_informations.edges[0].node.nav
-  const logo = data.logo.allSite_informations.edges[0].node.logo.url
-  var twitter = null
-  if (data.logo.allSite_informations.edges[0].node.twitter) {
-    var twitter = data.logo.allSite_informations.edges[0].node.twitter.url
   }
-  const classes = useStyles()
-  return (
-    <HeaderStyle className="header">
-      {twitter && (
-        <div className="header-social-container">
-          <Container>
-            <div className="social-container">
-              <a href={twitter} target="_blank" rel="noreferrer">
-                <FontAwesomeIcon icon={faTwitter} />
-              </a>
+`
+
+export const Header = () => (
+  <StaticQuery
+    query={query2}
+    render={withPreview(data => {
+      console.log(data)
+      const nav = data.prismic.allSite_informations.edges[0].node.nav
+      const logo = data.prismic.allSite_informations.edges[0].node.logo.url
+      var twitter = null
+      if (data.prismic.allSite_informations.edges[0].node.twitter) {
+        var twitter =
+          data.prismic.allSite_informations.edges[0].node.twitter.url
+      }
+      // const classes = useStyles()
+      return (
+        <HeaderStyle className="header">
+          {twitter && (
+            <div className="header-social-container">
+              <Container>
+                <div className="social-container">
+                  <a href={twitter} target="_blank" rel="noreferrer">
+                    <FontAwesomeIcon icon={faTwitter} />
+                  </a>
+                </div>
+              </Container>
             </div>
+          )}
+          <Container className="header-container">
+            <Link className="logo" to="/">
+              <img alt="logo home" src={logo} />
+            </Link>
+            <div className="mobile-menu-container">{/* <MobileMenu /> */}</div>
+            <ul className="main-menu">
+              {nav.map((menuitem, index) => (
+                <li key={index}>{menuRender(menuitem)}</li>
+              ))}
+            </ul>
           </Container>
-        </div>
-      )}
-      <Container className="header-container">
-        <Link className="logo" to="/">
-          <img alt="logo home" src={logo} />
-        </Link>
-        <div className="mobile-menu-container">
-          <MobileMenu />
-        </div>
-        <ul className="main-menu">
-          {nav.map((menuitem, index) => (
-            <li key={index}>{menuRender(menuitem, classes)}</li>
-          ))}
-        </ul>
-      </Container>
-    </HeaderStyle>
-  )
-}
+        </HeaderStyle>
+      )
+    }, query2)}
+  />
+)
 
 export default Header

@@ -10,17 +10,17 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import Header from "../components/regions/header"
 import Footer from "../components/regions/footer"
-import PageTransition from "gatsby-v2-plugin-page-transitions"
+// import PageTransition from "gatsby-v2-plugin-page-transitions"
 
 import "../components/scss/layout/layout.scss"
 
 const Layout = ({ children }) => {
   return (
-    <PageTransition>
+    <div>
       <Header />
       <main>{children}</main>
       <Footer />
-    </PageTransition>
+    </div>
   )
 }
 

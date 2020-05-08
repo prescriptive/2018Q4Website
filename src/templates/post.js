@@ -5,7 +5,7 @@ import * as variable from "../components/variables"
 import styled from "styled-components"
 import Container from "../components/container"
 import SEO from "../components/seo"
-import { Link, RichText, Date } from "prismic-reactjs"
+import { RichText } from "prismic-reactjs"
 import Img from "gatsby-image"
 import Image from "../components/slices/ImageSlice"
 import Text from "../components/slices/TextSlice"
@@ -156,6 +156,7 @@ const Post = ({ data }) => {
                 )}
               </div>
               <h1>{node.title[0].text}</h1>
+              <h2>{RichText.render(node.title)}</h2>
               {node.body && <PostSlices slices={node.body} />}
             </div>
             {/* {page.data.block_reference.document && (

@@ -7,27 +7,30 @@ import Container from "../components/container"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
 import { RichText } from "prismic-reactjs"
+import { linkResolver } from "../utils/linkResolver"
 
 const JobStyle = styled.div`
   section {
     padding: ${variable.sectionPadding};
   }
 `
-const Job = ({ data }) => {
-  const prismicContent = data.job.allJobs.edges[0]
+const Job = props => {
+  const prismicContent = props.data.prismic.allJobs.edges[0]
   if (!prismicContent) return null
-  const job = data.job.allJobs.edges[0].node
-  const site = data.site.allSite_informations.edges[0].node
-  console.log(site)
+  const job = props.data.prismic.allJobs.edges[0].node
+  // const site = props.data.prismic.allSite_informations.edges[0].node
+  console.log(props)
   return (
     <Layout>
-      <SEO site={site} page={job} />
+      {/* <SEO site={site} page={job} /> */}
       <JobStyle>
         <Container>
-          <h1>{job.title[0].text}</h1>
-          <div className="job-location">{job.location[0].text}</div>
+          <RichText render={job.title} linkResolver={linkResolver} />
+          <div className="job-location">
+            <RichText render={job.location} linkResolver={linkResolver} />
+          </div>
           <div className="job-description">
-            {RichText.render(job.description)}
+            <RichText render={job.description} linkResolver={linkResolver} />
           </div>
         </Container>
       </JobStyle>
@@ -35,9 +38,9 @@ const Job = ({ data }) => {
   )
 }
 export default Job
-export const jobQuery = graphql`
-  query JobBySlug {
-    job: prismic {
+export const query = graphql`
+  query {
+    prismic {
       allJobs {
         edges {
           node {
@@ -51,8 +54,6 @@ export const jobQuery = graphql`
           }
         }
       }
-    }
-    site: prismic {
       allSite_informations {
         edges {
           node {

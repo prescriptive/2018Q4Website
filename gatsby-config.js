@@ -34,12 +34,12 @@ module.exports = {
       options: {
         repositoryName: "prescriptive", // required
         defaultLang: "en-us", // optional, but recommended
-        previews: false, // optional, default: false
+        previews: true, // optional, default: false
+        path: "preview",
         pages: [
           {
             type: "Blog_post", // TypeName from prismic
             match: "/insights/:uid", // pages will be generated under this pattern
-            path: "/insights",
             component: require.resolve("./src/templates/post.js"),
             sharpKeys: [
               /image|main_image|logo|photo|picture/, // (default)
@@ -49,7 +49,6 @@ module.exports = {
             type: "Pa", // TypeName from prismic
             match: "/:uid", // pages will be generated under this pattern
             filter: data => data.node._meta.uid !== "home",
-            path: "/",
             component: require.resolve("./src/templates/page.js"),
             sharpKeys: [
               /image|main_image|logo|photo|picture/, // (default)
@@ -59,7 +58,6 @@ module.exports = {
             type: "Pa", // TypeName from prismic
             match: "/", // pages will be generated under this pattern
             filter: data => data.node._meta.uid == "home",
-            path: "/",
             component: require.resolve("./src/templates/page.js"),
             sharpKeys: [
               /image|main_image|logo|photo|picture/, // (default)
@@ -68,8 +66,8 @@ module.exports = {
           {
             type: "Job", // TypeName from prismic
             match: "/job-opportunity/:uid", // pages will be generated under this pattern
-            path: "/job",
             component: require.resolve("./src/templates/job.js"),
+            path: "job-preview",
             sharpKeys: [
               /image|main_image|logo|photo|picture/, // (default)
             ],
@@ -161,7 +159,6 @@ module.exports = {
         ],
       },
     },
-    `gatsby-v2-plugin-page-transitions`,
     `gatsby-plugin-offline`,
     "gatsby-plugin-netlify",
   ],
