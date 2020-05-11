@@ -19,7 +19,6 @@ const Job = props => {
   if (!prismicContent) return null
   const job = props.data.prismic.allJobs.edges[0].node
   // const site = props.data.prismic.allSite_informations.edges[0].node
-  console.log(props)
   return (
     <Layout>
       {/* <SEO site={site} page={job} /> */}
@@ -39,9 +38,9 @@ const Job = props => {
 }
 export default Job
 export const query = graphql`
-  query {
+  query JobByUid($uid: String!) {
     prismic {
-      allJobs {
+      allJobs(uid: $uid) {
         edges {
           node {
             _meta {
@@ -51,16 +50,6 @@ export const query = graphql`
             location
             teaser_description
             title
-          }
-        }
-      }
-      allSite_informations {
-        edges {
-          node {
-            description
-            site_url
-            site_title
-            twitter_author
           }
         }
       }

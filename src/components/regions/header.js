@@ -229,7 +229,6 @@ export const Header = () => (
   <StaticQuery
     query={query2}
     render={withPreview(data => {
-      console.log(data)
       const nav = data.prismic.allSite_informations.edges[0].node.nav
       const logo = data.prismic.allSite_informations.edges[0].node.logo.url
       var twitter = null

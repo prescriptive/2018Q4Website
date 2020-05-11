@@ -61,7 +61,6 @@ export const addActive = id => {
 }
 
 function returnLeft(primary) {
-  console.log(primary)
   return (
     <React.Fragment>
       {primary.left_background_imageSharp && (

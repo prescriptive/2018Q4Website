@@ -2,8 +2,13 @@ import React from "react"
 import { RichText } from "prismic-reactjs"
 import { linkResolver } from "../../utils/linkResolver"
 
-export const TextSlice = ({ slice }) => {
-  return <div>{RichText.render(slice.primary.text, linkResolver)}</div>
+const TextSlice = props => {
+  return (
+    <div>
+      {console.log(props)}
+      <RichText render={props.slice.primary.text} linkResolver={linkResolver} />
+    </div>
+  )
 }
 
 export default TextSlice

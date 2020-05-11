@@ -13,6 +13,7 @@ import Quote from "../components/slices/QuoteSlice"
 import Video from "../components/slices/VideoSlice"
 import BasicSectionSlice from "../components/slices/BasicSectionSlice"
 import BgImage from "../images/blogbg.png"
+import { linkResolver } from "../utils/linkResolver"
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, id }) => {
@@ -129,13 +130,13 @@ const BlogHeader = styled.div`
   }
 `
 
-const Post = ({ data }) => {
-  const prismicContent = data.page.allBlog_posts.edges[0]
+const Post = props => {
+  const prismicContent = props.data.prismic.allBlog_posts.edges[0]
   if (!prismicContent) return null
-  const { node } = data.page.allBlog_posts.edges[0]
-  // const { site } = data
-  const defaultBlock = data.defaultBlock.allBlocks.edges[0].node
-  const site = data.site.allSite_informations.edges[0].node
+  const node = props.data.prismic.allBlog_posts.edges[0].node
+  const defaultBlock = props.data.prismic.allBlocks.edges[0].node
+  const site = props.data.prismic.allSite_informations.edges[0].node
+  console.log(node)
   return (
     <Layout>
       <SEO site={site} page={node} />
@@ -155,19 +156,17 @@ const Post = ({ data }) => {
                   <Img fluid={node.main_imageSharp.childImageSharp.fluid} />
                 )}
               </div>
-              <h1>{node.title[0].text}</h1>
-              <h2>{RichText.render(node.title)}</h2>
+              <RichText render={node.title} linkResolver={linkResolver} />
               {node.body && <PostSlices slices={node.body} />}
             </div>
-            {/* {page.data.block_reference.document && (
+            {node.block_reference && (
               <div className="blog-post-right">
-                <PostSlices
-                  slices={page.data.block_reference.document.data.body}
-                />
+                <PostSlices slices={node.block_reference.document.data.body} />
               </div>
-            )} */}
+            )}
             {!node.block_reference && (
               <div className="blog-post-right">
+                {console.log(defaultBlock)}
                 <PostSlices
                   slices={defaultBlock.body}
                   id={defaultBlock._meta.id}
@@ -182,9 +181,10 @@ const Post = ({ data }) => {
 }
 
 export default Post
-export const postQuery = graphql`
-  query PostBySlug($uid: String!, $lang: String) {
-    site: prismic {
+
+export const query = graphql`
+  query PostBySlug($uid: String!) {
+    prismic {
       allSite_informations {
         edges {
           node {
@@ -195,8 +195,6 @@ export const postQuery = graphql`
           }
         }
       }
-    }
-    defaultBlock: prismic {
       allBlocks(id: "XpeHQBIAACEArsdV") {
         edges {
           node {
@@ -235,9 +233,7 @@ export const postQuery = graphql`
           }
         }
       }
-    }
-    page: prismic {
-      allBlog_posts(uid: $uid, lang: $lang) {
+      allBlog_posts(uid: $uid) {
         edges {
           node {
             title

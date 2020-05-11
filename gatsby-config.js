@@ -38,18 +38,11 @@ module.exports = {
         path: "preview",
         pages: [
           {
-            type: "Blog_post", // TypeName from prismic
-            match: "/insights/:uid", // pages will be generated under this pattern
-            component: require.resolve("./src/templates/post.js"),
-            sharpKeys: [
-              /image|main_image|logo|photo|picture/, // (default)
-            ],
-          },
-          {
             type: "Pa", // TypeName from prismic
             match: "/:uid", // pages will be generated under this pattern
             filter: data => data.node._meta.uid !== "home",
             component: require.resolve("./src/templates/page.js"),
+            langs: ["en-us"],
             sharpKeys: [
               /image|main_image|logo|photo|picture/, // (default)
             ],
@@ -59,6 +52,7 @@ module.exports = {
             match: "/", // pages will be generated under this pattern
             filter: data => data.node._meta.uid == "home",
             component: require.resolve("./src/templates/page.js"),
+            langs: ["en-us"],
             sharpKeys: [
               /image|main_image|logo|photo|picture/, // (default)
             ],
@@ -68,6 +62,17 @@ module.exports = {
             match: "/job-opportunity/:uid", // pages will be generated under this pattern
             component: require.resolve("./src/templates/job.js"),
             path: "job-preview",
+            langs: ["en-us"],
+            sharpKeys: [
+              /image|main_image|logo|photo|picture/, // (default)
+            ],
+          },
+          {
+            type: "Blog_post", // TypeName from prismic
+            match: "/insights/:uid", // pages will be generated under this pattern
+            component: require.resolve("./src/templates/post.js"),
+            path: "blog-preview",
+            langs: ["en-us"],
             sharpKeys: [
               /image|main_image|logo|photo|picture/, // (default)
             ],

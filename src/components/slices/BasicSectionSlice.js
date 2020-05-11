@@ -110,7 +110,6 @@ export const BasicSectionSlice = ({ slice }) => {
           fluid={fluid}
           style={{ backgroundColor: bg_color }}
         >
-          {console.log(fluid)}
           <Container
             className="basic-slice-container"
             style={{ color: font_color }}
