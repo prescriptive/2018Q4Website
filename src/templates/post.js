@@ -161,12 +161,11 @@ const Post = props => {
             </div>
             {node.block_reference && (
               <div className="blog-post-right">
-                <PostSlices slices={node.block_reference.document.data.body} />
+                <PostSlices slices={node.block_reference.body} />
               </div>
             )}
             {!node.block_reference && (
               <div className="blog-post-right">
-                {console.log(defaultBlock)}
                 <PostSlices
                   slices={defaultBlock.body}
                   id={defaultBlock._meta.id}
