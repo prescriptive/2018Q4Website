@@ -69,6 +69,7 @@ const HeaderStyle = styled.header`
       max-width: 100%;
     }
   }
+
   .mobile-menu-container {
     width: 55px;
     margin-left: 20px;
