@@ -84,17 +84,24 @@ const BlogPostTeaserStyle = styled.article`
     font-size: 20px;
   }
 `
+
+function returnImage(post) {
+  console.log(post.node.main_imageSharp)
+  if (post.node.main_imageSharp != null) {
+    if (post.node.main_imageSharp.childImageSharp) {
+      return (
+        <BackgroundImage
+          Tag="section"
+          fluid={post.node.main_imageSharp.childImageSharp.fluid}
+        ></BackgroundImage>
+      )
+    }
+  }
+}
 export const BlogPostTeaser = ({ post }) => {
   return (
     <BlogPostTeaserStyle>
-      <div className="blog-teaser-image-container">
-        {post.node.main_imageSharp && (
-          <BackgroundImage
-            Tag="section"
-            fluid={post.node.main_imageSharp.childImageSharp.fluid}
-          ></BackgroundImage>
-        )}
-      </div>
+      <div className="blog-teaser-image-container">{returnImage(post)}</div>
 
       <Link
         className="blog-teaser-title"
