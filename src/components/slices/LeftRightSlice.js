@@ -4,6 +4,7 @@ import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
 import { RichText } from "prismic-reactjs"
 import * as variable from "../variables"
+import { linkResolver } from "../../utils/linkResolver"
 
 const LeftRightStyle = styled.div`
   ._form {
@@ -71,7 +72,10 @@ function returnLeft(primary) {
           <Container>
             {primary.left_content && (
               <div className="section-content">
-                {RichText.render(primary.left_content)}
+                <RichText
+                  render={primary.left_content}
+                  linkResolver={linkResolver}
+                />
               </div>
             )}
             {primary.embed && (
@@ -88,7 +92,10 @@ function returnLeft(primary) {
           <Container>
             {primary.left_content && (
               <div className="section-content">
-                {RichText.render(primary.left_content)}
+                <RichText
+                  render={primary.left_content}
+                  linkResolver={linkResolver}
+                />
               </div>
             )}
             {primary.embed && (
@@ -120,7 +127,10 @@ function returnRight(primary) {
           <Container>
             {primary.right_content && (
               <div className="section-content">
-                {RichText.render(primary.right_content)}
+                <RichText
+                  render={primary.right_content}
+                  linkResolver={linkResolver}
+                />
               </div>
             )}
             {primary.right_embed && (
@@ -139,7 +149,10 @@ function returnRight(primary) {
           <Container>
             {primary.right_content && (
               <div className="section-content">
-                {RichText.render(primary.right_content)}
+                <RichText
+                  render={primary.right_content}
+                  linkResolver={linkResolver}
+                />
               </div>
             )}
             {primary.right_embed && (
