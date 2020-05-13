@@ -41,7 +41,6 @@ const EntityResult = ({ slice, blog, leadership, job }) => {
   //   }
   // })
   if (slice.primary.entity_type == "Leadership") {
-    console.log(leadership)
     return leadership
       .slice(0, slice.primary.entity_count)
       .map((post, index) => (
@@ -66,12 +65,9 @@ const EntityResult = ({ slice, blog, leadership, job }) => {
   // {blog.nodes.slice(0, entityCount).map((post, index) => (
   //   <BlogPostTeaser post={post} key={index}></BlogPostTeaser>
   // ))}
-  // console.log("te" + slice)
 }
 
 export const EntityQuerySlice = ({ slice, blog, leadership, job }) => {
-  console.log(leadership)
-  console.log(slice)
   var fluid = null
 
   var h1_title = false

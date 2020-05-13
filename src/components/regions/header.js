@@ -166,7 +166,7 @@ function menuRender(menuitem) {
 }
 
 const query2 = graphql`
-  query {
+  query menu {
     prismic {
       allSite_informations {
         edges {

@@ -93,7 +93,6 @@ function ColumnsSectionSlice({ slice }) {
                   {items &&
                     items.map((item, index) => (
                       <div key={index} className="column-item">
-                        {console.log(item)}
                         <RichText
                           render={item.content}
                           linkResolver={linkResolver}
@@ -116,12 +115,11 @@ function ColumnsSectionSlice({ slice }) {
                 <h2>{slice.primary.section_title[0].text}</h2>
               )}
               <div className={"column column-count-" + columnCount}>
-                {console.log(items)}
                 {items &&
                   items.map((item, index) => (
                     <div key={index} className="column-item">
                       <RichText
-                        render={slice.primary.content}
+                        render={item.content}
                         linkResolver={linkResolver}
                       />
                     </div>

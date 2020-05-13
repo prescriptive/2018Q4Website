@@ -11,7 +11,6 @@ import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
 function SEO({ site, page, lang, meta }) {
-  console.log(page)
   var noIndex = "index"
   if (page.do_not_index) {
     if (page.do_not_index == true) {

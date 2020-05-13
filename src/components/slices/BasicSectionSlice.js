@@ -53,7 +53,6 @@ const BasicStyle = styled.div`
 `
 
 export const BasicSectionSlice = ({ slice }) => {
-  console.log(slice)
   const videoOptions = {
     playerVars: {
       autoplay: 1,

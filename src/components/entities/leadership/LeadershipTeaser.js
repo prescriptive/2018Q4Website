@@ -84,18 +84,17 @@ const LeadershipTeaserStyle = styled.article`
 export const LeadershipTeaser = ({ post }) => {
   return (
     <LeadershipTeaserStyle>
-      {console.log(post.node)}
-      <div class="photo-name">
-        <div class="leader-photo">
+      <div className="photo-name">
+        <div className="leader-photo">
           <Img fixed={post.node.photoSharp.childImageSharp.fixed} />
         </div>
-        <div class="leader-name-title">
-          <div class="leader-name">{post.node.name[0].text}</div>
-          <div class="leader-title">{post.node.title[0].text}</div>
+        <div className="leader-name-title">
+          <div className="leader-name">{post.node.name[0].text}</div>
+          <div className="leader-title">{post.node.title[0].text}</div>
         </div>
       </div>
       <div className="leader-bio">{RichText.render(post.node.bio)}</div>
-      <div class="leader-social">
+      <div className="leader-social">
         {post.node.twitter && (
           <a target="_blank" href={post.node.twitter.url}>
             <FontAwesomeIcon icon={faTwitter} />

@@ -105,7 +105,7 @@ function returnLeft(primary) {
               />
             )}
             {primary.active_campaign_form_number && (
-              <div class={"_form_" + primary.active_campaign_form_number}>
+              <div className={"_form_" + primary.active_campaign_form_number}>
                 {addActive(primary.active_campaign_form_number)}
               </div>
             )}
