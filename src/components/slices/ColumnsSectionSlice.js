@@ -4,6 +4,7 @@ import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
 import { Link, RichText, Date } from "prismic-reactjs"
 import * as variable from "../variables"
+import { linkResolver } from "../../utils/linkResolver"
 
 const PrismicDOM = require("prismic-dom")
 const ColumnStyle = styled.div`
@@ -92,7 +93,10 @@ function ColumnsSectionSlice({ slice }) {
                   {items &&
                     items.map((item, index) => (
                       <div key={index} className="column-item">
-                        {RichText.render(item.content)}
+                        <RichText
+                          render={slice.primary.content}
+                          linkResolver={linkResolver}
+                        />
                       </div>
                     ))}
                 </div>
@@ -115,7 +119,10 @@ function ColumnsSectionSlice({ slice }) {
                 {items &&
                   items.map((item, index) => (
                     <div key={index} className="column-item">
-                      {RichText.render(item.content)}
+                      <RichText
+                        render={slice.primary.content}
+                        linkResolver={linkResolver}
+                      />
                     </div>
                   ))}
               </div>

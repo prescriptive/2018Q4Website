@@ -6,6 +6,7 @@ import { Link, RichText, Date } from "prismic-reactjs"
 import YouTube from "react-youtube"
 import ResponsiveEmbed from "react-responsive-embed"
 import "../scss/block/defaultBlogCta.scss"
+import { linkResolver } from "../../utils/linkResolver"
 
 const BasicStyle = styled.div`
   .video-container-outer {
@@ -121,7 +122,10 @@ export const BasicSectionSlice = ({ slice }) => {
               <h2>{slice.primary.section_title.text}</h2>
             )}
             <div className="section-content">
-              {RichText.render(slice.primary.content)}
+              <RichText
+                render={slice.primary.content}
+                linkResolver={linkResolver}
+              />
             </div>
           </Container>
         </BackgroundImage>
@@ -172,7 +176,10 @@ export const BasicSectionSlice = ({ slice }) => {
               )}
               {slice.primary.content && (
                 <div className="section-content">
-                  {RichText.render(slice.primary.content)}
+                  <RichText
+                    render={slice.primary.content}
+                    linkResolver={linkResolver}
+                  />
                 </div>
               )}
             </section>
