@@ -18,6 +18,9 @@ const MobileContainer = styled.div`
     display: flex !important;
     justify-content: center;
   }
+  ul {
+    padding-left: 0px;
+  }
   li {
     font-size: 30px;
     font-weight: 600;
@@ -33,6 +36,7 @@ const MobileContainer = styled.div`
       text-align: left;
       color: ${variable.darkGray};
       text-decoration: none;
+      font-size: 27px;
       &:focus {
         outline: none !important;
       }
@@ -61,15 +65,6 @@ const MobileContainer = styled.div`
     display: block;
     .bm-menu-wrap {
       top: 0px;
-      // width: 100% !important;
-      ul {
-        margin-top: 10px;
-        li {
-          a {
-            font-size: 14px !important;
-          }
-        }
-      }
     }
     .bm-overlay {
       left: 0;
@@ -90,11 +85,14 @@ const MobileContainer = styled.div`
     display: block;
   }
 `
+const activeStyle = {
+  color: variable.red,
+}
 const SubMenuReturn = ({ submenuitem, index }) => {
   if (submenuitem.sub_nav_link_label[0].text != "Dummy") {
     return (
       <li key={index}>
-        <Link to={submenuitem.sub_nav_link._meta.uid}>
+        <Link activeStyle={activeStyle} to={submenuitem.sub_nav_link._meta.uid}>
           {submenuitem.sub_nav_link_label[0].text}
         </Link>
       </li>
@@ -211,14 +209,13 @@ class Mobilemenu extends React.Component {
                         to="/"
                         activeClassName="active"
                         onClick={() => this.toggleMenu()}
+                        activeStyle={activeStyle}
                       >
                         Home
                       </Link>
                     </li>
-                  </ul>
-                  {data.nav.allSite_informations.edges[0].node.nav.map(
-                    (menuitem, index) => (
-                      <ul>
+                    {data.nav.allSite_informations.edges[0].node.nav.map(
+                      (menuitem, index) => (
                         <li key={index}>
                           {menuitem.primary.link && (
                             <Link
@@ -226,6 +223,7 @@ class Mobilemenu extends React.Component {
                               to={menuitem.primary.link._meta.uid}
                               onClick={() => this.toggleMenu()}
                               activeClassName="active"
+                              activeStyle={activeStyle}
                             >
                               {menuitem.primary.label[0].text}
                             </Link>
@@ -236,6 +234,7 @@ class Mobilemenu extends React.Component {
                               to={menuitem.primary.relative_link[0].text}
                               onClick={() => this.toggleMenu()}
                               activeClassName="active"
+                              activeStyle={activeStyle}
                             >
                               {menuitem.primary.label[0].text}
                             </Link>
@@ -251,9 +250,9 @@ class Mobilemenu extends React.Component {
                             </ul>
                           )}
                         </li>
-                      </ul>
-                    )
-                  )}
+                      )
+                    )}
+                  </ul>
                 </div>
               </Menu>
             </MobileContainer>

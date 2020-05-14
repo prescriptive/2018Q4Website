@@ -121,6 +121,10 @@ const HeaderStyle = styled.header`
     }
   }
 `
+const activeStyle = {
+  color: variable.red,
+}
+
 function menuRender(menuitem) {
   if (
     menuitem.fields[0].sub_nav_link_label &&
@@ -134,7 +138,10 @@ function menuRender(menuitem) {
           <React.Fragment>
             {menuitem.fields.map((submenuitem, index) => (
               <div key={index}>
-                <Link to={submenuitem.sub_nav_link.uid}>
+                <Link
+                  activeStyle={activeStyle}
+                  to={submenuitem.sub_nav_link.uid}
+                >
                   {submenuitem.sub_nav_link_label[0].text}
                 </Link>
               </div>
@@ -142,7 +149,7 @@ function menuRender(menuitem) {
           </React.Fragment>
         }
       >
-        <Link to={menuitem.primary.link.uid}>
+        <Link activeStyle={activeStyle} to={menuitem.primary.link.uid}>
           {menuitem.primary.label[0].text}
         </Link>
       </HtmlTooltip>
@@ -150,14 +157,17 @@ function menuRender(menuitem) {
   } else {
     if (menuitem.primary.link) {
       return (
-        <Link to={menuitem.primary.link._meta.uid}>
+        <Link activeStyle={activeStyle} to={menuitem.primary.link._meta.uid}>
           {menuitem.primary.label[0].text}
         </Link>
       )
     }
     if (menuitem.primary.relative_link) {
       return (
-        <Link to={menuitem.primary.relative_link[0].text}>
+        <Link
+          activeStyle={activeStyle}
+          to={menuitem.primary.relative_link[0].text}
+        >
           {menuitem.primary.label[0].text}
         </Link>
       )
