@@ -14,14 +14,21 @@ const EntityQueryStyle = styled.div`
     margin-bottom: 40px;
     width: calc((100%) / 3 - 14px);
     margin-right: 20px;
+    &:nth-child(3n + 3) {
+      margin-right: 0px;
+    }
     @media (max-width: ${variable.tabletWidth}) {
       width: calc((100%) / 2 - 20px);
+      &:nth-child(3n + 3) {
+      margin-right: 20px;
+    }
+    &:nth-child(2n + 2) {
+      margin-right: 0px;
+    }
     }
     @media (max-width: ${variable.mobileWidth}) {
       width: 100%;
-    }
-    &:nth-child(3n + 3) {
-      margin-right: 0px;
+      margin-right:0px !important;
     }
   }
 `
