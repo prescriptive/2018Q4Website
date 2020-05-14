@@ -48,7 +48,7 @@
     p {
       padding: 0px 24px;
       &.block-img {
-        padding: 48px 20px;
+        padding: 0px;
       }
     }
   }
@@ -65,7 +65,7 @@
     padding: 48px 20px;
     margin: 0px;
     img {
-      height: 120px;
+      // height: 120px;
     }
   }
 }
