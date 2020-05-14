@@ -5,7 +5,6 @@ import * as variable from "../components/variables"
 import styled from "styled-components"
 import Container from "../components/container"
 import SEO from "../components/seo"
-import { RichText } from "prismic-reactjs"
 import Img from "gatsby-image"
 import Image from "../components/slices/ImageSlice"
 import Text from "../components/slices/TextSlice"
@@ -14,6 +13,10 @@ import Video from "../components/slices/VideoSlice"
 import BasicSectionSlice from "../components/slices/BasicSectionSlice"
 import BgImage from "../images/blogbg.png"
 import { linkResolver } from "../utils/linkResolver"
+import { RichText, Date } from "prismic-reactjs"
+import { faCalendar } from "@fortawesome/free-solid-svg-icons"
+import { faUser } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, id }) => {
@@ -109,6 +112,19 @@ const PageStyle = styled.div`
     border-radius: 4px;
     overflow: hidden;
   }
+  .release-date {
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .blog-author {
+    font-weight: 700;
+    font-size: 18px;
+  }
+  svg {
+    margin-right: 7px;
+    font-size: 20px;
+  }
 `
 
 const BlogHeader = styled.div`
@@ -136,7 +152,12 @@ const Post = props => {
   const node = props.data.prismic.allBlog_posts.edges[0].node
   const defaultBlock = props.data.prismic.allBlocks.edges[0].node
   const site = props.data.prismic.allSite_informations.edges[0].node
-  console.log(node)
+  const dates = new Date(node.release_date)
+  const formattedDate = Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+  }).format(dates)
   return (
     <Layout>
       <SEO site={site} page={node} />
@@ -157,6 +178,18 @@ const Post = props => {
                 )}
               </div>
               <RichText render={node.title} linkResolver={linkResolver} />
+              {node.release_date && (
+                <div className="release-date">
+                  <FontAwesomeIcon icon={faCalendar} />
+                  {formattedDate}
+                </div>
+              )}
+              {node.author && (
+                <div className="blog-author">
+                  <FontAwesomeIcon icon={faUser} />
+                  {node.author[0].text}
+                </div>
+              )}
               {node.body && <PostSlices slices={node.body} />}
             </div>
             {node.block_reference && (
@@ -325,6 +358,7 @@ export const query = graphql`
             release_date
             meta_title
             meta_description
+            author
           }
         }
       }

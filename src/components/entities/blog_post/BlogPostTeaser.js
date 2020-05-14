@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
 import BackgroundImage from "gatsby-background-image"
-import { RichText } from "prismic-reactjs"
+import { RichText, Date } from "prismic-reactjs"
 import { faCalendar } from "@fortawesome/free-solid-svg-icons"
 import { faUser } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -86,7 +86,6 @@ const BlogPostTeaserStyle = styled.article`
 `
 
 function returnImage(post) {
-  console.log(post.node.main_imageSharp)
   if (post.node.main_imageSharp != null) {
     if (post.node.main_imageSharp.childImageSharp) {
       return (
@@ -99,6 +98,13 @@ function returnImage(post) {
   }
 }
 export const BlogPostTeaser = ({ post }) => {
+  const dates = new Date(post.node.release_date)
+  const formattedDate = Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+  }).format(dates)
+  console.log(formattedDate)
   return (
     <BlogPostTeaserStyle>
       <div className="blog-teaser-image-container">{returnImage(post)}</div>
@@ -112,7 +118,7 @@ export const BlogPostTeaser = ({ post }) => {
       {post.node.release_date && (
         <div className="release-date">
           <FontAwesomeIcon icon={faCalendar} />
-          {post.node.release_date}
+          {formattedDate}
         </div>
       )}
       {post.node.author && (

@@ -96,7 +96,7 @@ const HeaderStyle = styled.header`
             color: white;
           }
           &[aria-current] {
-            color: white;
+            color: white !important;
           }
         }
       }
