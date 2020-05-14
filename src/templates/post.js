@@ -238,6 +238,7 @@ export const query = graphql`
             title
             _meta {
               uid
+              type
             }
             block_reference {
               ... on PRISMIC_Block {

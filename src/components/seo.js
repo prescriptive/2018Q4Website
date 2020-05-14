@@ -23,7 +23,7 @@ function SEO({ site, page, lang, meta }) {
   }
   var metaDescription = ""
   if (page.meta_description) {
-    var metaDescription = page.meta_description[0].text
+    var metaDescription = page.meta_description
   }
 
   const title = page.meta_title || page.title[0].text
@@ -32,9 +32,12 @@ function SEO({ site, page, lang, meta }) {
   const siteUrl = site.site_url[0].text
   var uid = page._meta.uid
   var path = "/"
-
-  if (page.type == "blog_post") {
-    path = "/blog/"
+console.log(page)
+  if (page._meta.type == "blog_post") {
+    path = "/insights/"
+  }
+  if (page._meta.type == "job") {
+    path = "/job-opportunity/"
   }
   if (page.uid == "home") {
     uid = ""
@@ -76,10 +79,6 @@ function SEO({ site, page, lang, meta }) {
           content: "article",
         },
         {
-          property: `og:title`,
-          content: title,
-        },
-        {
           property: `og:url`,
           content: canonical,
         },
@@ -100,8 +99,10 @@ function SEO({ site, page, lang, meta }) {
           content: metaDescription,
         },
       ].concat(meta)}
+
     />
   )
+
 }
 
 SEO.defaultProps = {
