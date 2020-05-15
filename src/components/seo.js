@@ -32,7 +32,6 @@ function SEO({ site, page, lang, meta }) {
   const siteUrl = site.site_url[0].text
   var uid = page._meta.uid
   var path = "/"
-console.log(page)
   if (page._meta.type == "blog_post") {
     path = "/insights/"
   }
@@ -99,10 +98,8 @@ console.log(page)
           content: metaDescription,
         },
       ].concat(meta)}
-
     />
   )
-
 }
 
 SEO.defaultProps = {

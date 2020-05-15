@@ -71,7 +71,7 @@ const BlogHeader = styled.div`
 export const postQuery = graphql`
   query BlogIndex {
     prismic {
-      allBlog_posts {
+      allBlog_posts(sortBy: release_date_DESC) {
         pageInfo {
           hasNextPage
           hasPreviousPage

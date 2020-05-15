@@ -104,7 +104,6 @@ export const BlogPostTeaser = ({ post }) => {
     month: "short",
     day: "2-digit",
   }).format(dates)
-  console.log(formattedDate)
   return (
     <BlogPostTeaserStyle>
       <div className="blog-teaser-image-container">{returnImage(post)}</div>

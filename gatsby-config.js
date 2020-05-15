@@ -155,7 +155,7 @@ module.exports = {
         fonts: [
           {
             family: `Roboto`,
-            varients: [`400`, `500`, `700`, `900`],
+            variants: [`400`, `500`, `700`, `900`],
           },
           {
             family: `Libre Franklin`,
