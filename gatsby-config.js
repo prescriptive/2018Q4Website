@@ -164,6 +164,85 @@ module.exports = {
         ],
       },
     },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        output: `/sitemap.xml`,
+        // Exclude specific pages or groups of pages using glob parameters
+        // See: https://github.com/isaacs/minimatch
+        query: `
+          {
+            site {
+              siteMetadata {
+                siteUrl
+              }
+            }
+            allSitePage {
+              nodes {
+                path
+              }
+            }
+            prismic {
+              allPas {
+                edges {
+                  node {
+                    _meta {
+                      uid
+                    }
+                  }
+                }
+              }
+              allBlog_posts {
+                edges {
+                  node {
+                    _meta {
+                      uid
+                    }
+                  }
+                }
+              }
+              allJobs {
+                edges {
+                  node {
+                    _meta {
+                      uid
+                    }
+                  }
+                }
+              }
+            }
+        }`,
+        resolveSiteUrl: ({ site, allSitePage }) => {
+          //Alternativly, you may also pass in an environment variable (or any location) at the beginning of your `gatsby-config.js`.
+          return site.siteMetadata.siteUrl
+        },
+        serialize: ({ site, prismic }) => {
+          let pages = []
+          prismic.allPas.edges.map(edge => {
+            pages.push({
+              url: `${site.siteMetadata.siteUrl}/${edge.node._meta.uid}`,
+              changefreq: `daily`,
+              priority: 0.7,
+            })
+          })
+          prismic.allBlog_posts.edges.map(edge => {
+            pages.push({
+              url: `${site.siteMetadata.siteUrl}/insights/${edge.node._meta.uid}`,
+              changefreq: `daily`,
+              priority: 0.7,
+            })
+          })
+          prismic.allJobs.edges.map(edge => {
+            pages.push({
+              url: `${site.siteMetadata.siteUrl}/job-opportunity/${edge.node._meta.uid}`,
+              changefreq: `daily`,
+              priority: 0.7,
+            })
+          })
+          return pages
+        },
+      },
+    },
     `gatsby-plugin-offline`,
     "gatsby-plugin-netlify",
   ],
