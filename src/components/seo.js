@@ -38,7 +38,7 @@ function SEO({ site, page, lang, meta }) {
   if (page._meta.type == "job") {
     path = "/job-opportunity/"
   }
-  if (page.uid == "home") {
+  if (page._meta.uid == "home") {
     uid = ""
     path = ""
   }
