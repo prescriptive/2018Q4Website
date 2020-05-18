@@ -15,20 +15,72 @@
     }
   }
 }
-
 #slice-id-careers-team-freedom {
-  .column-item {
-    background-color: white;
-    padding: 24px;
+  h2 {
+    color: $darkGray;
+    text-align: center;
+  }
+  .column {
     h2 {
+      font-family: Libre Franklin;
+      font-style: normal;
+      font-weight: 900;
+      font-size: 36px;
+      line-height: 44px;
+      margin-top: 48px;
       width: 100%;
+      padding: 0px 24px;
+      margin-bottom: 0px;
+    }
+    h4 {
+      padding: 0px 24px;
       text-align: center;
+      color: $red;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 27px;
+      line-height: 36px;
+      margin: 0px;
+      margin-bottom: 60px;
     }
     p {
-      line-height: 24px;
+      padding: 0px 24px;
+      &.block-img {
+        padding: 0px;
+      }
+    }
+  }
+  .column-item {
+    background-color: white;
+    padding-bottom: 48px;
+  }
+  .block-img {
+    text-align: center;
+    background-color: $blueGray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 20px;
+    margin: 0px;
+    img {
+      // height: 120px;
     }
   }
 }
+// #slice-id-careers-team-freedom {
+//   .column-item {
+//     background-color: white;
+//     padding: 24px;
+//     h2 {
+//       width: 100%;
+//       text-align: center;
+//     }
+//     p {
+//       line-height: 24px;
+//     }
+//   }
+// }
 
 #slice-id-careers-contact {
   section {
