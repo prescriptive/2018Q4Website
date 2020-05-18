@@ -55,6 +55,15 @@
     background-color: white;
     padding-bottom: 48px;
   }
+  ul {
+    padding: 0 24px 0px 44px;
+    li {
+      margin-bottom: 20px;
+      &:nth-last-child() {
+        margin-bottom: 0px;
+      }
+    }
+  }
   .block-img {
     text-align: center;
     background-color: $blueGray;
