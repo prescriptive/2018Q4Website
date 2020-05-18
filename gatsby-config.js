@@ -36,6 +36,7 @@ module.exports = {
         defaultLang: "en-us", // optional, but recommended
         previews: true, // optional, default: false
         path: "preview",
+        omitPrismicScript: true,
         pages: [
           {
             type: "Pa", // TypeName from prismic
