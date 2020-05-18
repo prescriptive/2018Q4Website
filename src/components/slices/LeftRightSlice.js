@@ -49,6 +49,10 @@ const LeftRightStyle = styled.div`
       max-width: 100%;
     }
   }
+  img {
+    max-width: 100%;
+    margin: 0 auto;
+  }
 `
 
 export const addActive = id => {
