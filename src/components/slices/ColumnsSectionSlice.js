@@ -5,6 +5,7 @@ import Container from "../container"
 import { Link, RichText, Date } from "prismic-reactjs"
 import * as variable from "../variables"
 import { linkResolver } from "../../utils/linkResolver"
+import { htmlSerializer } from "../../utils/htmlSerializer"
 
 const PrismicDOM = require("prismic-dom")
 const ColumnStyle = styled.div`
@@ -96,6 +97,7 @@ function ColumnsSectionSlice({ slice }) {
                         <RichText
                           render={item.content}
                           linkResolver={linkResolver}
+                          htmlSerializer={htmlSerializer}
                         />
                       </div>
                     ))}
@@ -121,6 +123,7 @@ function ColumnsSectionSlice({ slice }) {
                       <RichText
                         render={item.content}
                         linkResolver={linkResolver}
+                        htmlSerializer={htmlSerializer}
                       />
                     </div>
                   ))}
