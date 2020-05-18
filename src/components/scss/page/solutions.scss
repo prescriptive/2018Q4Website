@@ -77,6 +77,11 @@
 }
 
 #slice-id-solutions-azure {
+  .left-right-container {
+    @include mobile() {
+      flex-direction: column-reverse;
+    }
+  }
   section {
     &:nth-child(1) {
       background-color: $medLightGray;
@@ -101,10 +106,18 @@
 
 #slice-id-solutions-disaster {
   section {
+    &:nth-child(1) {
+      @include mobile() {
+        min-height: 450px;
+      }
+    }
     &:nth-child(2) {
       min-height: 513px;
       background-color: $medLightGray;
       color: white;
+      @include mobile() {
+        min-height: auto;
+      }
       h2 {
         font-weight: 900;
         font-size: 27px;
