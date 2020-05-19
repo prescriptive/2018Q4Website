@@ -15,6 +15,43 @@
     }
   }
 }
+#slice-id-about-leadership {
+  section {
+    h2 {
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto 40px auto;
+      display: block;
+    }
+    > div {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 800px;
+      margin: 0 auto;
+      article {
+        margin-bottom: 40px;
+        width: calc((100%) / 2 - 14px);
+        margin-right: 20px;
+        &:nth-child(2n + 2) {
+          margin-right: 0px;
+        }
+        @include tablet() {
+          width: calc((100%) / 2 - 10px);
+          &:nth-child(3n + 3) {
+            margin-right: 20px;
+          }
+          &:nth-child(2n + 2) {
+            margin-right: 0px;
+          }
+        }
+        @include mobile() {
+          width: 100%;
+          margin-right: 0px !important;
+        }
+      }
+    }
+  }
+}
 
 #slice-id-e7579e3b-8298-5165-b038-2b3eab074e5e {
   h2 {
