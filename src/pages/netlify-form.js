@@ -29,7 +29,7 @@ const NotFoundPage = () => (
           netlify-honeypot="bot-field"
           data-netlify="true"
         >
-          <input type="hidden" name="form-name" value="contact3" />
+          <input type="hidden" name="form-name" value="resume2" />
           <p hidden>
             {" "}
             <label htmlFor="bot-field">
