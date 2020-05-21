@@ -22,7 +22,7 @@ const NotFoundPage = () => (
     <Container>
       <Style404>
         <h1>Netlify Form</h1>
-        <form name="contact" method="POST" data-netlify="true">
+        <form name="resumetest" method="POST" data-netlify="true">
           <p>
             <label>
               Your Name: <input type="text" name="name" />
