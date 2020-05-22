@@ -12,8 +12,8 @@ import { useStaticQuery, graphql } from "gatsby"
 
 function SEO({ site, page, lang, meta }) {
   var noIndex = "index"
-  if (page.do_not_index) {
-    if (page.do_not_index == true) {
+  if (page.donotindex) {
+    if (page.donotindex == true) {
       var noIndex = "noindex"
     }
   }

@@ -225,7 +225,7 @@ export const postQuery = graphql`
             meta_description
             meta_title
             title
-            do_not_index
+            donotindex
             body {
               ... on PRISMIC_PaBodyBasic_section {
                 type
