@@ -1,0 +1,180 @@
+#slice-id-careers-hero {
+  section {
+    padding: 0px;
+    > div {
+      min-height: 360px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      h1 {
+        color: white;
+        font-weight: 800;
+        font-size: 54px;
+        line-height: 72px;
+      }
+    }
+  }
+}
+#slice-id-careers-team-freedom {
+  h2 {
+    color: $darkGray;
+    text-align: center;
+  }
+  .column {
+    h2 {
+      font-family: Libre Franklin;
+      font-style: normal;
+      font-weight: 900;
+      font-size: 36px;
+      line-height: 44px;
+      margin-top: 48px;
+      width: 100%;
+      padding: 0px 24px;
+      margin-bottom: 0px;
+    }
+    h4 {
+      padding: 0px 24px;
+      text-align: center;
+      color: $red;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 27px;
+      line-height: 36px;
+      margin: 0px;
+      margin-bottom: 60px;
+    }
+    p {
+      padding: 0px 24px;
+      &.block-img {
+        padding: 0px;
+      }
+    }
+  }
+  .column-item {
+    background-color: white;
+    padding-bottom: 48px;
+  }
+  ul {
+    padding: 0 24px 0px 44px;
+    li {
+      margin-bottom: 20px;
+      &:nth-last-child() {
+        margin-bottom: 0px;
+      }
+    }
+  }
+  .block-img {
+    text-align: center;
+    background-color: $blueGray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 20px;
+    margin: 0px;
+    img {
+      // height: 120px;
+    }
+  }
+}
+// #slice-id-careers-team-freedom {
+//   .column-item {
+//     background-color: white;
+//     padding: 24px;
+//     h2 {
+//       width: 100%;
+//       text-align: center;
+//     }
+//     p {
+//       line-height: 24px;
+//     }
+//   }
+// }
+
+#slice-id-careers-contact {
+  section {
+    &:nth-child(1) {
+      width: 35%;
+      @include mobile() {
+        width: 100%;
+        display: none;
+      }
+      > div {
+        max-width: calc(#{$desktop-width} * 0.35);
+        @include tablet() {
+          max-width: calc(#{$tablet-width} * 0.35);
+        }
+        @include mobile() {
+          max-width: calc(#{$mobile-width});
+        }
+      }
+      a {
+        color: $darkGray;
+      }
+    }
+    &:nth-child(2) {
+      > div {
+        max-width: calc(#{$desktop-width} * 0.65);
+        @include tablet() {
+          max-width: calc(#{$tablet-width} * 0.65);
+        }
+        @include mobile() {
+          max-width: calc(#{$mobile-width});
+        }
+      }
+      width: 65%;
+      background-size: contain;
+      min-height: 363px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include mobile() {
+        width: 100%;
+      }
+      &:before {
+        background-size: 370px;
+      }
+      h2 {
+        font-family: "Libre Franklin";
+        font-style: normal;
+        font-weight: 800;
+        font-size: 54px;
+        line-height: 72px;
+        color: $darkGray;
+        margin-bottom: 40px;
+        text-align: right;
+        display: block;
+      }
+      p {
+        margin: 0px;
+        text-align: right;
+      }
+      .cta-button {
+        margin-top: 40px;
+        display: inline-block;
+      }
+    }
+  }
+}
+#slice-id-careers-efficacy {
+  section {
+    padding-top: 0px;
+    p {
+      font-family: Libre Franklin;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 36px;
+      line-height: 48px;
+      display: inline-block;
+    }
+  }
+}
+#slice-id-careers-team {
+  section {
+    padding-bottom: 0px;
+  }
+  h2 {
+    color: $darkGray;
+  }
+}

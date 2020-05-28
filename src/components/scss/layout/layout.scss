@@ -1,0 +1,44 @@
+* {
+  box-sizing: border-box;
+  transition: 0.3s;
+  color: $darkGray;
+}
+body {
+  margin: 0px;
+  font-family: "Roboto";
+  font-weight: 400;
+}
+h1 {
+  font-family: "Libre Franklin";
+  font-weight: 800;
+  font-size: 54px;
+  line-height: 72px;
+}
+h2 {
+  font-family: "Libre Franklin";
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 48px;
+  display: inline-block;
+}
+h3 {
+  font-family: "Libre Franklin";
+  font-size:27px;
+  font-weight: 800;
+}
+a {
+  text-decoration: none;
+}
+p {
+  font-size: 18px;
+  color: $darkGray;
+  line-height: 24px;
+  display: inline-block;
+  width: 100%;
+}
+.cta-button {
+  @include cta-button($darkGray);
+}
+._form {
+  display: none;
+}

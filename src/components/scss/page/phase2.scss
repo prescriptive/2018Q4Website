@@ -1,0 +1,31 @@
+#slice-id-67b89760-53b4-52a2-930e-88f280047abe {
+  section {
+    padding: 0px;
+    > div {
+      min-height: 360px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      h2 {
+        color: white;
+        font-weight: 800;
+        font-size: 54px;
+        line-height: 72px;
+      }
+    }
+  }
+}
+
+#slice-id-168e41b8-bd00-5212-b5d5-aa9a7b46594d {
+  .column-item {
+    background-color: white;
+    padding: 24px;
+    h2 {
+      width: 100%;
+      text-align: center;
+    }
+    p {
+      line-height: 24px;
+    }
+  }
+}
