@@ -108,10 +108,7 @@ export const BlogPostTeaser = ({ post }) => {
     <BlogPostTeaserStyle>
       <div className="blog-teaser-image-container">{returnImage(post)}</div>
 
-      <Link
-        className="blog-teaser-title"
-        to={"/insights/" + post.node._meta.uid}
-      >
+      <Link className="blog-teaser-title" to={"/blog/" + post.node._meta.uid}>
         {post.node.title[0].text && <h2>{post.node.title[0].text}</h2>}
       </Link>
       {post.node.release_date && (
@@ -129,7 +126,7 @@ export const BlogPostTeaser = ({ post }) => {
       {post.node.teaser && (
         <div className="blog-teaser">{RichText.render(post.node.teaser)}</div>
       )}
-      <Link className="cta-button" to={"/insights/" + post.node._meta.uid}>
+      <Link className="cta-button" to={"/blog/" + post.node._meta.uid}>
         Read Full Article
       </Link>
     </BlogPostTeaserStyle>

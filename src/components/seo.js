@@ -33,7 +33,7 @@ function SEO({ site, page, lang, meta }) {
   var uid = page._meta.uid
   var path = "/"
   if (page._meta.type == "blog_post") {
-    path = "/insights/"
+    path = "/blog/"
   }
   if (page._meta.type == "job") {
     path = "/job-opportunity/"

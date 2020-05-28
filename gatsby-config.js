@@ -70,7 +70,7 @@ module.exports = {
           },
           {
             type: "Blog_post", // TypeName from prismic
-            match: "/insights/:uid", // pages will be generated under this pattern
+            match: "/blog/:uid", // pages will be generated under this pattern
             component: require.resolve("./src/templates/post.js"),
             path: "blog-preview",
             langs: ["en-us"],
