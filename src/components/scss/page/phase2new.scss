@@ -50,7 +50,10 @@
     }
     &:before {
       background-size: contain;
-      background-position: right bottom;
+      // background-position: right bottom;
+      background-position: 100% 100%;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
     }
     .section-content {
       max-width: 550px;
