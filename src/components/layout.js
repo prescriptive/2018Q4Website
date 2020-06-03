@@ -14,10 +14,12 @@ import Footer from "../components/regions/footer"
 
 import "../components/scss/layout/layout.scss"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, removeHeader }) => {
   return (
     <div>
-      <Header />
+      {removeHeader !== true &&
+            <Header />
+      }
       <main>{children}</main>
       <Footer />
     </div>

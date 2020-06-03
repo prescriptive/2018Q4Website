@@ -10,6 +10,7 @@ import "../components/scss/page/solutions.scss"
 import "../components/scss/page/careers.scss"
 import "../components/scss/page/contact.scss"
 import "../components/scss/page/phase2.scss"
+import "../components/scss/page/phase2new.scss"
 import { Link, RichText, Date } from "prismic-reactjs"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
@@ -141,7 +142,7 @@ const Page = ({ data }) => {
   const job = data.job.allJobs.edges
   const site = data.site.allSite_informations.edges[0].node
   return (
-    <Layout>
+    <Layout removeHeader={node.remove_header}>
       <SEO site={site} page={node} />
       <PageStyle>
         {node.body && (
@@ -226,6 +227,7 @@ export const postQuery = graphql`
             meta_title
             title
             donotindex
+            remove_header
             body {
               ... on PRISMIC_PaBodyBasic_section {
                 type
@@ -284,6 +286,7 @@ export const postQuery = graphql`
                   active_campaign_form_number
                   embed
                   slice_id
+                  section_title
                   left_background_image
                   left_background_imageSharp {
                     childImageSharp {

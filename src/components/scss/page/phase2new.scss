@@ -1,0 +1,78 @@
+#slice-id-phase-2-header{
+  position: absolute;
+  width:100%;
+  z-index:99;
+  .left-right-container{
+
+
+  }
+  section{
+    padding:0px;
+    display:flex;
+    align-items:center;
+    height:100px;
+    > div{
+      align-self:center;
+    }
+    img{
+      max-width:293px;
+    }
+    p{
+      margin:0px;
+      color:white;
+    }
+    &:nth-child(2){
+      text-align:right;
+      p{
+        font-size: 18px;
+        line-height: 24px;
+      }
+    }
+  }
+}
+#slice-id-phase-2-gear{
+  background: linear-gradient(119.79deg, #97231C 0%, #D0482C 67.37%, #F46036 118.87%);
+  border-bottom-right-radius: 100%;
+  // position: relative;
+  // top:-100px;
+  section{
+    min-height:750px;
+    display:flex;
+    align-items:center;
+    padding:0px;
+    h2{
+      color:white;
+    }
+    p{
+      color:white;
+    }
+    &:before{
+      background-size:contain;
+      background-position:right bottom;
+    }
+    .section-content{
+      max-width:550px;
+      h2{
+        font-weight: 800;
+        font-size: 54px;
+        line-height: 72px;
+        margin:0px;
+      }
+      p{
+        font-weight: 500;
+        font-size: 27px;
+        line-height: 36px;
+      }
+    }
+  }
+}
+
+#slice-id-help-disrupt{
+  // background-image:url(../../../images/planes.png);
+  // background-size: contain;
+  // background-repeat: no-repeat;
+  // background-position: right;
+  h2{
+    color:$red
+  }
+}
