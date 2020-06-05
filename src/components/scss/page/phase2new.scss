@@ -217,13 +217,23 @@
 }
 
 #slice-id-phase-2-bottom {
-  background: linear-gradient(
+  background-image: 
+  url(../../../images/logo-gear-right-bottom.png),
+  linear-gradient(
     119.79deg,
     #97231c 0%,
     #d0482c 67.37%,
     #f46036 118.87%
   );
+  background-size: contain;
+  // background-position: right bottom;
+  background-position: left 100%;
+  background-repeat: no-repeat;
   p {
     color: white;
+  }
+  section{
+    &:nth-child(1){
+    }
   }
 }
