@@ -177,6 +177,12 @@ function returnRight(primary) {
 export const LeftRightSlice = ({ slice }) => {
   return (
     <LeftRightStyle>
+      {console.log(slice)}
+        <Container>
+            {slice.primary.section_title && (
+              <h2>{slice.primary.section_title[0].text}</h2>
+            )}
+        </Container>
       <div className="left-right-container">
         {returnLeft(slice.primary)}
         {returnRight(slice.primary)}
