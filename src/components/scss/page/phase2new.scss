@@ -11,9 +11,10 @@
     height: 100px;
     > div {
       align-self: center;
+      width:100% !important;
     }
     img {
-      max-width: 293px;
+      max-width: 100%;
     }
     p {
       margin: 0px;
@@ -22,8 +23,13 @@
     a{
       color: white;
     }
+    &:nth-child(1){
+      max-width:290px;
+      width:50% !important;
+    }
     &:nth-child(2) {
       text-align: right;
+      width:50% !important;
       p {
         font-size: 18px;
         line-height: 24px;
@@ -165,7 +171,9 @@
 
 #slice-id-value-freedom {
   .left-right-container{
-    flex-direction:column-reverse;
+    @include mobile(){
+      flex-direction:column-reverse;
+    }
   }
   section {
     padding: 20px 0px;
@@ -202,7 +210,9 @@
 
 #slice-id-better-way {
   .left-right-container{
-    flex-direction: column-reverse;
+    @include mobile(){
+      flex-direction: column-reverse;
+    }
   }
   section {
     padding: 20px 0px;
