@@ -19,7 +19,7 @@
       margin: 0px;
       color: white;
     }
-    a{
+    a {
       color: white;
     }
     &:nth-child(2) {
@@ -88,9 +88,9 @@
     &:nth-child(1) {
       max-width: 100%;
       width: 100%;
-      @include mobile(){
-        width:100%;
-        max-width:100%;
+      @include mobile() {
+        width: 100%;
+        max-width: 100%;
       }
       > div {
         max-width: 100%;
@@ -102,8 +102,8 @@
           font-size: 27px;
           line-height: 36px;
           font-family: Roboto;
-          @include mobile(){
-            max-width:100%;
+          @include mobile() {
+            max-width: 100%;
           }
         }
       }
@@ -112,10 +112,10 @@
       justify-content: flex-end;
       max-width: 0%;
       width: 0%;
-      @include mobile(){
-        width:100%;
-        max-width:100%;
-        display:none;
+      @include mobile() {
+        width: 100%;
+        max-width: 100%;
+        display: none;
       }
       > div {
         padding: 0px;
@@ -164,8 +164,10 @@
 }
 
 #slice-id-value-freedom {
-  .left-right-container{
-    flex-direction:column-reverse;
+  .left-right-container {
+    @include mobile() {
+      flex-direction: column-reverse;
+    }
   }
   section {
     padding: 20px 0px;
@@ -201,8 +203,10 @@
 }
 
 #slice-id-better-way {
-  .left-right-container{
-    flex-direction: column-reverse;
+  .left-right-container {
+    @include mobile() {
+      flex-direction: column-reverse;
+    }
   }
   section {
     padding: 20px 0px;
@@ -238,50 +242,44 @@
 }
 
 #slice-id-phase-2-bottom {
-  background-image: 
-  url(../../../images/logo-gear-right.png),
-  linear-gradient(
-    119.79deg,
-    #97231c 0%,
-    #d0482c 67.37%,
-    #f46036 118.87%
-  );
+  background-image: url(../../../images/logo-gear-right.png),
+    linear-gradient(119.79deg, #97231c 0%, #d0482c 67.37%, #f46036 118.87%);
   background-size: 50%, 100%;
   // background-position: right bottom;
   background-position: left 100%;
   background-repeat: no-repeat;
-  padding:80px 0px;
-  .left-right-container{
-    align-items:flex-start;
+  padding: 80px 0px;
+  .left-right-container {
+    align-items: flex-start;
   }
-  h2{
-    color:white;
+  h2 {
+    color: white;
     font-weight: 800;
-font-size: 54px;
-line-height: 72px;
-margin:0px;
+    font-size: 54px;
+    line-height: 72px;
+    margin: 0px;
   }
   p {
     color: white;
     font-size: 27px;
     line-height: 36px;
-    a{
-      background-color:white;
-      color:$red;
+    a {
+      background-color: white;
+      color: $red;
       font-family: Roboto;
       font-style: normal;
       font-weight: bold;
       font-size: 27px;
       line-height: 36px;
       text-align: center;
-      border-radius:6px;
-      padding:20px 40px;
+      border-radius: 6px;
+      padding: 20px 40px;
       width: 100%;
       display: block;
     }
   }
-  section{
-    &:nth-child(1){
+  section {
+    &:nth-child(1) {
     }
   }
 }
