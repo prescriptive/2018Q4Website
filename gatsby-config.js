@@ -8,15 +8,15 @@ module.exports = {
     title: `Prescriptive Solutions`,
     description: `Prescriptive Data Solutions helps our enterprise customers connect, secure, transform and scale through information technology consulting, solutions, integration, and managed services.`,
     author: `Digett`,
-    siteUrl: `https://prescriptive.solutions`,
+    siteUrl: `https://www.prescriptive.solutions`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {
-        host: "https://prescriptive.solutions",
-        sitemap: "https://prescriptive.solutions/sitemap.xml",
+        host: "https://www.prescriptive.solutions",
+        sitemap: "https://www.prescriptive.solutions/sitemap.xml",
         policy: [{ userAgent: "*", allow: "/" }],
       },
     },
