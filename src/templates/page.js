@@ -34,7 +34,6 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
         var sliceID = slice.primary.slice_id[0].text
       }
     }
-
     const res = (() => {
       switch (slice.type) {
         // case "text":
