@@ -21,14 +21,20 @@ import BasicSectionSlice from "../components/slices/BasicSectionSlice"
 import ColumnSectionSlice from "../components/slices/ColumnsSectionSlice"
 import LeftRightSlice from "../components/slices/LeftRightSlice"
 import EntityQuerySlice from "../components/slices/EntityQuerySlice"
+import HeroSlice from "../components/slices/HeroSlice"
+import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, blog, leadership, job }) => {
   return slices.map((slice, index) => {
     var sliceID = ""
-    if (slice.primary.slice_id) {
-      var sliceID = slice.primary.slice_id[0].text
+    console.log(slice)
+    if (slice.primary) {
+      if (slice.primary.slice_id != undefined) {
+        var sliceID = slice.primary.slice_id[0].text
+      }
     }
+
     const res = (() => {
       switch (slice.type) {
         // case "text":
@@ -66,6 +72,28 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
               className="slice-wrapper slice-basic"
             >
               {<BasicSectionSlice slice={slice} />}
+            </div>
+          )
+
+        case "hero":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-hero"
+            >
+              {<HeroSlice slice={slice} />}
+            </div>
+          )
+
+        case "block_reference":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-block-reference"
+            >
+              {<BlockReferenceSlice slice={slice} />}
             </div>
           )
 
@@ -227,6 +255,49 @@ export const postQuery = graphql`
             title
             donotindex
             body {
+              ... on PRISMIC_PaBodyBlock_reference {
+                type
+                label
+                primary {
+                  block_reference {
+                    ... on PRISMIC_Blocks {
+                      block_title
+                      _linkType
+                      body {
+                        ... on PRISMIC_BlocksBodyLeft_right_section {
+                          type
+                          label
+                          primary {
+                            slice_id
+                            left_content
+                            right_content
+                            active_campaign_form_number
+                            embed
+                            left_background_image
+                            left_background_imageSharp {
+                              childImageSharp {
+                                fluid(maxWidth: 1920) {
+                                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                                }
+                              }
+                            }
+                            right_background_image
+                            right_background_imageSharp {
+                              childImageSharp {
+                                fluid(maxWidth: 1920) {
+                                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                                }
+                              }
+                            }
+                            right_embed
+                            section_title
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
               ... on PRISMIC_PaBodyBasic_section {
                 type
                 label
@@ -252,6 +323,114 @@ export const postQuery = graphql`
                   section_title
                   youtube_background
                   slice_id
+                }
+                fields {
+                  sidebar_block_reference {
+                    ... on PRISMIC_Blocks {
+                      block_title
+                      _linkType
+                      body {
+                        ... on PRISMIC_BlocksBodyBasic_section {
+                          type
+                          label
+                          fields {
+                            sidebar_block_reference {
+                              ... on PRISMIC_Blocks {
+                                block_title
+                                _linkType
+                                _meta {
+                                  uid
+                                }
+                                body {
+                                  ... on PRISMIC_BlocksBodyBasic_section {
+                                    type
+                                    label
+                                    primary {
+                                      background_color
+                                      background_image
+                                      content
+                                      font_color
+                                      h1_title
+                                      section_title
+                                      slice_id
+                                      youtube_background
+                                    }
+                                    fields {
+                                      sidebar_block_reference {
+                                        ... on PRISMIC_Blocks {
+                                          block_title
+                                          _linkType
+                                          _meta {
+                                            uid
+                                          }
+                                          body {
+                                            ... on PRISMIC_BlocksBodyBasic_section {
+                                              type
+                                              label
+                                              primary {
+                                                background_color
+                                                background_image
+                                                content
+                                                font_color
+                                                h1_title
+                                                section_title
+                                                slice_id
+                                                youtube_background
+                                              }
+                                            }
+                                            ... on PRISMIC_BlocksBodyLeft_right_section {
+                                              type
+                                              label
+                                              primary {
+                                                active_campaign_form_number
+                                                embed
+                                                left_background_image
+                                                left_content
+                                                right_background_image
+                                                right_content
+                                                right_embed
+                                                section_title
+                                                slice_id
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                  ... on PRISMIC_BlocksBodyLeft_right_section {
+                                    type
+                                    label
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                        ... on PRISMIC_BlocksBodyLeft_right_section {
+                          type
+                          label
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              ... on PRISMIC_PaBodyHero {
+                type
+                label
+                primary {
+                  font_color
+                  hero_title
+                  min_height
+                  background_image
+                  background_imageSharp {
+                    childImageSharp {
+                      fluid(maxWidth: 1920) {
+                        ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                      }
+                    }
+                  }
                 }
               }
               ... on PRISMIC_PaBodyColumns_section {
