@@ -23,7 +23,7 @@ h2 {
 }
 h3 {
   font-family: "Libre Franklin";
-  font-size:27px;
+  font-size: 27px;
   font-weight: 800;
 }
 a {
@@ -35,6 +35,9 @@ p {
   line-height: 24px;
   display: inline-block;
   width: 100%;
+  a {
+    text-decoration: underline;
+  }
 }
 .cta-button {
   @include cta-button($darkGray);

@@ -10,6 +10,7 @@ import "../components/scss/page/solutions.scss"
 import "../components/scss/page/careers.scss"
 import "../components/scss/page/contact.scss"
 import "../components/scss/page/phase2.scss"
+import "../components/scss/page/dir.scss"
 import { Link, RichText, Date } from "prismic-reactjs"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
@@ -28,7 +29,6 @@ import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
 const PostSlices = ({ slices, blog, leadership, job }) => {
   return slices.map((slice, index) => {
     var sliceID = ""
-    console.log(slice)
     if (slice.primary) {
       if (slice.primary.slice_id != undefined) {
         var sliceID = slice.primary.slice_id[0].text
@@ -300,6 +300,37 @@ export const postQuery = graphql`
               ... on PRISMIC_PaBodyBasic_section {
                 type
                 label
+                fields {
+                  sidebar_block_reference {
+                    ... on PRISMIC_Blocks {
+                      block_title
+                      _linkType
+                      body {
+                        ... on PRISMIC_BlocksBodyBasic_section {
+                          type
+                          label
+                          primary {
+                            background_color
+                            background_image
+                            background_imageSharp {
+                              childImageSharp {
+                                fluid(maxWidth: 1920) {
+                                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                                }
+                              }
+                            }
+                            content
+                            font_color
+                            h1_title
+                            section_title
+                            slice_id
+                            youtube_background
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
                 primary {
                   background_color
                   background_image

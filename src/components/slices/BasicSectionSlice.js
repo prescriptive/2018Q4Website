@@ -7,6 +7,9 @@ import YouTube from "react-youtube"
 import ResponsiveEmbed from "react-responsive-embed"
 import "../scss/block/defaultBlogCta.scss"
 import { linkResolver } from "../../utils/linkResolver"
+import BasicSectionSliceInner from "../slices/BasicSectionSlice"
+import LeftRightSlice from "../slices/LeftRightSlice"
+import * as variable from "../variables"
 
 const BasicStyle = styled.div`
   .video-container-outer {
@@ -50,9 +53,119 @@ const BasicStyle = styled.div`
       background: rgba(0, 0, 0, 0.75);
     }
   }
+  .sidebar-active {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    @media (max-width: ${variable.mobileWidth}) {
+      flex-direction: column;
+    }
+    .section-content {
+      width: calc(100% - 390px);
+      @media (max-width: ${variable.mobileWidth}) {
+        width: 100%;
+      }
+    }
+    .sidebar {
+      width: 350px;
+      top: 60px;
+      position: -webkit-sticky;
+      position: sticky;
+      -webkit-align-self: flex-start;
+      -ms-flex-item-align: start;
+      align-self: flex-start;
+      @media (max-width: ${variable.mobileWidth}) {
+        width: 100%;
+        margin-top: 40px;
+      }
+      .section-container {
+        width: 100%;
+        padding: 0px;
+        max-width: 100%;
+      }
+      .slice-wrapper {
+        > div > div {
+          border-radius: 10px;
+        }
+      }
+      .basic-slice-container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0px;
+        section {
+          padding: 35px;
+          .section-content {
+            width: 100%;
+            p {
+              a {
+                text-decoration: underline;
+              }
+            }
+            ul {
+              margin: 0px;
+              padding-left: 20px;
+              li {
+                margin-bottom: 3px;
+                &:last-child() {
+                  margin-bottom: 0px;
+                }
+                a {
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 `
 
+// Sort and display the different slice options
+const PostSlices = ({ slices }) => {
+  console.log(slices)
+  return slices.map((slice, index) => {
+    var sliceID = ""
+    if (slice.primary) {
+      if (slice.primary.slice_id != undefined) {
+        var sliceID = slice.primary.slice_id[0].text
+      }
+    }
+
+    const res = (() => {
+      switch (slice.type) {
+        case "basic_section":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-basic"
+            >
+              {<BasicSectionSliceInner slice={slice} />}
+            </div>
+          )
+
+        case "left_right_section":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-left-right"
+            >
+              {<LeftRightSlice slice={slice} />}
+            </div>
+          )
+
+        default:
+          return
+      }
+    })()
+    return res
+  })
+}
+
 export const BasicSectionSlice = ({ slice }) => {
+  console.log(slice)
   const videoOptions = {
     playerVars: {
       autoplay: 1,
@@ -68,6 +181,15 @@ export const BasicSectionSlice = ({ slice }) => {
   var bg_video = null
   var video_id = null
   var bg_video_image = false
+  var sidebar = null
+  var sidebarClass = ""
+  if (slice.fields != null) {
+    if (slice.fields[0].sidebar_block_reference != null) {
+      console.log(slice.fields[0].sidebar_block_reference)
+      sidebar = slice.fields[0].sidebar_block_reference.body
+      sidebarClass = "sidebar-active"
+    }
+  }
   if (slice.primary.background_imageSharp != null) {
     fluid = slice.primary.background_imageSharp.childImageSharp.fluid
   }
@@ -109,6 +231,7 @@ export const BasicSectionSlice = ({ slice }) => {
           Tag="section"
           fluid={fluid}
           style={{ backgroundColor: bg_color }}
+          className={sidebarClass}
         >
           <Container
             className="basic-slice-container"
@@ -126,6 +249,11 @@ export const BasicSectionSlice = ({ slice }) => {
                 linkResolver={linkResolver}
               />
             </div>
+            {sidebar && (
+              <div class="sidebar">
+                <PostSlices slices={sidebar} />
+              </div>
+            )}
           </Container>
         </BackgroundImage>
       )}
@@ -165,8 +293,8 @@ export const BasicSectionSlice = ({ slice }) => {
       )}
       {bg_video_image && (
         <div style={{ backgroundColor: bg_color }}>
-          <Container>
-            <section>
+          <Container className="basic-slice-container">
+            <section className={sidebarClass}>
               {slice.primary.section_title && h1_title && (
                 <h1>{slice.primary.section_title[0].text}</h1>
               )}
@@ -179,6 +307,11 @@ export const BasicSectionSlice = ({ slice }) => {
                     render={slice.primary.content}
                     linkResolver={linkResolver}
                   />
+                </div>
+              )}
+              {sidebar && (
+                <div class="sidebar">
+                  <PostSlices slices={sidebar} />
                 </div>
               )}
             </section>
