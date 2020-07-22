@@ -13,6 +13,10 @@ h1 {
   font-weight: 800;
   font-size: 54px;
   line-height: 72px;
+  a{
+    text-decoration: underline;
+    display:block;
+  }
 }
 h2 {
   font-family: "Libre Franklin";
@@ -20,11 +24,20 @@ h2 {
   font-size: 36px;
   line-height: 48px;
   display: inline-block;
+  margin:30px 0px 0px 0px;
+  .h2-light{
+    font-family: "Roboto";
+    font-weight:500;
+  }
 }
 h3 {
   font-family: "Libre Franklin";
   font-size: 27px;
   font-weight: 800;
+  .h2-light{
+    font-family: "Roboto";
+    font-weight:500;
+  }
 }
 a {
   text-decoration: none;
@@ -38,6 +51,9 @@ p {
   a {
     text-decoration: underline;
   }
+}
+ul{
+  margin:0px;
 }
 .cta-button {
   @include cta-button($darkGray);
