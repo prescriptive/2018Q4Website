@@ -4,7 +4,13 @@
       width: 35%;
       @include mobile() {
         width: 100%;
-        display: none;
+        .section-content {
+          display: flex;
+          justify-content: center;
+        }
+      }
+      p.block-img {
+        max-width: 200px;
       }
       > div {
         max-width: calc(#{$desktop-width} * 0.35);
