@@ -75,8 +75,15 @@
     margin: 0px 0px;
   }
 }
+#slice-id-new-service-solution {
+  section {
+    &:nth-child(1) {
+      min-height: 513px;
+    }
+  }
 
-#slice-id-solutions-azure {
+}
+#slice-id-solutions-azure, #slice-id-new-service-solution {
   .left-right-container {
     @include mobile() {
       flex-direction: column-reverse;
@@ -90,6 +97,10 @@
         font-weight: 900;
         font-size: 27px;
         line-height: 36px;
+        strong{
+          color: white;
+
+        }
       }
       p {
         color: white;
