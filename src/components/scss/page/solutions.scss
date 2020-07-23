@@ -76,14 +76,34 @@
   }
 }
 #slice-id-new-service-solution {
-  section {
-    &:nth-child(1) {
-      min-height: 513px;
+  .left-right-container {
+    @include mobile() {
+      flex-direction: column-reverse;
     }
   }
-
+  section {
+    &:nth-child(1) {
+      background-color: $medLightGray;
+      min-height: 513px;
+      h2 {
+        color: white;
+        font-weight: 900;
+        font-size: 27px;
+        line-height: 36px;
+        strong{
+          color: white;
+        }
+      }
+      p {
+        color: white;
+      }
+    }
+    &:nth-child(2) {
+      background-color: $offWhite;
+    }
+  }
 }
-#slice-id-solutions-azure, #slice-id-new-service-solution {
+#slice-id-solutions-azure {
   .left-right-container {
     @include mobile() {
       flex-direction: column-reverse;
