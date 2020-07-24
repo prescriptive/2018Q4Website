@@ -1,10 +1,10 @@
-# [www.prescriptive.solutions/](https://www.prescriptive.solutions)
+# [www.prescriptive.solutions](https://www.prescriptive.solutions)
 
 Managed services site made with **React**, and **Gatsby**. 
 
-Content managed via # [prismic.io](https://prismic.io).
+Content managed via [prismic.io](https://prismic.io).
 
-Hosted on # [netlify.com](https://www.netlify.com).
+Hosted on [netlify.com](https://www.netlify.com).
 
 
 ## Architecture
