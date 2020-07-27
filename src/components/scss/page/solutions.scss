@@ -76,6 +76,9 @@
   }
 }
 #slice-id-new-service-solution {
+  a{
+    color:white;
+  }
   .left-right-container {
     @include mobile() {
       flex-direction: column-reverse;
