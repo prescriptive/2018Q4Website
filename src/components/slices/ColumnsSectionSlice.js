@@ -75,11 +75,12 @@ function ColumnsSectionSlice({ slice }) {
   if (slice.primary.column_count != null) {
     columnCount = slice.primary.column_count
   }
-  if (slice.fields != null) {
-    items = slice.fields
+  if (slice.items != null) {
+    items = slice.items
   }
 
   // items = slice.items
+  console.log(slice)
   return (
     <div>
       {fluid && (
@@ -87,15 +88,15 @@ function ColumnsSectionSlice({ slice }) {
           <ColumnStyle>
             <Container>
               <section>
-                {slice.primary.section_title[0].text && (
-                  <h2>{slice.primary.section_title[0].text}</h2>
+                {slice.primary.section_title.text && (
+                  <h2>{slice.primary.section_title.text}</h2>
                 )}
                 <div className={"column column-count-" + columnCount}>
                   {items &&
                     items.map((item, index) => (
                       <div key={index} className="column-item">
                         <RichText
-                          render={item.content}
+                          render={item.content.raw}
                           linkResolver={linkResolver}
                           htmlSerializer={htmlSerializer}
                         />
@@ -114,14 +115,14 @@ function ColumnsSectionSlice({ slice }) {
           <Container>
             <section>
               {slice.primary.section_title && (
-                <h2>{slice.primary.section_title[0].text}</h2>
+                <h2>{slice.primary.section_title.text}</h2>
               )}
               <div className={"column column-count-" + columnCount}>
                 {items &&
                   items.map((item, index) => (
                     <div key={index} className="column-item">
                       <RichText
-                        render={item.content}
+                        render={item.content.raw}
                         linkResolver={linkResolver}
                         htmlSerializer={htmlSerializer}
                       />

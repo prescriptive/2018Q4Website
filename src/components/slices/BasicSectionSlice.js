@@ -226,7 +226,7 @@ export const BasicSectionSlice = ({ slice }) => {
   // })
   return (
     <BasicStyle>
-                {console.log(slice)}
+      {console.log(slice)}
 
       {fluid && (
         <BackgroundImage
@@ -250,7 +250,6 @@ export const BasicSectionSlice = ({ slice }) => {
                 render={slice.primary.content.raw}
                 linkResolver={linkResolver}
               />
-              
             </div>
             {sidebar && (
               <div class="sidebar">

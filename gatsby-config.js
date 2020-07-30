@@ -154,7 +154,7 @@ module.exports = {
               }
             }
             prismic {
-              allPas(where: {donotindex: false}) {
+              allPas {
                 edges {
                   node {
                     _meta {
