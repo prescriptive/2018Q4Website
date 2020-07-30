@@ -17,7 +17,7 @@ import "../components/scss/layout/layout.scss"
 const Layout = ({ children }) => {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
       <main>{children}</main>
       <Footer />
     </div>

@@ -22,7 +22,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 const PostSlices = ({ slices, id }) => {
   return slices.map((slice, index) => {
     const res = (() => {
-      switch (slice.type) {
+      switch (slice.slice_type) {
         case "text":
           return (
             <div key={index} className="slice-wrapper slice-text">
@@ -147,20 +147,20 @@ const BlogHeader = styled.div`
 `
 
 const Post = props => {
-  const prismicContent = props.data.prismic.allBlog_posts.edges[0]
-  if (!prismicContent) return null
-  const node = props.data.prismic.allBlog_posts.edges[0].node
-  const defaultBlock = props.data.prismic.allBlocks.edges[0].node
-  const site = props.data.prismic.allSite_informations.edges[0].node
-  const dates = new Date(node.release_date)
-  const formattedDate = Intl.DateTimeFormat("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "2-digit",
-  }).format(dates)
+  // const prismicContent = props.data.prismic.allBlog_posts.edges[0]
+  // if (!prismicContent) return null
+  const node = props.data.page.data
+  const site = props.data.site.data
+  const defaultBlock = props.data.defaultBlock.data
+
+  console.log(node)
+
+  // const defaultBlock = props.data.prismic.allBlocks.edges[0].node
+  // const site = props.data.prismic.allSite_informations.edges[0].node
+
   return (
     <Layout>
-      <SEO site={site} page={node} />
+      {/* <SEO site={site} page={node} /> */}
       <BlogHeader>
         <Container>
           <div className="blog-header-container">
@@ -173,21 +173,21 @@ const Post = props => {
           <div className="blog-post-container">
             <div className="blog-post-left">
               <div className="main-image">
-                {node.main_imageSharp && (
-                  <Img fluid={node.main_imageSharp.childImageSharp.fluid} />
+                {node.main_image && (
+                  <Img fluid={node.main_image.localFile.childImageSharp.fluid} />
                 )}
               </div>
-              <RichText render={node.title} linkResolver={linkResolver} />
+              <h1>{node.title.text}</h1>
               {node.release_date && (
                 <div className="release-date">
                   <FontAwesomeIcon icon={faCalendar} />
-                  {formattedDate}
+                  {node.release_date}
                 </div>
               )}
               {node.author && (
                 <div className="blog-author">
                   <FontAwesomeIcon icon={faUser} />
-                  {node.author[0].text}
+                  {node.author.text}
                 </div>
               )}
               {node.body && <PostSlices slices={node.body} />}
@@ -201,7 +201,7 @@ const Post = props => {
               <div className="blog-post-right">
                 <PostSlices
                   slices={defaultBlock.body}
-                  id={defaultBlock._meta.id}
+                  id={defaultBlock.body[0].id}
                 />
               </div>
             )}
@@ -214,151 +214,122 @@ const Post = props => {
 
 export default Post
 
-export const query = graphql`
+export const postQuery = graphql`
   query PostBySlug($uid: String!) {
-    prismic {
-      allSite_informations {
-        edges {
-          node {
-            description
-            site_url
-            site_title
-            twitter_author
-          }
-        }
-      }
-      allBlocks(id: "XpeHQBIAACEArsdV") {
-        edges {
-          node {
-            title
-            _meta {
-              id
-            }
-            body {
-              ... on PRISMIC_BlockBodyBasic_section {
-                type
-                label
-                primary {
-                  background_color
-                  background_imageSharp {
-                    childImageSharp {
-                      fluid(maxWidth: 1920) {
-                        ...GatsbyImageSharpFluid_withWebp_tracedSVG
-                      }
-                    }
-                  }
-                  background_image
-                  content
-                  font_color
-                  h1_title
-                  section_title
-                  youtube_background
-                  background_video {
-                    ... on PRISMIC__ExternalLink {
-                      _linkType
-                      url
+    defaultBlock: prismicBlock(
+      id: { eq: "ec237610-ff7b-583b-9a83-076cc4920623" }
+    ) {
+      data {
+        body {
+          ... on PrismicBlockBodyBasicSection {
+            id
+            slice_type
+            primary {
+              background_color
+              background_image {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 800) {
+                      ...GatsbyImageSharpFluid
                     }
                   }
                 }
+              }
+              background_video {
+                url
+              }
+              content {
+                html
+                raw
+              }
+              font_color
+              h1_title
+              section_title {
+                text
+              }
+              youtube_background {
+                embed_url
               }
             }
           }
         }
       }
-      allBlog_posts(uid: $uid) {
-        edges {
-          node {
-            title
-            _meta {
-              uid
-              type
-            }
-            block_reference {
-              ... on PRISMIC_Block {
-                title
-                _linkType
-                body {
-                  ... on PRISMIC_BlockBodyBasic_section {
-                    type
-                    label
-                    primary {
-                      background_color
-                      background_imageSharp {
-                        childImageSharp {
-                          fluid(maxWidth: 1920) {
-                            ...GatsbyImageSharpFluid_withWebp_tracedSVG
-                          }
-                        }
-                      }
-                      content
-                      font_color
-                      h1_title
-                      section_title
-                      youtube_background
-                      background_video {
-                        ... on PRISMIC__ExternalLink {
-                          _linkType
-                          url
-                        }
-                      }
-                    }
-                  }
-                }
-                _meta {
-                  id
-                  type
-                }
+    }
+    site: allPrismicSiteInformation {
+      nodes {
+        data {
+          description {
+            text
+          }
+          site_url {
+            text
+          }
+          site_title {
+            text
+          }
+          twitter_author {
+            text
+          }
+        }
+      }
+    }
+    page: prismicBlogPost(uid: { eq: $uid }) {
+      uid
+      type
+      data {
+        title {
+          text
+        }
+        author {
+          text
+        }
+        meta_description
+        meta_title
+        release_date(formatString: "MMM d ,Y")
+        main_image {
+          url
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 1920) {
+                ...GatsbyImageSharpFluid
               }
             }
-            body {
-              ... on PRISMIC_Blog_postBodyText {
-                type
-                label
-                primary {
-                  text
-                }
+          }
+        }
+        body {
+          ... on PrismicBlogPostBodyVideo {
+            slice_type
+            id
+            primary {
+              video_embed {
+                embed_url
               }
-              ... on PRISMIC_Blog_postBodyQuote {
-                type
-                label
-                primary {
-                  quote
-                }
-              }
-              ... on PRISMIC_Blog_postBodyImage {
-                type
-                label
-                primary {
-                  image
-                  imageSharp {
-                    childImageSharp {
-                      fluid(maxWidth: 1920) {
-                        ...GatsbyImageSharpFluid_withWebp_tracedSVG
-                      }
+            }
+          }
+          ... on PrismicBlogPostBodyImage {
+            slice_type
+            id
+            primary {
+              image {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 1920) {
+                      ...GatsbyImageSharpFluid
                     }
                   }
                 }
               }
-              ... on PRISMIC_Blog_postBodyVideo {
-                type
-                label
-                primary {
-                  video_embed
-                }
+            }
+          }
+          ... on PrismicBlogPostBodyText {
+            slice_type
+            id
+            primary {
+              text {
+                html
+                raw
               }
             }
-            main_image
-            main_imageSharp {
-              childImageSharp {
-                fluid(maxWidth: 1920) {
-                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
-                }
-              }
-            }
-            release_date
-            meta_title
-            meta_description
-            author
           }
         }
       }

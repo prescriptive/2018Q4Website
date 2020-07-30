@@ -5,8 +5,7 @@ import { linkResolver } from "../../utils/linkResolver"
 const TextSlice = props => {
   return (
     <div>
-      {console.log(props)}
-      <RichText render={props.slice.primary.text} linkResolver={linkResolver} />
+      <RichText render={props.slice.primary.text.raw} linkResolver={linkResolver} />
     </div>
   )
 }

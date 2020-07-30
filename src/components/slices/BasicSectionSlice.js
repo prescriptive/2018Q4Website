@@ -190,13 +190,13 @@ export const BasicSectionSlice = ({ slice }) => {
       sidebarClass = "sidebar-active"
     }
   }
-  if (slice.primary.background_imageSharp != null) {
-    fluid = slice.primary.background_imageSharp.childImageSharp.fluid
+  if (slice.primary.background_image.localFile != null) {
+    fluid = slice.primary.background_image.localFile.childImageSharp.fluid
   }
-  if (slice.primary.background_video != null) {
+  if (slice.primary.background_video.id != null) {
     bg_video = slice.primary.background_video.url
   }
-  if (slice.primary.youtube_background != null) {
+  if (slice.primary.youtube_background.embed_url != null) {
     var video_id = slice.primary.youtube_background.embed_url.split("v=")[1]
     var ampersandPosition = video_id.indexOf("&")
     if (ampersandPosition != -1) {
@@ -204,9 +204,9 @@ export const BasicSectionSlice = ({ slice }) => {
     }
   }
   if (
-    slice.primary.background_video == null &&
+    slice.primary.background_video.id == null &&
     slice.primary.background_image == null &&
-    slice.primary.youtube_background == null
+    slice.primary.youtube_background.embed_url == null
   ) {
     bg_video_image = true
   }
@@ -226,6 +226,8 @@ export const BasicSectionSlice = ({ slice }) => {
   // })
   return (
     <BasicStyle>
+                {console.log(slice)}
+
       {fluid && (
         <BackgroundImage
           Tag="section"
@@ -245,9 +247,10 @@ export const BasicSectionSlice = ({ slice }) => {
             )}
             <div className="section-content">
               <RichText
-                render={slice.primary.content}
+                render={slice.primary.content.raw}
                 linkResolver={linkResolver}
               />
+              
             </div>
             {sidebar && (
               <div class="sidebar">

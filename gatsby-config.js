@@ -2,6 +2,7 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 // const linkResolver = require("./src/utils/linkResolver")
+const prismicHtmlSerializer = require("./src/gatsby/htmlSerializer")
 
 module.exports = {
   siteMetadata: {
@@ -28,55 +29,26 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-prismic-graphql",
+      resolve: `gatsby-source-prismic`,
       options: {
-        repositoryName: "prescriptive", // required
-        defaultLang: "en-us", // optional, but recommended
-        previews: true, // optional, default: false
-        path: "preview",
-        omitPrismicScript: true,
-        pages: [
-          {
-            type: "Pa", // TypeName from prismic
-            match: "/:uid", // pages will be generated under this pattern
-            filter: data => data.node._meta.uid !== "home",
-            component: require.resolve("./src/templates/page.js"),
-            langs: ["en-us"],
-            sharpKeys: [
-              /image|main_image|logo|photo|picture/, // (default)
-            ],
-          },
-          {
-            type: "Pa", // TypeName from prismic
-            match: "/", // pages will be generated under this pattern
-            filter: data => data.node._meta.uid == "home",
-            component: require.resolve("./src/templates/page.js"),
-            langs: ["en-us"],
-            sharpKeys: [
-              /image|main_image|logo|photo|picture/, // (default)
-            ],
-          },
-          {
-            type: "Job", // TypeName from prismic
-            match: "/job-opportunity/:uid", // pages will be generated under this pattern
-            component: require.resolve("./src/templates/job.js"),
-            path: "job-preview",
-            langs: ["en-us"],
-            sharpKeys: [
-              /image|main_image|logo|photo|picture/, // (default)
-            ],
-          },
-          {
-            type: "Blog_post", // TypeName from prismic
-            match: "/blog/:uid", // pages will be generated under this pattern
-            component: require.resolve("./src/templates/post.js"),
-            path: "blog-preview",
-            langs: ["en-us"],
-            sharpKeys: [
-              /image|main_image|logo|photo|picture/, // (default)
-            ],
-          },
-        ],
+        shouldDownloadImage: ({ node, key, value }) => {
+          // Return true to download the image or false to skip.
+          return true
+        },
+        linkResolver: () => post => `/${post.uid}`,
+        // PrismJS highlighting for labels and slices
+        htmlSerializer: () => prismicHtmlSerializer,
+        repositoryName: `prescriptive`,
+        accessToken: `${process.env.API_KEY}`,
+        schemas: {
+          pa: require("./src/schemas/page.json"),
+          blog_post: require("./src/schemas/blog_post.json"),
+          site_information: require("./src/schemas/site_information.json"),
+          leadership: require("./src/schemas/leadership.json"),
+          job: require("./src/schemas/job.json"),
+          block: require("./src/schemas/block.json"),
+          // blocks: require("./src/schemas/blocks.json"),
+        },
       },
     },
     `gatsby-transformer-sharp`,
