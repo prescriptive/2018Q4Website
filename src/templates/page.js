@@ -27,7 +27,6 @@ import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, blog, leadership, job }) => {
-  console.log(slices)
   return slices.map((slice, index) => {
     var sliceID = ""
     if (slice.primary) {
@@ -97,23 +96,23 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
             </div>
           )
 
-        // case "entity_query":
-        //   return (
-        //     <div
-        //       id={"slice-id-" + sliceID}
-        //       key={index}
-        //       className="slice-wrapper slice-entity-query"
-        //     >
-        //       {
-        //         <EntityQuerySlice
-        //           slice={slice}
-        //           blog={blog}
-        //           leadership={leadership}
-        //           job={job}
-        //         />
-        //       }
-        //     </div>
-        //   )
+        case "entity_query":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-entity-query"
+            >
+              {
+                <EntityQuerySlice
+                  slice={slice}
+                  blog={blog}
+                  leadership={leadership}
+                  job={job}
+                />
+              }
+            </div>
+          )
 
         // case "slideshow":
         //   return (
@@ -137,16 +136,16 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
             </div>
           )
 
-        // case "left_right_section":
-        //   return (
-        //     <div
-        //       id={"slice-id-" + sliceID}
-        //       key={index}
-        //       className="slice-wrapper slice-left-right"
-        //     >
-        //       {<LeftRightSlice slice={slice} />}
-        //     </div>
-        //   )
+        case "left_right_section":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-left-right"
+            >
+              {<LeftRightSlice slice={slice} />}
+            </div>
+          )
 
         default:
           return
@@ -167,11 +166,11 @@ const Page = ({ data }) => {
   const node = data.page
   const leadership = data.leadership
   const job = data.job
+  const site = data.site
   //   const site = data.site.allSite_informations.edges[0].node
-  console.log(data)
   return (
     <Layout>
-      {/* <SEO site={site} page={node} /> */}
+      <SEO site={site} page={node} />
       <PageStyle>
         {node.data.body && (
           <PostSlices
@@ -180,7 +179,6 @@ const Page = ({ data }) => {
             leadership={leadership}
           />
         )}
-        <h2>tester</h2>
       </PageStyle>
     </Layout>
   )
@@ -211,8 +209,7 @@ export const postQuery = graphql`
       nodes {
         data {
           bio {
-            text
-            html
+            raw
           }
           linkedin {
             url
@@ -315,6 +312,9 @@ export const postQuery = graphql`
             primary {
               entity_type
               number_of_entities
+              slice_id {
+                text
+              }
               section_title {
                 text
               }
@@ -365,6 +365,9 @@ export const postQuery = graphql`
             id
             slice_type
             primary {
+              slice_id {
+                text
+              }
               embed {
                 text
               }

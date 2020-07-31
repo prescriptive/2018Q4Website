@@ -68,16 +68,16 @@ export const addActive = id => {
 function returnLeft(primary) {
   return (
     <React.Fragment>
-      {primary.left_background_imageSharp && (
+      {primary.left_background_image.localFile && (
         <BackgroundImage
           Tag="section"
-          fluid={primary.left_background_imageSharp.childImageSharp.fluid}
+          fluid={primary.left_background_image.localFile.childImageSharp.fluid}
         >
           <Container>
             {primary.left_content && (
               <div className="section-content">
                 <RichText
-                  render={primary.left_content}
+                  render={primary.left_content.raw}
                   linkResolver={linkResolver}
                 />
               </div>
@@ -85,19 +85,19 @@ function returnLeft(primary) {
             {primary.embed && (
               <div
                 className="section-embed"
-                dangerouslySetInnerHTML={{ __html: primary.embed[0].text }}
+                dangerouslySetInnerHTML={{ __html: primary.embed.text }}
               />
             )}
           </Container>
         </BackgroundImage>
       )}
-      {!primary.left_background_imageSharp && (
+      {!primary.left_background_image.localFile && (
         <section>
           <Container>
             {primary.left_content && (
               <div className="section-content">
                 <RichText
-                  render={primary.left_content}
+                  render={primary.left_content.raw}
                   linkResolver={linkResolver}
                 />
               </div>
@@ -105,7 +105,7 @@ function returnLeft(primary) {
             {primary.embed && (
               <div
                 className="section-embed"
-                dangerouslySetInnerHTML={{ __html: primary.embed[0].text }}
+                dangerouslySetInnerHTML={{ __html: primary.embed.text }}
               />
             )}
             {primary.active_campaign_form_number && (
@@ -123,16 +123,16 @@ function returnLeft(primary) {
 function returnRight(primary) {
   return (
     <React.Fragment>
-      {primary.right_background_imageSharp && (
+      {primary.right_background_image.localFile && (
         <BackgroundImage
           Tag="section"
-          fluid={primary.right_background_imageSharp.childImageSharp.fluid}
+          fluid={primary.right_background_image.localFile.childImageSharp.fluid}
         >
           <Container>
             {primary.right_content && (
               <div className="section-content">
                 <RichText
-                  render={primary.right_content}
+                  render={primary.right_content.raw}
                   linkResolver={linkResolver}
                 />
               </div>
@@ -141,20 +141,20 @@ function returnRight(primary) {
               <div
                 className="section-embed"
                 dangerouslySetInnerHTML={{
-                  __html: primary.right_embed[0].text,
+                  __html: primary.right_embed.text,
                 }}
               />
             )}
           </Container>
         </BackgroundImage>
       )}
-      {!primary.right_background_imageSharp && (
+      {!primary.right_background_image.localFile && (
         <section>
           <Container>
             {primary.right_content && (
               <div className="section-content">
                 <RichText
-                  render={primary.right_content}
+                  render={primary.right_content.raw}
                   linkResolver={linkResolver}
                 />
               </div>
@@ -163,7 +163,7 @@ function returnRight(primary) {
               <div
                 className="section-embed"
                 dangerouslySetInnerHTML={{
-                  __html: primary.right_embed[0].text,
+                  __html: primary.right_embed.text,
                 }}
               />
             )}

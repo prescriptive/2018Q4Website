@@ -48,7 +48,8 @@ const EntityResult = ({ slice, blog, leadership, job }) => {
   //   }
   // })
   if (slice.primary.entity_type == "Leadership") {
-    return leadership
+    console.log(leadership)
+    return leadership.nodes
       .slice(0, slice.primary.entity_count)
       .map((post, index) => (
         <LeadershipTeaser post={post} key={index}></LeadershipTeaser>
@@ -56,7 +57,7 @@ const EntityResult = ({ slice, blog, leadership, job }) => {
   }
 
   if (slice.primary.entity_type == "Blog Post") {
-    return blog
+    return blog.nodes
       .slice(0, slice.primary.entity_count)
       .map((post, index) => (
         <BlogPostTeaser post={post} key={index}></BlogPostTeaser>
@@ -64,7 +65,7 @@ const EntityResult = ({ slice, blog, leadership, job }) => {
   }
 
   if (slice.primary.entity_type == "Job") {
-    return job
+    return job.nodes
       .slice(0, slice.primary.entity_count)
       .map((post, index) => <JobTeaser post={post} key={index}></JobTeaser>)
   }
@@ -97,7 +98,7 @@ export const EntityQuerySlice = ({ slice, blog, leadership, job }) => {
   }
 
   if (slice.primary.background_imageSharp != null) {
-    fluid = slice.primary.background_imageSharp.childImageSharp.fluid
+    fluid = slice.primary.background_image.localFile.childImageSharp.fluid
   }
 
   if (slice.primary.background_color != null) {
@@ -120,9 +121,9 @@ export const EntityQuerySlice = ({ slice, blog, leadership, job }) => {
           style={{ backgroundColor: bg_color }}
         >
           <Container>
-            <section>
-              {h1_title && <h1>{slice.primary.section_title[0].text}</h1>}
-              {!h1_title && <h2>{slice.primary.section_title[0].text}</h2>}
+            {/* <section>
+              {h1_title && <h1>{slice.primary.section_title.text}</h1>}
+              {!h1_title && <h2>{slice.primary.section_title.text}</h2>}
               <EntityResult
                 slice={slice}
                 blog={blog}
@@ -134,7 +135,7 @@ export const EntityQuerySlice = ({ slice, blog, leadership, job }) => {
                   <BlogPostTeaser post={post} key={index}></BlogPostTeaser>
                 ))}
               </EntityQueryStyle>
-            </section>
+            </section> */}
           </Container>
         </BackgroundImage>
       )}
@@ -142,8 +143,8 @@ export const EntityQuerySlice = ({ slice, blog, leadership, job }) => {
         <div style={{ backgroundColor: bg_color }}>
           <Container>
             <section>
-              {h1_title && <h1>{slice.primary.section_title[0].text}</h1>}
-              {!h1_title && <h2>{slice.primary.section_title[0].text}</h2>}
+              {h1_title && <h1>{slice.primary.section_title.text}</h1>}
+              {!h1_title && <h2>{slice.primary.section_title.text}</h2>}
               <EntityQueryStyle>
                 <EntityResult
                   slice={slice}

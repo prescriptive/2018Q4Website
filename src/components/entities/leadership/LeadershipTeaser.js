@@ -82,26 +82,27 @@ const LeadershipTeaserStyle = styled.article`
   }
 `
 export const LeadershipTeaser = ({ post }) => {
+  console.log(post)
   return (
     <LeadershipTeaserStyle>
       <div className="photo-name">
         <div className="leader-photo">
-          <Img fixed={post.node.photoSharp.childImageSharp.fixed} />
+          <Img fixed={post.data.photo.localFile.childImageSharp.fixed} />
         </div>
         <div className="leader-name-title">
-          <div className="leader-name">{post.node.name[0].text}</div>
-          <div className="leader-title">{post.node.title[0].text}</div>
+          <div className="leader-name">{post.data.name.text}</div>
+          <div className="leader-title">{post.data.title.text}</div>
         </div>
       </div>
-      <div className="leader-bio">{RichText.render(post.node.bio)}</div>
+      <div className="leader-bio">{RichText.render(post.data.bio.raw)}</div>
       <div className="leader-social">
-        {post.node.twitter && (
-          <a target="_blank" href={post.node.twitter.url}>
+        {post.data.twitter && (
+          <a target="_blank" href={post.data.twitter.url}>
             <FontAwesomeIcon icon={faTwitter} />
           </a>
         )}
-        {post.node.linkedin && (
-          <a target="_blank" href={post.node.linkedin.url}>
+        {post.data.linkedin && (
+          <a target="_blank" href={post.data.linkedin.url}>
             <FontAwesomeIcon icon={faLinkedin} />
           </a>
         )}

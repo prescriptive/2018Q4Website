@@ -86,19 +86,19 @@ const BlogPostTeaserStyle = styled.article`
 `
 
 function returnImage(post) {
-  if (post.node.main_imageSharp != null) {
-    if (post.node.main_imageSharp.childImageSharp) {
+  if (post.data.main_image != null) {
+    if (post.data.main_image.localFile.childImageSharp) {
       return (
         <BackgroundImage
           Tag="section"
-          fluid={post.node.main_imageSharp.childImageSharp.fluid}
+          fluid={post.data.main_image.localFile.childImageSharp.fluid}
         ></BackgroundImage>
       )
     }
   }
 }
 export const BlogPostTeaser = ({ post }) => {
-  const dates = new Date(post.node.release_date)
+  const dates = new Date(post.data.release_date)
   const formattedDate = Intl.DateTimeFormat("en-US", {
     year: "numeric",
     month: "short",
@@ -108,25 +108,27 @@ export const BlogPostTeaser = ({ post }) => {
     <BlogPostTeaserStyle>
       <div className="blog-teaser-image-container">{returnImage(post)}</div>
 
-      <Link className="blog-teaser-title" to={"/blog/" + post.node._meta.uid}>
-        {post.node.title[0].text && <h2>{post.node.title[0].text}</h2>}
+      <Link className="blog-teaser-title" to={"/blog/" + post.uid}>
+        {post.data.title.text && <h2>{post.data.title.text}</h2>}
       </Link>
-      {post.node.release_date && (
+      {post.data.release_date && (
         <div className="release-date">
           <FontAwesomeIcon icon={faCalendar} />
           {formattedDate}
         </div>
       )}
-      {post.node.author && (
+      {post.data.author && (
         <div className="blog-author">
           <FontAwesomeIcon icon={faUser} />
-          {post.node.author[0].text}
+          {post.data.author.text}
         </div>
       )}
-      {post.node.teaser && (
-        <div className="blog-teaser">{RichText.render(post.node.teaser)}</div>
+      {post.data.teaser && (
+        <div className="blog-teaser">
+          {RichText.render(post.data.teaser.raw)}
+        </div>
       )}
-      <Link className="cta-button" to={"/blog/" + post.node._meta.uid}>
+      <Link className="cta-button" to={"/blog/" + post.uid}>
         Read Full Article
       </Link>
     </BlogPostTeaserStyle>
