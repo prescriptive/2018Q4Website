@@ -17,6 +17,7 @@ import { RichText, Date } from "prismic-reactjs"
 import { faCalendar } from "@fortawesome/free-solid-svg-icons"
 import { faUser } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { withPreview } from "gatsby-source-prismic"
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, id }) => {
@@ -174,7 +175,9 @@ const Post = props => {
             <div className="blog-post-left">
               <div className="main-image">
                 {node.main_image && (
-                  <Img fluid={node.main_image.localFile.childImageSharp.fluid} />
+                  <Img
+                    fluid={node.main_image.localFile.childImageSharp.fluid}
+                  />
                 )}
               </div>
               <h1>{node.title.text}</h1>
@@ -212,7 +215,7 @@ const Post = props => {
   )
 }
 
-export default Post
+export default withPreview(Post)
 
 export const postQuery = graphql`
   query PostBySlug($uid: String!) {

@@ -1,4 +1,6 @@
-const { registerLinkResolver } = require("gatsby-source-prismic-graphql")
-const { linkResolver } = require("./src/utils/linkResolver")
+import * as React from "react"
+import { PreviewStoreProvider } from "gatsby-source-prismic"
 
-registerLinkResolver(linkResolver)
+export const wrapRootElement = ({ element }) => (
+  <PreviewStoreProvider>{element}</PreviewStoreProvider>
+)
