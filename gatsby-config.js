@@ -153,33 +153,19 @@ module.exports = {
                 path
               }
             }
-            prismic {
-              allPas {
-                edges {
-                  node {
-                    _meta {
-                      uid
-                    }
-                  }
-                }
+            allPrismicPa {
+              nodes {
+                uid
               }
-              allBlog_posts {
-                edges {
-                  node {
-                    _meta {
-                      uid
-                    }
-                  }
-                }
+            }
+            allPrismicBlogPost {
+              nodes {
+                uid
               }
-              allJobs {
-                edges {
-                  node {
-                    _meta {
-                      uid
-                    }
-                  }
-                }
+            }
+            allPrismicJob {
+              nodes {
+                uid
               }
             }
         }`,
@@ -187,25 +173,30 @@ module.exports = {
           //Alternativly, you may also pass in an environment variable (or any location) at the beginning of your `gatsby-config.js`.
           return site.siteMetadata.siteUrl
         },
-        serialize: ({ site, prismic }) => {
+        serialize: ({
+          site,
+          allPrismicPa,
+          allPrismicBlogPost,
+          allPrismicJob,
+        }) => {
           let pages = []
-          prismic.allPas.edges.map(edge => {
+          allPrismicPa.nodes.map(edge => {
             pages.push({
-              url: `${site.siteMetadata.siteUrl}/${edge.node._meta.uid}`,
+              url: `${site.siteMetadata.siteUrl}/${edge.uid}`,
               changefreq: `daily`,
               priority: 0.7,
             })
           })
-          prismic.allBlog_posts.edges.map(edge => {
+          allPrismicBlogPost.nodes.map(edge => {
             pages.push({
-              url: `${site.siteMetadata.siteUrl}/insights/${edge.node._meta.uid}`,
+              url: `${site.siteMetadata.siteUrl}/insights/${edge.uid}`,
               changefreq: `daily`,
               priority: 0.7,
             })
           })
-          prismic.allJobs.edges.map(edge => {
+          allPrismicJob.nodes.map(edge => {
             pages.push({
-              url: `${site.siteMetadata.siteUrl}/job-opportunity/${edge.node._meta.uid}`,
+              url: `${site.siteMetadata.siteUrl}/job-opportunity/${edge.uid}`,
               changefreq: `daily`,
               priority: 0.7,
             })
