@@ -8,7 +8,7 @@ export const ImageSlice = ({ slice }) => {
   return (
     <Img
       className="image-slice"
-      fluid={slice.primary.imageSharp.childImageSharp.fluid}
+      fluid={slice.primary.image.localFile.childImageSharp.fluid}
     />
   )
 }
