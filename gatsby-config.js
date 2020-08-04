@@ -35,7 +35,6 @@ module.exports = {
           // Return true to download the image or false to skip.
           return true
         },
-        // prismicToolbar: true,
         linkResolver: () => post => `/${post.uid}`,
         // PrismJS highlighting for labels and slices
         htmlSerializer: () => prismicHtmlSerializer,
@@ -50,6 +49,7 @@ module.exports = {
           blocks: require("./src/schemas/blocks.json"),
           block: require("./src/schemas/block.json"),
         },
+        prismicToolbar: true,
       },
     },
     `gatsby-transformer-sharp`,

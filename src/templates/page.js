@@ -24,6 +24,7 @@ import LeftRightSlice from "../components/slices/LeftRightSlice"
 import EntityQuerySlice from "../components/slices/EntityQuerySlice"
 import HeroSlice from "../components/slices/HeroSlice"
 import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
+import { withPreview } from "gatsby-source-prismic"
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, blog, leadership, job }) => {
@@ -183,7 +184,8 @@ const Page = ({ data }) => {
     </Layout>
   )
 }
-export default Page
+export default withPreview(Page)
+
 export const postQuery = graphql`
   query PageBySlug($uid: String!) {
     job: allPrismicJob {
