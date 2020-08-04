@@ -19,12 +19,11 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
     var sliceID = ""
     if (slice.primary) {
       if (slice.primary.slice_id != undefined) {
-        var sliceID = slice.primary.slice_id[0].text
+        var sliceID = slice.primary.slice_id.text
       }
     }
-
     const res = (() => {
-      switch (slice.type) {
+      switch (slice.slice_type) {
         case "basic_section":
           return (
             <div
@@ -56,7 +55,7 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
 }
 
 export const BlockReferenceSlice = ({ slice }) => {
-  slice = slice.primary.block_reference.body
+  slice = slice.primary.block_reference.document.data.body
   return (
     <BlockReferenceStyle>
       <Container className="block-reference-slice-container">

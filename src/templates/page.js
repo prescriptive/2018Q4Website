@@ -274,7 +274,55 @@ export const postQuery = graphql`
           ... on PrismicPaBodyBasicSection {
             id
             slice_type
-
+            items {
+              sidebar_block_reference {
+                document {
+                  ... on PrismicBlocks {
+                    id
+                    data {
+                      block_title {
+                        text
+                      }
+                      body {
+                        ... on PrismicBlocksBodyBasicSection {
+                          id
+                          slice_type
+                          primary {
+                            background_color
+                            background_video {
+                              url
+                            }
+                            youtube_background {
+                              embed_url
+                            }
+                            background_image {
+                              localFile {
+                                childImageSharp {
+                                  fluid(maxWidth: 1920) {
+                                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                                  }
+                                }
+                              }
+                            }
+                            content {
+                              raw
+                            }
+                            font_color
+                            h1_title
+                            section_title {
+                              text
+                            }
+                            slice_id {
+                              text
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
             primary {
               section_title {
                 text
@@ -330,6 +378,154 @@ export const postQuery = graphql`
               }
             }
           }
+          ... on PrismicPaBodyBlockReference {
+            id
+            primary {
+              block_reference {
+                document {
+                  ... on PrismicBlocks {
+                    id
+                    data {
+                      body {
+                        ... on PrismicBlocksBodyBasicSection {
+                          id
+                          slice_type
+                          primary {
+                            background_color
+                            background_image {
+                              localFile {
+                                childImageSharp {
+                                  fluid {
+                                    src
+                                  }
+                                }
+                              }
+                            }
+                          }
+                          items {
+                            sidebar_block_reference {
+                              document {
+                                ... on PrismicBlocks {
+                                  id
+                                  data {
+                                    body {
+                                      ... on PrismicBlocksBodyBasicSection {
+                                        id
+                                        slice_type
+                                        primary {
+                                          background_color
+                                          background_video {
+                                            url
+                                          }
+                                          youtube_background {
+                                            embed_url
+                                          }
+                                          background_image {
+                                            localFile {
+                                              childImageSharp {
+                                                fluid {
+                                                  src
+                                                }
+                                              }
+                                            }
+                                          }
+                                          content {
+                                            raw
+                                          }
+                                          font_color
+                                          h1_title
+                                          section_title {
+                                            text
+                                          }
+                                          slice_id {
+                                            text
+                                          }
+                                        }
+                                      }
+                                    }
+                                    block_title {
+                                      text
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                        ... on PrismicBlocksBodyLeftRightSection {
+                          id
+                          slice_type
+                          primary {
+                            active_campaign_form_number
+                            embed {
+                              raw
+                            }
+                            left_background_image {
+                              localFile {
+                                childImageSharp {
+                                  fluid(maxWidth: 1920) {
+                                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                                  }
+                                }
+                              }
+                            }
+                            left_content {
+                              raw
+                            }
+                            right_background_image {
+                              localFile {
+                                childImageSharp {
+                                  fluid(maxWidth: 1920) {
+                                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                                  }
+                                }
+                              }
+                            }
+                            right_content {
+                              raw
+                            }
+                            right_embed {
+                              raw
+                            }
+                            section_title {
+                              text
+                            }
+                            slice_id {
+                              text
+                            }
+                          }
+                        }
+                      }
+                      block_title {
+                        text
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            slice_type
+          }
+          ... on PrismicPaBodyHero {
+            id
+            slice_type
+            primary {
+              background_image {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 1920) {
+                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                    }
+                  }
+                }
+              }
+              font_color
+              min_height
+              hero_title {
+                text
+              }
+            }
+          }
           ... on PrismicPaBodyColumnsSection {
             id
             slice_type
@@ -361,6 +557,7 @@ export const postQuery = graphql`
               }
             }
           }
+
           ... on PrismicPaBodyLeftRightSection {
             id
             slice_type

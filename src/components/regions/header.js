@@ -131,7 +131,6 @@ function menuRender(menuitem) {
     menuitem.items[0].sub_nav_link_label.text != "" &&
     menuitem.items[0].sub_nav_link_label.text != "Dummy"
   ) {
-    console.log(menuitem)
     return (
       <HtmlTooltip
         TransitionComponent={Fade}
@@ -239,7 +238,6 @@ export const Header = () => (
         var twitter = data.allPrismicSiteInformation.nodes[0].data.twitter.url
       }
       // const classes = useStyles()
-      console.log(nav)
       return (
         <HeaderStyle className="header">
           {twitter && (

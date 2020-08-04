@@ -123,17 +123,17 @@ const BasicStyle = styled.div`
 
 // Sort and display the different slice options
 const PostSlices = ({ slices }) => {
-  console.log(slices)
   return slices.map((slice, index) => {
+    console.log(slice)
     var sliceID = ""
     if (slice.primary) {
       if (slice.primary.slice_id != undefined) {
-        var sliceID = slice.primary.slice_id[0].text
+        var sliceID = slice.primary.slice_id.text
       }
     }
 
     const res = (() => {
-      switch (slice.type) {
+      switch (slice.slice_type) {
         case "basic_section":
           return (
             <div
@@ -165,7 +165,6 @@ const PostSlices = ({ slices }) => {
 }
 
 export const BasicSectionSlice = ({ slice }) => {
-  console.log(slice)
   const videoOptions = {
     playerVars: {
       autoplay: 1,
@@ -183,19 +182,19 @@ export const BasicSectionSlice = ({ slice }) => {
   var bg_video_image = false
   var sidebar = null
   var sidebarClass = ""
-  if (slice.fields != null) {
-    if (slice.fields[0].sidebar_block_reference != null) {
-      console.log(slice.fields[0].sidebar_block_reference)
-      sidebar = slice.fields[0].sidebar_block_reference.body
+  if (slice.items != null) {
+    if (slice.items[0].sidebar_block_reference.document != null) {
+      sidebar = slice.items[0].sidebar_block_reference.document.data.body
       sidebarClass = "sidebar-active"
     }
   }
   if (slice.primary.background_image.localFile != null) {
     fluid = slice.primary.background_image.localFile.childImageSharp.fluid
   }
-  if (slice.primary.background_video.id != null) {
+  if (slice.primary.background_video != null) {
     bg_video = slice.primary.background_video.url
   }
+  console.log(slice)
   if (slice.primary.youtube_background.embed_url != null) {
     var video_id = slice.primary.youtube_background.embed_url.split("v=")[1]
     var ampersandPosition = video_id.indexOf("&")
@@ -205,7 +204,7 @@ export const BasicSectionSlice = ({ slice }) => {
   }
   if (
     slice.primary.background_video.id == null &&
-    slice.primary.background_image == null &&
+    slice.primary.background_image.localFile == null &&
     slice.primary.youtube_background.embed_url == null
   ) {
     bg_video_image = true
@@ -226,8 +225,6 @@ export const BasicSectionSlice = ({ slice }) => {
   // })
   return (
     <BasicStyle>
-      {console.log(slice)}
-
       {fluid && (
         <BackgroundImage
           Tag="section"
@@ -240,7 +237,7 @@ export const BasicSectionSlice = ({ slice }) => {
             style={{ color: font_color }}
           >
             {slice.primary.section_title && h1_title && (
-              <h1>{slice.primary.section_title[0].text}</h1>
+              <h1>{slice.primary.section_title.text}</h1>
             )}
             {slice.primary.section_title && !h1_title && (
               <h2>{slice.primary.section_title.text}</h2>
@@ -298,15 +295,15 @@ export const BasicSectionSlice = ({ slice }) => {
           <Container className="basic-slice-container">
             <section className={sidebarClass}>
               {slice.primary.section_title && h1_title && (
-                <h1>{slice.primary.section_title[0].text}</h1>
+                <h1>{slice.primary.section_title.text}</h1>
               )}
               {slice.primary.section_title && !h1_title && (
-                <h2>{slice.primary.section_title[0].text}</h2>
+                <h2>{slice.primary.section_title.text}</h2>
               )}
               {slice.primary.content && (
                 <div className="section-content">
                   <RichText
-                    render={slice.primary.content}
+                    render={slice.primary.content.raw}
                     linkResolver={linkResolver}
                   />
                 </div>

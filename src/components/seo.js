@@ -25,7 +25,6 @@ function SEO({ site, page, lang, meta }) {
   if (page.meta_description) {
     var metaDescription = page.data.meta_description
   }
-  console.log(page)
 
   const title = page.data.meta_title || page.data.title.text
   const siteName = site.nodes[0].data.site_title.text

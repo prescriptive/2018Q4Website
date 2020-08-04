@@ -35,7 +35,7 @@ module.exports = {
           // Return true to download the image or false to skip.
           return true
         },
-        prismicToolbar: true,
+        // prismicToolbar: true,
         linkResolver: () => post => `/${post.uid}`,
         // PrismJS highlighting for labels and slices
         htmlSerializer: () => prismicHtmlSerializer,
@@ -47,8 +47,8 @@ module.exports = {
           site_information: require("./src/schemas/site_information.json"),
           leadership: require("./src/schemas/leadership.json"),
           job: require("./src/schemas/job.json"),
+          blocks: require("./src/schemas/blocks.json"),
           block: require("./src/schemas/block.json"),
-          // blocks: require("./src/schemas/blocks.json"),
         },
       },
     },
