@@ -50,7 +50,7 @@ module.exports = {
           block: require("./src/schemas/block.json"),
           podcast: require("./src/schemas/podcast.json"),
         },
-        prismicToolbar: true,
+        prismicToolbar: false,
       },
     },
     `gatsby-transformer-sharp`,

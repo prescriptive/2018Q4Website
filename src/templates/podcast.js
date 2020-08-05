@@ -9,21 +9,21 @@ import Img from "gatsby-image"
 import { linkResolver } from "../utils/linkResolver"
 import { RichText, Date } from "prismic-reactjs"
 import { withPreview } from "gatsby-source-prismic"
-
-
-const PodcastStyle = styled.div`
-
-`
+import { Media, Player, controls } from "react-media-player"
+const { PlayPause, MuteUnmute } = controls
+const PodcastStyle = styled.div``
 
 const Podcast = props => {
   // const prismicContent = props.data.prismic.allBlog_posts.edges[0]
   // if (!prismicContent) return null
-  // const node = props.data.page.data
+  const node = props.data.page.data
   // const site = props.data.site.data
   // const defaultBlock = props.data.defaultBlock.data
 
   console.log(props)
 
+  const podcastUrl = node.podcast.url
+  console.log(podcastUrl)
   // const defaultBlock = props.data.prismic.allBlocks.edges[0].node
   // const site = props.data.prismic.allSite_informations.edges[0].node
 
@@ -32,7 +32,19 @@ const Podcast = props => {
       {/* <SEO site={site} page={node} /> */}
       <PodcastStyle>
         <Container>
-          <h1>Podcast</h1>
+          <h1>{node.title.text}</h1>
+          <Media>
+            <div className="media">
+              <div className="media-player">
+                <Player src={podcastUrl} />
+              </div>
+              <div className="media-controls">
+                <PlayPause />
+                <MuteUnmute />
+              </div>
+            </div>
+          </Media>
+          <RichText render={node.body.raw} linkResolver={linkResolver} />
         </Container>
       </PodcastStyle>
     </Layout>
@@ -67,6 +79,12 @@ export const podcastQuery = graphql`
       data {
         title {
           text
+        }
+        body {
+          raw
+        }
+        podcast {
+          url
         }
       }
     }

@@ -49,6 +49,8 @@
     "react-fontawesome": "^1.7.1",
     "react-helmet": "^5.2.1",
     "react-masonry-component": "^6.2.1",
+    "react-media-player": "^0.7.9",
+    "react-player": "^2.6.0",
     "react-responsive-embed": "^2.1.0",
     "react-stack-grid": "^0.7.1",
     "react-stonecutter": "^0.3.10",
