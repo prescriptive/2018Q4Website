@@ -48,6 +48,7 @@ module.exports = {
           job: require("./src/schemas/job.json"),
           blocks: require("./src/schemas/blocks.json"),
           block: require("./src/schemas/block.json"),
+          podcast: require("./src/schemas/podcast.json"),
         },
         prismicToolbar: true,
       },

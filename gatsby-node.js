@@ -13,6 +13,11 @@ exports.createPages = async ({ graphql, actions }) => {
           uid
         }
       }
+      podcast: allPrismicPodcast{
+        nodes {
+          uid
+        }
+      }
     }
   `)
   //   const postsPerPage = 9
@@ -34,6 +39,17 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/blog/${node.uid}`,
       component: postTemplate,
+      context: {
+        uid: node.uid,
+      },
+    })
+  })
+
+  const podcastTemplate = path.resolve("src/templates/podcast.js")
+  pages.data.podcast.nodes.forEach(node => {
+    createPage({
+      path: `/podcast/${node.uid}`,
+      component: podcastTemplate,
       context: {
         uid: node.uid,
       },
