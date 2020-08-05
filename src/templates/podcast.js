@@ -10,6 +10,9 @@ import { linkResolver } from "../utils/linkResolver"
 import { RichText, Date } from "prismic-reactjs"
 import { withPreview } from "gatsby-source-prismic"
 import { Media, Player, controls } from "react-media-player"
+import AudioPlayer from "react-h5-audio-player"
+import "react-h5-audio-player/lib/styles.css"
+
 const { PlayPause, MuteUnmute } = controls
 const PodcastStyle = styled.div``
 
@@ -33,17 +36,12 @@ const Podcast = props => {
       <PodcastStyle>
         <Container>
           <h1>{node.title.text}</h1>
-          <Media>
-            <div className="media">
-              <div className="media-player">
-                <Player src={podcastUrl} />
-              </div>
-              <div className="media-controls">
-                <PlayPause />
-                <MuteUnmute />
-              </div>
-            </div>
-          </Media>
+          <AudioPlayer
+            autoPlay
+            src={podcastUrl}
+            onPlay={e => console.log("onPlay")}
+            // other props here
+          />
           <RichText render={node.body.raw} linkResolver={linkResolver} />
         </Container>
       </PodcastStyle>
