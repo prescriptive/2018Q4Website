@@ -9,11 +9,11 @@ import Img from "gatsby-image"
 import { linkResolver } from "../utils/linkResolver"
 import { RichText, Date } from "prismic-reactjs"
 import { withPreview } from "gatsby-source-prismic"
-import { Media, Player, controls } from "react-media-player"
 import AudioPlayer from "react-h5-audio-player"
+import { RHAP_UI } from "react-h5-audio-player"
 import "react-h5-audio-player/lib/styles.css"
-
-const { PlayPause, MuteUnmute } = controls
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faTwitter } from "@fortawesome/free-brands-svg-icons"
 const PodcastStyle = styled.div``
 
 const Podcast = props => {
@@ -26,7 +26,7 @@ const Podcast = props => {
   console.log(props)
 
   const podcastUrl = node.podcast.url
-  console.log(podcastUrl)
+  console.log(RHAP_UI)
   // const defaultBlock = props.data.prismic.allBlocks.edges[0].node
   // const site = props.data.prismic.allSite_informations.edges[0].node
 
@@ -37,11 +37,28 @@ const Podcast = props => {
         <Container>
           <h1>{node.title.text}</h1>
           <AudioPlayer
+            progressJumpSteps={{
+              forward: 30000,
+              backward: 10000,
+            }}
+            layout="horizontal"
+            customControlsSection={[RHAP_UI.VOLUME_CONTROLS]}
+            customProgressBarSection={[
+              RHAP_UI.MAIN_CONTROLS,
+              RHAP_UI.PROGRESS_BAR,
+              RHAP_UI.CURRENT_TIME,
+              <div>/</div>,
+              RHAP_UI.DURATION,
+            ]}
             autoPlay
             src={podcastUrl}
             onPlay={e => console.log("onPlay")}
+            CustomIcons={{
+              play: { faTwitter },
+            }}
             // other props here
           />
+          {faTwitter}
           <RichText render={node.body.raw} linkResolver={linkResolver} />
         </Container>
       </PodcastStyle>
