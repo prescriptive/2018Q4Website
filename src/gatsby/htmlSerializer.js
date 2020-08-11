@@ -36,14 +36,12 @@ const htmlSerializer = (type, element, content) => {
   console.log(type)
   switch (type) {
     case "hyperlink": {
-      if (element.data.name.includes(".mp3")) {
-        // File type is .mp3
-        return <AudioFile content={content} element={element} />
+      if (element.data.name) {
+        if (element.data.name.includes(".mp3")) {
+          // File type is .mp3
+          return <AudioFile content={content} element={element} />
+        }
       }
-      console.log(element)
-      // if ((content = "[podcast_landing]")) {
-      //   return <PodcastLandingToken />
-      // }
     }
     // First differentiate between a label and a preformatted field (e.g. the Code Block slice)
     case Elements.label: {
