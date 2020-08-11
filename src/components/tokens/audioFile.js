@@ -8,7 +8,7 @@ import "react-h5-audio-player/lib/styles.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faRedoAlt } from "@fortawesome/free-solid-svg-icons"
 import { faUndoAlt } from "@fortawesome/free-solid-svg-icons"
-const AudioFileStyle = styled.div`
+const AudioFileStyle = styled.span`
   .rhap_rewind-button {
     display: flex;
     align-items: center;
@@ -55,8 +55,6 @@ const AudioFileStyle = styled.div`
 `
 
 export const AudioFile = ({ content, element }) => {
-  console.log(content)
-  console.log(element)
   const fileUrl = element.data.url
   return (
     <AudioFileStyle>

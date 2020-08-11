@@ -10,9 +10,12 @@ const PodcastTeaserStyle = styled.article`
   padding: 35px 25px;
   h2 {
     font-size: 27px;
+    font-weight: 500;
+    margin: 20px 0px 0px 0px;
   }
   p {
     font-size: 18px;
+    margin: 5px 0px 0px 0px;
   }
 `
 export const PodcastTeaser = ({ post }) => {

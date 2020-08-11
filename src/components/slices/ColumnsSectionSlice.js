@@ -114,7 +114,7 @@ function ColumnsSectionSlice({ slice }) {
         >
           <Container>
             <section>
-              {slice.primary.section_title && (
+              {slice.primary.section_title.text && (
                 <h2>{slice.primary.section_title.text}</h2>
               )}
               <div className={"column column-count-" + columnCount}>

@@ -95,7 +95,6 @@ const Podcast = props => {
               <div>/</div>,
               RHAP_UI.DURATION,
             ]}
-            autoPlay
             src={podcastUrl}
             onPlay={e => console.log("onPlay")}
             customIcons={{

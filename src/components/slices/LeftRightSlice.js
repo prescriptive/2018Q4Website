@@ -16,9 +16,20 @@ const LeftRightStyle = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    max-width: ${variable.desktopWidth};
+    // display: block;
+    // padding: 0px 20px;
+    margin: 0 auto;
+    @media (max-width: ${variable.tabletWidth}) {
+      max-width: ${variable.tabletWidth};
+    }
+    @media (max-width: ${variable.mobileWidth}) {
+      max-width: ${variable.mobileWidth};
+      padding: 0px 15px;
+    }
   }
   section {
-    width: 50%;
+    // width: 50%;
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -32,7 +43,7 @@ const LeftRightStyle = styled.div`
       width: 100%;
     }
     > div {
-      max-width: calc(${variable.desktopWidth} / 2);
+      // max-width: calc(${variable.desktopWidth} / 2);
       display: block;
       padding: 0px 20px;
       margin: 0;
@@ -67,7 +78,7 @@ export const addActive = id => {
   }
 }
 
-function returnLeft(primary) {
+function returnLeft(primary, leftWidth) {
   return (
     <React.Fragment>
       {primary.left_background_image.localFile && (
@@ -75,7 +86,11 @@ function returnLeft(primary) {
           Tag="section"
           fluid={primary.left_background_image.localFile.childImageSharp.fluid}
         >
-          <Container>
+          <Container
+            style={{
+              width: "calc(" + variable.desktopWidth + " * ." + leftWidth + ")",
+            }}
+          >
             {primary.left_content && (
               <div className="section-content">
                 <RichText
@@ -95,7 +110,11 @@ function returnLeft(primary) {
       )}
       {!primary.left_background_image.localFile && (
         <section>
-          <Container>
+          <Container
+            style={{
+              width: "calc(" + variable.desktopWidth + " * ." + leftWidth + ")",
+            }}
+          >
             {primary.left_content && (
               <div className="section-content">
                 <RichText
@@ -123,7 +142,7 @@ function returnLeft(primary) {
   )
 }
 
-function returnRight(primary) {
+function returnRight(primary, rightWidth) {
   return (
     <React.Fragment>
       {primary.right_background_image.localFile && (
@@ -131,7 +150,12 @@ function returnRight(primary) {
           Tag="section"
           fluid={primary.right_background_image.localFile.childImageSharp.fluid}
         >
-          <Container>
+          <Container
+            style={{
+              width:
+                "calc(" + variable.desktopWidth + " * ." + rightWidth + ")",
+            }}
+          >
             {primary.right_content && (
               <div className="section-content">
                 <RichText
@@ -153,7 +177,12 @@ function returnRight(primary) {
       )}
       {!primary.right_background_image.localFile && (
         <section>
-          <Container>
+          <Container
+            style={{
+              width:
+                "calc(" + variable.desktopWidth + " * ." + rightWidth + ")",
+            }}
+          >
             {primary.right_content && (
               <div className="section-content">
                 <RichText
@@ -178,11 +207,14 @@ function returnRight(primary) {
 }
 
 export const LeftRightSlice = ({ slice }) => {
+  console.log(slice)
+  const leftWidth = slice.primary.left_width
+  const rightWidth = slice.primary.right_width
   return (
     <LeftRightStyle>
       <div className="left-right-container">
-        {returnLeft(slice.primary)}
-        {returnRight(slice.primary)}
+        {returnLeft(slice.primary, leftWidth)}
+        {returnRight(slice.primary, rightWidth)}
       </div>
     </LeftRightStyle>
   )

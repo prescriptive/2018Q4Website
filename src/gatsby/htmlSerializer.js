@@ -33,7 +33,6 @@ const codeBlock = [
 ]
 
 const htmlSerializer = (type, element, content) => {
-  console.log(type)
   switch (type) {
     case "hyperlink": {
       if (element.data.name) {

@@ -210,6 +210,18 @@
                   "label": "Slice ID"
                 }
               },
+              "left_width": {
+                "type": "Number",
+                "config": {
+                  "label": "Left Width"
+                }
+              },
+              "right_width": {
+                "type": "Number",
+                "config": {
+                  "label": "Right Width"
+                }
+              },
               "left_background_image": {
                 "type": "Image",
                 "config": {

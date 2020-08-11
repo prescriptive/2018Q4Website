@@ -130,7 +130,7 @@ module.exports = {
           },
           {
             family: `Libre Franklin`,
-            variants: [`800`, `900`],
+            variants: [`500`, `800`, `900`],
           },
         ],
       },

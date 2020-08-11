@@ -139,6 +139,7 @@ const PostSlices = ({ slices, blog, leadership, job, podcast }) => {
           )
 
         case "left_right_section":
+          console.log(slice)
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -595,6 +596,8 @@ export const postQuery = graphql`
             id
             slice_type
             primary {
+              left_width
+              right_width
               slice_id {
                 text
               }
