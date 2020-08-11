@@ -13,6 +13,21 @@
         "label": "UID"
       }
     },
+    "teaser": {
+      "type": "StructuredText",
+      "config": {
+        "multi": "paragraph",
+        "label": "Teaser"
+      }
+    },
+    "image": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Image"
+      }
+    },
     "body": {
       "type": "StructuredText",
       "config": {

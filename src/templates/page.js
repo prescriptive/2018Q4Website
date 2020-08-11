@@ -11,6 +11,7 @@ import "../components/scss/page/careers.scss"
 import "../components/scss/page/contact.scss"
 import "../components/scss/page/phase2.scss"
 import "../components/scss/page/dir.scss"
+import "../components/scss/page/podcasts.scss"
 import { Link, RichText, Date } from "prismic-reactjs"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
@@ -24,10 +25,9 @@ import LeftRightSlice from "../components/slices/LeftRightSlice"
 import EntityQuerySlice from "../components/slices/EntityQuerySlice"
 import HeroSlice from "../components/slices/HeroSlice"
 import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
-import { withPreview } from "gatsby-source-prismic"
 
 // Sort and display the different slice options
-const PostSlices = ({ slices, blog, leadership, job }) => {
+const PostSlices = ({ slices, blog, leadership, job, podcast }) => {
   return slices.map((slice, index) => {
     var sliceID = ""
     if (slice.primary) {
@@ -110,6 +110,7 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
                   blog={blog}
                   leadership={leadership}
                   job={job}
+                  podcast={podcast}
                 />
               }
             </div>
@@ -166,6 +167,7 @@ const Page = ({ data }) => {
   //   if (!prismicContent) return null
   const node = data.page
   const leadership = data.leadership
+  const podcast = data.podcast
   const job = data.job
   const site = data.site
   //   const site = data.site.allSite_informations.edges[0].node
@@ -178,13 +180,14 @@ const Page = ({ data }) => {
             slices={node.data.body}
             job={job}
             leadership={leadership}
+            podcast={podcast}
           />
         )}
       </PageStyle>
     </Layout>
   )
 }
-export default withPreview(Page)
+export default Page
 
 export const postQuery = graphql`
   query PageBySlug($uid: String!) {
@@ -200,6 +203,34 @@ export const postQuery = graphql`
           }
           teaser_description {
             html
+          }
+          title {
+            text
+          }
+        }
+      }
+    }
+    podcast: allPrismicPodcast {
+      nodes {
+        uid
+        data {
+          body {
+            raw
+          }
+          teaser {
+            text
+          }
+          image {
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 800) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+          podcast {
+            url
           }
           title {
             text

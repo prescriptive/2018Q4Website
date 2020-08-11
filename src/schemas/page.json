@@ -311,7 +311,7 @@
               "entity_type": {
                 "type": "Select",
                 "config": {
-                  "options": ["Blog Post", "Leadership", "Job"],
+                  "options": ["Blog Post", "Leadership", "Job", "Podcast"],
                   "label": "Entity Type"
                 }
               },

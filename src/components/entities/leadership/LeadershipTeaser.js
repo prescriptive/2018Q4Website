@@ -82,7 +82,6 @@ const LeadershipTeaserStyle = styled.article`
   }
 `
 export const LeadershipTeaser = ({ post }) => {
-  console.log(post)
   return (
     <LeadershipTeaserStyle>
       <div className="photo-name">

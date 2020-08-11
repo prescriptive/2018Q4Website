@@ -5,6 +5,8 @@ import Container from "../container"
 import { RichText } from "prismic-reactjs"
 import * as variable from "../variables"
 import { linkResolver } from "../../utils/linkResolver"
+// import htmlSerializer from "../../utils/htmlSerializer"
+// const prismicHtmlSerializer = require("./src/gatsby/htmlSerializer")
 
 const LeftRightStyle = styled.div`
   ._form {

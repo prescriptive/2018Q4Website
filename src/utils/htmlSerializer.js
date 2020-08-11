@@ -2,6 +2,7 @@ import React from "react"
 
 // Sort and display the different slice options
 const HtmlType = ({ item }) => {
+  console.log(item)
   return item.content.map((element, index) => {
     const res = (() => {
       switch (element.type) {
