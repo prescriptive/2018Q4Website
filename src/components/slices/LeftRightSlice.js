@@ -6,7 +6,7 @@ import { RichText } from "prismic-reactjs"
 import * as variable from "../variables"
 import { linkResolver } from "../../utils/linkResolver"
 // import htmlSerializer from "../../utils/htmlSerializer"
-// const prismicHtmlSerializer = require("./src/gatsby/htmlSerializer")
+import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
 
 const LeftRightStyle = styled.div`
   ._form {
@@ -101,6 +101,7 @@ function returnLeft(primary) {
                 <RichText
                   render={primary.left_content.raw}
                   linkResolver={linkResolver}
+                  htmlSerializer={prismicHtmlSerializer}
                 />
               </div>
             )}

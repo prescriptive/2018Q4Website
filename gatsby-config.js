@@ -2,7 +2,6 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 // const linkResolver = require("./src/utils/linkResolver")
-const prismicHtmlSerializer = require("./src/gatsby/htmlSerializer")
 
 module.exports = {
   siteMetadata: {
@@ -35,9 +34,8 @@ module.exports = {
           // Return true to download the image or false to skip.
           return true
         },
-        linkResolver: () => post => `/${post.uid}`,
+        // linkResolver: () => post => `/${post.uid}`,
         // PrismJS highlighting for labels and slices
-        htmlSerializer: () => prismicHtmlSerializer,
         repositoryName: `prescriptive`,
         accessToken: `${process.env.API_KEY}`,
         schemas: {

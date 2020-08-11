@@ -8,7 +8,6 @@ import SEO from "../components/seo"
 import Img from "gatsby-image"
 import { linkResolver } from "../utils/linkResolver"
 import { RichText, Date } from "prismic-reactjs"
-import { withPreview } from "gatsby-source-prismic"
 import AudioPlayer from "react-h5-audio-player"
 import { RHAP_UI } from "react-h5-audio-player"
 import "react-h5-audio-player/lib/styles.css"
@@ -112,7 +111,7 @@ const Podcast = props => {
   )
 }
 
-export default withPreview(Podcast)
+export default Podcast
 
 export const podcastQuery = graphql`
   query PodcastBySlug($uid: String!) {
