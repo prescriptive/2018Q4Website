@@ -67,10 +67,11 @@ const htmlSerializer = (type, element, content, children) => {
         }
       }
       if (element.data.link_type == "Document") {
-        console.log(type)
-        console.log(element)
-        console.log(children[0].props.className)
-        var linkClass = children[0].props.className
+        if (children[0].props.className != null) {
+          var linkClass = children[0].props.className
+        } else {
+          var linkClass = ""
+        }
         return linkResolver(element.data, content, linkClass)
       }
     }
