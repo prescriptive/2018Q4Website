@@ -1,5 +1,6 @@
 import React from "react"
 import AudioFile from "../components/tokens/audioFile"
+import { Link } from "gatsby"
 
 const { RichText } = require("prismic-dom")
 
@@ -17,6 +18,30 @@ require("prismjs/components/prism-graphql")
 
 const { Elements } = RichText
 
+const linkResolver = (doc, content, linkClass) => {
+  // Route for blog posts
+  if (doc.type === "blog_post") {
+    return (
+      <Link to={"/blog/" + doc.uid} className={linkClass}>
+        {content}
+      </Link>
+    )
+  }
+  if (doc.type === "pa") {
+    return (
+      <Link to={"/" + doc.uid} className={linkClass}>
+        {content}
+      </Link>
+    )
+  }
+  // Homepage route fallback
+  return (
+    <Link to={"/"} className={linkClass}>
+      {content}
+    </Link>
+  )
+}
+
 // Labels with this name will be inline code
 const codeInline = ["text"]
 // Labels with these names will become code blocks
@@ -32,15 +57,21 @@ const codeBlock = [
   "graphql",
 ]
 
-const htmlSerializer = (type, element, content) => {
+const htmlSerializer = (type, element, content, children) => {
   switch (type) {
     case "hyperlink": {
-      console.log(element)
       if (element.data.name) {
         if (element.data.name.includes(".mp3")) {
           // File type is .mp3
           return <AudioFile content={content} element={element} />
         }
+      }
+      if (element.data.link_type == "Document") {
+        console.log(type)
+        console.log(element)
+        console.log(children[0].props.className)
+        var linkClass = children[0].props.className
+        return linkResolver(element.data, content, linkClass)
       }
     }
     // First differentiate between a label and a preformatted field (e.g. the Code Block slice)

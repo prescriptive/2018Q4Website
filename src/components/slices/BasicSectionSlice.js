@@ -2,7 +2,9 @@ import styled from "styled-components"
 import React from "react"
 import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
-import { Link, RichText, Date } from "prismic-reactjs"
+import { RichText, Date } from "prismic-reactjs"
+import { Link } from "gatsby"
+
 // import { RichText } from "prismic-dom"
 import YouTube from "react-youtube"
 import ResponsiveEmbed from "react-responsive-embed"
@@ -125,10 +127,15 @@ const BasicStyle = styled.div`
   }
 `
 
+const myCustomLink = (type, element, content, children, index) => (
+  <Link key={element.data.id} to={linkResolver(element.data)}>
+    {console.log(children)}
+    <a>{content}</a>
+  </Link>
+)
 // Sort and display the different slice options
 const PostSlices = ({ slices }) => {
   return slices.map((slice, index) => {
-    console.log(slice)
     var sliceID = ""
     if (slice.primary) {
       if (slice.primary.slice_id != undefined) {
@@ -198,7 +205,6 @@ export const BasicSectionSlice = ({ slice }) => {
   if (slice.primary.background_video != null) {
     bg_video = slice.primary.background_video.url
   }
-  console.log(slice)
   if (slice.primary.youtube_background.embed_url != null) {
     var video_id = slice.primary.youtube_background.embed_url.split("v=")[1]
     var ampersandPosition = video_id.indexOf("&")
@@ -251,6 +257,7 @@ export const BasicSectionSlice = ({ slice }) => {
                 render={slice.primary.content.raw}
                 linkResolver={linkResolver}
                 htmlSerializer={prismicHtmlSerializer}
+                // serializeHyperlink={myCustomLink}
               />
             </div>
             {sidebar && (

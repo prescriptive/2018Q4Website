@@ -139,7 +139,6 @@ const PostSlices = ({ slices, blog, leadership, job, podcast }) => {
           )
 
         case "left_right_section":
-          console.log(slice)
           return (
             <div
               id={"slice-id-" + sliceID}

@@ -19,7 +19,6 @@ const PodcastTeaserStyle = styled.article`
   }
 `
 export const PodcastTeaser = ({ post }) => {
-  console.log(post)
   return (
     <PodcastTeaserStyle>
       <Link to={"/podcast/" + post.uid}>

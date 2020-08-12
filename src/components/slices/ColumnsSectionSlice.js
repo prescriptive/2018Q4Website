@@ -80,7 +80,6 @@ function ColumnsSectionSlice({ slice }) {
   }
 
   // items = slice.items
-  console.log(slice)
   return (
     <div>
       {fluid && (

@@ -217,7 +217,6 @@ export const LeftRightSlice = ({ slice }) => {
   if (slice.primary.right_width) {
     var rightWidth = slice.primary.right_width
   }
-  console.log(leftWidth)
   return (
     <LeftRightStyle>
       <div className="left-right-container">
