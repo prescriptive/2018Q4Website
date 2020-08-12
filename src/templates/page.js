@@ -504,6 +504,7 @@ export const postQuery = graphql`
                               }
                             }
                             left_content {
+                              html
                               raw
                             }
                             right_background_image {
@@ -516,6 +517,7 @@ export const postQuery = graphql`
                               }
                             }
                             right_content {
+                              html
                               raw
                             }
                             right_embed {

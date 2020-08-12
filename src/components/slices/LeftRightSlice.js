@@ -95,7 +95,7 @@ function returnLeft(primary, leftWidth) {
               <div className="section-content">
                 <RichText
                   render={primary.left_content.raw}
-                  linkResolver={linkResolver}
+                  htmlSerializer={prismicHtmlSerializer}
                 />
               </div>
             )}
@@ -158,10 +158,7 @@ function returnRight(primary, rightWidth) {
           >
             {primary.right_content && (
               <div className="section-content">
-                <RichText
-                  render={primary.right_content.raw}
-                  linkResolver={linkResolver}
-                />
+                <RichText render={primary.right_content.raw} />
               </div>
             )}
             {primary.right_embed && (

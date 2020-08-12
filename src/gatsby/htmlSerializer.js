@@ -35,6 +35,7 @@ const codeBlock = [
 const htmlSerializer = (type, element, content) => {
   switch (type) {
     case "hyperlink": {
+      console.log(element)
       if (element.data.name) {
         if (element.data.name.includes(".mp3")) {
           // File type is .mp3
