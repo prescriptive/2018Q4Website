@@ -8,6 +8,9 @@ import { RichText, Date } from "prismic-reactjs"
 import { faCalendar } from "@fortawesome/free-solid-svg-icons"
 import { faUser } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import linkResolver from "../../../utils/linkResolver"
+import prismicHtmlSerializer from "../../../gatsby/htmlSerializer"
+
 const BlogPostTeaserStyle = styled.article`
   padding: 35px;
   padding-bottom: 85px;
@@ -125,7 +128,11 @@ export const BlogPostTeaser = ({ post }) => {
       )}
       {post.data.teaser && (
         <div className="blog-teaser">
-          {RichText.render(post.data.teaser.raw)}
+          <RichText
+            render={post.data.teaser.raw}
+            linkResolver={linkResolver}
+            htmlSerializer={prismicHtmlSerializer}
+          />
         </div>
       )}
       <Link className="cta-button" to={"/blog/" + post.uid}>

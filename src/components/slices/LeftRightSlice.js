@@ -4,8 +4,7 @@ import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
 import { RichText } from "prismic-reactjs"
 import * as variable from "../variables"
-import { linkResolver } from "../../utils/linkResolver"
-// import htmlSerializer from "../../utils/htmlSerializer"
+import linkResolver from "../../utils/linkResolver"
 import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
 
 const LeftRightStyle = styled.div`
@@ -16,7 +15,7 @@ const LeftRightStyle = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    max-width: ${variable.desktopWidth};
+    // max-width: ${variable.desktopWidth};
     // display: block;
     // padding: 0px 20px;
     margin: 0 auto;
@@ -29,7 +28,7 @@ const LeftRightStyle = styled.div`
     }
   }
   section {
-    // width: 50%;
+    width: 50%;
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -87,14 +86,15 @@ function returnLeft(primary, leftWidth) {
           fluid={primary.left_background_image.localFile.childImageSharp.fluid}
         >
           <Container
-            style={{
-              width: "calc(" + variable.desktopWidth + " * ." + leftWidth + ")",
-            }}
+          // style={{
+          //   width: "calc(" + variable.desktopWidth + " * ." + leftWidth + ")",
+          // }}
           >
             {primary.left_content && (
               <div className="section-content">
                 <RichText
                   render={primary.left_content.raw}
+                  linkResolver={linkResolver}
                   htmlSerializer={prismicHtmlSerializer}
                 />
               </div>
@@ -111,9 +111,9 @@ function returnLeft(primary, leftWidth) {
       {!primary.left_background_image.localFile && (
         <section>
           <Container
-            style={{
-              width: "calc(" + variable.desktopWidth + " * ." + leftWidth + ")",
-            }}
+          // style={{
+          //   width: "calc(" + variable.desktopWidth + " * ." + leftWidth + ")",
+          // }}
           >
             {primary.left_content && (
               <div className="section-content">
@@ -151,14 +151,18 @@ function returnRight(primary, rightWidth) {
           fluid={primary.right_background_image.localFile.childImageSharp.fluid}
         >
           <Container
-            style={{
-              width:
-                "calc(" + variable.desktopWidth + " * ." + rightWidth + ")",
-            }}
+          // style={{
+          //   width:
+          //     "calc(" + variable.desktopWidth + " * ." + rightWidth + ")",
+          // }}
           >
             {primary.right_content && (
               <div className="section-content">
-                <RichText render={primary.right_content.raw} />
+                <RichText
+                  linkResolver={linkResolver}
+                  render={primary.right_content.raw}
+                  htmlSerializer={prismicHtmlSerializer}
+                />
               </div>
             )}
             {primary.right_embed && (
@@ -175,16 +179,17 @@ function returnRight(primary, rightWidth) {
       {!primary.right_background_image.localFile && (
         <section>
           <Container
-            style={{
-              width:
-                "calc(" + variable.desktopWidth + " * ." + rightWidth + ")",
-            }}
+          // style={{
+          //   width:
+          //     "calc(" + variable.desktopWidth + " * ." + rightWidth + ")",
+          // }}
           >
             {primary.right_content && (
               <div className="section-content">
                 <RichText
                   render={primary.right_content.raw}
                   linkResolver={linkResolver}
+                  htmlSerializer={prismicHtmlSerializer}
                 />
               </div>
             )}
@@ -204,9 +209,15 @@ function returnRight(primary, rightWidth) {
 }
 
 export const LeftRightSlice = ({ slice }) => {
-  console.log(slice)
-  const leftWidth = slice.primary.left_width
-  const rightWidth = slice.primary.right_width
+  var leftWidth = 50
+  var rightWidth = 50
+  if (slice.primary.right_width) {
+    var leftWidth = slice.primary.left_width
+  }
+  if (slice.primary.right_width) {
+    var rightWidth = slice.primary.right_width
+  }
+  console.log(leftWidth)
   return (
     <LeftRightStyle>
       <div className="left-right-container">

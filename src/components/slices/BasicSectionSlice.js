@@ -3,16 +3,17 @@ import React from "react"
 import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
 import { Link, RichText, Date } from "prismic-reactjs"
+// import { RichText } from "prismic-dom"
 import YouTube from "react-youtube"
 import ResponsiveEmbed from "react-responsive-embed"
 import "../scss/block/defaultBlogCta.scss"
-// import { linkResolver } from "../../utils/linkResolver"
+import linkResolver from "../../utils/linkResolver"
 import BasicSectionSliceInner from "../slices/BasicSectionSlice"
 import LeftRightSlice from "../slices/LeftRightSlice"
 import * as variable from "../variables"
 import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
 
-const linkResolver = require("../../utils/linkResolver")
+// const linkResolver = require("../../utils/linkResolver")
 
 const BasicStyle = styled.div`
   .video-container-outer {
@@ -309,6 +310,7 @@ export const BasicSectionSlice = ({ slice }) => {
                   <RichText
                     render={slice.primary.content.raw}
                     linkResolver={linkResolver}
+                    htmlSerializer={prismicHtmlSerializer}
                   />
                 </div>
               )}

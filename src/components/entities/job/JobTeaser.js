@@ -4,6 +4,8 @@
 // import { Link } from "gatsby"
 // import Img from "gatsby-image"
 // import { RichText } from "prismic-reactjs"
+// import linkResolver from "../../../utils/linkResolver"
+// import prismicHtmlSerializer from "../../../gatsby/htmlSerializer"
 
 // var FA = require("react-fontawesome")
 
@@ -51,7 +53,13 @@
 //       <Link to={"/job-opportunity/" + post.node._meta.uid}>
 //         <h2>{post.node.title[0].text}</h2>
 //         <div className="job-location">
-//           {RichText.render(post.node.location)}
+{
+  /* <RichText
+render={post.node.location}
+linkResolver={linkResolver}
+htmlSerializer={prismicHtmlSerializer}
+/> */
+}
 //         </div>
 //         <div className="job-teaser">
 //           {RichText.render(post.node.teaser_description)}

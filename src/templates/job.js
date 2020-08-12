@@ -7,7 +7,7 @@
 // import SEO from "../components/seo"
 // import Img from "gatsby-image"
 // import { RichText } from "prismic-reactjs"
-// import { linkResolver } from "../utils/linkResolver"
+// import linkResolver from "../utils/linkResolver"
 
 // const JobStyle = styled.div`
 //   section {

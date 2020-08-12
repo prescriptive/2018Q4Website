@@ -6,7 +6,7 @@ import { Link, RichText, Date } from "prismic-reactjs"
 import YouTube from "react-youtube"
 import ResponsiveEmbed from "react-responsive-embed"
 import "../scss/block/defaultBlogCta.scss"
-import { linkResolver } from "../../utils/linkResolver"
+import linkResolver from "../../utils/linkResolver"
 
 const HeroStyle = styled.div`
   section {

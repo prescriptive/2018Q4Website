@@ -464,6 +464,7 @@ export const postQuery = graphql`
                                             }
                                           }
                                           content {
+                                            html
                                             raw
                                           }
                                           font_color

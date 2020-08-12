@@ -7,7 +7,8 @@ import { RichText } from "prismic-reactjs"
 import { faTwitter } from "@fortawesome/free-brands-svg-icons"
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-
+import { linkResolver } from "../../../utils/linkResolver"
+import prismicHtmlSerializer from "../../../gatsby/htmlSerializer"
 const LeadershipTeaserStyle = styled.article`
   background-color: white;
   padding: 30px;
@@ -93,7 +94,13 @@ export const LeadershipTeaser = ({ post }) => {
           <div className="leader-title">{post.data.title.text}</div>
         </div>
       </div>
-      <div className="leader-bio">{RichText.render(post.data.bio.raw)}</div>
+      <div className="leader-bio">
+        <RichText
+          render={post.data.bio.raw}
+          linkResolver={linkResolver}
+          htmlSerializer={prismicHtmlSerializer}
+        />
+      </div>
       <div className="leader-social">
         {post.data.twitter && (
           <a target="_blank" href={post.data.twitter.url}>

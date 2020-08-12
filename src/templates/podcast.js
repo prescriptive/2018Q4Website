@@ -6,7 +6,8 @@ import styled from "styled-components"
 import Container from "../components/container"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
-import { linkResolver } from "../utils/linkResolver"
+import linkResolver from "../utils/linkResolver"
+import prismicHtmlSerializer from "../gatsby/htmlSerializer"
 import { RichText, Date } from "prismic-reactjs"
 import AudioPlayer from "react-h5-audio-player"
 import { RHAP_UI } from "react-h5-audio-player"
@@ -103,7 +104,11 @@ const Podcast = props => {
             }}
             // other props here
           />
-          <RichText render={node.body.raw} linkResolver={linkResolver} />
+          <RichText
+            render={node.body.raw}
+            linkResolver={linkResolver}
+            htmlSerializer={prismicHtmlSerializer}
+          />
         </Container>
       </PodcastStyle>
     </Layout>

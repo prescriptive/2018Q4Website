@@ -36,11 +36,12 @@ module.exports = {
         },
         linkResolver: ({ node, key, value }) => doc => {
           // Your link resolver
-          console.log(doc.uid)
           if (doc.type === "blog_post") {
+            console.log("/blog/" + doc.uid)
             return "/blog/" + doc.uid
           }
           if (doc.type === "pa") {
+            console.log("/" + doc.uid)
             return "/" + doc.uid
           }
           // Homepage route fallback
