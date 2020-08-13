@@ -55,6 +55,14 @@ const EntityResult = ({ slice, blog, leadership, job }) => {
       ))
   }
 
+  if (slice.primary.entity_type == "Podcast") {
+    return leadership
+      .slice(0, slice.primary.entity_count)
+      .map((post, index) => (
+        <h3>Podcast</h3>
+      ))
+  }
+
   if (slice.primary.entity_type == "Blog Post") {
     return blog
       .slice(0, slice.primary.entity_count)
@@ -69,12 +77,16 @@ const EntityResult = ({ slice, blog, leadership, job }) => {
       .map((post, index) => <JobTeaser post={post} key={index}></JobTeaser>)
   }
 
+  
+
   // {blog.nodes.slice(0, entityCount).map((post, index) => (
   //   <BlogPostTeaser post={post} key={index}></BlogPostTeaser>
   // ))}
 }
 
 export const EntityQuerySlice = ({ slice, blog, leadership, job }) => {
+
+  console.log(slice)
   var fluid = null
 
   var h1_title = false
@@ -87,6 +99,10 @@ export const EntityQuerySlice = ({ slice, blog, leadership, job }) => {
 
   var entityType = null
 
+  if (slice.primary.type == "e") {
+    entity = leadership
+    entityType = "leadership"
+  }
   if (slice.primary.type == "Leadership") {
     entity = leadership
     entityType = "leadership"
@@ -107,10 +123,13 @@ export const EntityQuerySlice = ({ slice, blog, leadership, job }) => {
   if (slice.primary.number_of_entities != null) {
     var entityCount = slice.primary.number_of_entities
   }
-
-  if (slice.primary.h1_title != null) {
-    h1_title = slice.primary.h1_title
+  if(slice.primary.section_title && slice.primary.h1_title == true){
+    var theh1Title = slice.primary.section_title[0].text
   }
+  else if(slice.primary.section_title && slice.primary.h1_title == false){
+    var theh2Title = slice.primary.section_title[0].text
+  }
+
   return (
     <React.Fragment>
       {fluid && (
@@ -142,8 +161,9 @@ export const EntityQuerySlice = ({ slice, blog, leadership, job }) => {
         <div style={{ backgroundColor: bg_color }}>
           <Container>
             <section>
-              {h1_title && <h1>{slice.primary.section_title[0].text}</h1>}
-              {!h1_title && <h2>{slice.primary.section_title[0].text}</h2>}
+              {console.log(slice.primary)}
+              {theh1Title && <h1>{theh1Title}</h1>}
+              {theh2Title && <h2>{theh2Title}</h2>}
               <EntityQueryStyle>
                 <EntityResult
                   slice={slice}
