@@ -118,8 +118,17 @@ export const EntityQuerySlice = ({ slice, blog, leadership, job, podcast }) => {
     var entityCount = slice.primary.number_of_entities
   }
 
-  if (slice.primary.h1_title != null) {
-    h1_title = slice.primary.h1_title
+  // if (slice.primary.h1_title != null) {
+  //   h1_title = slice.primary.h1_title
+  // }
+  console.log(slice.primary)
+  var theh1Title = null
+  var theh2Title = null
+  if(slice.primary.section_title && slice.primary.h1_title == true){
+    var theh1Title = slice.primary.section_title.text
+  }
+  else if(slice.primary.section_title && slice.primary.h1_title == false){
+    var theh2Title = slice.primary.section_title.text
   }
   return (
     <React.Fragment>
@@ -152,8 +161,8 @@ export const EntityQuerySlice = ({ slice, blog, leadership, job, podcast }) => {
         <div style={{ backgroundColor: bg_color }}>
           <Container>
             <section>
-              {h1_title && <h1>{slice.primary.section_title.text}</h1>}
-              {!h1_title && <h2>{slice.primary.section_title.text}</h2>}
+              {theh1Title && <h1>{theh1Title}</h1>}
+              {theh2Title && <h2>{theh2Title}</h2>}
               <EntityQueryStyle>
                 <EntityResult
                   slice={slice}

@@ -42,7 +42,7 @@ const LeftRightStyle = styled.div`
       width: 100%;
     }
     > div {
-      // max-width: calc(${variable.desktopWidth} / 2);
+      max-width: calc(${variable.desktopWidth} / 2);
       display: block;
       padding: 0px 20px;
       margin: 0;

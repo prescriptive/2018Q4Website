@@ -225,8 +225,16 @@ export const BasicSectionSlice = ({ slice }) => {
   if (slice.primary.font_color != null) {
     font_color = slice.primary.font_color
   }
-  if (slice.primary.h1_title != null) {
-    h1_title = slice.primary.h1_title
+  // if (slice.primary.h1_title != null) {
+  //   h1_title = slice.primary.h1_title
+  // }
+  var theh1Title = null
+  var theh2Title = null
+  if(slice.primary.section_title && slice.primary.h1_title == true){
+    var theh1Title = slice.primary.section_title.text
+  }
+  else if(slice.primary.section_title && slice.primary.h1_title == false){
+    var theh2Title = slice.primary.section_title.text
   }
   // const content = slice.primary.content.raw.map(function(slice, index) {
   //   if (slice.type === "heading1") {
@@ -246,12 +254,8 @@ export const BasicSectionSlice = ({ slice }) => {
             className="basic-slice-container"
             style={{ color: font_color }}
           >
-            {slice.primary.section_title && h1_title && (
-              <h1>{slice.primary.section_title.text}</h1>
-            )}
-            {slice.primary.section_title && !h1_title && (
-              <h2>{slice.primary.section_title.text}</h2>
-            )}
+              {theh1Title && <h1>{theh1Title}</h1>}
+              {theh2Title && <h2>{theh2Title}</h2>}
             <div className="section-content">
               <RichText
                 render={slice.primary.content.raw}
@@ -306,12 +310,8 @@ export const BasicSectionSlice = ({ slice }) => {
         <div style={{ backgroundColor: bg_color }}>
           <Container className="basic-slice-container">
             <section className={sidebarClass}>
-              {slice.primary.section_title && h1_title && (
-                <h1>{slice.primary.section_title.text}</h1>
-              )}
-              {slice.primary.section_title && !h1_title && (
-                <h2>{slice.primary.section_title.text}</h2>
-              )}
+            {theh1Title && <h1>{theh1Title}</h1>}
+              {theh2Title && <h2>{theh2Title}</h2>}
               {slice.primary.content && (
                 <div className="section-content">
                   <RichText

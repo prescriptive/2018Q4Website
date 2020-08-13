@@ -66,8 +66,8 @@ function ColumnsSectionSlice({ slice }) {
   var bgColor = null
   var columnCount = null
   var items = null
-  if (slice.primary.background_imageSharp != null) {
-    fluid = slice.primary.background_imageSharp.childImageSharp.fluid
+  if (slice.primary.background_image.localFile != null) {
+    fluid = slice.primary.background_image.localFile.childImageSharp.fluid
   }
   if (slice.primary.background_color != null) {
     bgColor = slice.primary.background_color

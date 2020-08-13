@@ -288,7 +288,7 @@ export const postQuery = graphql`
         }
         meta_description
         meta_title
-        release_date(formatString: "MMM d ,Y")
+        release_date(formatString: "MMM D ,Y")
         main_image {
           url
           localFile {
