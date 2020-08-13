@@ -12,17 +12,19 @@ import { useStaticQuery, graphql } from "gatsby"
 
 function SEO({ site, page, lang, meta }) {
   var noIndex = "index"
+  console.log(page)
+  console.log(site)
   if (page.data.donotindex) {
     if (page.data.donotindex == true) {
       var noIndex = "noindex"
     }
   }
   var ogImage = ""
-  if (page.main_image) {
+  if (page.data.main_image) {
     ogImage = page.data.main_image.url
   }
   var metaDescription = ""
-  if (page.meta_description) {
+  if (page.data.meta_description) {
     var metaDescription = page.data.meta_description
   }
 

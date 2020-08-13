@@ -151,17 +151,17 @@ const Post = props => {
   // const prismicContent = props.data.prismic.allBlog_posts.edges[0]
   // if (!prismicContent) return null
   const node = props.data.page.data
-  const site = props.data.site.data
+  const site = props.data.site
   const defaultBlock = props.data.defaultBlock.data
 
   console.log(node)
-
+  console.log(props)
   // const defaultBlock = props.data.prismic.allBlocks.edges[0].node
   // const site = props.data.prismic.allSite_informations.edges[0].node
 
   return (
     <Layout>
-      {/* <SEO site={site} page={node} /> */}
+      <SEO site={site} page={props.data.page} />
       <BlogHeader>
         <Container>
           <div className="blog-header-container">
@@ -288,6 +288,7 @@ export const postQuery = graphql`
         }
         meta_description
         meta_title
+        donotindex
         release_date(formatString: "MMM D ,Y")
         main_image {
           url

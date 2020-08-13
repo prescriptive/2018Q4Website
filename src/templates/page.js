@@ -276,6 +276,7 @@ export const postQuery = graphql`
       data {
         meta_title
         meta_description
+        donotindex
         title {
           text
         }
