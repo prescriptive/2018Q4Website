@@ -170,6 +170,7 @@ const Page = ({ data }) => {
   const podcast = data.podcast
   const job = data.job
   const site = data.site
+  console.log(node)
   //   const site = data.site.allSite_informations.edges[0].node
   return (
     <Layout>

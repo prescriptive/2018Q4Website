@@ -197,7 +197,6 @@ class Mobilemenu extends React.Component {
                     {data.allPrismicSiteInformation.nodes[0].data.nav.map(
                       (menuitem, index) => (
                         <li key={menuitem.id}>
-                          {console.log(menuitem)}
                           {menuitem.primary.link.id && (
                             <Link
                               activeStyle={{ color: variable.darkgray }}

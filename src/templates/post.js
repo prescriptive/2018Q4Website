@@ -154,8 +154,6 @@ const Post = props => {
   const site = props.data.site
   const defaultBlock = props.data.defaultBlock.data
 
-  console.log(node)
-  console.log(props)
   // const defaultBlock = props.data.prismic.allBlocks.edges[0].node
   // const site = props.data.prismic.allSite_informations.edges[0].node
 

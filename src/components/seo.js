@@ -13,7 +13,6 @@ import { useStaticQuery, graphql } from "gatsby"
 function SEO({ site, page, lang, meta }) {
   var noIndex = "index"
   console.log(page)
-  console.log(site)
   if (page.data.donotindex) {
     if (page.data.donotindex == true) {
       var noIndex = "noindex"
@@ -32,15 +31,15 @@ function SEO({ site, page, lang, meta }) {
   const siteName = site.nodes[0].data.site_title.text
   const twitterAuthor = site.nodes[0].data.twitter_author.text
   const siteUrl = site.nodes[0].data.site_url.text
-  var uid = page.data.uid
+  var uid = page.uid
   var path = "/"
-  if (page.data.type == "blog_post") {
+  if (page.type == "blog_post") {
     path = "/blog/"
   }
-  if (page.data.type == "job") {
+  if (page.type == "job") {
     path = "/job-opportunity/"
   }
-  if (page.data.uid == "home") {
+  if (page.uid == "home") {
     uid = ""
     path = ""
   }
