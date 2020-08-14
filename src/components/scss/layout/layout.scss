@@ -24,7 +24,7 @@ h2 {
   font-size: 36px;
   line-height: 48px;
   display: inline-block;
-  margin:30px 0px 0px 0px;
+  margin:25px 0px 25px 0px;
   .h2-light{
     font-family: "Roboto";
     font-weight:500;
@@ -54,7 +54,7 @@ p {
   }
 }
 ul{
-  margin:0px;
+  // margin:0px;
 }
 .cta-button {
   @include cta-button($darkGray);

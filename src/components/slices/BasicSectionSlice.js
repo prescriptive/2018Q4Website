@@ -2,14 +2,20 @@ import styled from "styled-components"
 import React from "react"
 import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
-import { Link, RichText, Date } from "prismic-reactjs"
+import { RichText, Date } from "prismic-reactjs"
+import { Link } from "gatsby"
+
+// import { RichText } from "prismic-dom"
 import YouTube from "react-youtube"
 import ResponsiveEmbed from "react-responsive-embed"
 import "../scss/block/defaultBlogCta.scss"
-import { linkResolver } from "../../utils/linkResolver"
+import linkResolver from "../../utils/linkResolver"
 import BasicSectionSliceInner from "../slices/BasicSectionSlice"
 import LeftRightSlice from "../slices/LeftRightSlice"
 import * as variable from "../variables"
+import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
+
+// const linkResolver = require("../../utils/linkResolver")
 
 const BasicStyle = styled.div`
   .video-container-outer {
@@ -121,19 +127,24 @@ const BasicStyle = styled.div`
   }
 `
 
+const myCustomLink = (type, element, content, children, index) => (
+  <Link key={element.data.id} to={linkResolver(element.data)}>
+    {console.log(children)}
+    <a>{content}</a>
+  </Link>
+)
 // Sort and display the different slice options
 const PostSlices = ({ slices }) => {
-  console.log(slices)
   return slices.map((slice, index) => {
     var sliceID = ""
     if (slice.primary) {
       if (slice.primary.slice_id != undefined) {
-        var sliceID = slice.primary.slice_id[0].text
+        var sliceID = slice.primary.slice_id.text
       }
     }
 
     const res = (() => {
-      switch (slice.type) {
+      switch (slice.slice_type) {
         case "basic_section":
           return (
             <div
@@ -165,7 +176,6 @@ const PostSlices = ({ slices }) => {
 }
 
 export const BasicSectionSlice = ({ slice }) => {
-  console.log(slice)
   const videoOptions = {
     playerVars: {
       autoplay: 1,
@@ -183,20 +193,19 @@ export const BasicSectionSlice = ({ slice }) => {
   var bg_video_image = false
   var sidebar = null
   var sidebarClass = ""
-  if (slice.fields != null) {
-    if (slice.fields[0].sidebar_block_reference != null) {
-      console.log(slice.fields[0].sidebar_block_reference)
-      sidebar = slice.fields[0].sidebar_block_reference.body
+  if (slice.items != null) {
+    if (slice.items[0].sidebar_block_reference.document != null) {
+      sidebar = slice.items[0].sidebar_block_reference.document.data.body
       sidebarClass = "sidebar-active"
     }
   }
-  if (slice.primary.background_imageSharp != null) {
-    fluid = slice.primary.background_imageSharp.childImageSharp.fluid
+  if (slice.primary.background_image.localFile != null) {
+    fluid = slice.primary.background_image.localFile.childImageSharp.fluid
   }
   if (slice.primary.background_video != null) {
     bg_video = slice.primary.background_video.url
   }
-  if (slice.primary.youtube_background != null) {
+  if (slice.primary.youtube_background.embed_url != null) {
     var video_id = slice.primary.youtube_background.embed_url.split("v=")[1]
     var ampersandPosition = video_id.indexOf("&")
     if (ampersandPosition != -1) {
@@ -204,9 +213,9 @@ export const BasicSectionSlice = ({ slice }) => {
     }
   }
   if (
-    slice.primary.background_video == null &&
-    slice.primary.background_image == null &&
-    slice.primary.youtube_background == null
+    slice.primary.background_video.id == null &&
+    slice.primary.background_image.localFile == null &&
+    slice.primary.youtube_background.embed_url == null
   ) {
     bg_video_image = true
   }
@@ -216,8 +225,16 @@ export const BasicSectionSlice = ({ slice }) => {
   if (slice.primary.font_color != null) {
     font_color = slice.primary.font_color
   }
-  if (slice.primary.h1_title != null) {
-    h1_title = slice.primary.h1_title
+  // if (slice.primary.h1_title != null) {
+  //   h1_title = slice.primary.h1_title
+  // }
+  var theh1Title = null
+  var theh2Title = null
+  if(slice.primary.section_title && slice.primary.h1_title == true){
+    var theh1Title = slice.primary.section_title.text
+  }
+  else if(slice.primary.section_title && slice.primary.h1_title == false){
+    var theh2Title = slice.primary.section_title.text
   }
   // const content = slice.primary.content.raw.map(function(slice, index) {
   //   if (slice.type === "heading1") {
@@ -237,16 +254,14 @@ export const BasicSectionSlice = ({ slice }) => {
             className="basic-slice-container"
             style={{ color: font_color }}
           >
-            {slice.primary.section_title && h1_title && (
-              <h1>{slice.primary.section_title[0].text}</h1>
-            )}
-            {slice.primary.section_title && !h1_title && (
-              <h2>{slice.primary.section_title.text}</h2>
-            )}
+              {theh1Title && <h1>{theh1Title}</h1>}
+              {theh2Title && <h2>{theh2Title}</h2>}
             <div className="section-content">
               <RichText
-                render={slice.primary.content}
+                render={slice.primary.content.raw}
                 linkResolver={linkResolver}
+                htmlSerializer={prismicHtmlSerializer}
+                // serializeHyperlink={myCustomLink}
               />
             </div>
             {sidebar && (
@@ -295,17 +310,14 @@ export const BasicSectionSlice = ({ slice }) => {
         <div style={{ backgroundColor: bg_color }}>
           <Container className="basic-slice-container">
             <section className={sidebarClass}>
-              {slice.primary.section_title && h1_title && (
-                <h1>{slice.primary.section_title[0].text}</h1>
-              )}
-              {slice.primary.section_title && !h1_title && (
-                <h2>{slice.primary.section_title[0].text}</h2>
-              )}
+            {theh1Title && <h1>{theh1Title}</h1>}
+              {theh2Title && <h2>{theh2Title}</h2>}
               {slice.primary.content && (
                 <div className="section-content">
                   <RichText
-                    render={slice.primary.content}
+                    render={slice.primary.content.raw}
                     linkResolver={linkResolver}
+                    htmlSerializer={prismicHtmlSerializer}
                   />
                 </div>
               )}

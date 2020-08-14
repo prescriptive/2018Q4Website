@@ -12,33 +12,34 @@ import { useStaticQuery, graphql } from "gatsby"
 
 function SEO({ site, page, lang, meta }) {
   var noIndex = "index"
-  if (page.donotindex) {
-    if (page.donotindex == true) {
+  console.log(page)
+  if (page.data.donotindex) {
+    if (page.data.donotindex == true) {
       var noIndex = "noindex"
     }
   }
   var ogImage = ""
-  if (page.main_image) {
-    ogImage = page.main_image.url
+  if (page.data.main_image) {
+    ogImage = page.data.main_image.url
   }
   var metaDescription = ""
-  if (page.meta_description) {
-    var metaDescription = page.meta_description
+  if (page.data.meta_description) {
+    var metaDescription = page.data.meta_description
   }
 
-  const title = page.meta_title || page.title[0].text
-  const siteName = site.site_title[0].text
-  const twitterAuthor = site.twitter_author[0].text
-  const siteUrl = site.site_url[0].text
-  var uid = page._meta.uid
+  const title = page.data.meta_title || page.data.title.text
+  const siteName = site.nodes[0].data.site_title.text
+  const twitterAuthor = site.nodes[0].data.twitter_author.text
+  const siteUrl = site.nodes[0].data.site_url.text
+  var uid = page.uid
   var path = "/"
-  if (page._meta.type == "blog_post") {
+  if (page.type == "blog_post") {
     path = "/blog/"
   }
-  if (page._meta.type == "job") {
+  if (page.type == "job") {
     path = "/job-opportunity/"
   }
-  if (page._meta.uid == "home") {
+  if (page.uid == "home") {
     uid = ""
     path = ""
   }

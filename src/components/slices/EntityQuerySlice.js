@@ -5,6 +5,7 @@ import Container from "../container"
 import BlogPostTeaser from "../entities/blog_post/BlogPostTeaser"
 import LeadershipTeaser from "../entities/leadership/LeadershipTeaser"
 import JobTeaser from "../entities/job/JobTeaser"
+import PodcastTeaser from "../entities/podcast/PodcastTeaser"
 import * as variable from "../variables"
 
 const EntityQueryStyle = styled.div`
@@ -34,7 +35,7 @@ const EntityQueryStyle = styled.div`
 `
 
 // Sort and display the different slice options
-const EntityResult = ({ slice, blog, leadership, job }) => {
+const EntityResult = ({ slice, blog, leadership, job, podcast }) => {
   // return slices.map((slice, index) => {
   //   const res = () => {
   //     switch (slice.slice_type) {
@@ -48,7 +49,8 @@ const EntityResult = ({ slice, blog, leadership, job }) => {
   //   }
   // })
   if (slice.primary.entity_type == "Leadership") {
-    return leadership
+    console.log(leadership)
+    return leadership.nodes
       .slice(0, slice.primary.entity_count)
       .map((post, index) => (
         <LeadershipTeaser post={post} key={index}></LeadershipTeaser>
@@ -64,7 +66,7 @@ const EntityResult = ({ slice, blog, leadership, job }) => {
   }
 
   if (slice.primary.entity_type == "Blog Post") {
-    return blog
+    return blog.nodes
       .slice(0, slice.primary.entity_count)
       .map((post, index) => (
         <BlogPostTeaser post={post} key={index}></BlogPostTeaser>
@@ -72,21 +74,25 @@ const EntityResult = ({ slice, blog, leadership, job }) => {
   }
 
   if (slice.primary.entity_type == "Job") {
-    return job
+    return job.nodes
       .slice(0, slice.primary.entity_count)
       .map((post, index) => <JobTeaser post={post} key={index}></JobTeaser>)
   }
 
-  
+  if (slice.primary.entity_type == "Podcast") {
+    return podcast.nodes
+      .slice(0, slice.primary.entity_count)
+      .map((post, index) => (
+        <PodcastTeaser post={post} key={index}></PodcastTeaser>
+      ))
+  }
 
   // {blog.nodes.slice(0, entityCount).map((post, index) => (
   //   <BlogPostTeaser post={post} key={index}></BlogPostTeaser>
   // ))}
 }
 
-export const EntityQuerySlice = ({ slice, blog, leadership, job }) => {
-
-  console.log(slice)
+export const EntityQuerySlice = ({ slice, blog, leadership, job, podcast }) => {
   var fluid = null
 
   var h1_title = false
@@ -113,7 +119,7 @@ export const EntityQuerySlice = ({ slice, blog, leadership, job }) => {
   }
 
   if (slice.primary.background_imageSharp != null) {
-    fluid = slice.primary.background_imageSharp.childImageSharp.fluid
+    fluid = slice.primary.background_image.localFile.childImageSharp.fluid
   }
 
   if (slice.primary.background_color != null) {
@@ -123,8 +129,17 @@ export const EntityQuerySlice = ({ slice, blog, leadership, job }) => {
   if (slice.primary.number_of_entities != null) {
     var entityCount = slice.primary.number_of_entities
   }
+
+  // if (slice.primary.h1_title != null) {
+  //   h1_title = slice.primary.h1_title
+  // }
+  var theh1Title = null
+  var theh2Title = null
   if(slice.primary.section_title && slice.primary.h1_title == true){
-    var theh1Title = slice.primary.section_title[0].text
+    var theh1Title = slice.primary.section_title.text
+  }
+  else if(slice.primary.section_title && slice.primary.h1_title == false){
+    var theh2Title = slice.primary.section_title.text
   }
   else if(slice.primary.section_title && slice.primary.h1_title == false){
     var theh2Title = slice.primary.section_title[0].text
@@ -139,9 +154,9 @@ export const EntityQuerySlice = ({ slice, blog, leadership, job }) => {
           style={{ backgroundColor: bg_color }}
         >
           <Container>
-            <section>
-              {h1_title && <h1>{slice.primary.section_title[0].text}</h1>}
-              {!h1_title && <h2>{slice.primary.section_title[0].text}</h2>}
+            {/* <section>
+              {h1_title && <h1>{slice.primary.section_title.text}</h1>}
+              {!h1_title && <h2>{slice.primary.section_title.text}</h2>}
               <EntityResult
                 slice={slice}
                 blog={blog}
@@ -153,7 +168,7 @@ export const EntityQuerySlice = ({ slice, blog, leadership, job }) => {
                   <BlogPostTeaser post={post} key={index}></BlogPostTeaser>
                 ))}
               </EntityQueryStyle>
-            </section>
+            </section> */}
           </Container>
         </BackgroundImage>
       )}
@@ -161,7 +176,6 @@ export const EntityQuerySlice = ({ slice, blog, leadership, job }) => {
         <div style={{ backgroundColor: bg_color }}>
           <Container>
             <section>
-              {console.log(slice.primary)}
               {theh1Title && <h1>{theh1Title}</h1>}
               {theh2Title && <h2>{theh2Title}</h2>}
               <EntityQueryStyle>
@@ -170,6 +184,7 @@ export const EntityQuerySlice = ({ slice, blog, leadership, job }) => {
                   blog={blog}
                   leadership={leadership}
                   job={job}
+                  podcast={podcast}
                 />
               </EntityQueryStyle>
             </section>

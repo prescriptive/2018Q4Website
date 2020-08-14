@@ -1,7 +1,7 @@
 require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
-// const linkResolver = require("./src/utils/linkResolver")
+const linkResolver = require("./src/utils/linkResolver")
 
 module.exports = {
   siteMetadata: {
@@ -28,55 +28,37 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-source-prismic-graphql",
+      resolve: `gatsby-source-prismic`,
       options: {
-        repositoryName: "prescriptive", // required
-        defaultLang: "en-us", // optional, but recommended
-        previews: true, // optional, default: false
-        path: "preview",
-        omitPrismicScript: true,
-        pages: [
-          {
-            type: "Pa", // TypeName from prismic
-            match: "/:uid", // pages will be generated under this pattern
-            filter: data => data.node._meta.uid !== "home",
-            component: require.resolve("./src/templates/page.js"),
-            langs: ["en-us"],
-            sharpKeys: [
-              /image|main_image|logo|photo|picture/, // (default)
-            ],
-          },
-          {
-            type: "Pa", // TypeName from prismic
-            match: "/", // pages will be generated under this pattern
-            filter: data => data.node._meta.uid == "home",
-            component: require.resolve("./src/templates/page.js"),
-            langs: ["en-us"],
-            sharpKeys: [
-              /image|main_image|logo|photo|picture/, // (default)
-            ],
-          },
-          {
-            type: "Job", // TypeName from prismic
-            match: "/job-opportunity/:uid", // pages will be generated under this pattern
-            component: require.resolve("./src/templates/job.js"),
-            path: "job-preview",
-            langs: ["en-us"],
-            sharpKeys: [
-              /image|main_image|logo|photo|picture/, // (default)
-            ],
-          },
-          {
-            type: "Blog_post", // TypeName from prismic
-            match: "/blog/:uid", // pages will be generated under this pattern
-            component: require.resolve("./src/templates/post.js"),
-            path: "blog-preview",
-            langs: ["en-us"],
-            sharpKeys: [
-              /image|main_image|logo|photo|picture/, // (default)
-            ],
-          },
-        ],
+        shouldDownloadImage: ({ node, key, value }) => {
+          // Return true to download the image or false to skip.
+          return true
+        },
+        linkResolver: ({ node, key, value }) => doc => {
+          // Your link resolver
+          if (doc.type === "blog_post") {
+            return "/blog/" + doc.uid
+          }
+          if (doc.type === "pa") {
+            return "/" + doc.uid
+          }
+          // Homepage route fallback
+          return "/"
+        },
+        // PrismJS highlighting for labels and slices
+        repositoryName: `prescriptive`,
+        accessToken: `${process.env.API_KEY}`,
+        schemas: {
+          pa: require("./src/schemas/page.json"),
+          blog_post: require("./src/schemas/blog_post.json"),
+          site_information: require("./src/schemas/site_information.json"),
+          leadership: require("./src/schemas/leadership.json"),
+          job: require("./src/schemas/job.json"),
+          blocks: require("./src/schemas/blocks.json"),
+          block: require("./src/schemas/block.json"),
+          podcast: require("./src/schemas/podcast.json"),
+        },
+        prismicToolbar: false,
       },
     },
     `gatsby-transformer-sharp`,
@@ -158,7 +140,7 @@ module.exports = {
           },
           {
             family: `Libre Franklin`,
-            variants: [`800`, `900`],
+            variants: [`500`, `800`, `900`],
           },
         ],
       },
@@ -181,33 +163,19 @@ module.exports = {
                 path
               }
             }
-            prismic {
-              allPas(where: {donotindex: false}) {
-                edges {
-                  node {
-                    _meta {
-                      uid
-                    }
-                  }
-                }
+            allPrismicPa {
+              nodes {
+                uid
               }
-              allBlog_posts {
-                edges {
-                  node {
-                    _meta {
-                      uid
-                    }
-                  }
-                }
+            }
+            allPrismicBlogPost {
+              nodes {
+                uid
               }
-              allJobs {
-                edges {
-                  node {
-                    _meta {
-                      uid
-                    }
-                  }
-                }
+            }
+            allPrismicJob {
+              nodes {
+                uid
               }
             }
         }`,
@@ -215,25 +183,30 @@ module.exports = {
           //Alternativly, you may also pass in an environment variable (or any location) at the beginning of your `gatsby-config.js`.
           return site.siteMetadata.siteUrl
         },
-        serialize: ({ site, prismic }) => {
+        serialize: ({
+          site,
+          allPrismicPa,
+          allPrismicBlogPost,
+          allPrismicJob,
+        }) => {
           let pages = []
-          prismic.allPas.edges.map(edge => {
+          allPrismicPa.nodes.map(edge => {
             pages.push({
-              url: `${site.siteMetadata.siteUrl}/${edge.node._meta.uid}`,
+              url: `${site.siteMetadata.siteUrl}/${edge.uid}`,
               changefreq: `daily`,
               priority: 0.7,
             })
           })
-          prismic.allBlog_posts.edges.map(edge => {
+          allPrismicBlogPost.nodes.map(edge => {
             pages.push({
-              url: `${site.siteMetadata.siteUrl}/insights/${edge.node._meta.uid}`,
+              url: `${site.siteMetadata.siteUrl}/insights/${edge.uid}`,
               changefreq: `daily`,
               priority: 0.7,
             })
           })
-          prismic.allJobs.edges.map(edge => {
+          allPrismicJob.nodes.map(edge => {
             pages.push({
-              url: `${site.siteMetadata.siteUrl}/job-opportunity/${edge.node._meta.uid}`,
+              url: `${site.siteMetadata.siteUrl}/job-opportunity/${edge.uid}`,
               changefreq: `daily`,
               priority: 0.7,
             })

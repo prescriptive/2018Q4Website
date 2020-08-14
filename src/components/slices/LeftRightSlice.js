@@ -4,7 +4,8 @@ import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
 import { RichText } from "prismic-reactjs"
 import * as variable from "../variables"
-import { linkResolver } from "../../utils/linkResolver"
+import linkResolver from "../../utils/linkResolver"
+import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
 
 const LeftRightStyle = styled.div`
   ._form {
@@ -14,6 +15,17 @@ const LeftRightStyle = styled.div`
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    // max-width: ${variable.desktopWidth};
+    // display: block;
+    // padding: 0px 20px;
+    margin: 0 auto;
+    @media (max-width: ${variable.tabletWidth}) {
+      max-width: ${variable.tabletWidth};
+    }
+    @media (max-width: ${variable.mobileWidth}) {
+      max-width: ${variable.mobileWidth};
+      padding: 0px 15px;
+    }
   }
   section {
     width: 50%;
@@ -65,47 +77,57 @@ export const addActive = id => {
   }
 }
 
-function returnLeft(primary) {
+function returnLeft(primary, leftWidth) {
   return (
     <React.Fragment>
-      {primary.left_background_imageSharp && (
+      {primary.left_background_image.localFile && (
         <BackgroundImage
           Tag="section"
-          fluid={primary.left_background_imageSharp.childImageSharp.fluid}
+          fluid={primary.left_background_image.localFile.childImageSharp.fluid}
         >
-          <Container>
+          <Container
+          // style={{
+          //   width: "calc(" + variable.desktopWidth + " * ." + leftWidth + ")",
+          // }}
+          >
             {primary.left_content && (
               <div className="section-content">
                 <RichText
-                  render={primary.left_content}
+                  render={primary.left_content.raw}
                   linkResolver={linkResolver}
+                  htmlSerializer={prismicHtmlSerializer}
                 />
               </div>
             )}
             {primary.embed && (
               <div
                 className="section-embed"
-                dangerouslySetInnerHTML={{ __html: primary.embed[0].text }}
+                dangerouslySetInnerHTML={{ __html: primary.embed.text }}
               />
             )}
           </Container>
         </BackgroundImage>
       )}
-      {!primary.left_background_imageSharp && (
+      {!primary.left_background_image.localFile && (
         <section>
-          <Container>
+          <Container
+          // style={{
+          //   width: "calc(" + variable.desktopWidth + " * ." + leftWidth + ")",
+          // }}
+          >
             {primary.left_content && (
               <div className="section-content">
                 <RichText
-                  render={primary.left_content}
+                  render={primary.left_content.raw}
                   linkResolver={linkResolver}
+                  htmlSerializer={prismicHtmlSerializer}
                 />
               </div>
             )}
             {primary.embed && (
               <div
                 className="section-embed"
-                dangerouslySetInnerHTML={{ __html: primary.embed[0].text }}
+                dangerouslySetInnerHTML={{ __html: primary.embed.text }}
               />
             )}
             {primary.active_campaign_form_number && (
@@ -120,20 +142,26 @@ function returnLeft(primary) {
   )
 }
 
-function returnRight(primary) {
+function returnRight(primary, rightWidth) {
   return (
     <React.Fragment>
-      {primary.right_background_imageSharp && (
+      {primary.right_background_image.localFile && (
         <BackgroundImage
           Tag="section"
-          fluid={primary.right_background_imageSharp.childImageSharp.fluid}
+          fluid={primary.right_background_image.localFile.childImageSharp.fluid}
         >
-          <Container>
+          <Container
+          // style={{
+          //   width:
+          //     "calc(" + variable.desktopWidth + " * ." + rightWidth + ")",
+          // }}
+          >
             {primary.right_content && (
               <div className="section-content">
                 <RichText
-                  render={primary.right_content}
                   linkResolver={linkResolver}
+                  render={primary.right_content.raw}
+                  htmlSerializer={prismicHtmlSerializer}
                 />
               </div>
             )}
@@ -141,21 +169,27 @@ function returnRight(primary) {
               <div
                 className="section-embed"
                 dangerouslySetInnerHTML={{
-                  __html: primary.right_embed[0].text,
+                  __html: primary.right_embed.text,
                 }}
               />
             )}
           </Container>
         </BackgroundImage>
       )}
-      {!primary.right_background_imageSharp && (
+      {!primary.right_background_image.localFile && (
         <section>
-          <Container>
+          <Container
+          // style={{
+          //   width:
+          //     "calc(" + variable.desktopWidth + " * ." + rightWidth + ")",
+          // }}
+          >
             {primary.right_content && (
               <div className="section-content">
                 <RichText
-                  render={primary.right_content}
+                  render={primary.right_content.raw}
                   linkResolver={linkResolver}
+                  htmlSerializer={prismicHtmlSerializer}
                 />
               </div>
             )}
@@ -163,7 +197,7 @@ function returnRight(primary) {
               <div
                 className="section-embed"
                 dangerouslySetInnerHTML={{
-                  __html: primary.right_embed[0].text,
+                  __html: primary.right_embed.text,
                 }}
               />
             )}
@@ -175,11 +209,19 @@ function returnRight(primary) {
 }
 
 export const LeftRightSlice = ({ slice }) => {
+  var leftWidth = 50
+  var rightWidth = 50
+  if (slice.primary.right_width) {
+    var leftWidth = slice.primary.left_width
+  }
+  if (slice.primary.right_width) {
+    var rightWidth = slice.primary.right_width
+  }
   return (
     <LeftRightStyle>
       <div className="left-right-container">
-        {returnLeft(slice.primary)}
-        {returnRight(slice.primary)}
+        {returnLeft(slice.primary, leftWidth)}
+        {returnRight(slice.primary, rightWidth)}
       </div>
     </LeftRightStyle>
   )

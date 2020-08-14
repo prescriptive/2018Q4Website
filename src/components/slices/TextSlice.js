@@ -1,12 +1,16 @@
 import React from "react"
 import { RichText } from "prismic-reactjs"
-import { linkResolver } from "../../utils/linkResolver"
+import linkResolver from "../../utils/linkResolver"
+import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
 
 const TextSlice = props => {
   return (
     <div>
-      {console.log(props)}
-      <RichText render={props.slice.primary.text} linkResolver={linkResolver} />
+      <RichText
+        render={props.slice.primary.text.raw}
+        linkResolver={linkResolver}
+        htmlSerializer={prismicHtmlSerializer}
+      />
     </div>
   )
 }

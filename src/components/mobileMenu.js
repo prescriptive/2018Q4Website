@@ -89,11 +89,11 @@ const activeStyle = {
   color: variable.red,
 }
 const SubMenuReturn = ({ submenuitem, index }) => {
-  if (submenuitem.sub_nav_link_label[0].text != "Dummy") {
+  if (submenuitem.sub_nav_link_label.text != "Dummy" && submenuitem.id != 'undefined') {
     return (
-      <li key={index}>
-        <Link activeStyle={activeStyle} to={submenuitem.sub_nav_link._meta.uid}>
-          {submenuitem.sub_nav_link_label[0].text}
+      <li key={submenuitem.id}>
+        <Link activeStyle={activeStyle} to={submenuitem.sub_nav_link.url}>
+          {submenuitem.sub_nav_link_label.text}
         </Link>
       </li>
     )
@@ -126,66 +126,46 @@ class Mobilemenu extends React.Component {
       <StaticQuery
         query={graphql`
           query {
-            nav: prismic {
-              allSite_informations {
-                edges {
-                  node {
-                    nav {
-                      ... on PRISMIC_Site_informationNavNav_item {
-                        type
-                        label
-                        fields {
-                          sub_nav_link {
-                            ... on PRISMIC_Pa {
-                              title
-                              meta_title
-                              _meta {
-                                uid
-                              }
-                              _linkType
-                            }
-                            ... on PRISMIC__ExternalLink {
-                              _linkType
-                              url
-                            }
-                          }
-                          sub_nav_link_label
+            allPrismicSiteInformation {
+              nodes {
+                data {
+                  nav {
+                    ... on PrismicSiteInformationNavNavItem {
+                      id
+                      items {
+                        sub_nav_link {
+                          id
+                          link_type
                         }
-                        primary {
-                          relative_link
-                          link {
-                            ... on PRISMIC__ExternalLink {
-                              _linkType
-                              url
-                            }
-                            _linkType
-                            ... on PRISMIC_Pa {
-                              title
-                              meta_title
-                              _meta {
-                                uid
-                              }
-                            }
-                          }
-                          label
+                        sub_nav_link_label {
+                          text
+                        }
+                      }
+                      primary {
+                        label {
+                          text
+                        }
+                        link {
+                          url
+                          link_type
+                        }
+                        relative_link {
+                          text
                         }
                       }
                     }
                   }
-                }
-              }
-            }
-            logo: prismic {
-              allSite_informations {
-                edges {
-                  node {
-                    logo
-                    twitter {
-                      ... on PRISMIC__ExternalLink {
-                        _linkType
-                        url
+                  logo {
+                    localFile {
+                      childImageSharp {
+                        fluid(maxWidth: 400) {
+                          ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                        }
                       }
                     }
+                  }
+                  twitter {
+                    url
                   }
                 }
               }
@@ -214,39 +194,43 @@ class Mobilemenu extends React.Component {
                         Home
                       </Link>
                     </li>
-                    {data.nav.allSite_informations.edges[0].node.nav.map(
+                    {data.allPrismicSiteInformation.nodes[0].data.nav.map(
                       (menuitem, index) => (
-                        <li key={index}>
-                          {menuitem.primary.link && (
+                        <li key={menuitem.id}>
+                          {menuitem.primary.link.id && (
                             <Link
                               activeStyle={{ color: variable.darkgray }}
-                              to={menuitem.primary.link._meta.uid}
+                              to={menuitem.primary.link.url}
                               onClick={() => this.toggleMenu()}
                               activeClassName="active"
                               activeStyle={activeStyle}
                             >
-                              {menuitem.primary.label[0].text}
+                              {menuitem.primary.label.text}
                             </Link>
                           )}
-                          {!menuitem.primary.link && (
+                          {!menuitem.primary.link.id && (
                             <Link
                               activeStyle={{ color: variable.darkgray }}
-                              to={menuitem.primary.relative_link[0].text}
+                              to={menuitem.primary.relative_link.text}
                               onClick={() => this.toggleMenu()}
                               activeClassName="active"
                               activeStyle={activeStyle}
                             >
-                              {menuitem.primary.label[0].text}
+                              {menuitem.primary.label.text}
                             </Link>
                           )}
-                          {menuitem.fields[0].sub_nav_link && (
+                          {menuitem.items[0].sub_nav_link && (
                             <ul className="sub-menu">
-                              {menuitem.fields.map((submenuitem, index) => (
-                                <SubMenuReturn
-                                  submenuitem={submenuitem}
-                                  index={index}
-                                />
-                              ))}
+                              {menuitem.items.map((submenuitem, index) => {
+                                if (submenuitem.id) {
+                                  return (
+                                    <SubMenuReturn
+                                    submenuitem={submenuitem}
+                                    index={index}
+                                  />  
+                                  )
+                                }
+                              })}
                             </ul>
                           )}
                         </li>

@@ -70,47 +70,52 @@ const BlogHeader = styled.div`
 
 export const postQuery = graphql`
   query BlogIndex {
-    prismic {
-      allBlog_posts(sortBy: release_date_DESC) {
-        pageInfo {
-          hasNextPage
-          hasPreviousPage
-          startCursor
-          endCursor
-        }
-        totalCount
-        edges {
-          cursor
-          node {
-            _meta {
-              uid
-            }
-            author
-            main_image
-            main_imageSharp {
+    allPrismicBlogPost {
+      nodes {
+        uid
+        data {
+          main_image {
+            localFile {
               childImageSharp {
-                fluid(maxWidth: 1920) {
+                fluid(maxWidth: 800) {
                   ...GatsbyImageSharpFluid_withWebp_tracedSVG
                 }
               }
             }
-            release_date
-            teaser
-            title
+          }
+          author {
+            text
+          }
+          release_date
+          teaser {
+            raw
+          }
+          title {
+            text
           }
         }
       }
     }
-    site: prismic {
-      allSite_informations {
-        edges {
-          node {
-            description
-            site_url
-            site_title
-            twitter_author
-            meta_description
-            meta_title
+    site: allPrismicSiteInformation {
+      nodes {
+        data {
+          meta_title {
+            text
+          }
+          meta_description {
+            text
+          }
+          description {
+            text
+          }
+          site_url {
+            text
+          }
+          site_title {
+            text
+          }
+          twitter_author {
+            text
           }
         }
       }
@@ -150,13 +155,15 @@ const Bloger = props => {
   //   },
   // }
   // const site = props.data.prismic.allSite_informations.edges[0].node
-
-  const site = props.data.site.allSite_informations.edges[0].node
+  const site = props.data.site
   const page = {
-    meta_title: site.meta_title[0].text,
-    meta_description: site.meta_description[0].text,
-    _meta: {
-      uid: "insights",
+    data: {
+      meta_title: site.nodes[0].data.meta_title.text,
+      meta_description: site.nodes[0].data.meta_description.text,
+      donotindex: false,
+      _meta: {
+        uid: "insights",
+      },
     },
   }
   return (
@@ -172,7 +179,7 @@ const Bloger = props => {
       <Container>
         <BlogStyle>
           <div className="blog-container">
-            {props.data.prismic.allBlog_posts.edges.map((post, index) => (
+            {props.data.allPrismicBlogPost.nodes.map((post, index) => (
               <BlogPostTeaser post={post} key={index}></BlogPostTeaser>
             ))}
           </div>

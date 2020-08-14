@@ -6,7 +6,7 @@ import { Link, RichText, Date } from "prismic-reactjs"
 import YouTube from "react-youtube"
 import ResponsiveEmbed from "react-responsive-embed"
 import "../scss/block/defaultBlogCta.scss"
-import { linkResolver } from "../../utils/linkResolver"
+import linkResolver from "../../utils/linkResolver"
 
 const HeroStyle = styled.div`
   section {
@@ -29,8 +29,8 @@ export const HeroSlice = ({ slice }) => {
   var fluid = null
   var hero_title = null
   var min_height = 360
-  if (slice.primary.background_imageSharp != null) {
-    fluid = slice.primary.background_imageSharp.childImageSharp.fluid
+  if (slice.primary.background_image != null) {
+    fluid = slice.primary.background_image.localFile.childImageSharp.fluid
   }
 
   if (slice.primary.font_color != null) {
@@ -38,7 +38,7 @@ export const HeroSlice = ({ slice }) => {
   }
 
   if (slice.primary.hero_title != null) {
-    hero_title = slice.primary.hero_title[0].text
+    hero_title = slice.primary.hero_title.text
   }
 
   if (slice.primary.min_height != null) {

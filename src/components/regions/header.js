@@ -65,6 +65,7 @@ const HeaderStyle = styled.header`
   }
   .logo {
     max-width: 293px;
+    width: 293px;
     img {
       max-width: 100%;
     }
@@ -127,8 +128,8 @@ const activeStyle = {
 
 function menuRender(menuitem) {
   if (
-    menuitem.fields[0].sub_nav_link_label &&
-    menuitem.fields[0].sub_nav_link_label[0].text != "Dummy"
+    menuitem.items[0].sub_nav_link_label.text != "" &&
+    menuitem.items[0].sub_nav_link_label.text != "Dummy"
   ) {
     return (
       <HtmlTooltip
@@ -136,29 +137,29 @@ function menuRender(menuitem) {
         interactive
         title={
           <React.Fragment>
-            {menuitem.fields.map((submenuitem, index) => (
+            {menuitem.items.map((submenuitem, index) => (
               <div key={index}>
                 <Link
                   activeStyle={activeStyle}
-                  to={submenuitem.sub_nav_link.uid}
+                  to={submenuitem.sub_nav_link.url}
                 >
-                  {submenuitem.sub_nav_link_label[0].text}
+                  {submenuitem.sub_nav_link_label.text}
                 </Link>
               </div>
             ))}
           </React.Fragment>
         }
       >
-        <Link activeStyle={activeStyle} to={menuitem.primary.link.uid}>
-          {menuitem.primary.label[0].text}
+        <Link activeStyle={activeStyle} to={menuitem.primary.link.url}>
+          {menuitem.primary.label.text}
         </Link>
       </HtmlTooltip>
     )
   } else {
-    if (menuitem.primary.link) {
+    if (menuitem.primary.link.url != "") {
       return (
-        <Link activeStyle={activeStyle} to={menuitem.primary.link._meta.uid}>
-          {menuitem.primary.label[0].text}
+        <Link activeStyle={activeStyle} to={menuitem.primary.link.url}>
+          {menuitem.primary.label.text}
         </Link>
       )
     }
@@ -166,9 +167,9 @@ function menuRender(menuitem) {
       return (
         <Link
           activeStyle={activeStyle}
-          to={menuitem.primary.relative_link[0].text}
+          to={menuitem.primary.relative_link.text}
         >
-          {menuitem.primary.label[0].text}
+          {menuitem.primary.label.text}
         </Link>
       )
     }
@@ -177,58 +178,46 @@ function menuRender(menuitem) {
 
 const query2 = graphql`
   query menu {
-    prismic {
-      allSite_informations {
-        edges {
-          node {
-            logo
-            twitter {
-              ... on PRISMIC__ExternalLink {
-                _linkType
-                url
-              }
-            }
-            nav {
-              ... on PRISMIC_Site_informationNavNav_item {
-                type
-                label
-                fields {
-                  sub_nav_link {
-                    ... on PRISMIC_Pa {
-                      title
-                      meta_title
-                      _meta {
-                        uid
-                      }
-                      _linkType
-                    }
-                    ... on PRISMIC__ExternalLink {
-                      _linkType
-                      url
-                    }
-                  }
-                  sub_nav_link_label
+    allPrismicSiteInformation {
+      nodes {
+        data {
+          nav {
+            ... on PrismicSiteInformationNavNavItem {
+              id
+              items {
+                sub_nav_link {
+                  id
+                  link_type
                 }
-                primary {
-                  relative_link
-                  link {
-                    ... on PRISMIC__ExternalLink {
-                      _linkType
-                      url
-                    }
-                    _linkType
-                    ... on PRISMIC_Pa {
-                      title
-                      meta_title
-                      _meta {
-                        uid
-                      }
-                    }
-                  }
-                  label
+                sub_nav_link_label {
+                  text
+                }
+              }
+              primary {
+                label {
+                  text
+                }
+                link {
+                  url
+                  link_type
+                }
+                relative_link {
+                  text
                 }
               }
             }
+          }
+          logo {
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 400) {
+                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                }
+              }
+            }
+          }
+          twitter {
+            url
           }
         }
       }
@@ -240,12 +229,13 @@ export const Header = () => (
   <StaticQuery
     query={query2}
     render={withPreview(data => {
-      const nav = data.prismic.allSite_informations.edges[0].node.nav
-      const logo = data.prismic.allSite_informations.edges[0].node.logo.url
+      const nav = data.allPrismicSiteInformation.nodes[0].data.nav
+      const logo =
+        data.allPrismicSiteInformation.nodes[0].data.logo.localFile
+          .childImageSharp.fluid
       var twitter = null
-      if (data.prismic.allSite_informations.edges[0].node.twitter) {
-        var twitter =
-          data.prismic.allSite_informations.edges[0].node.twitter.url
+      if (data.allPrismicSiteInformation.nodes[0].data.twitter) {
+        var twitter = data.allPrismicSiteInformation.nodes[0].data.twitter.url
       }
       // const classes = useStyles()
       return (
@@ -263,7 +253,7 @@ export const Header = () => (
           )}
           <Container className="header-container">
             <Link className="logo" to="/">
-              <img alt="logo home" src={logo} />
+              <Img fluid={logo} />
             </Link>
             <div className="mobile-menu-container">{<MobileMenu />}</div>
             <ul className="main-menu">
