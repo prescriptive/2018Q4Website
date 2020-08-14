@@ -89,9 +89,9 @@ const activeStyle = {
   color: variable.red,
 }
 const SubMenuReturn = ({ submenuitem, index }) => {
-  if (submenuitem.sub_nav_link_label.text != "Dummy") {
+  if (submenuitem.sub_nav_link_label.text != "Dummy" && submenuitem.id != 'undefined') {
     return (
-      <li key={index}>
+      <li key={submenuitem.id}>
         <Link activeStyle={activeStyle} to={submenuitem.sub_nav_link.url}>
           {submenuitem.sub_nav_link_label.text}
         </Link>
@@ -196,8 +196,9 @@ class Mobilemenu extends React.Component {
                     </li>
                     {data.allPrismicSiteInformation.nodes[0].data.nav.map(
                       (menuitem, index) => (
-                        <li key={index}>
-                          {menuitem.primary.link && (
+                        <li key={menuitem.id}>
+                          {console.log(menuitem)}
+                          {menuitem.primary.link.id && (
                             <Link
                               activeStyle={{ color: variable.darkgray }}
                               to={menuitem.primary.link.url}
@@ -208,7 +209,7 @@ class Mobilemenu extends React.Component {
                               {menuitem.primary.label.text}
                             </Link>
                           )}
-                          {!menuitem.primary.link && (
+                          {!menuitem.primary.link.id && (
                             <Link
                               activeStyle={{ color: variable.darkgray }}
                               to={menuitem.primary.relative_link.text}
@@ -221,12 +222,16 @@ class Mobilemenu extends React.Component {
                           )}
                           {menuitem.items[0].sub_nav_link && (
                             <ul className="sub-menu">
-                              {menuitem.items.map((submenuitem, index) => (
-                                <SubMenuReturn
-                                  submenuitem={submenuitem}
-                                  index={index}
-                                />
-                              ))}
+                              {menuitem.items.map((submenuitem, index) => {
+                                if (submenuitem.id) {
+                                  return (
+                                    <SubMenuReturn
+                                    submenuitem={submenuitem}
+                                    index={index}
+                                  />  
+                                  )
+                                }
+                              })}
                             </ul>
                           )}
                         </li>

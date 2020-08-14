@@ -121,7 +121,6 @@ export const EntityQuerySlice = ({ slice, blog, leadership, job, podcast }) => {
   // if (slice.primary.h1_title != null) {
   //   h1_title = slice.primary.h1_title
   // }
-  console.log(slice.primary)
   var theh1Title = null
   var theh2Title = null
   if(slice.primary.section_title && slice.primary.h1_title == true){
