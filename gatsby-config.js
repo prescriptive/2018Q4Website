@@ -8,7 +8,7 @@ module.exports = {
     title: `Prescriptive Solutions`,
     description: `Prescriptive Data Solutions helps our enterprise customers connect, secure, transform and scale through information technology consulting, solutions, integration, and managed services.`,
     author: `Digett`,
-    siteUrl: `https://newsource--prescriptive-solutions-2018q4website.netlify.app`,
+    siteUrl: `https://www.prescriptive.solutions`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
