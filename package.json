@@ -32,6 +32,7 @@
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-remark-embed-youtube": "0.0.7",
     "gatsby-remark-responsive-iframe": "^2.2.32",
+    "gatsby-source-buzzsprout": "^0.3.1",
     "gatsby-source-filesystem": "^2.1.48",
     "gatsby-source-prismic": "^3.2.1",
     "gatsby-source-prismic-graphql": "^3.6.2",

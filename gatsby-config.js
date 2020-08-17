@@ -61,6 +61,15 @@ module.exports = {
         prismicToolbar: false,
       },
     },
+    {
+      resolve: 'gatsby-source-buzzsprout',
+      options: {
+        // You will need to generate an access token and get the podcast ID from your account
+        // https://github.com/Buzzsprout/buzzsprout-api#authentication
+        token: '379992ab0483fb1ab25a3fc2c0378aab',
+        podcastId: '1288514',
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-styled-components`,

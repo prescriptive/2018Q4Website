@@ -18,6 +18,11 @@ exports.createPages = async ({ graphql, actions }) => {
           uid
         }
       }
+      buzz: allBuzzsproutPodcastEpisode {
+        nodes {
+          id
+        }
+      }
     }
   `)
   //   const postsPerPage = 9
@@ -46,12 +51,12 @@ exports.createPages = async ({ graphql, actions }) => {
   })
 
   const podcastTemplate = path.resolve("src/templates/podcast.js")
-  pages.data.podcast.nodes.forEach(node => {
+  pages.data.buzz.nodes.forEach(node => {
     createPage({
-      path: `/podcast/${node.uid}`,
+      path: `/podcast/${node.id}`,
       component: podcastTemplate,
       context: {
-        uid: node.uid,
+        id: node.id,
       },
     })
   })
