@@ -17,8 +17,8 @@ const PodcastTeaserStyle = styled.article`
     font-size: 18px;
     margin: 5px 0px 0px 0px;
   }
+  
   .pod-image{
-
     img{
       max-with:100%;
       width:100%;
