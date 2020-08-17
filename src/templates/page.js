@@ -168,9 +168,10 @@ const Page = ({ data }) => {
   const node = data.page
   const leadership = data.leadership
   const podcast = data.podcast
+  console.log(podcast)
+  console.log(leadership)
   const job = data.job
   const site = data.site
-  console.log(node)
   //   const site = data.site.allSite_informations.edges[0].node
   return (
     <Layout>
@@ -211,32 +212,13 @@ export const postQuery = graphql`
         }
       }
     }
-    podcast: allPrismicPodcast {
+    podcast: allBuzzsproutPodcastEpisode {
       nodes {
-        uid
-        data {
-          body {
-            raw
-          }
-          teaser {
-            text
-          }
-          image {
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 800) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-          podcast {
-            url
-          }
-          title {
-            text
-          }
-        }
+        title
+        slug
+        artwork_url
+        artist
+        description
       }
     }
     leadership: allPrismicLeadership {

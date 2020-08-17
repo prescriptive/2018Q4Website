@@ -56,14 +56,6 @@ const EntityResult = ({ slice, blog, leadership, job, podcast }) => {
       ))
   }
 
-  if (slice.primary.entity_type == "Podcast") {
-    return podcast.nodes
-      .slice(0, slice.primary.entity_count)
-      .map((post, index) => (
-        <h3>Podcast</h3>
-      ))
-  }
-
   if (slice.primary.entity_type == "Blog Post") {
     return blog.nodes
       .slice(0, slice.primary.entity_count)

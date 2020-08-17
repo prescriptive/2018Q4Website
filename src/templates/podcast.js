@@ -14,7 +14,13 @@ import AudioPlayer from "react-h5-audio-player"
 import "react-h5-audio-player/lib/styles.css"
 
 const { PlayPause, MuteUnmute } = controls
-const PodcastStyle = styled.div``
+const PodcastStyle = styled.div`
+.pod-image{
+  img{
+    max-width:300px;
+  }
+}
+`
 
 const Podcast = props => {
   // const prismicContent = props.data.prismic.allBlog_posts.edges[0]
@@ -25,7 +31,7 @@ const Podcast = props => {
 
   console.log(props)
 
-  // const podcastUrl = node.podcast.url
+  const podcastUrl = props.data.page.audio_url
   // console.log(podcastUrl)
 
   // this.player = createRef()
@@ -36,17 +42,23 @@ const Podcast = props => {
     <Layout>
       {/* <SEO site={site} page={node} /> */}
       <PodcastStyle>
-        {/* <Container>
-          <h1>{node.title.text}</h1>
+        <Container>
+          <h1>{props.data.page.title}</h1>
+          <div className="pod-image">
+            <img src={props.data.page.artwork_url} />
+          </div>
           <AudioPlayer
-            autoPlay
             src={podcastUrl}
             onPlay={e => console.log("onPlay")}
             // other props here
           />
-          <RichText render={node.body.raw} linkResolver={linkResolver} />
-        </Container> */}
-        <h3>test</h3>
+          <div
+  key={`body`}
+  id="___gatsby"
+  dangerouslySetInnerHTML={{ __html: props.data.page.description }}
+/>
+          {/* <RichText render={props.data.page.description} linkResolver={linkResolver} /> */}
+        </Container>
       </PodcastStyle>
     </Layout>
   )

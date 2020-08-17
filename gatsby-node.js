@@ -21,6 +21,8 @@ exports.createPages = async ({ graphql, actions }) => {
       buzz: allBuzzsproutPodcastEpisode {
         nodes {
           id
+          title
+          slug
         }
       }
     }
@@ -52,8 +54,10 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const podcastTemplate = path.resolve("src/templates/podcast.js")
   pages.data.buzz.nodes.forEach(node => {
+    // var podSlug = convertToSlug(node.title)
+    // console.log(podSlug)
     createPage({
-      path: `/podcast/${node.id}`,
+      path: `/the-podcasts/${node.slug}`,
       component: podcastTemplate,
       context: {
         id: node.id,
@@ -91,4 +95,14 @@ exports.createPages = async ({ graphql, actions }) => {
       })
     }
   })
+}
+
+
+function convertToSlug(Text)
+{
+    return Text
+        .toLowerCase()
+        .replace(/ /g,'-')
+        .replace(/[^\w-]+/g,'')
+        ;
 }
