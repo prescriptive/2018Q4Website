@@ -35,7 +35,7 @@ export const PodcastTeaser = ({ post }) => {
         <div
   key={`body`}
   id="___gatsby"
-  dangerouslySetInnerHTML={{ __html: post.description }}
+  dangerouslySetInnerHTML={{ __html: post.summary }}
 />
       </Link>
     </PodcastTeaserStyle>

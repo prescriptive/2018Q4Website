@@ -219,6 +219,7 @@ export const postQuery = graphql`
         artwork_url
         artist
         description
+        summary
       }
     }
     leadership: allPrismicLeadership {
