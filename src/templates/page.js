@@ -168,8 +168,6 @@ const Page = ({ data }) => {
   const node = data.page
   const leadership = data.leadership
   const podcast = data.podcast
-  console.log(podcast)
-  console.log(leadership)
   const job = data.job
   const site = data.site
   //   const site = data.site.allSite_informations.edges[0].node
@@ -405,6 +403,32 @@ export const postQuery = graphql`
                     id
                     data {
                       body {
+                        ... on PrismicBlocksBodyColumnsSection {
+                          id
+                          slice_type
+                          primary {
+                            background_color
+                            slice_id {
+                              text
+                            }
+                            background_image {
+                              localFile {
+                                url
+                              }
+                            }
+                            column_count
+                            font_color
+                            h1_title
+                            section_title {
+                              text
+                            }
+                          }
+                          items {
+                            content {
+                              raw
+                            }
+                          }
+                        }
                         ... on PrismicBlocksBodyBasicSection {
                           id
                           slice_type
@@ -413,8 +437,8 @@ export const postQuery = graphql`
                             background_image {
                               localFile {
                                 childImageSharp {
-                                  fluid {
-                                    src
+                                  fluid(maxWidth: 1920) {
+                                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
                                   }
                                 }
                               }
@@ -441,8 +465,8 @@ export const postQuery = graphql`
                                           background_image {
                                             localFile {
                                               childImageSharp {
-                                                fluid {
-                                                  src
+                                                fluid(maxWidth: 1920) {
+                                                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
                                                 }
                                               }
                                             }

@@ -15,7 +15,10 @@ import "react-h5-audio-player/lib/styles.css"
 import BgImage from "../images/podcast.webp"
 import BgImageHat from "../images/podcasthat.png"
 import PodcastTeaser from "../components/entities/podcast/PodcastTeaser"
-
+import BasicSectionSlice from "../components/slices/BasicSectionSlice"
+import LeftRightSlice from "../components/slices/LeftRightSlice"
+import ColumnsSectionSlice from "../components/slices/ColumnsSectionSlice"
+import "../components/scss/blocks/podSubscribe.scss"
 const { PlayPause, MuteUnmute } = controls
 const PodHeader = styled.div`
   background-image: url(${BgImage});
@@ -33,6 +36,7 @@ const PodHeader = styled.div`
 `
 const PodcastStyle = styled.div`
   .pod-image {
+    text-align: center;
     img {
       max-width: 300px;
     }
@@ -40,7 +44,6 @@ const PodcastStyle = styled.div`
   .pod-container {
     display: flex;
     justify-content: space-between;
-    padding-bottom: 60px;
     .pod-left {
       width: calc(50% - 20px);
     }
@@ -72,6 +75,12 @@ const PodcastStyle = styled.div`
     > article {
       width: calc(100% / 3 - 10px);
     }
+  }
+  .subscribe-blocker {
+    margin: 60px 0px;
+  }
+  .contact-blocker {
+    padding: 60px 0px;
   }
   .rhap_rewind-button {
     display: flex;
@@ -117,11 +126,68 @@ const PodcastStyle = styled.div`
     background: ${variable.red};
   }
 `
+
+// Sort and display the different slice options
+const PostSlices = ({ slices, blog, leadership, job }) => {
+  return slices.map((slice, index) => {
+    var sliceID = ""
+    if (slice.primary) {
+      if (slice.primary.slice_id != undefined) {
+        var sliceID = slice.primary.slice_id.text
+      }
+    }
+    console.log(slice)
+    const res = (() => {
+      switch (slice.slice_type) {
+        case "basic_section":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-basic"
+            >
+              {<BasicSectionSlice slice={slice} />}
+            </div>
+          )
+
+        case "left_right_section":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-left-right"
+            >
+              {<LeftRightSlice slice={slice} />}
+            </div>
+          )
+
+        case "columns_section":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-left-right"
+            >
+              {<ColumnsSectionSlice slice={slice} />}
+            </div>
+          )
+
+        default:
+          return
+      }
+    })()
+    return res
+  })
+}
+
 const Podcast = props => {
   console.log(props)
 
   const podcastUrl = props.data.page.audio_url
   const podcasts = props.data.podcast
+  const subscribeBlock = props.data.subscribeBlock.data.body
+  const contactBlock = props.data.contactBlock.data.body
+
   return (
     <Layout>
       {/* <SEO site={site} page={node} /> */}
@@ -160,6 +226,11 @@ const Podcast = props => {
 
           {/* <RichText render={props.data.page.description} linkResolver={linkResolver} /> */}
         </Container>
+
+        <div className="subscribe-blocker">
+          <PostSlices slices={subscribeBlock} />
+        </div>
+
         <Container>
           <div class="podcasts-container">
             {podcasts.nodes.map((post, index) => (
@@ -167,6 +238,10 @@ const Podcast = props => {
             ))}
           </div>
         </Container>
+
+        <div className="contact-blocker">
+          <PostSlices slices={contactBlock} />
+        </div>
       </PodcastStyle>
     </Layout>
   )
@@ -190,6 +265,127 @@ export const podcastQuery = graphql`
           }
           twitter_author {
             text
+          }
+        }
+      }
+    }
+    contactBlock: prismicBlocks(
+      id: { eq: "82cd060c-8d0b-5e93-b730-63abec35e126" }
+    ) {
+      data {
+        body {
+          ... on PrismicBlocksBodyLeftRightSection {
+            id
+            slice_type
+            primary {
+              active_campaign_form_number
+              embed {
+                raw
+              }
+              left_background_image {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 1920) {
+                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                    }
+                  }
+                }
+              }
+              left_content {
+                html
+                raw
+              }
+              right_background_image {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 1920) {
+                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                    }
+                  }
+                }
+              }
+              right_content {
+                html
+                raw
+              }
+              right_embed {
+                raw
+              }
+              section_title {
+                text
+              }
+              slice_id {
+                text
+              }
+            }
+          }
+          ... on PrismicBlocksBodyColumnsSection {
+            id
+            slice_type
+            primary {
+              background_color
+              background_image {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 1920) {
+                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                    }
+                  }
+                }
+              }
+              column_count
+              font_color
+              h1_title
+              slice_id {
+                text
+              }
+              section_title {
+                text
+              }
+            }
+            items {
+              content {
+                raw
+              }
+            }
+          }
+        }
+      }
+    }
+    subscribeBlock: prismicBlocks(
+      id: { eq: "cc6385d2-62fa-5b5a-a79c-70d3d5199b56" }
+    ) {
+      data {
+        body {
+          ... on PrismicBlocksBodyColumnsSection {
+            id
+            slice_type
+            primary {
+              background_color
+              background_image {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 1920) {
+                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                    }
+                  }
+                }
+              }
+              column_count
+              font_color
+              h1_title
+              slice_id {
+                text
+              }
+              section_title {
+                text
+              }
+            }
+            items {
+              content {
+                raw
+              }
+            }
           }
         }
       }

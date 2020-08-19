@@ -11,32 +11,34 @@ const PodcastTeaserStyle = styled.article`
   h2 {
     font-size: 27px;
     font-weight: 500;
+    line-height: 36px;
     margin: 20px 0px 0px 0px;
   }
-  p {
+  .pod-summary {
     font-size: 18px;
-    margin: 5px 0px 0px 0px;
+    margin: 10px 0px 0px 0px;
   }
-  
-  .pod-image{
-    img{
-      max-with:100%;
-      width:100%;
+
+  .pod-image {
+    img {
+      max-with: 100%;
+      width: 100%;
     }
   }
 `
 export const PodcastTeaser = ({ post }) => {
-  console.log(post)
   return (
     <PodcastTeaserStyle>
       <Link to={"/the-podcasts/" + post.slug}>
-        <div className="pod-image"><img src={post.artwork_url} /></div>
+        <div className="pod-image">
+          <img src={post.artwork_url} />
+        </div>
         <h2>{post.title}</h2>
         <div
-  key={`body`}
-  id="___gatsby"
-  dangerouslySetInnerHTML={{ __html: post.summary }}
-/>
+          key={`body`}
+          className="pod-summary"
+          dangerouslySetInnerHTML={{ __html: post.summary }}
+        />
       </Link>
     </PodcastTeaserStyle>
   )

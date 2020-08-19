@@ -7,9 +7,11 @@ import YouTube from "react-youtube"
 import ResponsiveEmbed from "react-responsive-embed"
 import "../scss/blocks/globalContact.scss"
 import "../scss/blocks/dirContact.scss"
+import "../scss/blocks/podSubscribe.scss"
 import linkResolver from "../../utils/linkResolver"
 import BasicSectionSlice from "../slices/BasicSectionSlice"
 import LeftRightSlice from "../slices/LeftRightSlice"
+import ColumnsSectionSlice from "../slices/ColumnsSectionSlice"
 
 const BlockReferenceStyle = styled.div``
 
@@ -22,6 +24,7 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
         var sliceID = slice.primary.slice_id.text
       }
     }
+    console.log(slice.slice_type)
     const res = (() => {
       switch (slice.slice_type) {
         case "basic_section":
@@ -43,6 +46,17 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
               className="slice-wrapper slice-left-right"
             >
               {<LeftRightSlice slice={slice} />}
+            </div>
+          )
+
+        case "columns_section":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-left-right"
+            >
+              {<ColumnsSectionSlice slice={slice} />}
             </div>
           )
 

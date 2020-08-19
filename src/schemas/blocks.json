@@ -172,6 +172,72 @@
               }
             },
             "repeat": {}
+          },
+          "columns_section": {
+            "type": "Slice",
+            "fieldset": "Columns Section",
+            "description": "Columns Section",
+            "icon": "view_column",
+            "display": "grid",
+            "non-repeat": {
+              "section_title": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "heading2",
+                  "label": "Section Title"
+                }
+              },
+              "h1_title": {
+                "type": "Boolean",
+                "config": {
+                  "default_value": false,
+                  "label": "H1 Title"
+                }
+              },
+              "slice_id": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "paragraph",
+                  "label": "Slice ID"
+                }
+              },
+              "column_count": {
+                "type": "Number",
+                "config": {
+                  "label": "Column Count"
+                }
+              },
+              "background_color": {
+                "type": "Color",
+                "config": {
+                  "label": "Background Color"
+                }
+              },
+              "font_color": {
+                "type": "Color",
+                "config": {
+                  "label": "Font Color"
+                }
+              },
+              "background_image": {
+                "type": "Image",
+                "config": {
+                  "constraint": {},
+                  "thumbnails": [],
+                  "label": "Background Image"
+                }
+              }
+            },
+            "repeat": {
+              "content": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
+                  "allowTargetBlank": true,
+                  "label": "Content"
+                }
+              }
+            }
           }
         }
       }
