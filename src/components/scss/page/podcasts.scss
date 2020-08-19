@@ -5,7 +5,7 @@
       &:nth-child(2) {
         .block-img {
           display: flex;
-          justify-content: center;
+          justify-content: flex-end;
           img {
             margin: unset;
           }

@@ -85,7 +85,7 @@ function returnLeft(primary, leftWidth) {
           Tag="section"
           fluid={primary.left_background_image.localFile.childImageSharp.fluid}
         >
-          <Container
+          <div
           // style={{
           //   width: "calc(" + variable.desktopWidth + " * ." + leftWidth + ")",
           // }}
@@ -105,12 +105,12 @@ function returnLeft(primary, leftWidth) {
                 dangerouslySetInnerHTML={{ __html: primary.embed.text }}
               />
             )}
-          </Container>
+          </div>
         </BackgroundImage>
       )}
       {!primary.left_background_image.localFile && (
         <section>
-          <Container
+          <div
           // style={{
           //   width: "calc(" + variable.desktopWidth + " * ." + leftWidth + ")",
           // }}
@@ -135,7 +135,7 @@ function returnLeft(primary, leftWidth) {
                 {addActive(primary.active_campaign_form_number)}
               </div>
             )}
-          </Container>
+          </div>
         </section>
       )}
     </React.Fragment>
@@ -150,7 +150,7 @@ function returnRight(primary, rightWidth) {
           Tag="section"
           fluid={primary.right_background_image.localFile.childImageSharp.fluid}
         >
-          <Container
+          <div
           // style={{
           //   width:
           //     "calc(" + variable.desktopWidth + " * ." + rightWidth + ")",
@@ -173,12 +173,12 @@ function returnRight(primary, rightWidth) {
                 }}
               />
             )}
-          </Container>
+          </div>
         </BackgroundImage>
       )}
       {!primary.right_background_image.localFile && (
         <section>
-          <Container
+          <div
           // style={{
           //   width:
           //     "calc(" + variable.desktopWidth + " * ." + rightWidth + ")",
@@ -201,7 +201,7 @@ function returnRight(primary, rightWidth) {
                 }}
               />
             )}
-          </Container>
+          </div>
         </section>
       )}
     </React.Fragment>
