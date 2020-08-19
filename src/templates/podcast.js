@@ -232,7 +232,7 @@ const Podcast = props => {
         </div>
 
         <Container>
-          <h2>Show Notes</h2>
+          <h2>Browse All Episodes</h2>
           <div class="podcasts-container">
             {podcasts.nodes.map((post, index) => (
               <PodcastTeaser post={post} key={index}></PodcastTeaser>
