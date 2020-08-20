@@ -37,19 +37,25 @@ const PodHeader = styled.div`
 const PodcastStyle = styled.div`
   .pod-image {
     text-align: center;
-    img {
-      max-width: 300px;
-    }
   }
   .pod-container {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     .pod-left {
-      width: calc(50% - 20px);
+      width: calc(60% - 20px);
+      @media (max-width: ${variable.mobileWidth}) {
+        width: calc(100%);
+        margin-bottom: 60px;
+      }
     }
     .pod-right {
-      width: calc(50% - 20px);
+      width: calc(40% - 20px);
       text-align: right;
+      @media (max-width: ${variable.mobileWidth}) {
+        width: calc(100%);
+        text-align: left;
+      }
       img {
         max-width: 100%;
       }
@@ -65,15 +71,26 @@ const PodcastStyle = styled.div`
       display: unset;
     }
   }
-  .pod-summary {
+  .pod-top-summary {
     margin-top: 40px;
     margin-bottom: 60px;
   }
   .podcasts-container {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     > article {
       width: calc(100% / 3 - 10px);
+      margin-bottom: 40px;
+      @media (max-width: ${variable.tabletWidth}) {
+        width: calc(100% / 2 - 10px);
+      }
+      @media (max-width: ${variable.mobileWidth}) {
+        width: 100%;
+        &:last-child {
+          margin-bottom: 0px;
+        }
+      }
     }
   }
   .subscribe-blocker {
@@ -81,6 +98,9 @@ const PodcastStyle = styled.div`
   }
   .contact-blocker {
     padding: 60px 0px;
+  }
+  .rhap_container {
+    margin-bottom: 20px;
   }
   .rhap_rewind-button {
     display: flex;
@@ -203,7 +223,7 @@ const Podcast = props => {
           <div className="pod-container">
             <div className="pod-left">
               <div className="pod-date">{props.data.page.published_at}</div>
-              <div className="pod-summary">{props.data.page.summary}</div>
+              <div className="pod-top-summary">{props.data.page.summary}</div>
               <AudioPlayer
                 src={podcastUrl}
                 onPlay={e => console.log("onPlay")}

@@ -4,6 +4,7 @@
       width: 35%;
       @include mobile() {
         width: 100%;
+        padding: 0px 0px;
         .section-content {
           display: flex;
           justify-content: center;

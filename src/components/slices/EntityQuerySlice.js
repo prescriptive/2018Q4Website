@@ -30,6 +30,9 @@ const EntityQueryStyle = styled.div`
     @media (max-width: ${variable.mobileWidth}) {
       width: 100%;
       margin-right: 0px !important;
+      &:last-child {
+        margin-bottom: 0px;
+      }
     }
   }
 `
@@ -126,13 +129,11 @@ export const EntityQuerySlice = ({ slice, blog, leadership, job, podcast }) => {
   // }
   var theh1Title = null
   var theh2Title = null
-  if(slice.primary.section_title && slice.primary.h1_title == true){
+  if (slice.primary.section_title && slice.primary.h1_title == true) {
     var theh1Title = slice.primary.section_title.text
-  }
-  else if(slice.primary.section_title && slice.primary.h1_title == false){
+  } else if (slice.primary.section_title && slice.primary.h1_title == false) {
     var theh2Title = slice.primary.section_title.text
-  }
-  else if(slice.primary.section_title && slice.primary.h1_title == false){
+  } else if (slice.primary.section_title && slice.primary.h1_title == false) {
     var theh2Title = slice.primary.section_title[0].text
   }
 

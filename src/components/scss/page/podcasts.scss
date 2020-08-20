@@ -3,9 +3,15 @@
     align-items: flex-start;
     section {
       &:nth-child(2) {
+        @include mobile() {
+          padding: 0px 0px;
+        }
         .block-img {
           display: flex;
           justify-content: flex-end;
+          @include mobile() {
+            justify-content: flex-start;
+          }
           img {
             margin: unset;
           }
@@ -23,5 +29,10 @@
         line-height: 48px;
       }
     }
+  }
+}
+#slice-id-podcast-query {
+  section {
+    padding-bottom: 0px;
   }
 }
