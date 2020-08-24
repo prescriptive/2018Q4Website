@@ -13,9 +13,9 @@ h1 {
   font-weight: 800;
   font-size: 54px;
   line-height: 72px;
-  a{
+  a {
     text-decoration: underline;
-    display:block;
+    display: block;
   }
 }
 h2 {
@@ -24,19 +24,19 @@ h2 {
   font-size: 36px;
   line-height: 48px;
   display: inline-block;
-  margin:25px 0px 25px 0px;
-  .h2-light{
+  margin: 25px 0px 25px 0px;
+  .h2-light {
     font-family: "Roboto";
-    font-weight:500;
+    font-weight: 500;
   }
 }
 h3 {
   font-family: "Libre Franklin";
   font-size: 27px;
   font-weight: 800;
-  .h2-light{
+  .h2-light {
     font-family: "Roboto";
-    font-weight:500;
+    font-weight: 500;
   }
 }
 a {
@@ -53,7 +53,7 @@ p {
     text-decoration: underline;
   }
 }
-ul{
+ul {
   // margin:0px;
 }
 .cta-button {
@@ -61,4 +61,8 @@ ul{
 }
 ._form {
   display: none;
+}
+.block-img {
+  width: 100%;
+  height: auto;
 }

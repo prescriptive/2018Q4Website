@@ -8,6 +8,7 @@ import { RichText } from "prismic-reactjs"
 const PodcastTeaserStyle = styled.article`
   background-color: ${variable.lightGray};
   padding: 35px 25px;
+  border-radius: 4px;
   h2 {
     font-size: 27px;
     font-weight: 500;
