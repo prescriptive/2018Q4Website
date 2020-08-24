@@ -52,6 +52,20 @@ const AudioFileStyle = styled.span`
   .rhap_progress-indicator {
     background: ${variable.red};
   }
+  .rhap_controls-section {
+    display: none;
+  }
+  @media (max-width: ${variable.mobileWidth}) {
+    #rhap_current-time {
+      display: none;
+    }
+    .rhap_time {
+      display: none;
+    }
+    .slash {
+      display: none;
+    }
+  }
 `
 
 export const AudioFile = ({ content, element }) => {
@@ -65,13 +79,13 @@ export const AudioFile = ({ content, element }) => {
           backward: 15000,
         }}
         layout="horizontal"
-        customControlsSection={[RHAP_UI.VOLUME_CONTROLS]}
+        customControlsSection={[]}
         customProgressBarSection={[
           ,
           RHAP_UI.MAIN_CONTROLS,
           RHAP_UI.PROGRESS_BAR,
           RHAP_UI.CURRENT_TIME,
-          <div>/</div>,
+          <div className="slash">/</div>,
           RHAP_UI.DURATION,
         ]}
         src={fileUrl}

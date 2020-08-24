@@ -25,7 +25,7 @@ const HeroStyle = styled.div`
 `
 
 export const HeroSlice = ({ slice }) => {
-  var font_color = "blue"
+  var font_color = "white"
   var fluid = null
   var hero_title = null
   var min_height = 360

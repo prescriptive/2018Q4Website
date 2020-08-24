@@ -9,9 +9,6 @@ import Img from "gatsby-image"
 import { linkResolver } from "../utils/linkResolver"
 import { RichText, Date } from "prismic-reactjs"
 import { withPreview } from "gatsby-source-prismic"
-import { Media, Player, controls } from "react-media-player"
-import AudioPlayer from "react-h5-audio-player"
-import "react-h5-audio-player/lib/styles.css"
 import BgImage from "../images/podcast.webp"
 import BgImageHat from "../images/podcasthat.png"
 import PodcastTeaser from "../components/entities/podcast/PodcastTeaser"
@@ -19,11 +16,78 @@ import BasicSectionSlice from "../components/slices/BasicSectionSlice"
 import LeftRightSlice from "../components/slices/LeftRightSlice"
 import ColumnsSectionSlice from "../components/slices/ColumnsSectionSlice"
 import "../components/scss/blocks/podSubscribe.scss"
-const { PlayPause, MuteUnmute } = controls
+import AudioPlayer from "react-h5-audio-player"
+import { RHAP_UI } from "react-h5-audio-player"
+import "react-h5-audio-player/lib/styles.css"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faRedoAlt } from "@fortawesome/free-solid-svg-icons"
+import { faUndoAlt } from "@fortawesome/free-solid-svg-icons"
+const AudioFileStyle = styled.span`
+  .rhap_rewind-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:before {
+      content: "15";
+      color: ${variable.darkGray};
+      font-size: 10px;
+      position: absolute;
+    }
+    svg {
+      font-size: 34px;
+      color: ${variable.darkGray};
+    }
+  }
+  .rhap_forward-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:before {
+      content: "15";
+      color: black;
+      font-size: 10px;
+      position: absolute;
+      color: ${variable.darkGray};
+    }
+    svg {
+      font-size: 34px;
+      color: ${variable.darkGray};
+    }
+  }
+  .rhap_progress-bar-show-download {
+    background-color: ${variable.lightGray};
+  }
+  .rhap_download-progress {
+    background-color: ${variable.medGray};
+  }
+  .rhap_progress-filled {
+    background-color: ${variable.red};
+  }
+  .rhap_progress-indicator {
+    background: ${variable.red};
+  }
+  .rhap_controls-section {
+    display: none;
+  }
+  @media (max-width: ${variable.mobileWidth}) {
+    #rhap_current-time {
+      display: none;
+    }
+    .rhap_time {
+      display: none;
+    }
+    .slash {
+      display: none;
+    }
+  }
+`
 const PodHeader = styled.div`
   background-image: url(${BgImage});
   background-size: cover;
   margin-bottom: 40px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
   .pod-header-container {
     min-height: 360px;
     display: flex;
@@ -224,10 +288,31 @@ const Podcast = props => {
             <div className="pod-left">
               <div className="pod-date">{props.data.page.published_at}</div>
               <div className="pod-top-summary">{props.data.page.summary}</div>
-              <AudioPlayer
-                src={podcastUrl}
-                onPlay={e => console.log("onPlay")}
-              />
+              <AudioFileStyle>
+                <AudioPlayer
+                  progressJumpSteps={{
+                    forward: 15000,
+                    backward: 15000,
+                  }}
+                  layout="horizontal"
+                  customControlsSection={[]}
+                  customProgressBarSection={[
+                    ,
+                    RHAP_UI.MAIN_CONTROLS,
+                    RHAP_UI.PROGRESS_BAR,
+                    RHAP_UI.CURRENT_TIME,
+                    <div className="slash">/</div>,
+                    RHAP_UI.DURATION,
+                  ]}
+                  src={podcastUrl}
+                  onPlay={e => console.log("onPlay")}
+                  customIcons={{
+                    rewind: <FontAwesomeIcon icon={faUndoAlt} />,
+                    forward: <FontAwesomeIcon icon={faRedoAlt} />,
+                  }}
+                  // other props here
+                />
+              </AudioFileStyle>
               <h2>Show Notes</h2>
               <div className="pod-image-desc">
                 <img src={props.data.page.artwork_url} />
