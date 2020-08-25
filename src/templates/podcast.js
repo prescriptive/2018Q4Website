@@ -10,7 +10,6 @@ import Img from "gatsby-image"
 import { linkResolver } from "../utils/linkResolver"
 import { RichText, Date } from "prismic-reactjs"
 import { withPreview } from "gatsby-source-prismic"
-import BgImage from "../images/podcast.webp"
 import BgImageHat from "../images/podcasthat.png"
 import PodcastTeaser from "../components/entities/podcast/PodcastTeaser"
 import BasicSectionSlice from "../components/slices/BasicSectionSlice"
@@ -83,12 +82,6 @@ const AudioFileStyle = styled.span`
   }
 `
 const PodHeader = styled.div`
-  background-image: url(${BgImage});
-  background-size: cover;
-  margin-bottom: 40px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
   .pod-header-container {
     min-height: 360px;
     display: flex;
@@ -265,18 +258,6 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
   })
 }
 
-// const podImage = useStaticQuery(graphql`
-//   query {
-//     placeholderImage: file(relativePath: { eq: "podcast.webp" }) {
-//       childImageSharp {
-//         fluid(maxWidth: 1920) {
-//           ...GatsbyImageSharpFluid
-//         }
-//       }
-//     }
-//   }
-// `)
-// console
 const Podcast = props => {
   const podcastUrl = props.data.page.audio_url
   const podcasts = props.data.podcast
