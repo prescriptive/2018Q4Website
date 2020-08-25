@@ -63,6 +63,8 @@ ul {
   display: none;
 }
 .block-img img {
-  width: 100%;
-  height: auto;
+  @include mobile() {
+    width: 100%;
+    height: auto;
+  }
 }
