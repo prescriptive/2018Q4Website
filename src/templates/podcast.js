@@ -1,10 +1,11 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
 import * as variable from "../components/variables"
 import styled from "styled-components"
 import Container from "../components/container"
 import SEO from "../components/seo"
+import BackgroundImage from "gatsby-background-image"
 import Img from "gatsby-image"
 import { linkResolver } from "../utils/linkResolver"
 import { RichText, Date } from "prismic-reactjs"
@@ -264,23 +265,37 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
   })
 }
 
+// const podImage = useStaticQuery(graphql`
+//   query {
+//     placeholderImage: file(relativePath: { eq: "podcast.webp" }) {
+//       childImageSharp {
+//         fluid(maxWidth: 1920) {
+//           ...GatsbyImageSharpFluid
+//         }
+//       }
+//     }
+//   }
+// `)
+// console
 const Podcast = props => {
-  console.log(props)
-
   const podcastUrl = props.data.page.audio_url
   const podcasts = props.data.podcast
   const subscribeBlock = props.data.subscribeBlock.data.body
   const contactBlock = props.data.contactBlock.data.body
+  const bg = props.data.bgImage.childImageSharp.fluid
+  console.log(props)
 
   return (
     <Layout>
       {/* <SEO site={site} page={node} /> */}
       <PodHeader>
-        <Container>
-          <div className="pod-header-container">
-            <h1>{props.data.page.title}</h1>
-          </div>
-        </Container>
+        <BackgroundImage Tag="section" fluid={bg}>
+          <Container>
+            <div className="pod-header-container">
+              <h1>{props.data.page.title}</h1>
+            </div>
+          </Container>
+        </BackgroundImage>
       </PodHeader>
       <PodcastStyle>
         <Container>
@@ -357,6 +372,13 @@ export default Podcast
 
 export const podcastQuery = graphql`
   query PodcastById($id: String!) {
+    bgImage: file(relativePath: { eq: "podcast.webp" }) {
+      childImageSharp {
+        fluid(maxWidth: 1920) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
     site: allPrismicSiteInformation {
       nodes {
         data {
