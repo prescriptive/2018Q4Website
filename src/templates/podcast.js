@@ -353,7 +353,7 @@ export default Podcast
 
 export const podcastQuery = graphql`
   query PodcastById($id: String!) {
-    bgImage: file(relativePath: { eq: "podcast.webp" }) {
+    bgImage: file(relativePath: { eq: "blogbg.png" }) {
       childImageSharp {
         fluid(maxWidth: 1920) {
           ...GatsbyImageSharpFluid
