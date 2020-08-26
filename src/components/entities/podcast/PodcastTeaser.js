@@ -30,7 +30,7 @@ const PodcastTeaserStyle = styled.article`
 export const PodcastTeaser = ({ post }) => {
   return (
     <PodcastTeaserStyle>
-      <Link to={"/the-podcasts/" + post.slug}>
+      <Link to={"/the-podcast/" + post.slug}>
         <div className="pod-image">
           <img src={post.artwork_url} />
         </div>
