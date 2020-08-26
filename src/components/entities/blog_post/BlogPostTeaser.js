@@ -89,7 +89,7 @@ const BlogPostTeaserStyle = styled.article`
 `
 
 function returnImage(post) {
-  if (post.data.main_image != null) {
+  if (post.data.main_image.localFile != null) {
     if (post.data.main_image.localFile.childImageSharp) {
       return (
         <BackgroundImage

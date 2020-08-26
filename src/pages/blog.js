@@ -166,6 +166,7 @@ const Bloger = props => {
       },
     },
   }
+  console.log(props)
   return (
     <Layout>
       <SEO site={site} page={page} />

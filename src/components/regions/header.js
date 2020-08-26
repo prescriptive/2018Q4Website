@@ -19,7 +19,7 @@ import { withPreview } from "gatsby-source-prismic-graphql"
 const HtmlTooltip = withStyles(theme => ({
   tooltip: {
     backgroundColor: variable.medLightGray,
-    color: "rgba(0, 0, 0, 0.87)",
+    color: "#ffffff",
     padding: 20,
     fontSize: theme.typography.pxToRem(12),
     border: "1px solid #dadde9",
@@ -139,12 +139,23 @@ function menuRender(menuitem) {
           <React.Fragment>
             {menuitem.items.map((submenuitem, index) => (
               <div key={index}>
-                <Link
-                  activeStyle={activeStyle}
-                  to={submenuitem.sub_nav_link.url}
-                >
-                  {submenuitem.sub_nav_link_label.text}
-                </Link>
+                {console.log(submenuitem)}
+                {submenuitem.sub_nav_link.url &&
+                                <Link
+                                activeStyle={activeStyle}
+                                to={submenuitem.sub_nav_link.url}
+                              >
+                                {submenuitem.sub_nav_link_label.text}
+                              </Link>
+                }
+              {submenuitem.relative_link.text &&
+                                <Link
+                                activeStyle={activeStyle}
+                                to={submenuitem.relative_link.text}
+                              >
+                                {submenuitem.sub_nav_link_label.text}
+                              </Link>
+        }
               </div>
             ))}
           </React.Fragment>
@@ -186,10 +197,13 @@ const query2 = graphql`
               id
               items {
                 sub_nav_link {
-                  id
+                  url
                   link_type
                 }
                 sub_nav_link_label {
+                  text
+                }
+                relative_link {
                   text
                 }
               }

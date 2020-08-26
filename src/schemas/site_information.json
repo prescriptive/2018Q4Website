@@ -1,133 +1,140 @@
 {
-  "Main" : {
-    "site_title" : {
-      "type" : "StructuredText",
-      "config" : {
-        "single" : "heading1",
-        "label" : "Site Title",
-        "placeholder" : "Your Captivating Title"
+  "Main": {
+    "site_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Site Title",
+        "placeholder": "Your Captivating Title"
       }
     },
-    "site_url" : {
-      "type" : "StructuredText",
-      "config" : {
-        "single" : "paragraph",
-        "label" : "Site URL",
-        "placeholder" : "https://www.example.com"
+    "site_url": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph",
+        "label": "Site URL",
+        "placeholder": "https://www.example.com"
       }
     },
-    "description" : {
-      "type" : "StructuredText",
-      "config" : {
-        "single" : "paragraph",
-        "label" : "Description",
-        "placeholder" : "Default Description"
+    "description": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph",
+        "label": "Description",
+        "placeholder": "Default Description"
       }
     },
-    "logo" : {
-      "type" : "Image",
-      "config" : {
-        "constraint" : { },
-        "thumbnails" : [ ],
-        "label" : "Logo"
+    "logo": {
+      "type": "Image",
+      "config": {
+        "constraint": {},
+        "thumbnails": [],
+        "label": "Logo"
       }
     }
   },
-  "Social" : {
-    "facebook" : {
-      "type" : "Link",
-      "config" : {
-        "label" : "Facebook"
+  "Social": {
+    "facebook": {
+      "type": "Link",
+      "config": {
+        "label": "Facebook"
       }
     },
-    "twitter" : {
-      "type" : "Link",
-      "config" : {
-        "label" : "Twitter"
+    "twitter": {
+      "type": "Link",
+      "config": {
+        "label": "Twitter"
       }
     },
-    "instagram" : {
-      "type" : "Link",
-      "config" : {
-        "label" : "Instagram"
+    "instagram": {
+      "type": "Link",
+      "config": {
+        "label": "Instagram"
       }
     },
-    "pinterest" : {
-      "type" : "Link",
-      "config" : {
-        "label" : "Pinterest"
+    "pinterest": {
+      "type": "Link",
+      "config": {
+        "label": "Pinterest"
       }
     },
-    "email" : {
-      "type" : "Link",
-      "config" : {
-        "label" : "Email"
+    "email": {
+      "type": "Link",
+      "config": {
+        "label": "Email"
       }
     },
-    "twitter_author" : {
-      "type" : "StructuredText",
-      "config" : {
-        "single" : "paragraph",
-        "label" : "Twitter Author"
+    "twitter_author": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph",
+        "label": "Twitter Author"
       }
     }
   },
-  "Main Navigation" : {
-    "display_name" : {
-      "type" : "StructuredText",
-      "config" : {
-        "single" : "heading1",
-        "label" : "Display name"
+  "Main Navigation": {
+    "display_name": {
+      "type": "StructuredText",
+      "config": {
+        "single": "heading1",
+        "label": "Display name"
       }
     },
-    "nav" : {
-      "type" : "Slices",
-      "fieldset" : "Slice zone",
-      "config" : {
-        "choices" : {
-          "nav_item" : {
-            "type" : "Slice",
-            "fieldset" : "Nav Item",
-            "description" : "Nav Item with Sub Navigation",
-            "icon" : "insert_link",
-            "non-repeat" : {
-              "label" : {
-                "type" : "StructuredText",
-                "config" : {
-                  "single" : "paragraph",
-                  "label" : "Label",
-                  "placeholder" : "Enter Link Label..."
+    "nav": {
+      "type": "Slices",
+      "fieldset": "Slice zone",
+      "config": {
+        "choices": {
+          "nav_item": {
+            "type": "Slice",
+            "fieldset": "Nav Item",
+            "description": "Nav Item with Sub Navigation",
+            "icon": "insert_link",
+            "non-repeat": {
+              "label": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "paragraph",
+                  "label": "Label",
+                  "placeholder": "Enter Link Label..."
                 }
               },
-              "link" : {
-                "type" : "Link",
-                "config" : {
-                  "label" : "Link",
-                  "placeholder" : "Select Link..."
+              "link": {
+                "type": "Link",
+                "config": {
+                  "label": "Link",
+                  "placeholder": "Select Link..."
                 }
               },
-              "relative_link" : {
-                "type" : "StructuredText",
-                "config" : {
-                  "single" : "paragraph",
-                  "label" : "Relative Link"
+              "relative_link": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "paragraph",
+                  "label": "Relative Link"
                 }
               }
             },
-            "repeat" : {
-              "sub_nav_link_label" : {
-                "type" : "StructuredText",
-                "config" : {
-                  "single" : "paragraph",
-                  "label" : "Sub Nav Link Label",
-                  "placeholder" : "Enter Sub Nav Link Label..."
+            "repeat": {
+              "sub_nav_link_label": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "paragraph",
+                  "label": "Sub Nav Link Label",
+                  "placeholder": "Enter Sub Nav Link Label..."
                 }
               },
-              "sub_nav_link" : {
-                "type" : "Link",
-                "config" : {
-                  "label" : "Sub Nav Link",
-                  "placeholder" : "Select Sub Nav Link..."
+              "sub_nav_link": {
+                "type": "Link",
+                "config": {
+                  "label": "Sub Nav Link",
+                  "placeholder": "Select Sub Nav Link..."
+                }
+              },
+              "relative_link": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "paragraph",
+                  "label": "Relative Link"
                 }
               }
             }
@@ -136,19 +143,19 @@
       }
     }
   },
-  "Blog Settings" : {
-    "meta_title" : {
-      "type" : "StructuredText",
-      "config" : {
-        "single" : "paragraph",
-        "label" : "Meta Title"
+  "Blog Settings": {
+    "meta_title": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph",
+        "label": "Meta Title"
       }
     },
-    "meta_description" : {
-      "type" : "StructuredText",
-      "config" : {
-        "single" : "paragraph",
-        "label" : "Meta Description"
+    "meta_description": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph",
+        "label": "Meta Description"
       }
     }
   }
