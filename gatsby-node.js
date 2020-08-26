@@ -13,11 +13,6 @@ exports.createPages = async ({ graphql, actions }) => {
           uid
         }
       }
-      podcast: allPrismicPodcast{
-        nodes {
-          uid
-        }
-      }
     }
   `)
   //   const postsPerPage = 9
@@ -45,16 +40,16 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
 
-  const podcastTemplate = path.resolve("src/templates/podcast.js")
-  pages.data.podcast.nodes.forEach(node => {
-    createPage({
-      path: `/podcast/${node.uid}`,
-      component: podcastTemplate,
-      context: {
-        uid: node.uid,
-      },
-    })
-  })
+  // const podcastTemplate = path.resolve("src/templates/podcast.js")
+  // pages.data.podcast.nodes.forEach(node => {
+  //   createPage({
+  //     path: `/podcast/${node.uid}`,
+  //     component: podcastTemplate,
+  //     context: {
+  //       uid: node.uid,
+  //     },
+  //   })
+  // })
   //   const jobTemplate = path.resolve("src/templates/job.js")
   //   pages.data.job.nodes.forEach(node => {
   //     createPage({
@@ -76,6 +71,8 @@ exports.createPages = async ({ graphql, actions }) => {
           uid: node.uid,
         },
       })
+    }
+    if (node.uid == "podcast") {
     } else {
       createPage({
         path: `/${node.uid}`,

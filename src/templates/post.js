@@ -172,7 +172,7 @@ const Post = props => {
           <div className="blog-post-container">
             <div className="blog-post-left">
               <div className="main-image">
-                {node.main_image && (
+                {node.main_image.localFile && (
                   <Img
                     fluid={node.main_image.localFile.childImageSharp.fluid}
                   />
