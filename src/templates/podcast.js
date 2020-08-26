@@ -82,6 +82,7 @@ const AudioFileStyle = styled.span`
   }
 `
 const PodHeader = styled.div`
+  margin-bottom: 40px;
   .pod-header-container {
     min-height: 360px;
     display: flex;
@@ -353,7 +354,7 @@ export default Podcast
 
 export const podcastQuery = graphql`
   query PodcastById($id: String!) {
-    bgImage: file(relativePath: { eq: "blogbg.png" }) {
+    bgImage: file(relativePath: { eq: "pod.png" }) {
       childImageSharp {
         fluid(maxWidth: 1920) {
           ...GatsbyImageSharpFluid
