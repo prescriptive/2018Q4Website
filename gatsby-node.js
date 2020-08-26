@@ -13,7 +13,7 @@ exports.createPages = async ({ graphql, actions }) => {
           uid
         }
       }
-      podcast: allPrismicPodcast{
+      podcast: allPrismicPodcast {
         nodes {
           uid
         }
@@ -57,7 +57,7 @@ exports.createPages = async ({ graphql, actions }) => {
     // var podSlug = convertToSlug(node.title)
     // console.log(podSlug)
     createPage({
-      path: `/the-podcasts/${node.slug}`,
+      path: `/the-podcast/${node.slug}`,
       component: podcastTemplate,
       context: {
         id: node.id,
@@ -97,12 +97,8 @@ exports.createPages = async ({ graphql, actions }) => {
   })
 }
 
-
-function convertToSlug(Text)
-{
-    return Text
-        .toLowerCase()
-        .replace(/ /g,'-')
-        .replace(/[^\w-]+/g,'')
-        ;
+function convertToSlug(Text) {
+  return Text.toLowerCase()
+    .replace(/ /g, "-")
+    .replace(/[^\w-]+/g, "")
 }
