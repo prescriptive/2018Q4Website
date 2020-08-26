@@ -23,6 +23,7 @@ exports.createPages = async ({ graphql, actions }) => {
           id
           title
           slug
+          buzzsproutId
         }
       }
     }
@@ -51,17 +52,18 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
-
   const podcastTemplate = path.resolve("src/templates/podcast.js")
   pages.data.buzz.nodes.forEach(node => {
     // var podSlug = convertToSlug(node.title)
     // console.log(podSlug)
-
+    var buzz = "t5037425"
+    console.log(buzz)
     createPage({
       path: `/the-podcast/${node.slug}`,
       component: podcastTemplate,
       context: {
         id: node.id,
+        buzz: buzz,
       },
     })
   })

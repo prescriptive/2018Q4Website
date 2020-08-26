@@ -57,17 +57,18 @@ module.exports = {
           blocks: require("./src/schemas/blocks.json"),
           block: require("./src/schemas/block.json"),
           podcast: require("./src/schemas/podcast.json"),
+          sponsor: require("./src/schemas/sponsor.json"),
         },
         prismicToolbar: false,
       },
     },
     {
-      resolve: 'gatsby-source-buzzsprout',
+      resolve: "gatsby-source-buzzsprout",
       options: {
         // You will need to generate an access token and get the podcast ID from your account
         // https://github.com/Buzzsprout/buzzsprout-api#authentication
-        token: '379992ab0483fb1ab25a3fc2c0378aab',
-        podcastId: '1288514',
+        token: "379992ab0483fb1ab25a3fc2c0378aab",
+        podcastId: "1288514",
       },
     },
     `gatsby-transformer-sharp`,

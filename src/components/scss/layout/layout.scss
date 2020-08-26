@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  transition: 0.3s;
+  // transition: 0.3s;
   color: $darkGray;
 }
 body {
@@ -41,6 +41,7 @@ h3 {
 }
 a {
   text-decoration: none;
+  transition: 0.3s;
 }
 
 p {
@@ -53,9 +54,7 @@ p {
     text-decoration: underline;
   }
 }
-ul {
-  // margin:0px;
-}
+
 .cta-button {
   @include cta-button($darkGray);
 }
@@ -66,5 +65,15 @@ ul {
   @include mobile() {
     width: 100%;
     height: auto;
+  }
+}
+.MuiTooltip-popper {
+  a {
+    color: white;
+    display: block;
+    padding: 4px 0px;
+    &:hover {
+      color: $red;
+    }
   }
 }

@@ -353,11 +353,21 @@ const Podcast = props => {
 export default Podcast
 
 export const podcastQuery = graphql`
-  query PodcastById($id: String!) {
+  query PodcastById($buzz: String!) {
     bgImage: file(relativePath: { eq: "pod.png" }) {
       childImageSharp {
         fluid(maxWidth: 1920) {
           ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    sponsor: prismicSponsor {
+      data {
+        buzz_id {
+          text
+        }
+        sponsor {
+          raw
         }
       }
     }
@@ -514,7 +524,7 @@ export const podcastQuery = graphql`
         tags
       }
     }
-    page: buzzsproutPodcastEpisode(id: { eq: $id }) {
+    page: buzzsproutPodcastEpisode(buzzsproutId: { eq: $buzz }) {
       artwork_url
       artist
       audio_url
