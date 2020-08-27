@@ -325,12 +325,14 @@ const Podcast = props => {
             </div>
             <div className="pod-right">
               <img src={BgImageHat} />
-              <RichText
-                render={sponsor.data.sponsor.raw}
-                linkResolver={linkResolver}
-                htmlSerializer={prismicHtmlSerializer}
-                // serializeHyperlink={myCustomLink}
-              />
+              {sponsor.data && (
+                <RichText
+                  render={sponsor.data.sponsor.raw}
+                  linkResolver={linkResolver}
+                  htmlSerializer={prismicHtmlSerializer}
+                  // serializeHyperlink={myCustomLink}
+                />
+              )}
             </div>
           </div>
 
