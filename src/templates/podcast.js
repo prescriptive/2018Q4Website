@@ -325,7 +325,7 @@ const Podcast = props => {
             </div>
             <div className="pod-right">
               <img src={BgImageHat} />
-              {sponsor.data && (
+              {sponsor && (
                 <RichText
                   render={sponsor.data.sponsor.raw}
                   linkResolver={linkResolver}
