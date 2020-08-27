@@ -56,14 +56,16 @@ exports.createPages = async ({ graphql, actions }) => {
   pages.data.buzz.nodes.forEach(node => {
     // var podSlug = convertToSlug(node.title)
     // console.log(podSlug)
-    var buzz = "t5037425"
-    console.log(buzz)
+    var buzzer = "Buzzsprout__PodcastEpisode__" + node.buzzsproutId
+    var buzzId = node.buzzsproutId.toString()
+    console.log(buzzId)
     createPage({
       path: `/the-podcast/${node.slug}`,
       component: podcastTemplate,
       context: {
+        buzzer: buzzer,
+        buzzId: buzzId,
         id: node.id,
-        buzz: buzz,
       },
     })
   })

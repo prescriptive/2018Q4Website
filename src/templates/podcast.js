@@ -8,6 +8,7 @@ import SEO from "../components/seo"
 import BackgroundImage from "gatsby-background-image"
 import Img from "gatsby-image"
 import { linkResolver } from "../utils/linkResolver"
+import prismicHtmlSerializer from "../gatsby/htmlSerializer"
 import { RichText, Date } from "prismic-reactjs"
 import { withPreview } from "gatsby-source-prismic"
 import BgImageHat from "../images/podcasthat.png"
@@ -265,7 +266,8 @@ const Podcast = props => {
   const subscribeBlock = props.data.subscribeBlock.data.body
   const contactBlock = props.data.contactBlock.data.body
   const bg = props.data.bgImage.childImageSharp.fluid
-  console.log(props)
+  const sponsor = props.data.sponsor
+  console.log(sponsor)
 
   return (
     <Layout>
@@ -323,6 +325,12 @@ const Podcast = props => {
             </div>
             <div className="pod-right">
               <img src={BgImageHat} />
+              <RichText
+                render={sponsor.data.sponsor.raw}
+                linkResolver={linkResolver}
+                htmlSerializer={prismicHtmlSerializer}
+                // serializeHyperlink={myCustomLink}
+              />
             </div>
           </div>
 
@@ -353,21 +361,11 @@ const Podcast = props => {
 export default Podcast
 
 export const podcastQuery = graphql`
-  query PodcastById($buzz: String!) {
+  query PodcastById($buzzer: String!, $buzzId: String!) {
     bgImage: file(relativePath: { eq: "pod.png" }) {
       childImageSharp {
         fluid(maxWidth: 1920) {
           ...GatsbyImageSharpFluid
-        }
-      }
-    }
-    sponsor: prismicSponsor {
-      data {
-        buzz_id {
-          text
-        }
-        sponsor {
-          raw
         }
       }
     }
@@ -524,7 +522,18 @@ export const podcastQuery = graphql`
         tags
       }
     }
-    page: buzzsproutPodcastEpisode(buzzsproutId: { eq: $buzz }) {
+    sponsor: prismicSponsor(data: { buzz_id: { text: { eq: $buzzId } } }) {
+      url
+      data {
+        buzz_id {
+          text
+        }
+        sponsor {
+          raw
+        }
+      }
+    }
+    page: buzzsproutPodcastEpisode(id: { eq: $buzzer }) {
       artwork_url
       artist
       audio_url
