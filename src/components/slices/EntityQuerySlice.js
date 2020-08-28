@@ -38,7 +38,7 @@ const EntityQueryStyle = styled.div`
 `
 
 // Sort and display the different slice options
-const EntityResult = ({ slice, blog, leadership, job, podcast }) => {
+const EntityResult = ({ slice, blog, leadership, job, podcast, podinfo }) => {
   // return slices.map((slice, index) => {
   //   const res = () => {
   //     switch (slice.slice_type) {
@@ -77,7 +77,11 @@ const EntityResult = ({ slice, blog, leadership, job, podcast }) => {
     return podcast.nodes
       .slice(0, slice.primary.entity_count)
       .map((post, index) => (
-        <PodcastTeaser post={post} key={index}></PodcastTeaser>
+        <PodcastTeaser
+          post={post}
+          key={index}
+          podinfo={podinfo}
+        ></PodcastTeaser>
       ))
   }
 
@@ -86,7 +90,14 @@ const EntityResult = ({ slice, blog, leadership, job, podcast }) => {
   // ))}
 }
 
-export const EntityQuerySlice = ({ slice, blog, leadership, job, podcast }) => {
+export const EntityQuerySlice = ({
+  slice,
+  blog,
+  leadership,
+  job,
+  podcast,
+  podinfo,
+}) => {
   var fluid = null
 
   var h1_title = false
@@ -177,6 +188,7 @@ export const EntityQuerySlice = ({ slice, blog, leadership, job, podcast }) => {
                   leadership={leadership}
                   job={job}
                   podcast={podcast}
+                  podinfo={podinfo}
                 />
               </EntityQueryStyle>
             </section>

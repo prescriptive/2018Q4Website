@@ -57,7 +57,6 @@ module.exports = {
           blocks: require("./src/schemas/blocks.json"),
           block: require("./src/schemas/block.json"),
           podcast: require("./src/schemas/podcast.json"),
-          sponsor: require("./src/schemas/sponsor.json"),
         },
         prismicToolbar: false,
       },

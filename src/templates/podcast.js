@@ -23,6 +23,8 @@ import "react-h5-audio-player/lib/styles.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faRedoAlt } from "@fortawesome/free-solid-svg-icons"
 import { faUndoAlt } from "@fortawesome/free-solid-svg-icons"
+import ResponsiveEmbed from "react-responsive-embed"
+
 const AudioFileStyle = styled.span`
   .rhap_rewind-button {
     display: flex;
@@ -122,11 +124,12 @@ const PodcastStyle = styled.div`
     }
   }
   .pod-image-desc {
-    img {
+    .pod-image {
       float: left;
       width: 200px;
       margin: 0px 20px 10px 0px;
     }
+
     p {
       display: unset;
     }
@@ -260,14 +263,80 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
   })
 }
 
+// Sort and display the different slice options
+const SidebarSlices = ({ slices, blog, leadership, job }) => {
+  return slices.map((slice, index) => {
+    var sliceID = ""
+    if (slice.primary) {
+      if (slice.primary.slice_id != undefined) {
+        var sliceID = slice.primary.slice_id.text
+      }
+    }
+    console.log(slice)
+    const res = (() => {
+      switch (slice.slice_type) {
+        case "basic_section":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-basic"
+            >
+              {<BasicSectionSlice slice={slice} />}
+            </div>
+          )
+
+        case "left_right_section":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-left-right"
+            >
+              {<LeftRightSlice slice={slice} />}
+            </div>
+          )
+
+        case "columns_section":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-left-right"
+            >
+              {<ColumnsSectionSlice slice={slice} />}
+            </div>
+          )
+
+        default:
+          return
+      }
+    })()
+    return res
+  })
+}
+
+export const VideoSlice = ({ video }) => {
+  var video_id = video.embed_url.split("v=")[1]
+  var ampersandPosition = video_id.indexOf("&")
+  if (ampersandPosition != -1) {
+    video_id = video_id.substring(0, ampersandPosition)
+  }
+  return (
+    <div style={{ padding: "40px 0px" }}>
+      <ResponsiveEmbed src={"https://www.youtube.com/embed/" + video_id} />
+    </div>
+  )
+}
+
 const Podcast = props => {
   const podcastUrl = props.data.page.audio_url
   const podcasts = props.data.podcast
   const subscribeBlock = props.data.subscribeBlock.data.body
   const contactBlock = props.data.contactBlock.data.body
   const bg = props.data.bgImage.childImageSharp.fluid
-  const sponsor = props.data.sponsor
-  console.log(sponsor)
+  const podInfo = props.data.podinfo.data
+  console.log(podInfo)
 
   return (
     <Layout>
@@ -314,24 +383,35 @@ const Podcast = props => {
               </AudioFileStyle>
               <h2>Show Notes</h2>
               <div className="pod-image-desc">
-                <img src={props.data.page.artwork_url} />
+                {podInfo.podcast_image.localFile && (
+                  <div className="pod-image">
+                    <Img
+                      fluid={
+                        podInfo.podcast_image.localFile.childImageSharp.fluid
+                      }
+                    />
+                  </div>
+                )}
                 <div
                   className="pod-descs"
                   dangerouslySetInnerHTML={{
                     __html: props.data.page.description,
                   }}
                 />
+                {podInfo.youtube_embed && (
+                  <VideoSlice video={podInfo.youtube_embed} />
+                )}
               </div>
             </div>
             <div className="pod-right">
-              <img src={BgImageHat} />
-              {sponsor && (
+              <img src={props.data.page.artwork_url} />
+              {/* {sponsor && (
                 <RichText
                   render={sponsor.data.sponsor.raw}
                   linkResolver={linkResolver}
                   htmlSerializer={prismicHtmlSerializer}
                 />
-              )}
+              )} */}
             </div>
           </div>
 
@@ -523,14 +603,51 @@ export const podcastQuery = graphql`
         tags
       }
     }
-    sponsor: prismicSponsor(data: { buzz_id: { text: { eq: $buzzId } } }) {
-      url
+    podinfo: prismicPodcast(
+      data: { buzzsprout_id: { text: { eq: $buzzId } } }
+    ) {
       data {
-        buzz_id {
+        buzzsprout_id {
           text
         }
-        sponsor {
-          raw
+        podcast_image {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 1920) {
+                ...GatsbyImageSharpFluid_withWebp_tracedSVG
+              }
+            }
+          }
+        }
+        title {
+          text
+        }
+        youtube_embed {
+          embed_url
+        }
+        body {
+          ... on PrismicPodcastBodyText {
+            id
+            primary {
+              text {
+                text
+              }
+            }
+          }
+          ... on PrismicPodcastBodyImage {
+            id
+            primary {
+              image {
+                localFile {
+                  childImageSharp {
+                    fluid(maxWidth: 1920) {
+                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

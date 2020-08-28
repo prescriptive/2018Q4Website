@@ -28,7 +28,7 @@ import HeroSlice from "../components/slices/HeroSlice"
 import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
 
 // Sort and display the different slice options
-const PostSlices = ({ slices, blog, leadership, job, podcast }) => {
+const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
   return slices.map((slice, index) => {
     var sliceID = ""
     if (slice.primary) {
@@ -112,6 +112,7 @@ const PostSlices = ({ slices, blog, leadership, job, podcast }) => {
                   leadership={leadership}
                   job={job}
                   podcast={podcast}
+                  podinfo={podinfo}
                 />
               }
             </div>
@@ -171,6 +172,7 @@ const Page = ({ data }) => {
   const podcast = data.podcast
   const job = data.job
   const site = data.site
+  const podinfo = data.podinfo
   //   const site = data.site.allSite_informations.edges[0].node
   return (
     <Layout>
@@ -182,6 +184,7 @@ const Page = ({ data }) => {
             job={job}
             leadership={leadership}
             podcast={podcast}
+            podinfo={podinfo}
           />
         )}
       </PageStyle>
@@ -207,6 +210,24 @@ export const postQuery = graphql`
           }
           title {
             text
+          }
+        }
+      }
+    }
+    podinfo: allPrismicPodcast {
+      nodes {
+        data {
+          buzzsprout_id {
+            text
+          }
+          podcast_image {
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 1920) {
+                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                }
+              }
+            }
           }
         }
       }

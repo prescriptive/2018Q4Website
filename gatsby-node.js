@@ -13,11 +13,6 @@ exports.createPages = async ({ graphql, actions }) => {
           uid
         }
       }
-      podcast: allPrismicPodcast {
-        nodes {
-          uid
-        }
-      }
       buzz: allBuzzsproutPodcastEpisode {
         nodes {
           id

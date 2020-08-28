@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
 import { RichText } from "prismic-reactjs"
+import placeholder from "../../../images/placeholder-img.jpg"
 
 const PodcastTeaserStyle = styled.article`
   background-color: ${variable.lightGray};
@@ -27,12 +28,25 @@ const PodcastTeaserStyle = styled.article`
     }
   }
 `
-export const PodcastTeaser = ({ post }) => {
+const PodImage = ({ podinfo, post }) => {
+  return podinfo.map((pod, index) => {
+    var podcastId = "Buzzsprout__PodcastEpisode__" + pod.data.buzzsprout_id.text
+    if (podcastId == post.id) {
+      return (
+        <Img fluid={pod.data.podcast_image.localFile.childImageSharp.fluid} />
+      )
+    } else {
+      return <img src={placeholder} />
+    }
+  })
+}
+
+export const PodcastTeaser = ({ post, podinfo }) => {
   return (
     <PodcastTeaserStyle>
       <Link to={"/the-podcast/" + post.slug}>
         <div className="pod-image">
-          <img src={post.artwork_url} />
+          <PodImage podinfo={podinfo.nodes} post={post} />
         </div>
         <h2>{post.title}</h2>
         <div
