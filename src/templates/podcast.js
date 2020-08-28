@@ -330,7 +330,6 @@ const Podcast = props => {
                   render={sponsor.data.sponsor.raw}
                   linkResolver={linkResolver}
                   htmlSerializer={prismicHtmlSerializer}
-                  // serializeHyperlink={myCustomLink}
                 />
               )}
             </div>
