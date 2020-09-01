@@ -66,7 +66,7 @@ module.exports = {
       options: {
         // You will need to generate an access token and get the podcast ID from your account
         // https://github.com/Buzzsprout/buzzsprout-api#authentication
-        token: "379992ab0483fb1ab25a3fc2c0378aab",
+        token: `${process.env.BUZZ_API}`,
         podcastId: "1288514",
       },
     },
