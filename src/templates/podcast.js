@@ -333,8 +333,16 @@ const Podcast = props => {
   const subscribeBlock = props.data.subscribeBlock.data.body
   const contactBlock = props.data.contactBlock.data.body
   const bg = props.data.bgImage.childImageSharp.fluid
-  const podInfo = props.data.podinfo.data
   const allPodInfo = props.data.allpodinfo.nodes
+  if (props.data.podinfo) {
+    var podInfo = props.data.podinfo.data
+    if (podInfo.podcast_image.localFile) {
+      var podInfoImage = podInfo.podcast_image.localFile.childImageSharp.fluid
+    }
+    if (podInfo.youtube_embed) {
+      var podInfoYoutube = podInfo.youtube_embed
+    }
+  }
 
   return (
     <Layout>
@@ -381,13 +389,9 @@ const Podcast = props => {
               </AudioFileStyle>
               <h2>Show Notes</h2>
               <div className="pod-image-desc">
-                {podInfo.podcast_image.localFile && (
+                {podInfoImage && (
                   <div className="pod-image">
-                    <Img
-                      fluid={
-                        podInfo.podcast_image.localFile.childImageSharp.fluid
-                      }
-                    />
+                    <Img fluid={podInfoImage} />
                   </div>
                 )}
                 <div
@@ -396,9 +400,7 @@ const Podcast = props => {
                     __html: props.data.page.description,
                   }}
                 />
-                {podInfo.youtube_embed && (
-                  <VideoSlice video={podInfo.youtube_embed} />
-                )}
+                {podInfoYoutube && <VideoSlice video={podInfo.youtube_embed} />}
               </div>
             </div>
             <div className="pod-right">
