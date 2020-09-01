@@ -111,14 +111,14 @@ const PodcastStyle = styled.div`
     justify-content: space-between;
     flex-wrap: wrap;
     .pod-left {
-      width: calc(60% - 20px);
+      width: calc(100% - 420px);
       @media (max-width: ${variable.mobileWidth}) {
         width: calc(100%);
         margin-bottom: 60px;
       }
     }
     .pod-right {
-      width: calc(40% - 20px);
+      width: 390px;
       text-align: left;
       @media (max-width: ${variable.mobileWidth}) {
         width: calc(100%);
@@ -134,6 +134,11 @@ const PodcastStyle = styled.div`
       float: left;
       width: 200px;
       margin: 0px 20px 10px 0px;
+      @media (max-width: ${variable.mobileWidth}) {
+        float: none;
+        width: 100%;
+        margin: 0px 0px 20px 0px;
+      }
     }
 
     p {
@@ -310,7 +315,7 @@ export const VideoSlice = ({ video }) => {
     video_id = video_id.substring(0, ampersandPosition)
   }
   return (
-    <div style={{ padding: "40px 0px" }}>
+    <div style={{ padding: "40px 0px 0px 0px" }}>
       <ResponsiveEmbed src={"https://www.youtube.com/embed/" + video_id} />
     </div>
   )
