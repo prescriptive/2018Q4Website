@@ -97,6 +97,12 @@ const PodHeader = styled.div`
   }
 `
 const PodcastStyle = styled.div`
+  .slice-image {
+    margin-top: 40px;
+  }
+  .slice-text {
+    margin-top: 40px;
+  }
   .pod-image {
     text-align: center;
   }
@@ -113,7 +119,7 @@ const PodcastStyle = styled.div`
     }
     .pod-right {
       width: calc(40% - 20px);
-      text-align: right;
+      text-align: left;
       @media (max-width: ${variable.mobileWidth}) {
         width: calc(100%);
         text-align: left;
@@ -263,46 +269,29 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
 }
 
 // Sort and display the different slice options
-const SidebarSlices = ({ slices, blog, leadership, job }) => {
-  return slices.map((slice, index) => {
-    var sliceID = ""
-    if (slice.primary) {
-      if (slice.primary.slice_id != undefined) {
-        var sliceID = slice.primary.slice_id.text
-      }
-    }
+const SidebarSlices = ({ sidebar }) => {
+  return sidebar.map((slice, index) => {
+    console.log(slice)
     const res = (() => {
       switch (slice.slice_type) {
-        case "basic_section":
+        case "image":
           return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-basic"
-            >
-              {<BasicSectionSlice slice={slice} />}
+            <div key={index} className="slice-wrapper slice-image">
+              <Img
+                fluid={slice.primary.image.localFile.childImageSharp.fluid}
+              />
             </div>
           )
 
-        case "left_right_section":
+        case "text":
           return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-left-right"
-            >
-              {<LeftRightSlice slice={slice} />}
-            </div>
-          )
-
-        case "columns_section":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-left-right"
-            >
-              {<ColumnsSectionSlice slice={slice} />}
+            <div key={index} className="slice-wrapper slice-text">
+              {console.log(slice)}
+              <RichText
+                render={slice.primary.text.raw}
+                linkResolver={linkResolver}
+                htmlSerializer={prismicHtmlSerializer}
+              />
             </div>
           )
 
@@ -341,6 +330,9 @@ const Podcast = props => {
     }
     if (podInfo.youtube_embed) {
       var podInfoYoutube = podInfo.youtube_embed
+    }
+    if (podInfo.body) {
+      var podInfoSidebar = podInfo.body
     }
   }
 
@@ -405,13 +397,7 @@ const Podcast = props => {
             </div>
             <div className="pod-right">
               <img src={props.data.page.artwork_url} />
-              {/* {sponsor && (
-                <RichText
-                  render={sponsor.data.sponsor.raw}
-                  linkResolver={linkResolver}
-                  htmlSerializer={prismicHtmlSerializer}
-                />
-              )} */}
+              {podInfoSidebar && <SidebarSlices sidebar={podInfoSidebar} />}
             </div>
           </div>
 
@@ -426,9 +412,11 @@ const Podcast = props => {
           <h2>Browse All Episodes</h2>
           <div class="podcasts-container">
             {podcasts.nodes.map((post, index) => (
-              <PodcastTeaser post={post} key={index} podinfo={allPodInfo}>
-                {console.log(allPodInfo)}
-              </PodcastTeaser>
+              <PodcastTeaser
+                post={post}
+                key={index}
+                podinfo={allPodInfo}
+              ></PodcastTeaser>
             ))}
           </div>
         </Container>
@@ -648,14 +636,16 @@ export const podcastQuery = graphql`
         body {
           ... on PrismicPodcastBodyText {
             id
+            slice_type
             primary {
               text {
-                text
+                raw
               }
             }
           }
           ... on PrismicPodcastBodyImage {
             id
+            slice_type
             primary {
               image {
                 localFile {
