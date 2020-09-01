@@ -55,7 +55,7 @@ exports.createPages = async ({ graphql, actions }) => {
     var buzzId = node.buzzsproutId.toString()
     console.log(buzzId)
     createPage({
-      path: `/the-podcast/${node.slug}`,
+      path: `/podcast/${node.slug}`,
       component: podcastTemplate,
       context: {
         buzzer: buzzer,

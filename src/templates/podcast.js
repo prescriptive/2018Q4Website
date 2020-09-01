@@ -591,6 +591,7 @@ export const podcastQuery = graphql`
         id
         published_at(formatString: "MMM D Y")
         tags
+        slug
       }
     }
     allpodinfo: allPrismicPodcast {

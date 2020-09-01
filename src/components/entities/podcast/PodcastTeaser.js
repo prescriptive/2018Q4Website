@@ -42,9 +42,10 @@ const PodImage = ({ podinfo, post }) => {
 }
 
 export const PodcastTeaser = ({ post, podinfo }) => {
+  console.log(post)
   return (
     <PodcastTeaserStyle>
-      <Link to={"/the-podcast/" + post.slug}>
+      <Link to={"/podcast/" + post.slug}>
         <div className="pod-image">
           <PodImage podinfo={podinfo} post={post} />
         </div>
