@@ -46,7 +46,7 @@ export const PodcastTeaser = ({ post, podinfo }) => {
     <PodcastTeaserStyle>
       <Link to={"/the-podcast/" + post.slug}>
         <div className="pod-image">
-          <PodImage podinfo={podinfo.nodes} post={post} />
+          <PodImage podinfo={podinfo} post={post} />
         </div>
         <h2>{post.title}</h2>
         <div

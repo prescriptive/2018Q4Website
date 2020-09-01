@@ -219,7 +219,6 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
         var sliceID = slice.primary.slice_id.text
       }
     }
-    console.log(slice)
     const res = (() => {
       switch (slice.slice_type) {
         case "basic_section":
@@ -272,7 +271,6 @@ const SidebarSlices = ({ slices, blog, leadership, job }) => {
         var sliceID = slice.primary.slice_id.text
       }
     }
-    console.log(slice)
     const res = (() => {
       switch (slice.slice_type) {
         case "basic_section":
@@ -336,7 +334,7 @@ const Podcast = props => {
   const contactBlock = props.data.contactBlock.data.body
   const bg = props.data.bgImage.childImageSharp.fluid
   const podInfo = props.data.podinfo.data
-  console.log(podInfo)
+  const allPodInfo = props.data.allpodinfo.nodes
 
   return (
     <Layout>
@@ -426,7 +424,9 @@ const Podcast = props => {
           <h2>Browse All Episodes</h2>
           <div class="podcasts-container">
             {podcasts.nodes.map((post, index) => (
-              <PodcastTeaser post={post} key={index}></PodcastTeaser>
+              <PodcastTeaser post={post} key={index} podinfo={allPodInfo}>
+                {console.log(allPodInfo)}
+              </PodcastTeaser>
             ))}
           </div>
         </Container>
@@ -601,6 +601,24 @@ export const podcastQuery = graphql`
         id
         published_at(formatString: "MMM D Y")
         tags
+      }
+    }
+    allpodinfo: allPrismicPodcast {
+      nodes {
+        data {
+          buzzsprout_id {
+            text
+          }
+          podcast_image {
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 1920) {
+                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                }
+              }
+            }
+          }
+        }
       }
     }
     podinfo: prismicPodcast(

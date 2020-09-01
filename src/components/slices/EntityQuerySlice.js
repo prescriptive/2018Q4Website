@@ -80,7 +80,7 @@ const EntityResult = ({ slice, blog, leadership, job, podcast, podinfo }) => {
         <PodcastTeaser
           post={post}
           key={index}
-          podinfo={podinfo}
+          podinfo={podinfo.nodes}
         ></PodcastTeaser>
       ))
   }
