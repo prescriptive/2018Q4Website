@@ -19,7 +19,34 @@ const StyleZoomRegister = styled.div`
   }
 `
 
+// var Zoom = require("zoomus")({
+//   key : "c920HuB0SCuG86cbSljUYQ",
+//   secret : "7x0AHH4ErYgpvRxBPAiMlcrN6Jb1za7ucGX2"
+// });
+
+// const oauthClientId = "AitudHVxSLKhEXiVowSrTQ"
+
+// const oauthClientSecret = "yfMM0OOj5Jx8h7wUqOrF5KFU1FvOVj1u"
+
+
+
+// function zoom() {
+//   	// TEST API credentials
+// 	ac.credentials_test().then(function(result) {
+// 		// successful request
+// 		if (result.success) {
+//       // VALID ACCOUNT
+//       console.log(result)
+// 		} else {
+// 			// INVALID ACCOUNT
+// 		}
+// 	}, function(result) {
+// 		// request error
+// 	});
+// }
+
 class ZoomRegister extends React.Component {
+  
   constructor(props) {
     super(props);
     this.state = {value: ''};
@@ -33,8 +60,8 @@ class ZoomRegister extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
+    event.preventDefault()
+    // zoom()
   }
   
   render() {
