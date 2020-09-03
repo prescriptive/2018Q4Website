@@ -173,7 +173,7 @@ const Bloger = props => {
       <BlogHeader>
         <Container>
           <div className="blog-header-container">
-            <h1>Insights</h1>
+            <h1>The Blog</h1>
           </div>
         </Container>
       </BlogHeader>
