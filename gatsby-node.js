@@ -86,8 +86,7 @@ exports.createPages = async ({ graphql, actions }) => {
         },
       })
     }
-    if (node.uid == "podcast") {
-    } else {
+      else {
       createPage({
         path: `/${node.uid}`,
         component: pageTemplate,
