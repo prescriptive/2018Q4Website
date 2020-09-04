@@ -13,6 +13,7 @@ import "../components/scss/page/phase2.scss"
 import "../components/scss/page/dir.scss"
 import "../components/scss/page/podcasts.scss"
 import "../components/scss/page/insights.scss"
+import "../components/scss/page/microsoft365.scss"
 import { Link, RichText, Date } from "prismic-reactjs"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
@@ -174,8 +175,9 @@ const Page = ({ data }) => {
   const site = data.site
   const podinfo = data.podinfo
   //   const site = data.site.allSite_informations.edges[0].node
+  console.log(node)
   return (
-    <Layout>
+    <Layout slug={node.uid}>
       <SEO site={site} page={node} />
       <PageStyle>
         {node.data.body && (
@@ -641,6 +643,7 @@ export const postQuery = graphql`
                 text
               }
               active_campaign_form_number
+              right_active_campaign_form_number
               left_background_image {
                 localFile {
                   childImageSharp {

@@ -201,6 +201,11 @@ function returnRight(primary, rightWidth) {
                 }}
               />
             )}
+            {primary.right_active_campaign_form_number && (
+              <div className={"_form_" + primary.right_active_campaign_form_number}>
+                {addActive(primary.right_active_campaign_form_number)}
+              </div>
+            )}
           </div>
         </section>
       )}
