@@ -157,13 +157,11 @@ const Bloger = props => {
   // const site = props.data.prismic.allSite_informations.edges[0].node
   const site = props.data.site
   const page = {
+    uid: "blog",
     data: {
       meta_title: site.nodes[0].data.meta_title.text,
       meta_description: site.nodes[0].data.meta_description.text,
       donotindex: false,
-      _meta: {
-        uid: "insights",
-      },
     },
   }
   console.log(props)
