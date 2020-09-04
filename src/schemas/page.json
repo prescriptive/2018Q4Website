@@ -117,7 +117,9 @@
                 "type": "Link",
                 "config": {
                   "select": "document",
-                  "customtypes": ["blocks"],
+                  "customtypes": [
+                    "blocks"
+                  ],
                   "label": "Sidebar Block Reference"
                 }
               }
@@ -249,7 +251,11 @@
                   "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
                   "allowTargetBlank": true,
                   "label": "Left Content",
-                  "labels": ["cta-button", "right-align", "center-align"]
+                  "labels": [
+                    "cta-button",
+                    "right-align",
+                    "center-align"
+                  ]
                 }
               },
               "right_background_image": {
@@ -280,6 +286,12 @@
                     "h2-light",
                     "h3-light"
                   ]
+                }
+              },
+              "right_active_campaign_form_number": {
+                "type": "Number",
+                "config": {
+                  "label": "Right Active Campaign Form Number"
                 }
               }
             },
@@ -323,7 +335,12 @@
               "entity_type": {
                 "type": "Select",
                 "config": {
-                  "options": ["Blog Post", "Leadership", "Job", "Podcast"],
+                  "options": [
+                    "Blog Post",
+                    "Leadership",
+                    "Job",
+                    "Podcast"
+                  ],
                   "label": "Entity Type"
                 }
               },
@@ -440,8 +457,17 @@
                 "type": "Link",
                 "config": {
                   "select": "document",
-                  "customtypes": ["blocks"],
+                  "customtypes": [
+                    "blocks"
+                  ],
                   "label": "Block Reference"
+                }
+              },
+              "block_reference_id": {
+                "type": "StructuredText",
+                "config": {
+                  "single": "paragraph",
+                  "label": "Block Reference ID"
                 }
               }
             },

@@ -12,6 +12,8 @@ import "../components/scss/page/contact.scss"
 import "../components/scss/page/phase2.scss"
 import "../components/scss/page/dir.scss"
 import "../components/scss/page/podcasts.scss"
+import "../components/scss/page/insights.scss"
+import "../components/scss/page/microsoft365.scss"
 import { Link, RichText, Date } from "prismic-reactjs"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
@@ -27,7 +29,7 @@ import HeroSlice from "../components/slices/HeroSlice"
 import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
 
 // Sort and display the different slice options
-const PostSlices = ({ slices, blog, leadership, job, podcast }) => {
+const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
   return slices.map((slice, index) => {
     var sliceID = ""
     if (slice.primary) {
@@ -111,6 +113,7 @@ const PostSlices = ({ slices, blog, leadership, job, podcast }) => {
                   leadership={leadership}
                   job={job}
                   podcast={podcast}
+                  podinfo={podinfo}
                 />
               }
             </div>
@@ -170,10 +173,11 @@ const Page = ({ data }) => {
   const podcast = data.podcast
   const job = data.job
   const site = data.site
-  console.log(node)
+  const podinfo = data.podinfo
   //   const site = data.site.allSite_informations.edges[0].node
+  console.log(node)
   return (
-    <Layout>
+    <Layout slug={node.uid}>
       <SEO site={site} page={node} />
       <PageStyle>
         {node.data.body && (
@@ -182,6 +186,7 @@ const Page = ({ data }) => {
             job={job}
             leadership={leadership}
             podcast={podcast}
+            podinfo={podinfo}
           />
         )}
       </PageStyle>
@@ -211,32 +216,32 @@ export const postQuery = graphql`
         }
       }
     }
-    podcast: allPrismicPodcast {
+    podinfo: allPrismicPodcast {
       nodes {
-        uid
         data {
-          body {
-            raw
-          }
-          teaser {
+          buzzsprout_id {
             text
           }
-          image {
+          podcast_image {
             localFile {
               childImageSharp {
-                fluid(maxWidth: 800) {
-                  ...GatsbyImageSharpFluid
+                fluid(maxWidth: 1920) {
+                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
                 }
               }
             }
           }
-          podcast {
-            url
-          }
-          title {
-            text
-          }
         }
+      }
+    }
+    podcast: allBuzzsproutPodcastEpisode {
+      nodes {
+        title
+        slug
+        artwork_url
+        artist
+        description
+        summary
       }
     }
     leadership: allPrismicLeadership {
@@ -422,6 +427,32 @@ export const postQuery = graphql`
                     id
                     data {
                       body {
+                        ... on PrismicBlocksBodyColumnsSection {
+                          id
+                          slice_type
+                          primary {
+                            background_color
+                            slice_id {
+                              text
+                            }
+                            background_image {
+                              localFile {
+                                url
+                              }
+                            }
+                            column_count
+                            font_color
+                            h1_title
+                            section_title {
+                              text
+                            }
+                          }
+                          items {
+                            content {
+                              raw
+                            }
+                          }
+                        }
                         ... on PrismicBlocksBodyBasicSection {
                           id
                           slice_type
@@ -430,8 +461,8 @@ export const postQuery = graphql`
                             background_image {
                               localFile {
                                 childImageSharp {
-                                  fluid {
-                                    src
+                                  fluid(maxWidth: 1920) {
+                                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
                                   }
                                 }
                               }
@@ -458,8 +489,8 @@ export const postQuery = graphql`
                                           background_image {
                                             localFile {
                                               childImageSharp {
-                                                fluid {
-                                                  src
+                                                fluid(maxWidth: 1920) {
+                                                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
                                                 }
                                               }
                                             }
@@ -612,6 +643,7 @@ export const postQuery = graphql`
                 text
               }
               active_campaign_form_number
+              right_active_campaign_form_number
               left_background_image {
                 localFile {
                   childImageSharp {

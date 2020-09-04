@@ -1,0 +1,44 @@
+#slice-id-podcast-subscribe {
+  section {
+    padding: 40px 0px;
+  }
+  .column-item {
+    h2 {
+      margin-top: 0px;
+    }
+    p {
+      font-size: 18px;
+    }
+    &:nth-child(1) {
+      .block-img {
+        float: right;
+        width: auto;
+        margin-left: 20px;
+        &:nth-child(3) {
+          margin-right: 25%;
+          @include mobile() {
+            margin-right: 0px;
+          }
+        }
+      }
+    }
+    &:nth-child(2) {
+      a {
+        @include cta-button($medGray);
+        float: right;
+      }
+    }
+    &:nth-child(3) {
+      a {
+        @include cta-button($medGray);
+        float: right;
+      }
+      p {
+        padding: 0px 60px 0px 0px;
+        &:nth-child(3) {
+          padding: 0px;
+        }
+      }
+    }
+  }
+}

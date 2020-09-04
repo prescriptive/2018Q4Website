@@ -2,6 +2,9 @@
   section {
     padding: 0px 0px;
   }
+  .cta-button {
+    border: thin solid white;
+  }
   .basic-slice-container {
     display: flex;
     align-items: center;
@@ -60,7 +63,7 @@
     }
     ul {
       padding: 0px 30px 0px 50px;
-      margin:10px 0px;
+      margin: 10px 0px;
       li {
         margin-bottom: 24px;
         &:last-child() {

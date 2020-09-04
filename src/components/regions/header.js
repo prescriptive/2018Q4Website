@@ -8,6 +8,7 @@ import { withStyles, makeStyles } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
 import Tooltip from "@material-ui/core/Tooltip"
 import Fade from "@material-ui/core/Fade"
+import Collapse from "@material-ui/core/Collapse"
 import { StaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import * as variable from "../variables"
@@ -19,9 +20,8 @@ import { withPreview } from "gatsby-source-prismic-graphql"
 const HtmlTooltip = withStyles(theme => ({
   tooltip: {
     backgroundColor: variable.medLightGray,
-    color: "rgba(0, 0, 0, 0.87)",
-    padding: 20,
-    fontSize: theme.typography.pxToRem(12),
+    padding: "10px 20px",
+    fontSize: theme.typography.pxToRem(16),
     border: "1px solid #dadde9",
   },
 }))(Tooltip)
@@ -135,16 +135,29 @@ function menuRender(menuitem) {
       <HtmlTooltip
         TransitionComponent={Fade}
         interactive
+        classes="tooltip"
+        id="the-tooltip"
         title={
           <React.Fragment>
             {menuitem.items.map((submenuitem, index) => (
               <div key={index}>
-                <Link
-                  activeStyle={activeStyle}
-                  to={submenuitem.sub_nav_link.url}
-                >
-                  {submenuitem.sub_nav_link_label.text}
-                </Link>
+                {console.log(submenuitem)}
+                {submenuitem.sub_nav_link.url && (
+                  <Link
+                    activeStyle={activeStyle}
+                    to={submenuitem.sub_nav_link.url}
+                  >
+                    {submenuitem.sub_nav_link_label.text}
+                  </Link>
+                )}
+                {submenuitem.relative_link.text && (
+                  <Link
+                    activeStyle={activeStyle}
+                    to={submenuitem.relative_link.text}
+                  >
+                    {submenuitem.sub_nav_link_label.text}
+                  </Link>
+                )}
               </div>
             ))}
           </React.Fragment>
@@ -186,10 +199,13 @@ const query2 = graphql`
               id
               items {
                 sub_nav_link {
-                  id
+                  url
                   link_type
                 }
                 sub_nav_link_label {
+                  text
+                }
+                relative_link {
                   text
                 }
               }

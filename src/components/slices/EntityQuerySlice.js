@@ -30,12 +30,15 @@ const EntityQueryStyle = styled.div`
     @media (max-width: ${variable.mobileWidth}) {
       width: 100%;
       margin-right: 0px !important;
+      &:last-child {
+        margin-bottom: 0px;
+      }
     }
   }
 `
 
 // Sort and display the different slice options
-const EntityResult = ({ slice, blog, leadership, job, podcast }) => {
+const EntityResult = ({ slice, blog, leadership, job, podcast, podinfo }) => {
   // return slices.map((slice, index) => {
   //   const res = () => {
   //     switch (slice.slice_type) {
@@ -53,14 +56,6 @@ const EntityResult = ({ slice, blog, leadership, job, podcast }) => {
       .slice(0, slice.primary.entity_count)
       .map((post, index) => (
         <LeadershipTeaser post={post} key={index}></LeadershipTeaser>
-      ))
-  }
-
-  if (slice.primary.entity_type == "Podcast") {
-    return podcast.nodes
-      .slice(0, slice.primary.entity_count)
-      .map((post, index) => (
-        <h3>Podcast</h3>
       ))
   }
 
@@ -82,7 +77,11 @@ const EntityResult = ({ slice, blog, leadership, job, podcast }) => {
     return podcast.nodes
       .slice(0, slice.primary.entity_count)
       .map((post, index) => (
-        <PodcastTeaser post={post} key={index}></PodcastTeaser>
+        <PodcastTeaser
+          post={post}
+          key={index}
+          podinfo={podinfo.nodes}
+        ></PodcastTeaser>
       ))
   }
 
@@ -91,7 +90,14 @@ const EntityResult = ({ slice, blog, leadership, job, podcast }) => {
   // ))}
 }
 
-export const EntityQuerySlice = ({ slice, blog, leadership, job, podcast }) => {
+export const EntityQuerySlice = ({
+  slice,
+  blog,
+  leadership,
+  job,
+  podcast,
+  podinfo,
+}) => {
   var fluid = null
 
   var h1_title = false
@@ -134,13 +140,11 @@ export const EntityQuerySlice = ({ slice, blog, leadership, job, podcast }) => {
   // }
   var theh1Title = null
   var theh2Title = null
-  if(slice.primary.section_title && slice.primary.h1_title == true){
+  if (slice.primary.section_title && slice.primary.h1_title == true) {
     var theh1Title = slice.primary.section_title.text
-  }
-  else if(slice.primary.section_title && slice.primary.h1_title == false){
+  } else if (slice.primary.section_title && slice.primary.h1_title == false) {
     var theh2Title = slice.primary.section_title.text
-  }
-  else if(slice.primary.section_title && slice.primary.h1_title == false){
+  } else if (slice.primary.section_title && slice.primary.h1_title == false) {
     var theh2Title = slice.primary.section_title[0].text
   }
 
@@ -184,6 +188,7 @@ export const EntityQuerySlice = ({ slice, blog, leadership, job, podcast }) => {
                   leadership={leadership}
                   job={job}
                   podcast={podcast}
+                  podinfo={podinfo}
                 />
               </EntityQueryStyle>
             </section>

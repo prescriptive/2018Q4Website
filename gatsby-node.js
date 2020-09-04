@@ -13,6 +13,14 @@ exports.createPages = async ({ graphql, actions }) => {
           uid
         }
       }
+      buzz: allBuzzsproutPodcastEpisode {
+        nodes {
+          id
+          title
+          slug
+          buzzsproutId
+        }
+      }
     }
   `)
   //   const postsPerPage = 9
@@ -39,17 +47,23 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
-
-  // const podcastTemplate = path.resolve("src/templates/podcast.js")
-  // pages.data.podcast.nodes.forEach(node => {
-  //   createPage({
-  //     path: `/podcast/${node.uid}`,
-  //     component: podcastTemplate,
-  //     context: {
-  //       uid: node.uid,
-  //     },
-  //   })
-  // })
+  const podcastTemplate = path.resolve("src/templates/podcast.js")
+  pages.data.buzz.nodes.forEach(node => {
+    // var podSlug = convertToSlug(node.title)
+    // console.log(podSlug)
+    var buzzer = "Buzzsprout__PodcastEpisode__" + node.buzzsproutId
+    var buzzId = node.buzzsproutId.toString()
+    console.log(buzzId)
+    createPage({
+      path: `/podcast/${node.slug}`,
+      component: podcastTemplate,
+      context: {
+        buzzer: buzzer,
+        buzzId: buzzId,
+        id: node.id,
+      },
+    })
+  })
   //   const jobTemplate = path.resolve("src/templates/job.js")
   //   pages.data.job.nodes.forEach(node => {
   //     createPage({
@@ -83,4 +97,10 @@ exports.createPages = async ({ graphql, actions }) => {
       })
     }
   })
+}
+
+function convertToSlug(Text) {
+  return Text.toLowerCase()
+    .replace(/ /g, "-")
+    .replace(/[^\w-]+/g, "")
 }
