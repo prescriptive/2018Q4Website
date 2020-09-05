@@ -186,6 +186,11 @@ function returnRight(primary, rightWidth) {
           >
             {primary.right_content && (
               <div className="section-content">
+                            {primary.right_active_campaign_form_number && (
+              <div className={"_form_" + primary.right_active_campaign_form_number}>
+                {addActive(primary.right_active_campaign_form_number)}
+              </div>
+            )}
                 <RichText
                   render={primary.right_content.raw}
                   linkResolver={linkResolver}
@@ -200,11 +205,6 @@ function returnRight(primary, rightWidth) {
                   __html: primary.right_embed.text,
                 }}
               />
-            )}
-            {primary.right_active_campaign_form_number && (
-              <div className={"_form_" + primary.right_active_campaign_form_number}>
-                {addActive(primary.right_active_campaign_form_number)}
-              </div>
             )}
           </div>
         </section>

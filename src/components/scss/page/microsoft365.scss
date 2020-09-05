@@ -9,3 +9,89 @@
     display:none;
   }
 }
+#slice-id-micro-365{
+  section{
+    &:nth-child(1){
+      width:60%;
+      position:relative;
+      > div{
+        max-width:calc(#{$desktop-width} * .6);
+        position:relative;
+        overflow:hidden;
+        &:before{
+          border-right: 48px solid #ffffff;
+          border-bottom: 48px solid transparent;
+          height: 50%;
+          content: '';
+          position: absolute;
+          right:0px;
+        }
+        &:after {
+          border-right: 48px solid #ffffff;
+          border-top: 48px solid transparent;
+          height: 50%;
+          content: '';
+          position: absolute;
+          top:50%;
+          right:0px;
+      }
+      }
+     .block-img{
+        float: left;
+        width: 200px;
+        margin: 0px 20px 10px 0px;
+      }
+      p{
+        display:block;
+        margin-top:0px;
+      }
+    }
+    padding: 0px;
+    &:nth-child(2) {
+      width:40%;
+
+      > div{
+        max-width:calc(#{$desktop-width} * .4);
+        align-self:flex-start;
+        margin-top:100px;
+        
+      }
+      form {
+        padding: 0px;
+        width: 100%;
+        margin: 0px;
+        background-color: transparent !important;
+        color: $medGray;
+        ._button-wrapper {
+          display: flex;
+          justify-content: flex-end;
+          button {
+            background-color: $greenGray !important;
+            padding: 10px 25px !important;
+          }
+        }
+        ._form_element {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 20px;
+          label {
+            width: 100px;
+            text-align: right;
+            color: $medGray;
+            font-weight: normal;
+          }
+          ._field-wrapper {
+            width: calc(100% - 120px);
+            input,
+            textarea {
+              border: 0px;
+              border-bottom: thin solid $medGray;
+              border-radius: 0px;
+              background-color: transparent !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
