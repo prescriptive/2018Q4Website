@@ -186,11 +186,24 @@ function returnRight(primary, rightWidth) {
           >
             {primary.right_content && (
               <div className="section-content">
-                            {primary.right_active_campaign_form_number && (
-              <div className={"_form_" + primary.right_active_campaign_form_number}>
-                {addActive(primary.right_active_campaign_form_number)}
-              </div>
-            )}
+                {primary.right_content_above_form && (
+                  <div className="content-above-form">
+                    <RichText
+                      render={primary.right_content_above_form.raw}
+                      linkResolver={linkResolver}
+                      htmlSerializer={prismicHtmlSerializer}
+                    />
+                  </div>
+                )}
+                {primary.right_active_campaign_form_number && (
+                  <div
+                    className={
+                      "_form_" + primary.right_active_campaign_form_number
+                    }
+                  >
+                    {addActive(primary.right_active_campaign_form_number)}
+                  </div>
+                )}
                 <RichText
                   render={primary.right_content.raw}
                   linkResolver={linkResolver}

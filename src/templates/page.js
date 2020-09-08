@@ -644,6 +644,9 @@ export const postQuery = graphql`
               }
               active_campaign_form_number
               right_active_campaign_form_number
+              right_content_above_form {
+                raw
+              }
               left_background_image {
                 localFile {
                   childImageSharp {

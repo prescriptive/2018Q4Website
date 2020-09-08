@@ -117,9 +117,7 @@
                 "type": "Link",
                 "config": {
                   "select": "document",
-                  "customtypes": [
-                    "blocks"
-                  ],
+                  "customtypes": ["blocks"],
                   "label": "Sidebar Block Reference"
                 }
               }
@@ -251,11 +249,7 @@
                   "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
                   "allowTargetBlank": true,
                   "label": "Left Content",
-                  "labels": [
-                    "cta-button",
-                    "right-align",
-                    "center-align"
-                  ]
+                  "labels": ["cta-button", "right-align", "center-align"]
                 }
               },
               "right_background_image": {
@@ -286,6 +280,13 @@
                     "h2-light",
                     "h3-light"
                   ]
+                }
+              },
+              "right_content_above_form": {
+                "type": "StructuredText",
+                "config": {
+                  "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, rtl",
+                  "label": "Right Content Above Form"
                 }
               },
               "right_active_campaign_form_number": {
@@ -335,12 +336,7 @@
               "entity_type": {
                 "type": "Select",
                 "config": {
-                  "options": [
-                    "Blog Post",
-                    "Leadership",
-                    "Job",
-                    "Podcast"
-                  ],
+                  "options": ["Blog Post", "Leadership", "Job", "Podcast"],
                   "label": "Entity Type"
                 }
               },
@@ -457,9 +453,7 @@
                 "type": "Link",
                 "config": {
                   "select": "document",
-                  "customtypes": [
-                    "blocks"
-                  ],
+                  "customtypes": ["blocks"],
                   "label": "Block Reference"
                 }
               },
