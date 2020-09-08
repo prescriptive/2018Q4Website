@@ -30,19 +30,40 @@
     color: $medGray;
   }
   .left-right-container {
-    max-width: 1200px;
+    // max-width: 1200px;
+    // margin: 0 auto;
+    max-width: $desktop-width;
+    // display: block;
+    // padding: 0px 20px;
     margin: 0 auto;
+    @media (max-width: $tablet-width) {
+      max-width: $tablet-width;
+    }
+    @media (max-width: $mobile-width) {
+      max-width: $mobile-width;
+      padding: 0px 0px;
+      flex-direction: column-reverse;
+    }
   }
   section {
     &:nth-child(1) {
       position: relative;
       width: 65%;
+      @include tablet() {
+        width: 55%;
+      }
+      @include mobile() {
+        width: 100%;
+      }
       > div {
         position: relative;
         overflow: hidden;
         max-width: 100%;
-        padding: 0px 75px 0px 0px;
+        padding: 0px 75px 0px 20px;
         height: 100%;
+        @include mobile() {
+          padding: 0px 20px 40px 20px;
+        }
         &:before {
           border-right: 48px solid #ffffff;
           border-bottom: 48px solid transparent;
@@ -50,6 +71,15 @@
           content: "";
           position: absolute;
           right: -25px;
+          @include mobile() {
+            right: 50%;
+            border-bottom: 28px solid #ffffff;
+            border-right: 28px solid transparent;
+            height: auto;
+            width: 50%;
+            top: 0px;
+            display: none;
+          }
         }
         &:after {
           border-right: 48px solid #ffffff;
@@ -59,6 +89,16 @@
           position: absolute;
           top: 50%;
           right: -25px;
+          @include mobile() {
+            left: 50%;
+            height: auto;
+            width: 50%;
+            border-right: none;
+            border-bottom: 28px solid #ffffff;
+            border-left: 28px solid transparent;
+            top: 0px;
+            display: none;
+          }
         }
       }
       .block-img {
@@ -77,7 +117,12 @@
       background-color: white;
       width: 35%;
       position: relative;
-
+      @include tablet() {
+        width: 45%;
+      }
+      @include mobile() {
+        width: 100%;
+      }
       &:after {
         height: 100%;
         content: "";
@@ -86,6 +131,9 @@
         left: 0;
         width: 1000%;
         z-index: 10;
+        @include mobile() {
+          display: none;
+        }
       }
       > div {
         max-width: 100%;
@@ -94,7 +142,11 @@
         margin-bottom: 100px;
         z-index: 11;
         height: 100%;
-        padding: 0px 0px 0px 20px;
+        padding: 0px 20px 0px 20px;
+        @include mobile() {
+          margin-top: 40px;
+          margin-bottom: 40px;
+        }
       }
       h4 {
         font-size: 24px;
@@ -111,6 +163,10 @@
         }
         .block-img {
           margin: 0px;
+          max-width: 400px;
+        }
+        @include mobile() {
+          padding-bottom: 40px;
         }
       }
       .content-above-form {
