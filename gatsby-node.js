@@ -1,4 +1,5 @@
 const path = require("path")
+const { TRUE } = require("node-sass")
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
   const pages = await graphql(`
@@ -11,6 +12,9 @@ exports.createPages = async ({ graphql, actions }) => {
       page: allPrismicPa {
         nodes {
           uid
+          data {
+            webinar
+          }
         }
       }
       buzz: allBuzzsproutPodcastEpisode {
@@ -85,8 +89,15 @@ exports.createPages = async ({ graphql, actions }) => {
           uid: node.uid,
         },
       })
-    }
-      else {
+    } else if (node.data.webinar == true) {
+      createPage({
+        path: `/webinars/${node.uid}`,
+        component: pageTemplate,
+        context: {
+          uid: node.uid,
+        },
+      })
+    } else {
       createPage({
         path: `/${node.uid}`,
         component: pageTemplate,

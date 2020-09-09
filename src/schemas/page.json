@@ -20,6 +20,13 @@
         "label": "Remove Header"
       }
     },
+    "webinar": {
+      "type": "Boolean",
+      "config": {
+        "default_value": false,
+        "label": "Webinar"
+      }
+    },
     "body": {
       "type": "Slices",
       "fieldset": "Slice zone",

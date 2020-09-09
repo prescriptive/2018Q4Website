@@ -43,6 +43,9 @@ function SEO({ site, page, lang, meta }) {
     uid = ""
     path = ""
   }
+  if (page.data.webinar == true) {
+    path = "/webinars/"
+  }
   const canonical = siteUrl + path + uid
   return (
     <Helmet

@@ -283,6 +283,7 @@ export const postQuery = graphql`
         meta_title
         meta_description
         donotindex
+        webinar
         title {
           text
         }
