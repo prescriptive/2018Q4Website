@@ -6,6 +6,7 @@ const linkResolver = doc => {
   if (doc.type === "pa") {
     return "/" + doc.uid
   }
+
   // Homepage route fallback
   return "/"
 }

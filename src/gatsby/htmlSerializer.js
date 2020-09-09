@@ -27,6 +27,13 @@ const linkResolver = (doc, content, linkClass) => {
       </Link>
     )
   }
+  if (doc.uid === "learn-how-to-protect-microsoft-365-data") {
+    return (
+      <Link to={"/webinars/" + doc.uid} className={linkClass}>
+        {content}
+      </Link>
+    )
+  }
   if (doc.type === "pa") {
     return (
       <Link to={"/" + doc.uid} className={linkClass}>
