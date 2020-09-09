@@ -110,7 +110,7 @@
           display: none;
           @include mobile() {
             display: block;
-            width: 400px;
+            width: auto;
             max-width: 400px;
           }
         }
