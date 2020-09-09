@@ -239,7 +239,7 @@ export const postQuery = graphql`
               background_image {
                 localFile {
                   childImageSharp {
-                    fluid(maxWidth: 800) {
+                    fluid(maxWidth: 900) {
                       ...GatsbyImageSharpFluid
                     }
                   }
