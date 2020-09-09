@@ -126,6 +126,15 @@ const PageStyle = styled.div`
     margin-right: 7px;
     font-size: 20px;
   }
+  .image-slice {
+    > div {
+      padding: 0px !important;
+    }
+    img {
+      width: auto !important;
+      position: relative !important;
+    }
+  }
 `
 
 const BlogHeader = styled.div`
@@ -315,7 +324,7 @@ export const postQuery = graphql`
               image {
                 localFile {
                   childImageSharp {
-                    fluid(maxWidth: 1920) {
+                    fluid(maxWidth: 800) {
                       ...GatsbyImageSharpFluid
                     }
                   }

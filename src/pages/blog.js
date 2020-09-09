@@ -70,7 +70,7 @@ const BlogHeader = styled.div`
 
 export const postQuery = graphql`
   query BlogIndex {
-    allPrismicBlogPost {
+    allPrismicBlogPost(sort: { fields: data___release_date, order: DESC }) {
       nodes {
         uid
         data {
