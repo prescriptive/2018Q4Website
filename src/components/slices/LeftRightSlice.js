@@ -204,11 +204,13 @@ function returnRight(primary, rightWidth) {
                     {addActive(primary.right_active_campaign_form_number)}
                   </div>
                 )}
-                <RichText
-                  render={primary.right_content.raw}
-                  linkResolver={linkResolver}
-                  htmlSerializer={prismicHtmlSerializer}
-                />
+                <div className="right-content-lower">
+                  <RichText
+                    render={primary.right_content.raw}
+                    linkResolver={linkResolver}
+                    htmlSerializer={prismicHtmlSerializer}
+                  />
+                </div>
               </div>
             )}
             {primary.right_embed && (

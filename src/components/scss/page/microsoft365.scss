@@ -12,6 +12,7 @@
 }
 #slice-id-micro-365 {
   background-image: url(/images/microbg.png);
+  background-size: cover;
   h1 {
     font-size: 40px;
     margin-top: 68px;
@@ -105,11 +106,29 @@
         float: left;
         width: 200px;
         margin: 0px 20px 10px 0px;
+        &.center-align {
+          display: none;
+          @include mobile() {
+            display: block;
+            width: 400px;
+            max-width: 400px;
+          }
+        }
       }
       p {
         display: block;
         margin-top: 0px;
         color: $greenGray;
+      }
+    }
+    h5 {
+      display: none;
+      @include mobile() {
+        display: block;
+        font-size: 27px;
+        color: #666766;
+        font-family: "Roboto";
+        margin-bottom: 20px;
       }
     }
     padding: 0px;
@@ -148,6 +167,11 @@
           margin-bottom: 40px;
         }
       }
+      .right-content-lower {
+        @include mobile() {
+          display: none;
+        }
+      }
       h4 {
         font-size: 24px;
         font-family: "Roboto";
@@ -166,7 +190,7 @@
           max-width: 400px;
         }
         @include mobile() {
-          padding-bottom: 40px;
+          padding-bottom: 0px;
         }
       }
       .content-above-form {
