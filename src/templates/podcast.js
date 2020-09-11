@@ -328,10 +328,13 @@ const Podcast = props => {
   const contactBlock = props.data.contactBlock.data.body
   const bg = props.data.bgImage.childImageSharp.fluid
   const allPodInfo = props.data.allpodinfo.nodes
+  const site = props.data.site
   if (props.data.podinfo) {
     var podInfo = props.data.podinfo.data
     if (podInfo.podcast_image.localFile) {
       var podInfoImage = podInfo.podcast_image.localFile.childImageSharp.fluid
+      var podInfoImageUrl = podInfo.podcast_image.url
+      console.log(podInfo)
     }
     if (podInfo.youtube_embed) {
       var podInfoYoutube = podInfo.youtube_embed
@@ -340,10 +343,14 @@ const Podcast = props => {
       var podInfoSidebar = podInfo.body
     }
   }
+  const meta = {
+    data:props.data.page,
+    podimage:podInfoImageUrl
+  }
 
   return (
     <Layout>
-      {/* <SEO site={site} page={node} /> */}
+      <SEO site={site} page={meta} />
       <PodHeader>
         <BackgroundImage Tag="section" fluid={bg}>
           <Container>
@@ -606,6 +613,7 @@ export const podcastQuery = graphql`
             text
           }
           podcast_image {
+            url
             localFile {
               childImageSharp {
                 fluid(maxWidth: 1920) {
@@ -625,6 +633,7 @@ export const podcastQuery = graphql`
           text
         }
         podcast_image {
+          url
           localFile {
             childImageSharp {
               fluid(maxWidth: 1920) {

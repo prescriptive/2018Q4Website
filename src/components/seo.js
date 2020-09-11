@@ -22,12 +22,21 @@ function SEO({ site, page, lang, meta }) {
   if (page.data.main_image) {
     ogImage = page.data.main_image.url
   }
+  if (page.podimage) {
+    ogImage = page.podimage
+  }
+  else if(page.data.artwork_url){
+    ogImage = page.data.artwork_url
+  }
   var metaDescription = ""
   if (page.data.meta_description) {
     var metaDescription = page.data.meta_description
   }
+  if (page.data.description) {
+    var metaDescription = page.data.description.replace(/<[^>]+>/g, '');
+  }
 
-  const title = page.data.meta_title || page.data.title.text
+  const title = page.data.meta_title || page.data.title.text || page.data.title
   const siteName = site.nodes[0].data.site_title.text
   const twitterAuthor = site.nodes[0].data.twitter_author.text
   const siteUrl = site.nodes[0].data.site_url.text

@@ -168,7 +168,17 @@ const Post = props => {
 
   return (
     <Layout>
-      <SEO site={site} page={props.data.page} />
+      <SEO 
+      site={site} 
+      page={props.data.page}
+      >
+        {`
+<meta property="og:title" content="European Travel Destinations">
+<meta property="og:description" content="Offering tour packages for individuals or groups.">
+<meta property="og:image" content="http://euro-travel-example.com/thumbnail.jpg">
+<meta property="og:url" content="http://euro-travel-example.com/index.htm">
+        `}
+    </SEO>
       <BlogHeader>
         <Container>
           <div className="blog-header-container">
