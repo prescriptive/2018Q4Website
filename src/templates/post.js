@@ -172,12 +172,6 @@ const Post = props => {
       site={site} 
       page={props.data.page}
       >
-        {`
-<meta property="og:title" content="European Travel Destinations">
-<meta property="og:description" content="Offering tour packages for individuals or groups.">
-<meta property="og:image" content="http://euro-travel-example.com/thumbnail.jpg">
-<meta property="og:url" content="http://euro-travel-example.com/index.htm">
-        `}
     </SEO>
       <BlogHeader>
         <Container>
@@ -349,6 +343,7 @@ export const postQuery = graphql`
               text {
                 html
                 raw
+                text
               }
             }
           }

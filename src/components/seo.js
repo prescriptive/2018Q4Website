@@ -10,6 +10,9 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
+const stripHtml = require("string-strip-html");
+
+
 function SEO({ site, page, lang, meta }) {
   var noIndex = "index"
   console.log(page)
@@ -29,13 +32,21 @@ function SEO({ site, page, lang, meta }) {
     ogImage = page.data.artwork_url
   }
   var metaDescription = ""
-  if (page.data.meta_description) {
-    var metaDescription = page.data.meta_description
-  }
-  if (page.data.description) {
-    var metaDescription = page.data.description.replace(/<[^>]+>/g, '');
+  if(page.type == "blog_post"){
+    if (page.data.meta_description) {
+      metaDescription = page.data.meta_description
+    }
+    else{
+      metaDescription = stripHtml(page.data.body[0].primary.text.text)
+      metaDescription = metaDescription.result.substring(0, 400) + '...'
+      console.log(metaDescription)
+    }
   }
 
+  if (page.desc) {
+    metaDescription = page.desc
+  }
+  const appID = "3199073900141955"
   const title = page.data.meta_title || page.data.title.text || page.data.title
   const siteName = site.nodes[0].data.site_title.text
   const twitterAuthor = site.nodes[0].data.twitter_author.text
@@ -79,8 +90,16 @@ function SEO({ site, page, lang, meta }) {
           content: noIndex,
         },
         {
+          property: `fb:app_id`,
+          content: appID,
+        },
+        {
           property: `og:image`,
           content: ogImage,
+        },
+        {
+          property: `og:description`,
+          content: metaDescription,
         },
         {
           property: `og:title`,

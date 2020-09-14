@@ -25,6 +25,9 @@ import { faRedoAlt } from "@fortawesome/free-solid-svg-icons"
 import { faUndoAlt } from "@fortawesome/free-solid-svg-icons"
 import ResponsiveEmbed from "react-responsive-embed"
 
+
+const stripHtml = require("string-strip-html");
+
 const AudioFileStyle = styled.span`
   .rhap_rewind-button {
     display: flex;
@@ -291,7 +294,6 @@ const SidebarSlices = ({ sidebar }) => {
         case "text":
           return (
             <div key={index} className="slice-wrapper slice-text">
-              {console.log(slice)}
               <RichText
                 render={slice.primary.text.raw}
                 linkResolver={linkResolver}
@@ -329,12 +331,12 @@ const Podcast = props => {
   const bg = props.data.bgImage.childImageSharp.fluid
   const allPodInfo = props.data.allpodinfo.nodes
   const site = props.data.site
+  var podDesc = '';
   if (props.data.podinfo) {
     var podInfo = props.data.podinfo.data
     if (podInfo.podcast_image.localFile) {
       var podInfoImage = podInfo.podcast_image.localFile.childImageSharp.fluid
       var podInfoImageUrl = podInfo.podcast_image.url
-      console.log(podInfo)
     }
     if (podInfo.youtube_embed) {
       var podInfoYoutube = podInfo.youtube_embed
@@ -342,10 +344,19 @@ const Podcast = props => {
     if (podInfo.body) {
       var podInfoSidebar = podInfo.body
     }
+    if(podInfo.meta_description.text){
+      var podDesc = podInfo.meta_description.text
+    }
+    else{
+      var podDesc = stripHtml(props.data.page.description)
+      podDesc = podDesc.result.substring(0, 400) + '...'
+    }
+    console.log(podDesc)
   }
   const meta = {
     data:props.data.page,
-    podimage:podInfoImageUrl
+    podimage:podInfoImageUrl,
+    desc:podDesc
   }
 
   return (
@@ -643,6 +654,9 @@ export const podcastQuery = graphql`
           }
         }
         title {
+          text
+        }
+        meta_description {
           text
         }
         youtube_embed {
