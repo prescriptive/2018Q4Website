@@ -29,16 +29,16 @@ const PodcastTeaserStyle = styled.article`
   }
 `
 const PodImage = ({ podinfo, post }) => {
-  return podinfo.map((pod, index) => {
+  var podImg = <img src={placeholder} />
+  var match = false
+  podinfo.map((pod, index) => {
     var podcastId = "Buzzsprout__PodcastEpisode__" + pod.data.buzzsprout_id.text
     if (podcastId == post.id) {
-      return (
-        <Img fluid={pod.data.podcast_image.localFile.childImageSharp.fluid} />
-      )
-    } else {
-      return <img src={placeholder} />
+      console.log('true')
+      podImg = <Img fluid={pod.data.podcast_image.localFile.childImageSharp.fluid} />
     }
   })
+  return podImg
 }
 
 export const PodcastTeaser = ({ post, podinfo }) => {
