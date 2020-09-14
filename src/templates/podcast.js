@@ -347,7 +347,7 @@ const Podcast = props => {
     }
     else{
       var podDesc = props.data.page.description.replace(/<[^>]*>/g, '')
-      podDesc = podDesc.result.substring(0, 400) + '...'
+      podDesc = podDesc.substring(0, 400) + '...'
     }
     console.log(podDesc)
   }
