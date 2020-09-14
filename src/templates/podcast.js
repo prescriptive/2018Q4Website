@@ -127,6 +127,7 @@ const PodcastStyle = styled.div`
       }
       img {
         max-width: 100%;
+        border-radius: 4px;
       }
     }
   }
@@ -152,11 +153,11 @@ const PodcastStyle = styled.div`
   }
   .podcasts-container {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
     > article {
-      width: calc(100% / 3 - 10px);
       margin-bottom: 40px;
+      width: calc((100%) / 3 - 14px);
+      margin-right: 20px;
       @media (max-width: ${variable.tabletWidth}) {
         width: calc(100% / 2 - 10px);
       }
