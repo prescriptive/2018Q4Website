@@ -10,8 +10,6 @@ import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-const stripHtml = require("string-strip-html");
-
 
 function SEO({ site, page, lang, meta }) {
   var noIndex = "index"
@@ -37,9 +35,8 @@ function SEO({ site, page, lang, meta }) {
       metaDescription = page.data.meta_description
     }
     else{
-      metaDescription = stripHtml(page.data.body[0].primary.text.text)
-      metaDescription = metaDescription.result.substring(0, 400) + '...'
-      console.log(metaDescription)
+      metaDescription = page.data.body[0].primary.text.text.replace(/<[^>]*>/g, '')
+      metaDescription = metaDescription.substring(0, 400) + '...'
     }
   }
 

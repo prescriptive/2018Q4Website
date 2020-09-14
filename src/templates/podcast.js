@@ -26,8 +26,6 @@ import { faUndoAlt } from "@fortawesome/free-solid-svg-icons"
 import ResponsiveEmbed from "react-responsive-embed"
 
 
-const stripHtml = require("string-strip-html");
-
 const AudioFileStyle = styled.span`
   .rhap_rewind-button {
     display: flex;
@@ -348,7 +346,7 @@ const Podcast = props => {
       var podDesc = podInfo.meta_description.text
     }
     else{
-      var podDesc = stripHtml(props.data.page.description)
+      var podDesc = props.data.page.description.replace(/<[^>]*>/g, '')
       podDesc = podDesc.result.substring(0, 400) + '...'
     }
     console.log(podDesc)
