@@ -39,6 +39,13 @@ function SEO({ site, page, lang, meta }) {
       metaDescription = metaDescription.substring(0, 400) + '...'
     }
   }
+  console.log(page.data.audio_url)
+  if(page.data.audio_url){
+    var twitterCard = "player"
+  }
+  else{
+    var twitterCard = "summary_large_image"
+  }
 
   if (page.desc) {
     metaDescription = page.desc
@@ -112,7 +119,7 @@ function SEO({ site, page, lang, meta }) {
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: twitterCard,
         },
         {
           name: `twitter:creator`,
