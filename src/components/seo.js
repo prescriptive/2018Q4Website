@@ -39,9 +39,13 @@ function SEO({ site, page, lang, meta }) {
       metaDescription = metaDescription.substring(0, 400) + '...'
     }
   }
-  console.log(page.data.audio_url)
+  var twitterPlayer = '';
   if(page.data.audio_url){
     var twitterCard = "player"
+    var twitterPlayer={
+      name: `twitter:player`,
+      content: page.data.audio_url,
+    }
   }
   else{
     var twitterCard = "summary_large_image"
@@ -85,6 +89,7 @@ function SEO({ site, page, lang, meta }) {
         },
       ]}
       meta={[
+        twitterPlayer,
         {
           name: `description`,
           content: metaDescription,
