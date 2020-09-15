@@ -25,6 +25,7 @@ import { faRedoAlt } from "@fortawesome/free-solid-svg-icons"
 import { faUndoAlt } from "@fortawesome/free-solid-svg-icons"
 import ResponsiveEmbed from "react-responsive-embed"
 
+
 const AudioFileStyle = styled.span`
   .rhap_rewind-button {
     display: flex;
@@ -126,6 +127,7 @@ const PodcastStyle = styled.div`
       }
       img {
         max-width: 100%;
+        border-radius: 4px;
       }
     }
   }
@@ -151,11 +153,11 @@ const PodcastStyle = styled.div`
   }
   .podcasts-container {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
     > article {
-      width: calc(100% / 3 - 10px);
       margin-bottom: 40px;
+      width: calc((100%) / 3 - 14px);
+      margin-right: 20px;
       @media (max-width: ${variable.tabletWidth}) {
         width: calc(100% / 2 - 10px);
       }
@@ -291,7 +293,6 @@ const SidebarSlices = ({ sidebar }) => {
         case "text":
           return (
             <div key={index} className="slice-wrapper slice-text">
-              {console.log(slice)}
               <RichText
                 render={slice.primary.text.raw}
                 linkResolver={linkResolver}
@@ -328,10 +329,13 @@ const Podcast = props => {
   const contactBlock = props.data.contactBlock.data.body
   const bg = props.data.bgImage.childImageSharp.fluid
   const allPodInfo = props.data.allpodinfo.nodes
+  const site = props.data.site
+  var podDesc = '';
   if (props.data.podinfo) {
     var podInfo = props.data.podinfo.data
     if (podInfo.podcast_image.localFile) {
       var podInfoImage = podInfo.podcast_image.localFile.childImageSharp.fluid
+      var podInfoImageUrl = podInfo.podcast_image.url
     }
     if (podInfo.youtube_embed) {
       var podInfoYoutube = podInfo.youtube_embed
@@ -339,11 +343,24 @@ const Podcast = props => {
     if (podInfo.body) {
       var podInfoSidebar = podInfo.body
     }
+    if(podInfo.meta_description.text){
+      var podDesc = podInfo.meta_description.text
+    }
+    else{
+      var podDesc = props.data.page.description.replace(/<[^>]*>/g, '')
+      podDesc = podDesc.substring(0, 400) + '...'
+    }
+    console.log(podDesc)
+  }
+  const meta = {
+    data:props.data.page,
+    podimage:podInfoImageUrl,
+    desc:podDesc
   }
 
   return (
     <Layout>
-      {/* <SEO site={site} page={node} /> */}
+      <SEO site={site} page={meta} />
       <PodHeader>
         <BackgroundImage Tag="section" fluid={bg}>
           <Container>
@@ -606,6 +623,7 @@ export const podcastQuery = graphql`
             text
           }
           podcast_image {
+            url
             localFile {
               childImageSharp {
                 fluid(maxWidth: 1920) {
@@ -625,6 +643,7 @@ export const podcastQuery = graphql`
           text
         }
         podcast_image {
+          url
           localFile {
             childImageSharp {
               fluid(maxWidth: 1920) {
@@ -634,6 +653,9 @@ export const podcastQuery = graphql`
           }
         }
         title {
+          text
+        }
+        meta_description {
           text
         }
         youtube_embed {

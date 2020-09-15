@@ -168,7 +168,11 @@ const Post = props => {
 
   return (
     <Layout>
-      <SEO site={site} page={props.data.page} />
+      <SEO 
+      site={site} 
+      page={props.data.page}
+      >
+    </SEO>
       <BlogHeader>
         <Container>
           <div className="blog-header-container">
@@ -339,6 +343,7 @@ export const postQuery = graphql`
               text {
                 html
                 raw
+                text
               }
             }
           }

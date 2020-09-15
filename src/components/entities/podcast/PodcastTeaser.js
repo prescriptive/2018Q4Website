@@ -25,6 +25,7 @@ const PodcastTeaserStyle = styled.article`
     img {
       max-with: 100%;
       width: 100%;
+      border-radius: 4px;
     }
   }
 `

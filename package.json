@@ -58,6 +58,7 @@
     "react-stack-grid": "^0.7.1",
     "react-stonecutter": "^0.3.10",
     "react-youtube": "^7.9.0",
+    "string-strip-html": "^5.0.2",
     "styled-components": "^5.0.1"
   },
   "devDependencies": {
