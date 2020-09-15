@@ -41,7 +41,7 @@ function SEO({ site, page, lang, meta }) {
   }
   var twitterPlayer = '';
   if(page.data.audio_url){
-    var twitterCard = "player"
+    var twitterCard = "summary_large_image"
     var twitterPlayer={
       name: `twitter:player`,
       content: page.data.audio_url,
@@ -89,7 +89,6 @@ function SEO({ site, page, lang, meta }) {
         },
       ]}
       meta={[
-        twitterPlayer,
         {
           name: `description`,
           content: metaDescription,
