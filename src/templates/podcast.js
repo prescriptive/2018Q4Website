@@ -26,7 +26,12 @@ import { faUndoAlt } from "@fortawesome/free-solid-svg-icons"
 import ResponsiveEmbed from "react-responsive-embed"
 
 
-const AudioFileStyle = styled.span`
+const AudioFileStyle = styled.div`
+.listen{
+  font-weight:bold;
+  margin-top:30px;
+  margin-bottom:10px;
+}
   .rhap_rewind-button {
     display: flex;
     align-items: center;
@@ -375,8 +380,27 @@ const Podcast = props => {
           <div className="pod-container">
             <div className="pod-left">
               <div className="pod-date">{props.data.page.published_at}</div>
-              <div className="pod-top-summary">{props.data.page.summary}</div>
+              {podInfoYoutube && <VideoSlice video={podInfo.youtube_embed} />}
+              <h2>Show Notes</h2>
+              <div className="pod-image-desc">
+                {podInfoImage && (
+                  <div className="pod-image">
+                    <Img fluid={podInfoImage} />
+                  </div>
+                )}
+                <div
+                  className="pod-descs"
+                  dangerouslySetInnerHTML={{
+                    __html: props.data.page.description,
+                  }}
+                />
+              </div>
+            </div>
+            <div className="pod-right">
+              <img src={props.data.page.artwork_url} />
               <AudioFileStyle>
+              <div className="listen">Listen to audio only</div>
+
                 <AudioPlayer
                   progressJumpSteps={{
                     forward: 15000,
@@ -401,24 +425,6 @@ const Podcast = props => {
                   // other props here
                 />
               </AudioFileStyle>
-              <h2>Show Notes</h2>
-              <div className="pod-image-desc">
-                {podInfoImage && (
-                  <div className="pod-image">
-                    <Img fluid={podInfoImage} />
-                  </div>
-                )}
-                <div
-                  className="pod-descs"
-                  dangerouslySetInnerHTML={{
-                    __html: props.data.page.description,
-                  }}
-                />
-                {podInfoYoutube && <VideoSlice video={podInfo.youtube_embed} />}
-              </div>
-            </div>
-            <div className="pod-right">
-              <img src={props.data.page.artwork_url} />
               {podInfoSidebar && <SidebarSlices sidebar={podInfoSidebar} />}
             </div>
           </div>
