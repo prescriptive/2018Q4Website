@@ -120,7 +120,7 @@ const PodcastStyle = styled.div`
       width: calc(100% - 420px);
       @media (max-width: ${variable.mobileWidth}) {
         width: calc(100%);
-        margin-bottom: 60px;
+        margin-bottom: 0px;
       }
     }
     .pod-right {
@@ -129,6 +129,12 @@ const PodcastStyle = styled.div`
       @media (max-width: ${variable.mobileWidth}) {
         width: calc(100%);
         text-align: left;
+      }
+      .pod-right-image-player{
+        @media (max-width: ${variable.mobileWidth}) {
+        display:flex;
+        flex-direction:column-reverse;
+      }
       }
       img {
         max-width: 100%;
@@ -225,6 +231,13 @@ const PodcastStyle = styled.div`
   }
   .rhap_progress-indicator {
     background: ${variable.red};
+  }
+  .pod-above-title{
+    font-weight:bold;
+  }
+  .pod-date{
+    margin-bottom:10px;
+    margin-top:5px;
   }
 `
 
@@ -379,9 +392,13 @@ const Podcast = props => {
         <Container>
           <div className="pod-container">
             <div className="pod-left">
-              <div className="pod-date">{props.data.page.published_at}</div>
+              <div class="video-title">
+              Watch the video of this episode
+              </div>
               {podInfoYoutube && <VideoSlice video={podInfo.youtube_embed} />}
               <h2>Show Notes</h2>
+              <div className="pod-above-title">{props.data.page.title}</div>
+              <div className="pod-date">{props.data.page.published_at}</div>
               <div className="pod-image-desc">
                 {podInfoImage && (
                   <div className="pod-image">
@@ -397,6 +414,7 @@ const Podcast = props => {
               </div>
             </div>
             <div className="pod-right">
+              <div className="pod-right-image-player">
               <img src={props.data.page.artwork_url} />
               <AudioFileStyle>
               <div className="listen">Listen to audio only</div>
@@ -425,6 +443,7 @@ const Podcast = props => {
                   // other props here
                 />
               </AudioFileStyle>
+              </div>
               {podInfoSidebar && <SidebarSlices sidebar={podInfoSidebar} />}
             </div>
           </div>
