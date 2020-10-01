@@ -239,6 +239,9 @@ const PodcastStyle = styled.div`
     margin-bottom:10px;
     margin-top:5px;
   }
+  .video-title{
+    font-weight:bold;
+  }
 `
 
 // Sort and display the different slice options
@@ -334,7 +337,7 @@ export const VideoSlice = ({ video }) => {
     video_id = video_id.substring(0, ampersandPosition)
   }
   return (
-    <div style={{ padding: "40px 0px 0px 0px" }}>
+    <div style={{ padding: "20px 0px 0px 0px" }}>
       <ResponsiveEmbed src={"https://www.youtube.com/embed/" + video_id} />
     </div>
   )
