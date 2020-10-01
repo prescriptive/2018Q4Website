@@ -501,7 +501,7 @@ const Podcast = props => {
                     <img src={props.data.page.artwork_url} />
 
                     <AudioFileStyle
-                      style={{ position: "relatie", top: "-40px" }}
+                      style={{ position: "relative", top: "-40px" }}
                     >
                       <AudioPlayer
                         progressJumpSteps={{
