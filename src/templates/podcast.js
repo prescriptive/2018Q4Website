@@ -122,6 +122,12 @@ const PodcastStyle = styled.div`
         width: calc(100%);
         margin-bottom: 0px;
       }
+      h2{
+        margin:0px 0px 0px 0px;
+      }
+      h2.show-notes{
+        margin:20px 0px 10px 0px;
+      }
     }
     .pod-right {
       width: 390px;
@@ -169,8 +175,14 @@ const PodcastStyle = styled.div`
       margin-bottom: 40px;
       width: calc((100%) / 3 - 14px);
       margin-right: 20px;
+      &:nth-child(3n + 3) {
+        margin-right: 0px;
+      }
       @media (max-width: ${variable.tabletWidth}) {
         width: calc(100% / 2 - 10px);
+        &:nth-child(2n + 2) {
+          margin-right: 0px;
+        }
       }
       @media (max-width: ${variable.mobileWidth}) {
         width: 100%;
@@ -241,6 +253,26 @@ const PodcastStyle = styled.div`
   }
   .video-title{
     font-weight:bold;
+  }
+  .left-player{
+    display:none;
+    @media (max-width: ${variable.mobileWidth}) {
+      display:block;
+      h2{
+        margin-top:20px !important;
+        margin-bottom:10px !important;
+      }
+    }
+
+  }
+  .right-player{
+    display:block;
+    @media (max-width: ${variable.mobileWidth}) {
+      display:none;
+    }
+    h2{
+      margin:15px 0px 5px 0px;
+    }
   }
 `
 
@@ -395,32 +427,11 @@ const Podcast = props => {
         <Container>
           <div className="pod-container">
             <div className="pod-left">
-              <div class="video-title">
-              Watch the video of this episode
-              </div>
+              <h2>Watch the Video</h2>
               {podInfoYoutube && <VideoSlice video={podInfo.youtube_embed} />}
-              <h2>Show Notes</h2>
-              <div className="pod-above-title">{props.data.page.title}</div>
-              <div className="pod-date">{props.data.page.published_at}</div>
-              <div className="pod-image-desc">
-                {podInfoImage && (
-                  <div className="pod-image">
-                    <Img fluid={podInfoImage} />
-                  </div>
-                )}
-                <div
-                  className="pod-descs"
-                  dangerouslySetInnerHTML={{
-                    __html: props.data.page.description,
-                  }}
-                />
-              </div>
-            </div>
-            <div className="pod-right">
-              <div className="pod-right-image-player">
-              <img src={props.data.page.artwork_url} />
+              <div className="left-player">
               <AudioFileStyle>
-              <div className="listen">Listen to audio only</div>
+              <h2>Listen to Audio</h2>
 
                 <AudioPlayer
                   progressJumpSteps={{
@@ -446,6 +457,56 @@ const Podcast = props => {
                   // other props here
                 />
               </AudioFileStyle>
+              </div>
+              <h2 className="show-notes">Show Notes</h2>
+              <div className="pod-above-title">{props.data.page.title}</div>
+              <div className="pod-date">{props.data.page.published_at}</div>
+              <div className="pod-image-desc">
+                {podInfoImage && (
+                  <div className="pod-image">
+                    <Img fluid={podInfoImage} />
+                  </div>
+                )}
+                <div
+                  className="pod-descs"
+                  dangerouslySetInnerHTML={{
+                    __html: props.data.page.description,
+                  }}
+                />
+              </div>
+            </div>
+            <div className="pod-right">
+              <div className="pod-right-image-player">
+              <img src={props.data.page.artwork_url} />
+              <div className="right-player">
+              <AudioFileStyle>
+              <h2>Listen to Audio</h2>
+
+                <AudioPlayer
+                  progressJumpSteps={{
+                    forward: 15000,
+                    backward: 15000,
+                  }}
+                  layout="horizontal"
+                  customControlsSection={[]}
+                  customProgressBarSection={[
+                    ,
+                    RHAP_UI.MAIN_CONTROLS,
+                    RHAP_UI.PROGRESS_BAR,
+                    RHAP_UI.CURRENT_TIME,
+                    <div className="slash">/</div>,
+                    RHAP_UI.DURATION,
+                  ]}
+                  src={podcastUrl}
+                  onPlay={e => console.log("onPlay")}
+                  customIcons={{
+                    rewind: <FontAwesomeIcon icon={faUndoAlt} />,
+                    forward: <FontAwesomeIcon icon={faRedoAlt} />,
+                  }}
+                  // other props here
+                />
+              </AudioFileStyle>
+              </div>
               </div>
               {podInfoSidebar && <SidebarSlices sidebar={podInfoSidebar} />}
             </div>
