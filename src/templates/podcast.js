@@ -25,8 +25,12 @@ import { faRedoAlt } from "@fortawesome/free-solid-svg-icons"
 import { faUndoAlt } from "@fortawesome/free-solid-svg-icons"
 import ResponsiveEmbed from "react-responsive-embed"
 
-
-const AudioFileStyle = styled.span`
+const AudioFileStyle = styled.div`
+  .listen {
+    font-weight: bold;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
   .rhap_rewind-button {
     display: flex;
     align-items: center;
@@ -115,7 +119,13 @@ const PodcastStyle = styled.div`
       width: calc(100% - 420px);
       @media (max-width: ${variable.mobileWidth}) {
         width: calc(100%);
-        margin-bottom: 60px;
+        margin-bottom: 0px;
+      }
+      h2 {
+        margin: 0px 0px 0px 0px;
+      }
+      h2.show-notes {
+        margin: 20px 0px 10px 0px;
       }
     }
     .pod-right {
@@ -124,6 +134,12 @@ const PodcastStyle = styled.div`
       @media (max-width: ${variable.mobileWidth}) {
         width: calc(100%);
         text-align: left;
+      }
+      .pod-right-image-player {
+        @media (max-width: ${variable.mobileWidth}) {
+          display: flex;
+          flex-direction: column-reverse;
+        }
       }
       img {
         max-width: 100%;
@@ -158,8 +174,14 @@ const PodcastStyle = styled.div`
       margin-bottom: 40px;
       width: calc((100%) / 3 - 14px);
       margin-right: 20px;
+      &:nth-child(3n + 3) {
+        margin-right: 0px;
+      }
       @media (max-width: ${variable.tabletWidth}) {
         width: calc(100% / 2 - 10px);
+        &:nth-child(2n + 2) {
+          margin-right: 0px;
+        }
       }
       @media (max-width: ${variable.mobileWidth}) {
         width: 100%;
@@ -176,7 +198,10 @@ const PodcastStyle = styled.div`
     padding: 60px 0px;
   }
   .rhap_container {
-    margin-bottom: 20px;
+    margin-bottom: 0px;
+    border: 0px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
   }
   .rhap_rewind-button {
     display: flex;
@@ -220,6 +245,48 @@ const PodcastStyle = styled.div`
   }
   .rhap_progress-indicator {
     background: ${variable.red};
+  }
+  .pod-above-title {
+    font-weight: bold;
+  }
+  .top-pod-title-date {
+    display: none;
+    @media (max-width: ${variable.mobileWidth}) {
+      display: block;
+    }
+  }
+  .bottom-pod-above-title {
+    font-weight: bold;
+    display: block;
+    @media (max-width: ${variable.mobileWidth}) {
+      display: none;
+    }
+  }
+  .pod-date {
+    margin-bottom: 10px;
+    margin-top: 5px;
+  }
+  .video-title {
+    font-weight: bold;
+  }
+  .left-player {
+    display: none;
+    @media (max-width: ${variable.mobileWidth}) {
+      display: block;
+      h2 {
+        margin-top: 20px !important;
+        margin-bottom: 10px !important;
+      }
+    }
+  }
+  .right-player {
+    display: block;
+    @media (max-width: ${variable.mobileWidth}) {
+      display: none;
+    }
+    h2 {
+      margin: 0px 0px 20px 0px;
+    }
   }
 `
 
@@ -316,7 +383,7 @@ export const VideoSlice = ({ video }) => {
     video_id = video_id.substring(0, ampersandPosition)
   }
   return (
-    <div style={{ padding: "40px 0px 0px 0px" }}>
+    <div style={{ padding: "20px 0px 0px 0px" }}>
       <ResponsiveEmbed src={"https://www.youtube.com/embed/" + video_id} />
     </div>
   )
@@ -330,7 +397,7 @@ const Podcast = props => {
   const bg = props.data.bgImage.childImageSharp.fluid
   const allPodInfo = props.data.allpodinfo.nodes
   const site = props.data.site
-  var podDesc = '';
+  var podDesc = ""
   if (props.data.podinfo) {
     var podInfo = props.data.podinfo.data
     if (podInfo.podcast_image.localFile) {
@@ -343,19 +410,18 @@ const Podcast = props => {
     if (podInfo.body) {
       var podInfoSidebar = podInfo.body
     }
-    if(podInfo.meta_description.text){
+    if (podInfo.meta_description.text) {
       var podDesc = podInfo.meta_description.text
-    }
-    else{
-      var podDesc = props.data.page.description.replace(/<[^>]*>/g, '')
-      podDesc = podDesc.substring(0, 400) + '...'
+    } else {
+      var podDesc = props.data.page.description.replace(/<[^>]*>/g, "")
+      podDesc = podDesc.substring(0, 400) + "..."
     }
     console.log(podDesc)
   }
   const meta = {
-    data:props.data.page,
-    podimage:podInfoImageUrl,
-    desc:podDesc
+    data: props.data.page,
+    podimage: podInfoImageUrl,
+    desc: podDesc,
   }
 
   return (
@@ -374,51 +440,96 @@ const Podcast = props => {
         <Container>
           <div className="pod-container">
             <div className="pod-left">
-              <div className="pod-date">{props.data.page.published_at}</div>
-              <div className="pod-top-summary">{props.data.page.summary}</div>
-              <AudioFileStyle>
-                <AudioPlayer
-                  progressJumpSteps={{
-                    forward: 15000,
-                    backward: 15000,
-                  }}
-                  layout="horizontal"
-                  customControlsSection={[]}
-                  customProgressBarSection={[
-                    ,
-                    RHAP_UI.MAIN_CONTROLS,
-                    RHAP_UI.PROGRESS_BAR,
-                    RHAP_UI.CURRENT_TIME,
-                    <div className="slash">/</div>,
-                    RHAP_UI.DURATION,
-                  ]}
-                  src={podcastUrl}
-                  onPlay={e => console.log("onPlay")}
-                  customIcons={{
-                    rewind: <FontAwesomeIcon icon={faUndoAlt} />,
-                    forward: <FontAwesomeIcon icon={faRedoAlt} />,
-                  }}
-                  // other props here
-                />
-              </AudioFileStyle>
-              <h2>Show Notes</h2>
+              <h2>Watch the Video</h2>
+              {podInfoYoutube && <VideoSlice video={podInfo.youtube_embed} />}
+              <div className="left-player">
+                <AudioFileStyle>
+                  <h2>Listen to Audio</h2>
+
+                  <AudioPlayer
+                    progressJumpSteps={{
+                      forward: 15000,
+                      backward: 15000,
+                    }}
+                    layout="horizontal"
+                    customControlsSection={[]}
+                    customProgressBarSection={[
+                      ,
+                      RHAP_UI.MAIN_CONTROLS,
+                      RHAP_UI.PROGRESS_BAR,
+                      RHAP_UI.CURRENT_TIME,
+                      <div className="slash">/</div>,
+                      RHAP_UI.DURATION,
+                    ]}
+                    src={podcastUrl}
+                    onPlay={e => console.log("onPlay")}
+                    customIcons={{
+                      rewind: <FontAwesomeIcon icon={faUndoAlt} />,
+                      forward: <FontAwesomeIcon icon={faRedoAlt} />,
+                    }}
+                    // other props here
+                  />
+                </AudioFileStyle>
+              </div>
+              <h2 className="show-notes">Show Notes</h2>
+              <div className="top-pod-title-date">
+                <div className="pod-above-title">{props.data.page.title}</div>
+                <div className="pod-date">{props.data.page.published_at}</div>
+              </div>
               <div className="pod-image-desc">
                 {podInfoImage && (
                   <div className="pod-image">
                     <Img fluid={podInfoImage} />
                   </div>
                 )}
+                <div className="bottom-pod-above-title">
+                  {props.data.page.title} - {props.data.page.published_at}
+                </div>
                 <div
                   className="pod-descs"
                   dangerouslySetInnerHTML={{
                     __html: props.data.page.description,
                   }}
                 />
-                {podInfoYoutube && <VideoSlice video={podInfo.youtube_embed} />}
               </div>
             </div>
             <div className="pod-right">
-              <img src={props.data.page.artwork_url} />
+              <div className="pod-right-image-player">
+                <div className="right-player">
+                  <h2>Listen to Audio</h2>
+                  <div className="player-image">
+                    <img src={props.data.page.artwork_url} />
+
+                    <AudioFileStyle
+                      style={{ position: "relative", top: "-40px" }}
+                    >
+                      <AudioPlayer
+                        progressJumpSteps={{
+                          forward: 15000,
+                          backward: 15000,
+                        }}
+                        layout="horizontal"
+                        customControlsSection={[]}
+                        customProgressBarSection={[
+                          ,
+                          RHAP_UI.MAIN_CONTROLS,
+                          RHAP_UI.PROGRESS_BAR,
+                          RHAP_UI.CURRENT_TIME,
+                          <div className="slash">/</div>,
+                          RHAP_UI.DURATION,
+                        ]}
+                        src={podcastUrl}
+                        onPlay={e => console.log("onPlay")}
+                        customIcons={{
+                          rewind: <FontAwesomeIcon icon={faUndoAlt} />,
+                          forward: <FontAwesomeIcon icon={faRedoAlt} />,
+                        }}
+                        // other props here
+                      />
+                    </AudioFileStyle>
+                  </div>
+                </div>
+              </div>
               {podInfoSidebar && <SidebarSlices sidebar={podInfoSidebar} />}
             </div>
           </div>
