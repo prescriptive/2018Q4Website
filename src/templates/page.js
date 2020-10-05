@@ -1,6 +1,6 @@
 import React from "react"
-import Loadable from 'react-loadable';
-import Loading from '../components/loading';
+import Loadable from "react-loadable"
+import Loading from "../components/Loading"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import * as variable from "../components/variables"
@@ -19,29 +19,29 @@ import "../components/scss/page/microsoft365.scss"
 import SEO from "../components/seo"
 
 const LoadableBasicSliceComponent = Loadable({
-  loader: () => import('../components/slices/BasicSectionSlice'),
+  loader: () => import("../components/slices/BasicSectionSlice"),
   loading: Loading,
-});
+})
 const LoadableColumnSliceComponent = Loadable({
-  loader: () => import('../components/slices/ColumnsSectionSlice'),
+  loader: () => import("../components/slices/ColumnsSectionSlice"),
   loading: Loading,
-});
+})
 const LoadableLeftRightSliceComponent = Loadable({
-  loader: () => import('../components/slices/LeftRightSlice'),
+  loader: () => import("../components/slices/LeftRightSlice"),
   loading: Loading,
-});
+})
 const LoadableEntityQuerySliceComponent = Loadable({
-  loader: () => import('../components/slices/EntityQuerySlice'),
+  loader: () => import("../components/slices/EntityQuerySlice"),
   loading: Loading,
-});
+})
 const LoadableHeroSliceComponent = Loadable({
-  loader: () => import('../components/slices/HeroSlice'),
+  loader: () => import("../components/slices/HeroSlice"),
   loading: Loading,
-});
+})
 const LoadableBlockRefSliceComponent = Loadable({
-  loader: () => import('../components/slices/BlockReferenceSlice'),
+  loader: () => import("../components/slices/BlockReferenceSlice"),
   loading: Loading,
-});
+})
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
@@ -54,7 +54,6 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
     }
     const res = (() => {
       switch (slice.slice_type) {
-
         case "basic_section":
           // return <LoadableBasicSliceComponent slice={slice}/>;
           return (
@@ -63,7 +62,7 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
               key={index}
               className="slice-wrapper slice-basic"
             >
-              {<LoadableBasicSliceComponent slice={slice}/>}
+              {<LoadableBasicSliceComponent slice={slice} />}
             </div>
           )
 
@@ -85,7 +84,7 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
               key={index}
               className="slice-wrapper slice-block-reference"
             >
-              {<LoadableBlockRefSliceComponent  slice={slice} />}
+              {<LoadableBlockRefSliceComponent slice={slice} />}
             </div>
           )
 
@@ -97,7 +96,7 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
               className="slice-wrapper slice-entity-query"
             >
               {
-                <LoadableEntityQuerySliceComponent 
+                <LoadableEntityQuerySliceComponent
                   slice={slice}
                   blog={blog}
                   leadership={leadership}
@@ -127,7 +126,7 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
               key={index}
               className="slice-wrapper slice-columns"
             >
-              {<LoadableColumnSliceComponent  slice={slice} />}
+              {<LoadableColumnSliceComponent slice={slice} />}
             </div>
           )
 
@@ -138,7 +137,7 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
               key={index}
               className="slice-wrapper slice-left-right"
             >
-              {<LoadableLeftRightSliceComponent  slice={slice} />}
+              {<LoadableLeftRightSliceComponent slice={slice} />}
             </div>
           )
 
