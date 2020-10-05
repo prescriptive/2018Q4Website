@@ -1,36 +1,33 @@
 import React from "react"
-import Loadable from "react-loadable"
-import Loading from "../components/Loading"
+import Loadable from "@loadable/component"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import * as variable from "../components/variables"
 import styled from "styled-components"
 import SEO from "../components/seo"
 
-const LoadableBasicSliceComponent = Loadable({
-  loader: () => import("../components/slices/BasicSectionSlice"),
-  loading: Loading,
-})
-const LoadableColumnSliceComponent = Loadable({
-  loader: () => import("../components/slices/ColumnsSectionSlice"),
-  loading: Loading,
-})
-const LoadableLeftRightSliceComponent = Loadable({
-  loader: () => import("../components/slices/LeftRightSlice"),
-  loading: Loading,
-})
-const LoadableEntityQuerySliceComponent = Loadable({
-  loader: () => import("../components/slices/EntityQuerySlice"),
-  loading: Loading,
-})
-const LoadableHeroSliceComponent = Loadable({
-  loader: () => import("../components/slices/HeroSlice"),
-  loading: Loading,
-})
-const LoadableBlockRefSliceComponent = Loadable({
-  loader: () => import("../components/slices/BlockReferenceSlice"),
-  loading: Loading,
-})
+const LoadableBasicSliceComponent = loadable(() =>
+  import("../components/slices/BasicSectionSlice")
+)
+
+const LoadableColumnSliceComponent = loadable(() =>
+  import("../components/slices/ColumnsSectionSlice")
+)
+
+const LoadableLeftRightSliceComponent = loadable(() =>
+  import("../components/slices/LeftRightSlice")
+)
+
+const LoadableEntityQuerySliceComponent = loadable(() =>
+  import("../components/slices/EntityQuerySlice")
+)
+
+const LoadableHeroSliceComponent = loadable(() =>
+  import("../components/slices/HeroSlice")
+)
+const LoadableBlockRefSliceComponent = loadable(() =>
+  import("../components/slices/BlockReferenceSlice")
+)
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
