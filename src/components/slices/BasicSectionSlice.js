@@ -244,15 +244,15 @@ export const BasicSectionSlice = ({ slice }) => {
   return (
     <BasicStyle>
       {fluid && (
-        <BackgroundImage
-          Tag="section"
-          fluid={fluid}
-          style={{ backgroundColor: bg_color }}
-          className={sidebarClass}
-        >
+        // <BackgroundImage
+        //   Tag="section"
+        //   fluid={fluid}
+        //   style={{ backgroundColor: bg_color }}
+        //   className={sidebarClass}
+        // >
           <Container
             className="basic-slice-container"
-            style={{ color: font_color }}
+            style={{ color: font_color, backgroundColor: 'black' }}
           >
               {theh1Title && <h1>{theh1Title}</h1>}
               {theh2Title && <h2>{theh2Title}</h2>}
@@ -270,7 +270,7 @@ export const BasicSectionSlice = ({ slice }) => {
               </div>
             )}
           </Container>
-        </BackgroundImage>
+        // </BackgroundImage>
       )}
       {bg_video && (
         <div class="video-container-outer">
