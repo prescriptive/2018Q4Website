@@ -4,9 +4,6 @@ import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
 import { RichText, Date } from "prismic-reactjs"
 import { Link } from "gatsby"
-
-// import { RichText } from "prismic-dom"
-import YouTube from "react-youtube"
 import ResponsiveEmbed from "react-responsive-embed"
 import "../scss/block/defaultBlogCta.scss"
 import linkResolver from "../../utils/linkResolver"
@@ -230,10 +227,9 @@ export const BasicSectionSlice = ({ slice }) => {
   // }
   var theh1Title = null
   var theh2Title = null
-  if(slice.primary.section_title && slice.primary.h1_title == true){
+  if (slice.primary.section_title && slice.primary.h1_title == true) {
     var theh1Title = slice.primary.section_title.text
-  }
-  else if(slice.primary.section_title && slice.primary.h1_title == false){
+  } else if (slice.primary.section_title && slice.primary.h1_title == false) {
     var theh2Title = slice.primary.section_title.text
   }
   // const content = slice.primary.content.raw.map(function(slice, index) {
@@ -244,18 +240,18 @@ export const BasicSectionSlice = ({ slice }) => {
   return (
     <BasicStyle>
       {fluid && (
-        // <BackgroundImage
-        //   Tag="section"
-        //   fluid={fluid}
-        //   style={{ backgroundColor: bg_color }}
-        //   className={sidebarClass}
-        // >
+        <BackgroundImage
+          Tag="section"
+          fluid={fluid}
+          style={{ backgroundColor: bg_color }}
+          className={sidebarClass}
+        >
           <Container
             className="basic-slice-container"
-            style={{ color: font_color, backgroundColor: 'black' }}
+            style={{ color: font_color }}
           >
-              {theh1Title && <h1>{theh1Title}</h1>}
-              {theh2Title && <h2>{theh2Title}</h2>}
+            {theh1Title && <h1>{theh1Title}</h1>}
+            {theh2Title && <h2>{theh2Title}</h2>}
             <div className="section-content">
               <RichText
                 render={slice.primary.content.raw}
@@ -270,7 +266,7 @@ export const BasicSectionSlice = ({ slice }) => {
               </div>
             )}
           </Container>
-        // </BackgroundImage>
+        </BackgroundImage>
       )}
       {bg_video && (
         <div class="video-container-outer">
@@ -310,7 +306,7 @@ export const BasicSectionSlice = ({ slice }) => {
         <div style={{ backgroundColor: bg_color }}>
           <Container className="basic-slice-container">
             <section className={sidebarClass}>
-            {theh1Title && <h1>{theh1Title}</h1>}
+              {theh1Title && <h1>{theh1Title}</h1>}
               {theh2Title && <h2>{theh2Title}</h2>}
               {slice.primary.content && (
                 <div className="section-content">

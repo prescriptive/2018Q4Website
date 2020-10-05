@@ -5,17 +5,6 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import * as variable from "../components/variables"
 import styled from "styled-components"
-import Container from "../components/container"
-import "../components/scss/page/home.scss"
-import "../components/scss/page/about.scss"
-import "../components/scss/page/solutions.scss"
-import "../components/scss/page/careers.scss"
-import "../components/scss/page/contact.scss"
-import "../components/scss/page/phase2.scss"
-import "../components/scss/page/dir.scss"
-import "../components/scss/page/podcasts.scss"
-import "../components/scss/page/insights.scss"
-import "../components/scss/page/microsoft365.scss"
 import SEO from "../components/seo"
 
 const LoadableBasicSliceComponent = Loadable({
@@ -165,6 +154,37 @@ const Page = ({ data }) => {
   const podinfo = data.podinfo
   //   const site = data.site.allSite_informations.edges[0].node
   console.log(node)
+  if (node.uid == "home") {
+    require("../components/scss/page/home.scss")
+  }
+  if (node.uid == "about") {
+    require("../components/scss/page/about.scss")
+  }
+  if (node.uid == "services-solutions") {
+    require("../components/scss/page/solutions.scss")
+  }
+  if (node.uid == "insights") {
+    require("../components/scss/page/insights.scss")
+  }
+  if (node.uid == "careers-culture") {
+    require("../components/scss/page/careers.scss")
+  }
+  if (node.uid == "contact-offices") {
+    require("../components/scss/page/contact.scss")
+  }
+  if (node.uid == "welcome-to-phase-2-new") {
+    require("../components/scss/page/phase2.scss")
+  }
+  if (node.uid == "government-contracts-texas") {
+    require("../components/scss/page/dir.scss")
+  }
+  if (node.uid == "podcast") {
+    require("../components/scss/page/podcasts.scss")
+  }
+  if (node.uid == "learn-how-to-protect-microsoft-365-data") {
+    require("../components/scss/page/microsoft365.scss")
+  }
+
   return (
     <Layout slug={node.uid}>
       <SEO site={site} page={node} />

@@ -6,10 +6,7 @@
  */
 
 import React from "react"
-import PropTypes from "prop-types"
 import Helmet from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
-
 
 function SEO({ site, page, lang, meta }) {
   var noIndex = "index"
@@ -25,29 +22,29 @@ function SEO({ site, page, lang, meta }) {
   }
   if (page.podimage) {
     ogImage = page.podimage
-  }
-  else if(page.data.artwork_url){
+  } else if (page.data.artwork_url) {
     ogImage = page.data.artwork_url
   }
   var metaDescription = ""
-  if(page.type == "blog_post"){
+  if (page.type == "blog_post") {
     if (page.data.meta_description) {
       metaDescription = page.data.meta_description
-    }
-    else{
-      metaDescription = page.data.body[0].primary.text.text.replace(/<[^>]*>/g, '')
-      metaDescription = metaDescription.substring(0, 400) + '...'
+    } else {
+      metaDescription = page.data.body[0].primary.text.text.replace(
+        /<[^>]*>/g,
+        ""
+      )
+      metaDescription = metaDescription.substring(0, 400) + "..."
     }
   }
-  var twitterPlayer = '';
-  if(page.data.audio_url){
+  var twitterPlayer = ""
+  if (page.data.audio_url) {
     var twitterCard = "summary_large_image"
-    var twitterPlayer={
+    var twitterPlayer = {
       name: `twitter:player`,
       content: page.data.audio_url,
     }
-  }
-  else{
+  } else {
     var twitterCard = "summary_large_image"
   }
 

@@ -4,7 +4,6 @@ import { Link } from "gatsby"
 import { StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import * as variable from "../components/variables"
-import Container from "../components/container"
 
 const MobileContainer = styled.div`
   display: none;
@@ -89,7 +88,10 @@ const activeStyle = {
   color: variable.red,
 }
 const SubMenuReturn = ({ submenuitem, index }) => {
-  if (submenuitem.sub_nav_link_label.text != "Dummy" && submenuitem.id != 'undefined') {
+  if (
+    submenuitem.sub_nav_link_label.text != "Dummy" &&
+    submenuitem.id != "undefined"
+  ) {
     return (
       <li key={submenuitem.id}>
         <Link activeStyle={activeStyle} to={submenuitem.sub_nav_link.url}>
@@ -225,9 +227,9 @@ class Mobilemenu extends React.Component {
                                 if (submenuitem.id) {
                                   return (
                                     <SubMenuReturn
-                                    submenuitem={submenuitem}
-                                    index={index}
-                                  />  
+                                      submenuitem={submenuitem}
+                                      index={index}
+                                    />
                                   )
                                 }
                               })}
