@@ -1,5 +1,5 @@
 import React from "react"
-import Loadable from "@loadable/component"
+import loadable from "@loadable/component"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import * as variable from "../components/variables"
