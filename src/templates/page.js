@@ -186,6 +186,7 @@ const Page = ({ data }) => {
     // <Layout slug={node.uid}>
     <PageStyle>
       <SEO site={site} page={node} />
+      <h1>Welcome</h1>
       {/* {node.data.body && (
         <PostSlices
           slices={node.data.body}
