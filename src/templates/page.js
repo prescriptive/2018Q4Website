@@ -184,18 +184,18 @@ const Page = ({ data }) => {
 
   return (
     // <Layout slug={node.uid}>
-      // <SEO site={site} page={node} />
-      <PageStyle>
-        {node.data.body && (
-          <PostSlices
-            slices={node.data.body}
-            job={job}
-            leadership={leadership}
-            podcast={podcast}
-            podinfo={podinfo}
-          />
-        )}
-      </PageStyle>
+    <PageStyle>
+      <SEO site={site} page={node} />
+      {node.data.body && (
+        <PostSlices
+          slices={node.data.body}
+          job={job}
+          leadership={leadership}
+          podcast={podcast}
+          podinfo={podinfo}
+        />
+      )}
+    </PageStyle>
     // </Layout>
   )
 }
