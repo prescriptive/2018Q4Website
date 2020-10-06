@@ -252,8 +252,7 @@ export const Header = () => (
       // const classes = useStyles()
       return (
         <HeaderStyle className="header">
-          <div>the header</div>
-          {/* {twitter && (
+          {twitter && (
             <div className="header-social-container">
               <Container>
                 <div className="social-container">
@@ -274,7 +273,7 @@ export const Header = () => (
                 <li key={index}>{menuRender(menuitem)}</li>
               ))}
             </ul>
-          </Container> */}
+          </Container>
         </HeaderStyle>
       )
     }, query2)}
