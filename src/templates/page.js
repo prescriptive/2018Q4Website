@@ -1,7 +1,7 @@
 import React from "react"
 import loadable from "@loadable/component"
 import { graphql } from "gatsby"
-// import Layout from "../components/layout"
+import Layout from "../components/layout"
 import * as variable from "../components/variables"
 import styled from "styled-components"
 import SEO from "../components/seo"
