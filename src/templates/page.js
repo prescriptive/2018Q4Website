@@ -1,7 +1,7 @@
 import React from "react"
 import loadable from "@loadable/component"
 import { graphql } from "gatsby"
-import Layout from "../components/layout"
+// import Layout from "../components/layout"
 import * as variable from "../components/variables"
 import styled from "styled-components"
 import SEO from "../components/seo"
@@ -183,8 +183,8 @@ const Page = ({ data }) => {
   }
 
   return (
-    <Layout slug={node.uid}>
-      <SEO site={site} page={node} />
+    // <Layout slug={node.uid}>
+      // <SEO site={site} page={node} />
       <PageStyle>
         {node.data.body && (
           <PostSlices
@@ -196,7 +196,7 @@ const Page = ({ data }) => {
           />
         )}
       </PageStyle>
-    </Layout>
+    // </Layout>
   )
 }
 export default Page
