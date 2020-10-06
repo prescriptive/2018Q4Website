@@ -11,6 +11,7 @@ import BasicSectionSliceInner from "../slices/BasicSectionSlice"
 import LeftRightSlice from "../slices/LeftRightSlice"
 import * as variable from "../variables"
 import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
+import { GatsbyImage as Img } from '@wardpeet/gatsby-image-nextgen/compat';
 
 // const linkResolver = require("../../utils/linkResolver")
 
@@ -198,6 +199,7 @@ export const BasicSectionSlice = ({ slice }) => {
   }
   if (slice.primary.background_image.localFile != null) {
     fluid = slice.primary.background_image.localFile.childImageSharp.fluid
+    console.log(fluid)
   }
   if (slice.primary.background_video != null) {
     bg_video = slice.primary.background_video.url
@@ -240,12 +242,17 @@ export const BasicSectionSlice = ({ slice }) => {
   return (
     <BasicStyle>
       {fluid && (
-        <BackgroundImage
-          Tag="section"
-          fluid={fluid}
-          style={{ backgroundColor: bg_color }}
-          className={sidebarClass}
-        >
+        // <BackgroundImage
+        //   Tag="section"
+        //   fluid={fluid}
+        //   style={{ backgroundColor: bg_color }}
+        //   className={sidebarClass}
+        // >
+        <div>
+          <Img
+      fluid={fluid}
+      alt="my alt"
+    />
           <Container
             className="basic-slice-container"
             style={{ color: font_color }}
@@ -266,7 +273,8 @@ export const BasicSectionSlice = ({ slice }) => {
               </div>
             )}
           </Container>
-        </BackgroundImage>
+          </div>
+        // </BackgroundImage>
       )}
       {bg_video && (
         <div class="video-container-outer">

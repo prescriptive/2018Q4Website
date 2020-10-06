@@ -74,6 +74,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-styled-components`,
+    `@wardpeet/gatsby-image-nextgen`,
     {
       resolve: "gatsby-plugin-sass",
       options: {
