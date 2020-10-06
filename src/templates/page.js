@@ -186,7 +186,7 @@ const Page = ({ data }) => {
     // <Layout slug={node.uid}>
     <PageStyle>
       <SEO site={site} page={node} />
-      {node.data.body && (
+      {/* {node.data.body && (
         <PostSlices
           slices={node.data.body}
           job={job}
@@ -194,7 +194,7 @@ const Page = ({ data }) => {
           podcast={podcast}
           podinfo={podinfo}
         />
-      )}
+      )} */}
     </PageStyle>
     // </Layout>
   )
