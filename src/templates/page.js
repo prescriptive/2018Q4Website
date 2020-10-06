@@ -30,110 +30,110 @@ const LoadableBlockRefSliceComponent = loadable(() =>
 )
 
 // Sort and display the different slice options
-const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
-  return slices.map((slice, index) => {
-    var sliceID = ""
-    if (slice.primary) {
-      if (slice.primary.slice_id != undefined) {
-        var sliceID = slice.primary.slice_id.text
-      }
-    }
-    const res = (() => {
-      switch (slice.slice_type) {
-        case "basic_section":
-          // return <LoadableBasicSliceComponent slice={slice}/>;
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-basic"
-            >
-              {<LoadableBasicSliceComponent slice={slice} />}
-            </div>
-          )
+// const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
+//   return slices.map((slice, index) => {
+//     var sliceID = ""
+//     if (slice.primary) {
+//       if (slice.primary.slice_id != undefined) {
+//         var sliceID = slice.primary.slice_id.text
+//       }
+//     }
+//     const res = (() => {
+//       switch (slice.slice_type) {
+//         case "basic_section":
+//           // return <LoadableBasicSliceComponent slice={slice}/>;
+//           return (
+//             <div
+//               id={"slice-id-" + sliceID}
+//               key={index}
+//               className="slice-wrapper slice-basic"
+//             >
+//               {<LoadableBasicSliceComponent slice={slice} />}
+//             </div>
+//           )
 
-        case "hero":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-hero"
-            >
-              {<LoadableHeroSliceComponent slice={slice} />}
-            </div>
-          )
+//         case "hero":
+//           return (
+//             <div
+//               id={"slice-id-" + sliceID}
+//               key={index}
+//               className="slice-wrapper slice-hero"
+//             >
+//               {<LoadableHeroSliceComponent slice={slice} />}
+//             </div>
+//           )
 
-        case "block_reference":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-block-reference"
-            >
-              {<LoadableBlockRefSliceComponent slice={slice} />}
-            </div>
-          )
+//         case "block_reference":
+//           return (
+//             <div
+//               id={"slice-id-" + sliceID}
+//               key={index}
+//               className="slice-wrapper slice-block-reference"
+//             >
+//               {<LoadableBlockRefSliceComponent slice={slice} />}
+//             </div>
+//           )
 
-        case "entity_query":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-entity-query"
-            >
-              {
-                <LoadableEntityQuerySliceComponent
-                  slice={slice}
-                  blog={blog}
-                  leadership={leadership}
-                  job={job}
-                  podcast={podcast}
-                  podinfo={podinfo}
-                />
-              }
-            </div>
-          )
+//         case "entity_query":
+//           return (
+//             <div
+//               id={"slice-id-" + sliceID}
+//               key={index}
+//               className="slice-wrapper slice-entity-query"
+//             >
+//               {
+//                 <LoadableEntityQuerySliceComponent
+//                   slice={slice}
+//                   blog={blog}
+//                   leadership={leadership}
+//                   job={job}
+//                   podcast={podcast}
+//                   podinfo={podinfo}
+//                 />
+//               }
+//             </div>
+//           )
 
-        // case "slideshow":
-        //   return (
-        //     <div
-        //       id={"slice-id-" + slice.id}
-        //       key={index}
-        //       className="slice-wrapper slice-slideshow"
-        //     >
-        //       {/* {<EntityQuerySlice slice={slice} blog={blog} />} */}
-        //     </div>
-        //   )
+//         // case "slideshow":
+//         //   return (
+//         //     <div
+//         //       id={"slice-id-" + slice.id}
+//         //       key={index}
+//         //       className="slice-wrapper slice-slideshow"
+//         //     >
+//         //       {/* {<EntityQuerySlice slice={slice} blog={blog} />} */}
+//         //     </div>
+//         //   )
 
-        case "columns_section":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-columns"
-            >
-              {<LoadableColumnSliceComponent slice={slice} />}
-            </div>
-          )
+//         case "columns_section":
+//           return (
+//             <div
+//               id={"slice-id-" + sliceID}
+//               key={index}
+//               className="slice-wrapper slice-columns"
+//             >
+//               {<LoadableColumnSliceComponent slice={slice} />}
+//             </div>
+//           )
 
-        case "left_right_section":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-left-right"
-            >
-              {<LoadableLeftRightSliceComponent slice={slice} />}
-            </div>
-          )
+//         case "left_right_section":
+//           return (
+//             <div
+//               id={"slice-id-" + sliceID}
+//               key={index}
+//               className="slice-wrapper slice-left-right"
+//             >
+//               {<LoadableLeftRightSliceComponent slice={slice} />}
+//             </div>
+//           )
 
-        default:
-          return
-      }
-    })()
-    return res
-  })
-}
+//         default:
+//           return
+//       }
+//     })()
+//     return res
+//   })
+// }
 
 const PageStyle = styled.div`
   section {
