@@ -14,10 +14,14 @@ import BasicSectionSliceInner from "../slices/BasicSectionSlice"
 import LeftRightSlice from "../slices/LeftRightSlice"
 import * as variable from "../variables"
 import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
+import premain from "../../images/pre-main.jpg"
 
 // const linkResolver = require("../../utils/linkResolver")
 
 const BasicStyle = styled.div`
+  .bg {
+    background-image: url(${premain});
+  }
   .video-container-outer {
     .video-container {
       width: 100%;
@@ -242,12 +246,13 @@ export const BasicSectionSlice = ({ slice }) => {
   return (
     <BasicStyle>
       {fluid && (
-        <BackgroundImage
-          Tag="section"
-          fluid={fluid}
-          style={{ backgroundColor: bg_color }}
-          className={sidebarClass}
-        >
+        // <BackgroundImage
+        //   Tag="section"
+        //   fluid={fluid}
+        //   style={{ backgroundColor: bg_color }}
+        //   className={sidebarClass}
+        // >
+        <div className="bg">
           <Container
             className="basic-slice-container"
             style={{ color: font_color }}
@@ -268,7 +273,7 @@ export const BasicSectionSlice = ({ slice }) => {
               </div>
             )}
           </Container>
-        </BackgroundImage>
+        </div>
       )}
       {bg_video && (
         <div class="video-container-outer">
