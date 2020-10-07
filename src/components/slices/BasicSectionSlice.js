@@ -19,6 +19,9 @@ import premain from "../../images/pre-main.jpg"
 // const linkResolver = require("../../utils/linkResolver")
 
 const BasicStyle = styled.div`
+  .hideme {
+    display: none;
+  }
   .bg {
     background-image: url(${premain});
   }
@@ -253,6 +256,7 @@ export const BasicSectionSlice = ({ slice }) => {
         //   className={sidebarClass}
         // >
         <div className="bg">
+          <img className="hideme" src={premain} />
           <Container
             className="basic-slice-container"
             style={{ color: font_color }}
