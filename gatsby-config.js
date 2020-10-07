@@ -20,6 +20,7 @@ module.exports = {
         policy: [{ userAgent: "*", allow: "/" }],
       },
     },
+    `gatsby-plugin-preact`,
     "gatsby-plugin-loadable-components-ssr",
     {
       resolve: `gatsby-source-filesystem`,
