@@ -12,10 +12,26 @@ import LeftRightSlice from "../slices/LeftRightSlice"
 import * as variable from "../variables"
 import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
 import { GatsbyImage as Img } from '@wardpeet/gatsby-image-nextgen/compat';
+import BgImage from "../BackgroundImage";
 
 // const linkResolver = require("../../utils/linkResolver")
 
 const BasicStyle = styled.div`
+.bg-image-container{
+  position:relative;
+  overflow:hidden;
+  .gatsby-image{
+    position: absolute !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    min-width: 100%;
+    min-height: 100%;
+    height: auto;
+    width: auto;
+    z-index:-1;
+  }
+}
   .video-container-outer {
     .video-container {
       width: 100%;
@@ -242,17 +258,9 @@ export const BasicSectionSlice = ({ slice }) => {
   return (
     <BasicStyle>
       {fluid && (
-        // <BackgroundImage
-        //   Tag="section"
-        //   fluid={fluid}
-        //   style={{ backgroundColor: bg_color }}
-        //   className={sidebarClass}
-        // >
-        <div>
-          <Img
-      fluid={fluid}
-      alt="my alt"
-    />
+        <div className="bg-image-container">
+        <Img fluid={fluid}/>
+
           <Container
             className="basic-slice-container"
             style={{ color: font_color }}
@@ -274,7 +282,7 @@ export const BasicSectionSlice = ({ slice }) => {
             )}
           </Container>
           </div>
-        // </BackgroundImage>
+          // </BgImage>
       )}
       {bg_video && (
         <div class="video-container-outer">
