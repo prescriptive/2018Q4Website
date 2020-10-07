@@ -20,10 +20,10 @@ import premain from "../../images/pre-main.jpg"
 
 const BasicStyle = styled.div`
   .hideme {
-    display: none;
+    // display: none;
   }
   .bg {
-    background-image: url(${premain});
+    // background-image: url(${premain});
   }
   .video-container-outer {
     .video-container {
