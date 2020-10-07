@@ -20,7 +20,8 @@ import premain from "../../images/pre-main.jpg"
 
 const BasicStyle = styled.div`
   .hideme {
-    // display: none;
+    width:100%;
+    height:auto;
   }
   .bg {
     // background-image: url(${premain});
