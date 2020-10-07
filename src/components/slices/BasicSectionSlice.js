@@ -4,6 +4,9 @@ import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
 import { RichText, Date } from "prismic-reactjs"
 import { Link } from "gatsby"
+
+// import { RichText } from "prismic-dom"
+import YouTube from "react-youtube"
 import ResponsiveEmbed from "react-responsive-embed"
 import "../scss/block/defaultBlogCta.scss"
 import linkResolver from "../../utils/linkResolver"
@@ -11,27 +14,10 @@ import BasicSectionSliceInner from "../slices/BasicSectionSlice"
 import LeftRightSlice from "../slices/LeftRightSlice"
 import * as variable from "../variables"
 import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
-import { GatsbyImage as Img } from "@wardpeet/gatsby-image-nextgen/compat"
-import BgImage from "../BackgroundImage"
 
 // const linkResolver = require("../../utils/linkResolver")
 
 const BasicStyle = styled.div`
-  // .bg-image-container{
-  //   position:relative;
-  //   overflow:hidden;
-  //   .gatsby-image{
-  //     position: absolute !important;
-  //     top: 50%;
-  //     left: 50%;
-  //     transform: translate(-50%,-50%);
-  //     min-width: 100%;
-  //     min-height: 100%;
-  //     height: auto;
-  //     width: auto;
-  //     z-index:-1;
-  //   }
-  // }
   .video-container-outer {
     .video-container {
       width: 100%;
@@ -39,7 +25,6 @@ const BasicStyle = styled.div`
       position: relative;
       overflow: hidden;
       min-height: 500px;
-
       video {
         position: absolute;
         top: 0;
@@ -215,7 +200,6 @@ export const BasicSectionSlice = ({ slice }) => {
   }
   if (slice.primary.background_image.localFile != null) {
     fluid = slice.primary.background_image.localFile.childImageSharp.fluid
-    console.log(fluid)
   }
   if (slice.primary.background_video != null) {
     bg_video = slice.primary.background_video.url
@@ -258,9 +242,12 @@ export const BasicSectionSlice = ({ slice }) => {
   return (
     <BasicStyle>
       {fluid && (
-        <div className="bg-image-container">
-          <Img fluid={fluid} />
-
+        <BackgroundImage
+          Tag="section"
+          fluid={fluid}
+          style={{ backgroundColor: bg_color }}
+          className={sidebarClass}
+        >
           <Container
             className="basic-slice-container"
             style={{ color: font_color }}
@@ -281,8 +268,7 @@ export const BasicSectionSlice = ({ slice }) => {
               </div>
             )}
           </Container>
-        </div>
-        // </BgImage>
+        </BackgroundImage>
       )}
       {bg_video && (
         <div class="video-container-outer">
