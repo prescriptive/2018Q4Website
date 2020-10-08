@@ -3,8 +3,8 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 import Container from "../container"
 import { withStyles, makeStyles } from "@material-ui/core/styles"
-import Tooltip from "@material-ui/core/Tooltip"
-import Fade from "@material-ui/core/Fade"
+// import Tooltip from "@material-ui/core/Tooltip"
+// import Fade from "@material-ui/core/Fade"
 import { StaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import * as variable from "../variables"
@@ -13,14 +13,14 @@ import * as variable from "../variables"
 // import { faTwitter } from "@fortawesome/free-brands-svg-icons"
 import { withPreview } from "gatsby-source-prismic-graphql"
 
-const HtmlTooltip = withStyles(theme => ({
-  tooltip: {
-    backgroundColor: variable.medLightGray,
-    padding: "10px 20px",
-    fontSize: theme.typography.pxToRem(16),
-    border: "1px solid #dadde9",
-  },
-}))(Tooltip)
+// const HtmlTooltip = withStyles(theme => ({
+//   tooltip: {
+//     backgroundColor: variable.medLightGray,
+//     padding: "10px 20px",
+//     fontSize: theme.typography.pxToRem(16),
+//     border: "1px solid #dadde9",
+//   },
+// }))(Tooltip)
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -128,12 +128,13 @@ function menuRender(menuitem) {
     menuitem.items[0].sub_nav_link_label.text != "Dummy"
   ) {
     return (
-      <HtmlTooltip
-        TransitionComponent={Fade}
-        interactive
-        classes="tooltip"
-        id="the-tooltip"
-        title={
+      // <HtmlTooltip
+      //   TransitionComponent={Fade}
+      //   interactive
+      //   classes="tooltip"
+      //   id="the-tooltip"
+      //   title={
+        <div>
           <React.Fragment>
             {menuitem.items.map((submenuitem, index) => (
               <div key={index}>
@@ -157,12 +158,13 @@ function menuRender(menuitem) {
               </div>
             ))}
           </React.Fragment>
-        }
-      >
+        
+      
         <Link activeStyle={activeStyle} to={menuitem.primary.link.url}>
           {menuitem.primary.label.text}
         </Link>
-      </HtmlTooltip>
+    </div>
+      // </HtmlTooltip>
     )
   } else {
     if (menuitem.primary.link.url != "") {
