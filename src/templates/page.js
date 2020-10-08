@@ -22,11 +22,11 @@ import Text from "../components/slices/TextSlice"
 import Quote from "../components/slices/QuoteSlice"
 import Video from "../components/slices/VideoSlice"
 import BasicSectionSlice from "../components/slices/BasicSectionSlice"
-import ColumnSectionSlice from "../components/slices/ColumnsSectionSlice"
-import LeftRightSlice from "../components/slices/LeftRightSlice"
-import EntityQuerySlice from "../components/slices/EntityQuerySlice"
-import HeroSlice from "../components/slices/HeroSlice"
-import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
+// import ColumnSectionSlice from "../components/slices/ColumnsSectionSlice"
+// import LeftRightSlice from "../components/slices/LeftRightSlice"
+// import EntityQuerySlice from "../components/slices/EntityQuerySlice"
+// import HeroSlice from "../components/slices/HeroSlice"
+// import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
@@ -77,80 +77,80 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
             </div>
           )
 
-        case "hero":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-hero"
-            >
-              {<HeroSlice slice={slice} />}
-            </div>
-          )
-
-        case "block_reference":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-block-reference"
-            >
-              {<BlockReferenceSlice slice={slice} />}
-            </div>
-          )
-
-        case "entity_query":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-entity-query"
-            >
-              {
-                <EntityQuerySlice
-                  slice={slice}
-                  blog={blog}
-                  leadership={leadership}
-                  job={job}
-                  podcast={podcast}
-                  podinfo={podinfo}
-                />
-              }
-            </div>
-          )
-
-        // case "slideshow":
+        // case "hero":
         //   return (
         //     <div
-        //       id={"slice-id-" + slice.id}
+        //       id={"slice-id-" + sliceID}
         //       key={index}
-        //       className="slice-wrapper slice-slideshow"
+        //       className="slice-wrapper slice-hero"
         //     >
-        //       {/* {<EntityQuerySlice slice={slice} blog={blog} />} */}
+        //       {<HeroSlice slice={slice} />}
         //     </div>
         //   )
 
-        case "columns_section":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-columns"
-            >
-              {<ColumnSectionSlice slice={slice} />}
-            </div>
-          )
+        // case "block_reference":
+        //   return (
+        //     <div
+        //       id={"slice-id-" + sliceID}
+        //       key={index}
+        //       className="slice-wrapper slice-block-reference"
+        //     >
+        //       {<BlockReferenceSlice slice={slice} />}
+        //     </div>
+        //   )
 
-        case "left_right_section":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-left-right"
-            >
-              {<LeftRightSlice slice={slice} />}
-            </div>
-          )
+        // case "entity_query":
+        //   return (
+        //     <div
+        //       id={"slice-id-" + sliceID}
+        //       key={index}
+        //       className="slice-wrapper slice-entity-query"
+        //     >
+        //       {
+        //         <EntityQuerySlice
+        //           slice={slice}
+        //           blog={blog}
+        //           leadership={leadership}
+        //           job={job}
+        //           podcast={podcast}
+        //           podinfo={podinfo}
+        //         />
+        //       }
+        //     </div>
+        //   )
+
+        // // case "slideshow":
+        // //   return (
+        // //     <div
+        // //       id={"slice-id-" + slice.id}
+        // //       key={index}
+        // //       className="slice-wrapper slice-slideshow"
+        // //     >
+        // //       {/* {<EntityQuerySlice slice={slice} blog={blog} />} */}
+        // //     </div>
+        // //   )
+
+        // case "columns_section":
+        //   return (
+        //     <div
+        //       id={"slice-id-" + sliceID}
+        //       key={index}
+        //       className="slice-wrapper slice-columns"
+        //     >
+        //       {<ColumnSectionSlice slice={slice} />}
+        //     </div>
+        //   )
+
+        // case "left_right_section":
+        //   return (
+        //     <div
+        //       id={"slice-id-" + sliceID}
+        //       key={index}
+        //       className="slice-wrapper slice-left-right"
+        //     >
+        //       {<LeftRightSlice slice={slice} />}
+        //     </div>
+        //   )
 
         default:
           return
