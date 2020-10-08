@@ -18,9 +18,9 @@ const LoadableColumnSliceComponent = loadable(() =>
 //   import("../components/slices/LeftRightSlice")
 // )
 
-// const LoadableEntityQuerySliceComponent = loadable(() =>
-//   import("../components/slices/EntityQuerySlice")
-// )
+const LoadableEntityQuerySliceComponent = loadable(() =>
+  import("../components/slices/EntityQuerySlice")
+)
 
 // const LoadableHeroSliceComponent = loadable(() =>
 //   import("../components/slices/HeroSlice")
@@ -74,25 +74,25 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
         //     </div>
         //   )
 
-        // case "entity_query":
-        //   return (
-        //     <div
-        //       id={"slice-id-" + sliceID}
-        //       key={index}
-        //       className="slice-wrapper slice-entity-query"
-        //     >
-        //       {
-        //         <LoadableEntityQuerySliceComponent
-        //           slice={slice}
-        //           blog={blog}
-        //           leadership={leadership}
-        //           job={job}
-        //           podcast={podcast}
-        //           podinfo={podinfo}
-        //         />
-        //       }
-        //     </div>
-        //   )
+        case "entity_query":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-entity-query"
+            >
+              {
+                <LoadableEntityQuerySliceComponent
+                  slice={slice}
+                  blog={blog}
+                  leadership={leadership}
+                  job={job}
+                  podcast={podcast}
+                  podinfo={podinfo}
+                />
+              }
+            </div>
+          )
 
         // case "slideshow":
         //   return (
