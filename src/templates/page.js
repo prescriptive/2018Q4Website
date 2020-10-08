@@ -1,32 +1,33 @@
 import React from "react"
+import loadable from "@loadable/component"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import * as variable from "../components/variables"
 import styled from "styled-components"
-import Container from "../components/container"
-import "../components/scss/page/home.scss"
-import "../components/scss/page/about.scss"
-import "../components/scss/page/solutions.scss"
-import "../components/scss/page/careers.scss"
-import "../components/scss/page/contact.scss"
-import "../components/scss/page/phase2.scss"
-import "../components/scss/page/dir.scss"
-import "../components/scss/page/podcasts.scss"
-import "../components/scss/page/insights.scss"
-import "../components/scss/page/microsoft365.scss"
-import { Link, RichText, Date } from "prismic-reactjs"
 import SEO from "../components/seo"
-import Img from "gatsby-image"
-import Image from "../components/slices/ImageSlice"
-import Text from "../components/slices/TextSlice"
-import Quote from "../components/slices/QuoteSlice"
-import Video from "../components/slices/VideoSlice"
-import BasicSectionSlice from "../components/slices/BasicSectionSlice"
-// import ColumnSectionSlice from "../components/slices/ColumnsSectionSlice"
-// import LeftRightSlice from "../components/slices/LeftRightSlice"
-// import EntityQuerySlice from "../components/slices/EntityQuerySlice"
-// import HeroSlice from "../components/slices/HeroSlice"
-// import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
+
+const LoadableBasicSliceComponent = loadable(() =>
+  import("../components/slices/BasicSectionSlice")
+)
+
+const LoadableColumnSliceComponent = loadable(() =>
+  import("../components/slices/ColumnsSectionSlice")
+)
+
+const LoadableLeftRightSliceComponent = loadable(() =>
+  import("../components/slices/LeftRightSlice")
+)
+
+const LoadableEntityQuerySliceComponent = loadable(() =>
+  import("../components/slices/EntityQuerySlice")
+)
+
+const LoadableHeroSliceComponent = loadable(() =>
+  import("../components/slices/HeroSlice")
+)
+const LoadableBlockRefSliceComponent = loadable(() =>
+  import("../components/slices/BlockReferenceSlice")
+)
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
@@ -39,118 +40,92 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
     }
     const res = (() => {
       switch (slice.slice_type) {
-        // case "text":
-        //   return (
-        //     <div key={index} className="slice-wrapper slice-text">
-        //       {<Text slice={slice} />}
-        //     </div>
-        //   )
-
-        // case "quote":
-        //   return (
-        //     <div key={index} className="slice-wrapper slice-quote">
-        //       {<Quote slice={slice} />}
-        //     </div>
-        //   )
-
-        // case "image":
-        //   return (
-        //     <div key={index} className="slice-wrapper slice-image">
-        //       {<Image slice={slice} />}
-        //     </div>
-        //   )
-        // case "video":
-        //   return (
-        //     <div key={index} className="slice-wrapper slice-video">
-        //       {<Video slice={slice} />}
-        //     </div>
-        //   )
-
         case "basic_section":
+          // return <LoadableBasicSliceComponent slice={slice}/>;
           return (
             <div
               id={"slice-id-" + sliceID}
               key={index}
               className="slice-wrapper slice-basic"
             >
-              {<BasicSectionSlice slice={slice} />}
+              {<LoadableBasicSliceComponent slice={slice} />}
             </div>
           )
 
-        // case "hero":
+        case "hero":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-hero"
+            >
+              {<LoadableHeroSliceComponent slice={slice} />}
+            </div>
+          )
+
+        case "block_reference":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-block-reference"
+            >
+              {<LoadableBlockRefSliceComponent slice={slice} />}
+            </div>
+          )
+
+        case "entity_query":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-entity-query"
+            >
+              {
+                <LoadableEntityQuerySliceComponent
+                  slice={slice}
+                  blog={blog}
+                  leadership={leadership}
+                  job={job}
+                  podcast={podcast}
+                  podinfo={podinfo}
+                />
+              }
+            </div>
+          )
+
+        // case "slideshow":
         //   return (
         //     <div
-        //       id={"slice-id-" + sliceID}
+        //       id={"slice-id-" + slice.id}
         //       key={index}
-        //       className="slice-wrapper slice-hero"
+        //       className="slice-wrapper slice-slideshow"
         //     >
-        //       {<HeroSlice slice={slice} />}
+        //       {/* {<EntityQuerySlice slice={slice} blog={blog} />} */}
         //     </div>
         //   )
 
-        // case "block_reference":
-        //   return (
-        //     <div
-        //       id={"slice-id-" + sliceID}
-        //       key={index}
-        //       className="slice-wrapper slice-block-reference"
-        //     >
-        //       {<BlockReferenceSlice slice={slice} />}
-        //     </div>
-        //   )
+        case "columns_section":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-columns"
+            >
+              {<LoadableColumnSliceComponent slice={slice} />}
+            </div>
+          )
 
-        // case "entity_query":
-        //   return (
-        //     <div
-        //       id={"slice-id-" + sliceID}
-        //       key={index}
-        //       className="slice-wrapper slice-entity-query"
-        //     >
-        //       {
-        //         <EntityQuerySlice
-        //           slice={slice}
-        //           blog={blog}
-        //           leadership={leadership}
-        //           job={job}
-        //           podcast={podcast}
-        //           podinfo={podinfo}
-        //         />
-        //       }
-        //     </div>
-        //   )
-
-        // // case "slideshow":
-        // //   return (
-        // //     <div
-        // //       id={"slice-id-" + slice.id}
-        // //       key={index}
-        // //       className="slice-wrapper slice-slideshow"
-        // //     >
-        // //       {/* {<EntityQuerySlice slice={slice} blog={blog} />} */}
-        // //     </div>
-        // //   )
-
-        // case "columns_section":
-        //   return (
-        //     <div
-        //       id={"slice-id-" + sliceID}
-        //       key={index}
-        //       className="slice-wrapper slice-columns"
-        //     >
-        //       {<ColumnSectionSlice slice={slice} />}
-        //     </div>
-        //   )
-
-        // case "left_right_section":
-        //   return (
-        //     <div
-        //       id={"slice-id-" + sliceID}
-        //       key={index}
-        //       className="slice-wrapper slice-left-right"
-        //     >
-        //       {<LeftRightSlice slice={slice} />}
-        //     </div>
-        //   )
+        case "left_right_section":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-left-right"
+            >
+              {<LoadableLeftRightSliceComponent slice={slice} />}
+            </div>
+          )
 
         default:
           return
@@ -176,10 +151,41 @@ const Page = ({ data }) => {
   const podinfo = data.podinfo
   //   const site = data.site.allSite_informations.edges[0].node
   console.log(node)
+  if (node.uid == "home") {
+    require("../components/scss/page/home.scss")
+  }
+  if (node.uid == "about") {
+    require("../components/scss/page/about.scss")
+  }
+  if (node.uid == "services-solutions") {
+    require("../components/scss/page/solutions.scss")
+  }
+  if (node.uid == "insights") {
+    require("../components/scss/page/insights.scss")
+  }
+  if (node.uid == "careers-culture") {
+    require("../components/scss/page/careers.scss")
+  }
+  if (node.uid == "contact-offices") {
+    require("../components/scss/page/contact.scss")
+  }
+  if (node.uid == "welcome-to-phase-2-new") {
+    require("../components/scss/page/phase2.scss")
+  }
+  if (node.uid == "government-contracts-texas") {
+    require("../components/scss/page/dir.scss")
+  }
+  if (node.uid == "podcast") {
+    require("../components/scss/page/podcasts.scss")
+  }
+  if (node.uid == "learn-how-to-protect-microsoft-365-data") {
+    require("../components/scss/page/microsoft365.scss")
+  }
+
   return (
     <Layout slug={node.uid}>
-      <SEO site={site} page={node} />
       <PageStyle>
+        <SEO site={site} page={node} />
         {node.data.body && (
           <PostSlices
             slices={node.data.body}
@@ -339,7 +345,7 @@ export const postQuery = graphql`
                             background_image {
                               localFile {
                                 childImageSharp {
-                                  fluid(maxWidth: 1920) {
+                                  fluid(maxWidth: 400) {
                                     ...GatsbyImageSharpFluid_withWebp_tracedSVG
                                   }
                                 }
@@ -377,7 +383,7 @@ export const postQuery = graphql`
               background_image {
                 localFile {
                   childImageSharp {
-                    fluid(maxWidth: 1920) {
+                    fluid(maxWidth: 400, quality: 90) {
                       ...GatsbyImageSharpFluid_withWebp_tracedSVG
                     }
                   }
@@ -627,6 +633,7 @@ export const postQuery = graphql`
               }
             }
           }
+
           ... on PrismicPaBodyLeftRightSection {
             id
             slice_type
