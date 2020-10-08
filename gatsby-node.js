@@ -41,16 +41,16 @@ exports.createPages = async ({ graphql, actions }) => {
   //       },
   //     })
   //   })
-  const postTemplate = path.resolve("src/templates/post.js")
-  pages.data.blog.nodes.forEach(node => {
-    createPage({
-      path: `/blog/${node.uid}`,
-      component: postTemplate,
-      context: {
-        uid: node.uid,
-      },
-    })
-  })
+  // const postTemplate = path.resolve("src/templates/post.js")
+  // pages.data.blog.nodes.forEach(node => {
+  //   createPage({
+  //     path: `/blog/${node.uid}`,
+  //     component: postTemplate,
+  //     context: {
+  //       uid: node.uid,
+  //     },
+  //   })
+  // })
   const podcastTemplate = path.resolve("src/templates/podcast.js")
   pages.data.buzz.nodes.forEach(node => {
     // var podSlug = convertToSlug(node.title)

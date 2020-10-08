@@ -7,8 +7,8 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import Header from "../components/regions/header"
-import Footer from "../components/regions/footer"
+// import Header from "../components/regions/header"
+// import Footer from "../components/regions/footer"
 import "../components/scss/layout/layout.scss"
 
 const Layout = ({ children, slug }) => {
@@ -20,9 +20,9 @@ const Layout = ({ children, slug }) => {
 
   return (
     <div id={pageId}>
-      <Header />
+      {/* <Header /> */}
       <main>{children}</main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }
