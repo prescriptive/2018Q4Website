@@ -14,20 +14,20 @@ const LoadableColumnSliceComponent = loadable(() =>
   import("../components/slices/ColumnsSectionSlice")
 )
 
-const LoadableLeftRightSliceComponent = loadable(() =>
-  import("../components/slices/LeftRightSlice")
-)
+// const LoadableLeftRightSliceComponent = loadable(() =>
+//   import("../components/slices/LeftRightSlice")
+// )
 
-const LoadableEntityQuerySliceComponent = loadable(() =>
-  import("../components/slices/EntityQuerySlice")
-)
+// const LoadableEntityQuerySliceComponent = loadable(() =>
+//   import("../components/slices/EntityQuerySlice")
+// )
 
-const LoadableHeroSliceComponent = loadable(() =>
-  import("../components/slices/HeroSlice")
-)
-const LoadableBlockRefSliceComponent = loadable(() =>
-  import("../components/slices/BlockReferenceSlice")
-)
+// const LoadableHeroSliceComponent = loadable(() =>
+//   import("../components/slices/HeroSlice")
+// )
+// const LoadableBlockRefSliceComponent = loadable(() =>
+//   import("../components/slices/BlockReferenceSlice")
+// )
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
@@ -52,47 +52,47 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
             </div>
           )
 
-        case "hero":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-hero"
-            >
-              {<LoadableHeroSliceComponent slice={slice} />}
-            </div>
-          )
+        // case "hero":
+        //   return (
+        //     <div
+        //       id={"slice-id-" + sliceID}
+        //       key={index}
+        //       className="slice-wrapper slice-hero"
+        //     >
+        //       {<LoadableHeroSliceComponent slice={slice} />}
+        //     </div>
+        //   )
 
-        case "block_reference":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-block-reference"
-            >
-              {<LoadableBlockRefSliceComponent slice={slice} />}
-            </div>
-          )
+        // case "block_reference":
+        //   return (
+        //     <div
+        //       id={"slice-id-" + sliceID}
+        //       key={index}
+        //       className="slice-wrapper slice-block-reference"
+        //     >
+        //       {<LoadableBlockRefSliceComponent slice={slice} />}
+        //     </div>
+        //   )
 
-        case "entity_query":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-entity-query"
-            >
-              {
-                <LoadableEntityQuerySliceComponent
-                  slice={slice}
-                  blog={blog}
-                  leadership={leadership}
-                  job={job}
-                  podcast={podcast}
-                  podinfo={podinfo}
-                />
-              }
-            </div>
-          )
+        // case "entity_query":
+        //   return (
+        //     <div
+        //       id={"slice-id-" + sliceID}
+        //       key={index}
+        //       className="slice-wrapper slice-entity-query"
+        //     >
+        //       {
+        //         <LoadableEntityQuerySliceComponent
+        //           slice={slice}
+        //           blog={blog}
+        //           leadership={leadership}
+        //           job={job}
+        //           podcast={podcast}
+        //           podinfo={podinfo}
+        //         />
+        //       }
+        //     </div>
+        //   )
 
         // case "slideshow":
         //   return (
@@ -116,16 +116,16 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
             </div>
           )
 
-        case "left_right_section":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-left-right"
-            >
-              {<LoadableLeftRightSliceComponent slice={slice} />}
-            </div>
-          )
+        // case "left_right_section":
+        //   return (
+        //     <div
+        //       id={"slice-id-" + sliceID}
+        //       key={index}
+        //       className="slice-wrapper slice-left-right"
+        //     >
+        //       {<LoadableLeftRightSliceComponent slice={slice} />}
+        //     </div>
+        //   )
 
         default:
           return
@@ -154,33 +154,33 @@ const Page = ({ data }) => {
   if (node.uid == "home") {
     require("../components/scss/page/home.scss")
   }
-  if (node.uid == "about") {
-    require("../components/scss/page/about.scss")
-  }
-  if (node.uid == "services-solutions") {
-    require("../components/scss/page/solutions.scss")
-  }
-  if (node.uid == "insights") {
-    require("../components/scss/page/insights.scss")
-  }
-  if (node.uid == "careers-culture") {
-    require("../components/scss/page/careers.scss")
-  }
-  if (node.uid == "contact-offices") {
-    require("../components/scss/page/contact.scss")
-  }
-  if (node.uid == "welcome-to-phase-2-new") {
-    require("../components/scss/page/phase2.scss")
-  }
-  if (node.uid == "government-contracts-texas") {
-    require("../components/scss/page/dir.scss")
-  }
-  if (node.uid == "podcast") {
-    require("../components/scss/page/podcasts.scss")
-  }
-  if (node.uid == "learn-how-to-protect-microsoft-365-data") {
-    require("../components/scss/page/microsoft365.scss")
-  }
+  // if (node.uid == "about") {
+  //   require("../components/scss/page/about.scss")
+  // }
+  // if (node.uid == "services-solutions") {
+  //   require("../components/scss/page/solutions.scss")
+  // }
+  // if (node.uid == "insights") {
+  //   require("../components/scss/page/insights.scss")
+  // }
+  // if (node.uid == "careers-culture") {
+  //   require("../components/scss/page/careers.scss")
+  // }
+  // if (node.uid == "contact-offices") {
+  //   require("../components/scss/page/contact.scss")
+  // }
+  // if (node.uid == "welcome-to-phase-2-new") {
+  //   require("../components/scss/page/phase2.scss")
+  // }
+  // if (node.uid == "government-contracts-texas") {
+  //   require("../components/scss/page/dir.scss")
+  // }
+  // if (node.uid == "podcast") {
+  //   require("../components/scss/page/podcasts.scss")
+  // }
+  // if (node.uid == "learn-how-to-protect-microsoft-365-data") {
+  //   require("../components/scss/page/microsoft365.scss")
+  // }
 
   return (
     <Layout slug={node.uid}>
