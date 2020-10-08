@@ -15,6 +15,7 @@ import LeftRightSlice from "../slices/LeftRightSlice"
 import * as variable from "../variables"
 import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
 import premain from "../../images/pre-main.jpg"
+import { GatsbyImage as Img } from '@wardpeet/gatsby-image-nextgen/compat';
 
 // const linkResolver = require("../../utils/linkResolver")
 
@@ -257,7 +258,9 @@ export const BasicSectionSlice = ({ slice }) => {
         //   className={sidebarClass}
         // >
         <div className="bg">
-          <img className="hideme" src={premain} />
+              <Img
+      fluid={fluid}
+    />
           <Container
             className="basic-slice-container"
             style={{ color: font_color }}
