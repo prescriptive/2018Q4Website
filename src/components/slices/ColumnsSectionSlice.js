@@ -2,12 +2,11 @@ import styled from "styled-components"
 import React from "react"
 import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
-import { Link, RichText, Date } from "prismic-reactjs"
+import {RichText} from "prismic-reactjs"
 import * as variable from "../variables"
 import linkResolver from "../../utils/linkResolver"
 import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
 
-const PrismicDOM = require("prismic-dom")
 const ColumnStyle = styled.div`
   .column {
     display: flex;

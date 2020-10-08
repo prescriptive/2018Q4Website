@@ -1,13 +1,12 @@
 import React from "react"
 import styled from "styled-components"
-import { Link, RichText, Date } from "prismic-reactjs"
 import * as variable from "../variables"
 import AudioPlayer from "react-h5-audio-player"
 import { RHAP_UI } from "react-h5-audio-player"
 import "react-h5-audio-player/lib/styles.css"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faRedoAlt } from "@fortawesome/free-solid-svg-icons"
-import { faUndoAlt } from "@fortawesome/free-solid-svg-icons"
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+// import { faRedoAlt } from "@fortawesome/free-solid-svg-icons"
+// import { faUndoAlt } from "@fortawesome/free-solid-svg-icons"
 const AudioFileStyle = styled.span`
   .rhap_rewind-button {
     display: flex;
@@ -90,10 +89,10 @@ export const AudioFile = ({ content, element }) => {
         ]}
         src={fileUrl}
         onPlay={e => console.log("onPlay")}
-        customIcons={{
-          rewind: <FontAwesomeIcon icon={faUndoAlt} />,
-          forward: <FontAwesomeIcon icon={faRedoAlt} />,
-        }}
+        // customIcons={{
+        //   rewind: <FontAwesomeIcon icon={faUndoAlt} />,
+        //   forward: <FontAwesomeIcon icon={faRedoAlt} />,
+        // }}
         // other props here
       />
     </AudioFileStyle>

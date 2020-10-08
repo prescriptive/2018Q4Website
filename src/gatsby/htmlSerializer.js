@@ -1,20 +1,20 @@
 import React from "react"
 import AudioFile from "../components/tokens/audioFile"
 import { Link } from "gatsby"
-
-const { RichText } = require("prismic-dom")
+import { RichText } from 'prismic-dom';
+// const { RichText } = require("prismic-dom")
 
 // We don't want to import every PrismJS component - so that's why they're required individually
-const Prism = require("prismjs")
-require("prismjs/components/prism-javascript")
-require("prismjs/components/prism-css")
-require("prismjs/components/prism-scss")
-require("prismjs/components/prism-jsx")
-require("prismjs/components/prism-bash")
-require("prismjs/components/prism-json")
-require("prismjs/components/prism-diff")
-require("prismjs/components/prism-markdown")
-require("prismjs/components/prism-graphql")
+// const Prism = require("prismjs")
+// require("prismjs/components/prism-javascript")
+// require("prismjs/components/prism-css")
+// require("prismjs/components/prism-scss")
+// require("prismjs/components/prism-jsx")
+// require("prismjs/components/prism-bash")
+// require("prismjs/components/prism-json")
+// require("prismjs/components/prism-diff")
+// require("prismjs/components/prism-markdown")
+// require("prismjs/components/prism-graphql")
 
 const { Elements } = RichText
 
@@ -96,27 +96,27 @@ const htmlSerializer = (type, element, content, children) => {
       }
       // Use the code block for labels that are in the array of "codeBlock"
       // Choose the right PrismJS highlighting with the label name
-      if (codeBlock.includes(element.data.label)) {
-        return `<pre class="language-${
-          element.data.label
-        }"><code class="language-${element.data.label}">${Prism.highlight(
-          content,
-          Prism.languages[element.label]
-        )}</code></pre>`
-      }
+      // if (codeBlock.includes(element.data.label)) {
+      //   return `<pre class="language-${
+      //     element.data.label
+      //   }"><code class="language-${element.data.label}">${Prism.highlight(
+      //     content,
+      //     Prism.languages[element.label]
+      //   )}</code></pre>`
+      // }
       return null
     }
-    case Elements.preformatted: {
-      if (codeBlock.includes(element.label)) {
-        return `<pre class="language-${element.label}"><code class="language-${
-          element.label
-        }">${Prism.highlight(
-          element.text,
-          Prism.languages[element.label]
-        )}</code></pre>`
-      }
-      return null
-    }
+    // case Elements.preformatted: {
+    //   if (codeBlock.includes(element.label)) {
+    //     return `<pre class="language-${element.label}"><code class="language-${
+    //       element.label
+    //     }">${Prism.highlight(
+    //       element.text,
+    //       Prism.languages[element.label]
+    //     )}</code></pre>`
+    //   }
+    //   return null
+    // }
     default: {
       return null
     }
