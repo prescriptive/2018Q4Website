@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 import * as variable from "../components/variables"
 import styled from "styled-components"
 import SEO from "../components/seo"
+const _ = require("lodash")
 
 const LoadableBasicSliceComponent = loadable(() =>
   import("../components/slices/BasicSectionSlice")
