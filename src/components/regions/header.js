@@ -8,7 +8,7 @@ import Fade from "@material-ui/core/Fade"
 import { StaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import * as variable from "../variables"
-import MobileMenu from "../mobileMenu"
+// import MobileMenu from "../mobileMenu"
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // import { faTwitter } from "@fortawesome/free-brands-svg-icons"
 import { withPreview } from "gatsby-source-prismic-graphql"
@@ -267,7 +267,7 @@ export const Header = () => (
             <Link className="logo" to="/">
               <Img fluid={logo} />
             </Link>
-            <div className="mobile-menu-container">{<MobileMenu />}</div>
+            {/* <div className="mobile-menu-container">{<MobileMenu />}</div> */}
             <ul className="main-menu">
               {nav.map((menuitem, index) => (
                 <li key={index}>{menuRender(menuitem)}</li>
