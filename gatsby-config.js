@@ -142,21 +142,21 @@ module.exports = {
     // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
-      options: {
-        fonts: [
-          {
-            family: `Roboto`,
-            variants: [`400`, `500`, `700`, `900`],
-          },
-          {
-            family: `Libre Franklin`,
-            variants: [`500`, `800`, `900`],
-          },
-        ],
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-prefetch-google-fonts`,
+    //   options: {
+    //     fonts: [
+    //       {
+    //         family: `Roboto`,
+    //         variants: [`400`, `500`, `700`, `900`],
+    //       },
+    //       {
+    //         family: `Libre Franklin`,
+    //         variants: [`500`, `800`, `900`],
+    //       },
+    //     ],
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
@@ -227,12 +227,12 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: "gatsby-plugin-google-tagmanager",
-      options: {
-        id: "GTM-KWP5GHG",
-      },
-    },
+    // {
+    //   resolve: "gatsby-plugin-google-tagmanager",
+    //   options: {
+    //     id: "GTM-KWP5GHG",
+    //   },
+    // },
     `gatsby-plugin-offline`,
     "gatsby-plugin-netlify",
   ],
