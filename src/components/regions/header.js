@@ -9,8 +9,8 @@ import { StaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import * as variable from "../variables"
 import MobileMenu from "../mobileMenu"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTwitter } from "@fortawesome/free-brands-svg-icons"
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+// import { faTwitter } from "@fortawesome/free-brands-svg-icons"
 import { withPreview } from "gatsby-source-prismic-graphql"
 
 const HtmlTooltip = withStyles(theme => ({
@@ -257,7 +257,7 @@ export const Header = () => (
               <Container>
                 <div className="social-container">
                   <a href={twitter} target="_blank" rel="noreferrer">
-                    <FontAwesomeIcon icon={faTwitter} />
+                    {/* <FontAwesomeIcon icon={faTwitter} /> */}
                   </a>
                 </div>
               </Container>

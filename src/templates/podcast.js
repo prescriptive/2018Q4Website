@@ -9,7 +9,7 @@ import BackgroundImage from "gatsby-background-image"
 import Img from "gatsby-image"
 import { linkResolver } from "../utils/linkResolver"
 import prismicHtmlSerializer from "../gatsby/htmlSerializer"
-import { RichText, Date } from "prismic-reactjs"
+import { RichText} from "prismic-reactjs"
 import { withPreview } from "gatsby-source-prismic"
 import BgImageHat from "../images/podcasthat.png"
 import PodcastTeaser from "../components/entities/podcast/PodcastTeaser"
@@ -20,9 +20,9 @@ import "../components/scss/blocks/podSubscribe.scss"
 import AudioPlayer from "react-h5-audio-player"
 import { RHAP_UI } from "react-h5-audio-player"
 import "react-h5-audio-player/lib/styles.css"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faRedoAlt } from "@fortawesome/free-solid-svg-icons"
-import { faUndoAlt } from "@fortawesome/free-solid-svg-icons"
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+// import { faRedoAlt } from "@fortawesome/free-solid-svg-icons"
+// import { faUndoAlt } from "@fortawesome/free-solid-svg-icons"
 import ResponsiveEmbed from "react-responsive-embed"
 
 const AudioFileStyle = styled.div`
@@ -463,10 +463,10 @@ const Podcast = props => {
                     ]}
                     src={podcastUrl}
                     onPlay={e => console.log("onPlay")}
-                    customIcons={{
-                      rewind: <FontAwesomeIcon icon={faUndoAlt} />,
-                      forward: <FontAwesomeIcon icon={faRedoAlt} />,
-                    }}
+                    // customIcons={{
+                    //   rewind: <FontAwesomeIcon icon={faUndoAlt} />,
+                    //   forward: <FontAwesomeIcon icon={faRedoAlt} />,
+                    // }}
                     // other props here
                   />
                 </AudioFileStyle>
@@ -520,10 +520,10 @@ const Podcast = props => {
                         ]}
                         src={podcastUrl}
                         onPlay={e => console.log("onPlay")}
-                        customIcons={{
-                          rewind: <FontAwesomeIcon icon={faUndoAlt} />,
-                          forward: <FontAwesomeIcon icon={faRedoAlt} />,
-                        }}
+                        // customIcons={{
+                        //   rewind: <FontAwesomeIcon icon={faUndoAlt} />,
+                        //   forward: <FontAwesomeIcon icon={faRedoAlt} />,
+                        // }}
                         // other props here
                       />
                     </AudioFileStyle>

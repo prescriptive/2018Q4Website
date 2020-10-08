@@ -4,9 +4,9 @@ import styled from "styled-components"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
 import { RichText } from "prismic-reactjs"
-import { faTwitter } from "@fortawesome/free-brands-svg-icons"
-import { faLinkedin } from "@fortawesome/free-brands-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+// import { faTwitter } from "@fortawesome/free-brands-svg-icons"
+// import { faLinkedin } from "@fortawesome/free-brands-svg-icons"
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { linkResolver } from "../../../utils/linkResolver"
 import prismicHtmlSerializer from "../../../gatsby/htmlSerializer"
 const LeadershipTeaserStyle = styled.article`
@@ -104,12 +104,12 @@ export const LeadershipTeaser = ({ post }) => {
       <div className="leader-social">
         {post.data.twitter && (
           <a target="_blank" href={post.data.twitter.url}>
-            <FontAwesomeIcon icon={faTwitter} />
+            {/* <FontAwesomeIcon icon={faTwitter} /> */}
           </a>
         )}
         {post.data.linkedin && (
           <a target="_blank" href={post.data.linkedin.url}>
-            <FontAwesomeIcon icon={faLinkedin} />
+            {/* <FontAwesomeIcon icon={faLinkedin} /> */}
           </a>
         )}
       </div>

@@ -5,9 +5,9 @@ import { Link } from "gatsby"
 import Img from "gatsby-image"
 import BackgroundImage from "gatsby-background-image"
 import { RichText, Date } from "prismic-reactjs"
-import { faCalendar } from "@fortawesome/free-solid-svg-icons"
-import { faUser } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+// import { faCalendar } from "@fortawesome/free-solid-svg-icons"
+// import { faUser } from "@fortawesome/free-solid-svg-icons"
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import linkResolver from "../../../utils/linkResolver"
 import prismicHtmlSerializer from "../../../gatsby/htmlSerializer"
 
@@ -116,13 +116,13 @@ export const BlogPostTeaser = ({ post }) => {
       </Link>
       {post.data.release_date && (
         <div className="release-date">
-          <FontAwesomeIcon icon={faCalendar} />
+          {/* <FontAwesomeIcon icon={faCalendar} /> */}
           {formattedDate}
         </div>
       )}
       {post.data.author && (
         <div className="blog-author">
-          <FontAwesomeIcon icon={faUser} />
+          {/* <FontAwesomeIcon icon={faUser} /> */}
           {post.data.author.text}
         </div>
       )}

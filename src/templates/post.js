@@ -12,12 +12,11 @@ import Quote from "../components/slices/QuoteSlice"
 import Video from "../components/slices/VideoSlice"
 import BasicSectionSlice from "../components/slices/BasicSectionSlice"
 import BgImage from "../images/blogbg.png"
-import linkResolver from "../utils/linkResolver"
-import { RichText, Date } from "prismic-reactjs"
-import { faCalendar } from "@fortawesome/free-solid-svg-icons"
-import { faUser } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { withPreview } from "gatsby-source-prismic"
+
+// import { faCalendar } from "@fortawesome/free-solid-svg-icons"
+// import { faUser } from "@fortawesome/free-solid-svg-icons"
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, id }) => {
@@ -194,13 +193,13 @@ const Post = props => {
               <h1>{node.title.text}</h1>
               {node.release_date && (
                 <div className="release-date">
-                  <FontAwesomeIcon icon={faCalendar} />
+                  {/* <FontAwesomeIcon icon={faCalendar} /> */}
                   {node.release_date}
                 </div>
               )}
               {node.author && (
                 <div className="blog-author">
-                  <FontAwesomeIcon icon={faUser} />
+                  {/* <FontAwesomeIcon icon={faUser} /> */}
                   {node.author.text}
                 </div>
               )}
@@ -226,7 +225,7 @@ const Post = props => {
   )
 }
 
-export default withPreview(Post)
+export default Post
 
 export const postQuery = graphql`
   query PostBySlug($uid: String!) {
