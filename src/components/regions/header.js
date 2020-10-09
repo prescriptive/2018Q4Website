@@ -9,9 +9,9 @@ import Fade from "@material-ui/core/Fade"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import * as variable from "../variables"
-import MobileMenu from "../mobileMenu"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTwitter } from "@fortawesome/free-brands-svg-icons"
+// import MobileMenu from "../mobileMenu"
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+// import { faTwitter } from "@fortawesome/free-brands-svg-icons"
 
 const HtmlTooltip = withStyles(theme => ({
   tooltip: {
@@ -187,90 +187,90 @@ function menuRender(menuitem) {
 
 export const Header = () => {
   const data = useStaticQuery(graphql`
-  query menu {
-    allPrismicSiteInformation {
-      nodes {
-        data {
-          nav {
-            ... on PrismicSiteInformationNavNavItem {
-              id
-              items {
-                sub_nav_link {
-                  url
-                  link_type
+    query menu {
+      allPrismicSiteInformation {
+        nodes {
+          data {
+            nav {
+              ... on PrismicSiteInformationNavNavItem {
+                id
+                items {
+                  sub_nav_link {
+                    url
+                    link_type
+                  }
+                  sub_nav_link_label {
+                    text
+                  }
+                  relative_link {
+                    text
+                  }
                 }
-                sub_nav_link_label {
-                  text
-                }
-                relative_link {
-                  text
-                }
-              }
-              primary {
-                label {
-                  text
-                }
-                link {
-                  url
-                  link_type
-                }
-                relative_link {
-                  text
-                }
-              }
-            }
-          }
-          logo {
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 400) {
-                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                primary {
+                  label {
+                    text
+                  }
+                  link {
+                    url
+                    link_type
+                  }
+                  relative_link {
+                    text
+                  }
                 }
               }
             }
-          }
-          twitter {
-            url
+            logo {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 400) {
+                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                  }
+                }
+              }
+            }
+            twitter {
+              url
+            }
           }
         }
       }
     }
+  `)
+  const nav = data.allPrismicSiteInformation.nodes[0].data.nav
+  const logo =
+    data.allPrismicSiteInformation.nodes[0].data.logo.localFile.childImageSharp
+      .fluid
+  var twitter = null
+  if (data.allPrismicSiteInformation.nodes[0].data.twitter) {
+    var twitter = data.allPrismicSiteInformation.nodes[0].data.twitter.url
   }
-`)
-      const nav = data.allPrismicSiteInformation.nodes[0].data.nav
-      const logo =
-        data.allPrismicSiteInformation.nodes[0].data.logo.localFile
-          .childImageSharp.fluid
-      var twitter = null
-      if (data.allPrismicSiteInformation.nodes[0].data.twitter) {
-        var twitter = data.allPrismicSiteInformation.nodes[0].data.twitter.url
-      }
-      return (
-        <HeaderStyle className="header">
-          {twitter && (
-            <div className="header-social-container">
-              <Container>
-                <div className="social-container">
-                  <a href={twitter} target="_blank" rel="noreferrer">
-                    <FontAwesomeIcon icon={faTwitter} />
-                  </a>
-                </div>
-              </Container>
+  return (
+    <HeaderStyle className="header">
+      {twitter && (
+        <div className="header-social-container">
+          <Container>
+            <div className="social-container">
+              <a href={twitter} target="_blank" rel="noreferrer">
+                {/* <FontAwesomeIcon icon={faTwitter} /> */}
+              </a>
             </div>
-          )}
-          <Container className="header-container">
-            <Link className="logo" to="/">
-              <Img fluid={logo} />
-            </Link>
-            <div className="mobile-menu-container">{<MobileMenu />}</div>
-            <ul className="main-menu">
-              {nav.map((menuitem, index) => (
-                <li key={index}>{menuRender(menuitem)}</li>
-              ))}
-            </ul>
           </Container>
-        </HeaderStyle>
-      )
-  }
+        </div>
+      )}
+      <Container className="header-container">
+        <Link className="logo" to="/">
+          <Img fluid={logo} />
+        </Link>
+        {/* <div className="mobile-menu-container">{<MobileMenu />}</div> */}
+        <ul className="main-menu">
+          {nav.map((menuitem, index) => (
+            <li key={index}>{menuRender(menuitem)}</li>
+          ))}
+        </ul>
+      </Container>
+    </HeaderStyle>
+  )
+}
 
 export default Header
