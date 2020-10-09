@@ -3,19 +3,15 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 import Container from "../container"
-import BackgroundImage from "gatsby-background-image"
 import { withStyles, makeStyles } from "@material-ui/core/styles"
-import Button from "@material-ui/core/Button"
 import Tooltip from "@material-ui/core/Tooltip"
 import Fade from "@material-ui/core/Fade"
-import Collapse from "@material-ui/core/Collapse"
-import { StaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import * as variable from "../variables"
 import MobileMenu from "../mobileMenu"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTwitter } from "@fortawesome/free-brands-svg-icons"
-import { withPreview } from "gatsby-source-prismic-graphql"
 
 const HtmlTooltip = withStyles(theme => ({
   tooltip: {
@@ -189,7 +185,8 @@ function menuRender(menuitem) {
   }
 }
 
-const query2 = graphql`
+export const Header = () => {
+  const data = useStaticQuery(graphql`
   query menu {
     allPrismicSiteInformation {
       nodes {
@@ -239,12 +236,7 @@ const query2 = graphql`
       }
     }
   }
-`
-
-export const Header = () => (
-  <StaticQuery
-    query={query2}
-    render={withPreview(data => {
+`)
       const nav = data.allPrismicSiteInformation.nodes[0].data.nav
       const logo =
         data.allPrismicSiteInformation.nodes[0].data.logo.localFile
@@ -253,7 +245,6 @@ export const Header = () => (
       if (data.allPrismicSiteInformation.nodes[0].data.twitter) {
         var twitter = data.allPrismicSiteInformation.nodes[0].data.twitter.url
       }
-      // const classes = useStyles()
       return (
         <HeaderStyle className="header">
           {twitter && (
@@ -280,8 +271,6 @@ export const Header = () => (
           </Container>
         </HeaderStyle>
       )
-    }, query2)}
-  />
-)
+  }
 
 export default Header
