@@ -14,9 +14,9 @@ const LoadableColumnSliceComponent = loadable(() =>
   import("../components/slices/ColumnsSectionSlice")
 )
 
-// const LoadableLeftRightSliceComponent = loadable(() =>
-//   import("../components/slices/LeftRightSlice")
-// )
+const LoadableLeftRightSliceComponent = loadable(() =>
+  import("../components/slices/LeftRightSlice")
+)
 
 const LoadableEntityQuerySliceComponent = loadable(() =>
   import("../components/slices/EntityQuerySlice")
