@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import React from "react"
-import BackgroundImage from "gatsby-background-image"
+// import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
 import { RichText, Date } from "prismic-reactjs"
 import { Link } from "gatsby"
@@ -14,7 +14,7 @@ import BasicSectionSliceInner from "../slices/BasicSectionSlice"
 import LeftRightSlice from "../slices/LeftRightSlice"
 import * as variable from "../variables"
 import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
-import { GatsbyImage } from "@wardpeet/gatsby-image-nextgen/compat"
+import { GatsbyImage as Img } from "@wardpeet/gatsby-image-nextgen/compat"
 
 // const linkResolver = require("../../utils/linkResolver")
 
@@ -251,7 +251,7 @@ export const BasicSectionSlice = ({ slice }) => {
         //   className={sidebarClass}
         // >
         <div>
-          {/* <GatsbyImage fluid={fluid} /> */}
+          <Img fluid={fluid} alt="bg" title="bg" />
           <Container
             className="basic-slice-container"
             style={{ color: font_color }}
