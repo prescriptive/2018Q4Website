@@ -19,6 +19,23 @@ import { GatsbyImage as Img } from "@wardpeet/gatsby-image-nextgen/compat"
 // const linkResolver = require("../../utils/linkResolver")
 
 const BasicStyle = styled.div`
+  .basic-outer {
+    overflow: hidden;
+    position: relative;
+    .basic-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute !important;
+      z-index: -1;
+    }
+    .basic-slice-container {
+      // position: absolute;
+      // top: 0px;
+      position: relative;
+      z-index: 1;
+    }
+  }
   .video-container-outer {
     .video-container {
       width: 100%;
@@ -99,6 +116,7 @@ const BasicStyle = styled.div`
         width: 100%;
         max-width: 100%;
         padding: 0px;
+        z-index: 2;
         section {
           padding: 35px;
           .section-content {
@@ -250,8 +268,10 @@ export const BasicSectionSlice = ({ slice }) => {
         //   style={{ backgroundColor: bg_color }}
         //   className={sidebarClass}
         // >
-        <div>
-          <Img fluid={fluid} alt="bg" title="bg" />
+        <div className="basic-outer">
+          <div className="basic-image-inner">
+            <Img fluid={fluid} className="basic-image" />
+          </div>
           <Container
             className="basic-slice-container"
             style={{ color: font_color }}
