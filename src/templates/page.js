@@ -22,12 +22,12 @@ const LoadableEntityQuerySliceComponent = loadable(() =>
   import("../components/slices/EntityQuerySlice")
 )
 
-// const LoadableHeroSliceComponent = loadable(() =>
-//   import("../components/slices/HeroSlice")
-// )
-// const LoadableBlockRefSliceComponent = loadable(() =>
-//   import("../components/slices/BlockReferenceSlice")
-// )
+const LoadableHeroSliceComponent = loadable(() =>
+  import("../components/slices/HeroSlice")
+)
+const LoadableBlockRefSliceComponent = loadable(() =>
+  import("../components/slices/BlockReferenceSlice")
+)
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
@@ -52,27 +52,27 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
             </div>
           )
 
-        // case "hero":
-        //   return (
-        //     <div
-        //       id={"slice-id-" + sliceID}
-        //       key={index}
-        //       className="slice-wrapper slice-hero"
-        //     >
-        //       {<LoadableHeroSliceComponent slice={slice} />}
-        //     </div>
-        //   )
+        case "hero":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-hero"
+            >
+              {<LoadableHeroSliceComponent slice={slice} />}
+            </div>
+          )
 
-        // case "block_reference":
-        //   return (
-        //     <div
-        //       id={"slice-id-" + sliceID}
-        //       key={index}
-        //       className="slice-wrapper slice-block-reference"
-        //     >
-        //       {<LoadableBlockRefSliceComponent slice={slice} />}
-        //     </div>
-        //   )
+        case "block_reference":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-block-reference"
+            >
+              {<LoadableBlockRefSliceComponent slice={slice} />}
+            </div>
+          )
 
         case "entity_query":
           return (
@@ -116,16 +116,16 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
             </div>
           )
 
-        // case "left_right_section":
-        //   return (
-        //     <div
-        //       id={"slice-id-" + sliceID}
-        //       key={index}
-        //       className="slice-wrapper slice-left-right"
-        //     >
-        //       {<LoadableLeftRightSliceComponent slice={slice} />}
-        //     </div>
-        //   )
+        case "left_right_section":
+          return (
+            <div
+              id={"slice-id-" + sliceID}
+              key={index}
+              className="slice-wrapper slice-left-right"
+            >
+              {<LoadableLeftRightSliceComponent slice={slice} />}
+            </div>
+          )
 
         default:
           return
