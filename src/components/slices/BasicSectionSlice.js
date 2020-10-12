@@ -20,14 +20,28 @@ import { GatsbyImage as Img } from "@wardpeet/gatsby-image-nextgen/compat"
 
 const BasicStyle = styled.div`
   .basic-outer {
+    display: inline-block;
     overflow: hidden;
     position: relative;
+    width: 100%;
     .basic-image {
-      width: 100%;
+      /* width: 100%;
       height: 100%;
       object-fit: cover;
-      position: absolute !important;
+      position: absolute !important; */
+      position:inherit !important;
+      > div{
+        padding:0px !important;
+      }
+    img{
       z-index: -1;
+      pointer-events: none;
+      position: absolute !important;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
+    }
     }
     .basic-slice-container {
       // position: absolute;
