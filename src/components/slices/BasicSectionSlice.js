@@ -20,36 +20,6 @@ import prehead from "../../images/prehead.jpg"
 // const linkResolver = require("../../utils/linkResolver")
 
 const BasicStyle = styled.div`
-  .basic-outer {
-    display: inline-block;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-    .basic-image {
-      /* width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute !important; */
-      z-index: -1;
-      pointer-events: none;
-      position: absolute !important;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      object-fit: cover;
-      /* > div{
-        padding:0px !important;
-      } */
-      /* img{
-      z-index: -1;
-      pointer-events: none;
-      position: absolute !important;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    object-fit: cover;
-    } */
-    }
     .basic-slice-container {
       // position: absolute;
       // top: 0px;
@@ -289,8 +259,28 @@ export const BasicSectionSlice = ({ slice }) => {
         //   style={{ backgroundColor: bg_color }}
         //   className={sidebarClass}
         // >
-        <div className="basic-outer">
-          <img src={prehead} className="basic-image" />
+        <div
+          className="basic-outer"
+          style={{
+            display: "inline-block",
+            overflow: "hidden",
+            position: "relative",
+            width: "100%",
+          }}
+        >
+          <img
+            src={prehead}
+            className="basic-image"
+            style={{
+              zIndex: "-1",
+              pointerEvents: "none",
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              zIndex: "-1",
+              objectFit: "cover",
+            }}
+          />
           <Container
             className="basic-slice-container"
             style={{ color: font_color }}
