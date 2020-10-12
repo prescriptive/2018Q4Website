@@ -61,7 +61,7 @@ module.exports = {
         prismicToolbar: false,
       },
     },
-    `gatsby-plugin-preact`,
+    // `gatsby-plugin-preact`,
     {
       resolve: "gatsby-source-buzzsprout",
       options: {

@@ -29,11 +29,6 @@ const BasicStyle = styled.div`
       height: 100%;
       object-fit: cover;
       position: absolute !important; */
-      position:inherit !important;
-      > div{
-        padding:0px !important;
-      }
-    img{
       z-index: -1;
       pointer-events: none;
       position: absolute !important;
@@ -41,7 +36,18 @@ const BasicStyle = styled.div`
     height: 100%;
     z-index: -1;
     object-fit: cover;
-    }
+      /* > div{
+        padding:0px !important;
+      } */
+    /* img{
+      z-index: -1;
+      pointer-events: none;
+      position: absolute !important;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    object-fit: cover;
+    } */
     }
     .basic-slice-container {
       // position: absolute;
@@ -284,7 +290,7 @@ export const BasicSectionSlice = ({ slice }) => {
         // >
         <div className="basic-outer">
           <div className="basic-image-inner">
-            <Img fluid={fluid} className="basic-image" />
+            <img src={fluid.src} className="basic-image" />
           </div>
           <Container
             className="basic-slice-container"
