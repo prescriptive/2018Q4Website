@@ -226,7 +226,7 @@ export const postQuery = graphql`
             localFile {
               childImageSharp {
                 fluid(maxWidth: 1920) {
-                  ...GatsbyImageSharpFluid_noBase64
+                  ...GatsbyImageSharpFluidLimitPresentationSize
                 }
               }
             }
@@ -302,7 +302,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_noBase64
+                      ...GatsbyImageSharpFluidLimitPresentationSize
                     }
                   }
                 }
@@ -340,7 +340,7 @@ export const postQuery = graphql`
                               localFile {
                                 childImageSharp {
                                   fluid(maxWidth: 1920) {
-                                    ...GatsbyImageSharpFluid_noBase64
+                                    ...GatsbyImageSharpFluidLimitPresentationSize
                                   }
                                 }
                               }
@@ -378,7 +378,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_noBase64
+                      ...GatsbyImageSharpFluidLimitPresentationSize
                     }
                   }
                 }
@@ -412,7 +412,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_noBase64
+                      ...GatsbyImageSharpFluidLimitPresentationSize
                     }
                   }
                 }
@@ -463,7 +463,7 @@ export const postQuery = graphql`
                               localFile {
                                 childImageSharp {
                                   fluid(maxWidth: 1920) {
-                                    ...GatsbyImageSharpFluid_noBase64
+                                    ...GatsbyImageSharpFluidLimitPresentationSize
                                   }
                                 }
                               }
@@ -491,7 +491,7 @@ export const postQuery = graphql`
                                             localFile {
                                               childImageSharp {
                                                 fluid(maxWidth: 1920) {
-                                                  ...GatsbyImageSharpFluid_noBase64
+                                                  ...GatsbyImageSharpFluidLimitPresentationSize
                                                 }
                                               }
                                             }
@@ -532,7 +532,7 @@ export const postQuery = graphql`
                               localFile {
                                 childImageSharp {
                                   fluid(maxWidth: 1920) {
-                                    ...GatsbyImageSharpFluid_noBase64
+                                    ...GatsbyImageSharpFluidLimitPresentationSize
                                   }
                                 }
                               }
@@ -545,7 +545,7 @@ export const postQuery = graphql`
                               localFile {
                                 childImageSharp {
                                   fluid(maxWidth: 1920) {
-                                    ...GatsbyImageSharpFluid_noBase64
+                                    ...GatsbyImageSharpFluidLimitPresentationSize
                                   }
                                 }
                               }
@@ -584,7 +584,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_noBase64
+                      ...GatsbyImageSharpFluidLimitPresentationSize
                     }
                   }
                 }
@@ -609,7 +609,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_noBase64
+                      ...GatsbyImageSharpFluidLimitPresentationSize
                     }
                   }
                 }
@@ -652,7 +652,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_noBase64
+                      ...GatsbyImageSharpFluidLimitPresentationSize
                     }
                   }
                 }
@@ -661,7 +661,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_noBase64
+                      ...GatsbyImageSharpFluidLimitPresentationSize
                     }
                   }
                 }
@@ -719,7 +719,7 @@ export const postQuery = graphql`
             localFile {
               childImageSharp {
                 fluid(maxWidth: 1920) {
-                  ...GatsbyImageSharpFluid_noBase64
+                  ...GatsbyImageSharpFluidLimitPresentationSize
                 }
               }
             }
