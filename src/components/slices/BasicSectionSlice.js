@@ -15,6 +15,7 @@ import LeftRightSlice from "../slices/LeftRightSlice"
 import * as variable from "../variables"
 import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
 import { GatsbyImage as Img } from "@wardpeet/gatsby-image-nextgen/compat"
+import prehead from "../../images/prehead.jpg"
 
 // const linkResolver = require("../../utils/linkResolver")
 
@@ -32,14 +33,14 @@ const BasicStyle = styled.div`
       z-index: -1;
       pointer-events: none;
       position: absolute !important;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    object-fit: cover;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      object-fit: cover;
       /* > div{
         padding:0px !important;
       } */
-    /* img{
+      /* img{
       z-index: -1;
       pointer-events: none;
       position: absolute !important;
@@ -289,9 +290,7 @@ export const BasicSectionSlice = ({ slice }) => {
         //   className={sidebarClass}
         // >
         <div className="basic-outer">
-          <div className="basic-image-inner">
-            <img src={fluid.src} className="basic-image" />
-          </div>
+          <img src={prehead} className="basic-image" />
           <Container
             className="basic-slice-container"
             style={{ color: font_color }}
