@@ -226,7 +226,7 @@ export const postQuery = graphql`
             localFile {
               childImageSharp {
                 fluid(maxWidth: 1920) {
-                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                  ...GatsbyImageSharpFluidLimitPresentationSize
                 }
               }
             }
@@ -261,7 +261,7 @@ export const postQuery = graphql`
             localFile {
               childImageSharp {
                 fixed(width: 98, height: 98) {
-                  ...GatsbyImageSharpFixed_withWebp_tracedSVG
+                  ...GatsbyImageSharpFluidLimitPresentationSize
                 }
               }
             }
@@ -302,7 +302,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                      ...GatsbyImageSharpFluidLimitPresentationSize
                     }
                   }
                 }
@@ -340,7 +340,7 @@ export const postQuery = graphql`
                               localFile {
                                 childImageSharp {
                                   fluid(maxWidth: 1920) {
-                                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                                    ...GatsbyImageSharpFluidLimitPresentationSize
                                   }
                                 }
                               }
@@ -378,7 +378,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                      ...GatsbyImageSharpFluidLimitPresentationSize
                     }
                   }
                 }
@@ -412,7 +412,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                      ...GatsbyImageSharpFluidLimitPresentationSize
                     }
                   }
                 }
@@ -463,7 +463,7 @@ export const postQuery = graphql`
                               localFile {
                                 childImageSharp {
                                   fluid(maxWidth: 1920) {
-                                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                                    ...GatsbyImageSharpFluidLimitPresentationSize
                                   }
                                 }
                               }
@@ -491,7 +491,7 @@ export const postQuery = graphql`
                                             localFile {
                                               childImageSharp {
                                                 fluid(maxWidth: 1920) {
-                                                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                                                  ...GatsbyImageSharpFluidLimitPresentationSize
                                                 }
                                               }
                                             }
@@ -532,7 +532,7 @@ export const postQuery = graphql`
                               localFile {
                                 childImageSharp {
                                   fluid(maxWidth: 1920) {
-                                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                                    ...GatsbyImageSharpFluidLimitPresentationSize
                                   }
                                 }
                               }
@@ -545,7 +545,7 @@ export const postQuery = graphql`
                               localFile {
                                 childImageSharp {
                                   fluid(maxWidth: 1920) {
-                                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                                    ...GatsbyImageSharpFluidLimitPresentationSize
                                   }
                                 }
                               }
@@ -584,7 +584,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                      ...GatsbyImageSharpFluidLimitPresentationSize
                     }
                   }
                 }
@@ -609,7 +609,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                      ...GatsbyImageSharpFluidLimitPresentationSize
                     }
                   }
                 }
@@ -652,7 +652,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                      ...GatsbyImageSharpFluidLimitPresentationSize
                     }
                   }
                 }
@@ -661,7 +661,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                      ...GatsbyImageSharpFluidLimitPresentationSize
                     }
                   }
                 }
@@ -719,7 +719,7 @@ export const postQuery = graphql`
             localFile {
               childImageSharp {
                 fluid(maxWidth: 1920) {
-                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                  ...GatsbyImageSharpFluidLimitPresentationSize
                 }
               }
             }
