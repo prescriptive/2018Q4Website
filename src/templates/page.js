@@ -28,8 +28,8 @@ import EntityQuerySlice from "../components/slices/EntityQuerySlice"
 import HeroSlice from "../components/slices/HeroSlice"
 import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
 import Helmet from "react-helmet"
-import prehead from "../images/prehead.jpg"
-import preheadweb from "../images/prehead.webp"
+// import prehead from "../images/prehead.jpg"
+// import preheadweb from "../images/prehead.webp"
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
@@ -181,10 +181,10 @@ const Page = ({ data }) => {
   console.log(node)
   return (
     <Layout slug={node.uid}>
-      <Helmet>
+      {/* <Helmet>
         <link rel="preload" href={prehead} as="image"></link>
         <link rel="preload" href={preheadweb} as="image"></link>
-      </Helmet>
+      </Helmet> */}
       <SEO site={site} page={node} />
       <PageStyle>
         {node.data.body && (

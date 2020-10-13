@@ -4,7 +4,7 @@ import React from "react"
 import Container from "../container"
 import { RichText, Date } from "prismic-reactjs"
 import { Link } from "gatsby"
-
+import BackgroundImage from "gatsby-background-image"
 // import { RichText } from "prismic-dom"
 import YouTube from "react-youtube"
 import ResponsiveEmbed from "react-responsive-embed"
@@ -14,9 +14,9 @@ import BasicSectionSliceInner from "../slices/BasicSectionSlice"
 import LeftRightSlice from "../slices/LeftRightSlice"
 import * as variable from "../variables"
 import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
-import { GatsbyImage as Img } from "@wardpeet/gatsby-image-nextgen/compat"
-import prehead from "../../images/prehead.jpg"
-import preheadweb from "../../images/prehead.webp"
+// import { GatsbyImage as Img } from "@wardpeet/gatsby-image-nextgen/compat"
+// import prehead from "../../images/prehead.jpg"
+// import preheadweb from "../../images/prehead.webp"
 
 // const linkResolver = require("../../utils/linkResolver")
 
@@ -254,13 +254,13 @@ export const BasicSectionSlice = ({ slice }) => {
   return (
     <BasicStyle>
       {fluid && (
-        // <BackgroundImage
-        //   Tag="section"
-        //   fluid={fluid}
-        //   style={{ backgroundColor: bg_color }}
-        //   className={sidebarClass}
-        // >
-        <div
+        <BackgroundImage
+          Tag="section"
+          fluid={fluid}
+          style={{ backgroundColor: bg_color }}
+          className={sidebarClass}
+        >
+          {/* <div
           className="basic-outer"
           style={{
             display: "inline-block",
@@ -268,7 +268,7 @@ export const BasicSectionSlice = ({ slice }) => {
             position: "relative",
             width: "100%",
           }}
-        >
+        > */}
           {/* <img
             src={prehead}
             className="basic-image"
@@ -282,7 +282,7 @@ export const BasicSectionSlice = ({ slice }) => {
               objectFit: "cover",
             }}
           /> */}
-          <picture
+          {/* <picture
             style={{
               zIndex: "-1",
               pointerEvents: "none",
@@ -296,7 +296,7 @@ export const BasicSectionSlice = ({ slice }) => {
             <source srcset={preheadweb} type="image/webp" />
             <source srcset={prehead} type="image/jpeg" />
             <img src={prehead} alt="Alt Text!" />
-          </picture>
+          </picture> */}
           <Container
             className="basic-slice-container"
             style={{ color: font_color }}
@@ -317,7 +317,7 @@ export const BasicSectionSlice = ({ slice }) => {
               </div>
             )}
           </Container>
-        </div>
+        </BackgroundImage>
       )}
       {bg_video && (
         <div class="video-container-outer">
