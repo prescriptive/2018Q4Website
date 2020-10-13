@@ -17,12 +17,13 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      buzz: allBuzzsproutPodcastEpisode(filter: { private: { eq: false } }) { {
+      buzz: allBuzzsproutPodcastEpisode(filter: { private: { eq: false } }) {
         nodes {
           id
           title
           slug
           buzzsproutId
+          private
         }
       }
     }
