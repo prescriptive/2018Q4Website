@@ -16,6 +16,7 @@ import * as variable from "../variables"
 import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
 import { GatsbyImage as Img } from "@wardpeet/gatsby-image-nextgen/compat"
 import prehead from "../../images/prehead.jpg"
+import preheadweb from "../../images/prehead.webp"
 
 // const linkResolver = require("../../utils/linkResolver")
 
@@ -268,7 +269,7 @@ export const BasicSectionSlice = ({ slice }) => {
             width: "100%",
           }}
         >
-          <img
+          {/* <img
             src={prehead}
             className="basic-image"
             style={{
@@ -280,7 +281,22 @@ export const BasicSectionSlice = ({ slice }) => {
               zIndex: "-1",
               objectFit: "cover",
             }}
-          />
+          /> */}
+          <picture
+            style={{
+              zIndex: "-1",
+              pointerEvents: "none",
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              zIndex: "-1",
+              objectFit: "cover",
+            }}
+          >
+            <source srcset={preheadweb} type="image/webp" />
+            <source srcset={prehead} type="image/jpeg" />
+            <img src={prehead} alt="Alt Text!" />
+          </picture>
           <Container
             className="basic-slice-container"
             style={{ color: font_color }}
