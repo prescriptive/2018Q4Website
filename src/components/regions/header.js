@@ -9,9 +9,9 @@ import Fade from "@material-ui/core/Fade"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import * as variable from "../variables"
-// import MobileMenu from "../mobileMenu"
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-// import { faTwitter } from "@fortawesome/free-brands-svg-icons"
+import MobileMenu from "../mobileMenu"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faTwitter } from "@fortawesome/free-brands-svg-icons"
 
 const HtmlTooltip = withStyles(theme => ({
   tooltip: {
@@ -252,7 +252,7 @@ export const Header = () => {
           <Container>
             <div className="social-container">
               <a href={twitter} target="_blank" rel="noreferrer">
-                {/* <FontAwesomeIcon icon={faTwitter} /> */}
+                <FontAwesomeIcon icon={faTwitter} />
               </a>
             </div>
           </Container>
@@ -262,7 +262,7 @@ export const Header = () => {
         <Link className="logo" to="/">
           <Img fluid={logo} />
         </Link>
-        {/* <div className="mobile-menu-container">{<MobileMenu />}</div> */}
+        <div className="mobile-menu-container">{<MobileMenu />}</div>
         <ul className="main-menu">
           {nav.map((menuitem, index) => (
             <li key={index}>{menuRender(menuitem)}</li>
