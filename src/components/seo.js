@@ -19,6 +19,11 @@ function SEO({ site, page, lang, meta }) {
     ogImage = page.data.artwork_url
   }
   var metaDescription = ""
+  if (page.type == "pa") {
+    if (page.data.meta_description) {
+      metaDescription = page.data.meta_description
+    }
+  }
   if (page.type == "blog_post") {
     if (page.data.meta_description) {
       metaDescription = page.data.meta_description

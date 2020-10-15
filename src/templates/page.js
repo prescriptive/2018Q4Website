@@ -3,7 +3,6 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import * as variable from "../components/variables"
 import styled from "styled-components"
-import Container from "../components/container"
 import "../components/scss/page/home.scss"
 import "../components/scss/page/about.scss"
 import "../components/scss/page/solutions.scss"
@@ -14,22 +13,13 @@ import "../components/scss/page/dir.scss"
 import "../components/scss/page/podcasts.scss"
 import "../components/scss/page/insights.scss"
 import "../components/scss/page/microsoft365.scss"
-import { Link, RichText, Date } from "prismic-reactjs"
 import SEO from "../components/seo"
-import Img from "gatsby-image"
-import Image from "../components/slices/ImageSlice"
-import Text from "../components/slices/TextSlice"
-import Quote from "../components/slices/QuoteSlice"
-import Video from "../components/slices/VideoSlice"
 import BasicSectionSlice from "../components/slices/BasicSectionSlice"
 import ColumnSectionSlice from "../components/slices/ColumnsSectionSlice"
 import LeftRightSlice from "../components/slices/LeftRightSlice"
 import EntityQuerySlice from "../components/slices/EntityQuerySlice"
 import HeroSlice from "../components/slices/HeroSlice"
 import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
-import Helmet from "react-helmet"
-// import prehead from "../images/prehead.jpg"
-// import preheadweb from "../images/prehead.webp"
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
@@ -178,13 +168,8 @@ const Page = ({ data }) => {
   const site = data.site
   const podinfo = data.podinfo
   //   const site = data.site.allSite_informations.edges[0].node
-  console.log(node)
   return (
     <Layout slug={node.uid}>
-      {/* <Helmet>
-        <link rel="preload" href={prehead} as="image"></link>
-        <link rel="preload" href={preheadweb} as="image"></link>
-      </Helmet> */}
       <SEO site={site} page={node} />
       <PageStyle>
         {node.data.body && (
