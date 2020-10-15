@@ -1,10 +1,10 @@
 import styled from "styled-components"
 import React from "react"
-import BackgroundImage from "gatsby-background-image"
+// import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
 import { RichText, Date } from "prismic-reactjs"
 import { Link } from "gatsby"
-
+import BackgroundImage from "gatsby-background-image"
 // import { RichText } from "prismic-dom"
 import YouTube from "react-youtube"
 import ResponsiveEmbed from "react-responsive-embed"
@@ -14,10 +14,20 @@ import BasicSectionSliceInner from "../slices/BasicSectionSlice"
 import LeftRightSlice from "../slices/LeftRightSlice"
 import * as variable from "../variables"
 import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
+// import { GatsbyImage as Img } from "@wardpeet/gatsby-image-nextgen/compat"
+// import prehead from "../../images/prehead.jpg"
+// import preheadweb from "../../images/prehead.webp"
 
 // const linkResolver = require("../../utils/linkResolver")
 
 const BasicStyle = styled.div`
+    .basic-slice-container {
+      // position: absolute;
+      // top: 0px;
+      position: relative;
+      z-index: 1;
+    }
+  }
   .video-container-outer {
     .video-container {
       width: 100%;
@@ -98,6 +108,7 @@ const BasicStyle = styled.div`
         width: 100%;
         max-width: 100%;
         padding: 0px;
+        z-index: 2;
         section {
           padding: 35px;
           .section-content {
@@ -230,10 +241,9 @@ export const BasicSectionSlice = ({ slice }) => {
   // }
   var theh1Title = null
   var theh2Title = null
-  if(slice.primary.section_title && slice.primary.h1_title == true){
+  if (slice.primary.section_title && slice.primary.h1_title == true) {
     var theh1Title = slice.primary.section_title.text
-  }
-  else if(slice.primary.section_title && slice.primary.h1_title == false){
+  } else if (slice.primary.section_title && slice.primary.h1_title == false) {
     var theh2Title = slice.primary.section_title.text
   }
   // const content = slice.primary.content.raw.map(function(slice, index) {
@@ -250,12 +260,49 @@ export const BasicSectionSlice = ({ slice }) => {
           style={{ backgroundColor: bg_color }}
           className={sidebarClass}
         >
+          {/* <div
+          className="basic-outer"
+          style={{
+            display: "inline-block",
+            overflow: "hidden",
+            position: "relative",
+            width: "100%",
+          }}
+        > */}
+          {/* <img
+            src={prehead}
+            className="basic-image"
+            style={{
+              zIndex: "-1",
+              pointerEvents: "none",
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              zIndex: "-1",
+              objectFit: "cover",
+            }}
+          /> */}
+          {/* <picture
+            style={{
+              zIndex: "-1",
+              pointerEvents: "none",
+              position: "absolute",
+              width: "100%",
+              height: "100%",
+              zIndex: "-1",
+              objectFit: "cover",
+            }}
+          >
+            <source srcset={preheadweb} type="image/webp" />
+            <source srcset={prehead} type="image/jpeg" />
+            <img src={prehead} alt="Alt Text!" />
+          </picture> */}
           <Container
             className="basic-slice-container"
             style={{ color: font_color }}
           >
-              {theh1Title && <h1>{theh1Title}</h1>}
-              {theh2Title && <h2>{theh2Title}</h2>}
+            {theh1Title && <h1>{theh1Title}</h1>}
+            {theh2Title && <h2>{theh2Title}</h2>}
             <div className="section-content">
               <RichText
                 render={slice.primary.content.raw}
@@ -310,7 +357,7 @@ export const BasicSectionSlice = ({ slice }) => {
         <div style={{ backgroundColor: bg_color }}>
           <Container className="basic-slice-container">
             <section className={sidebarClass}>
-            {theh1Title && <h1>{theh1Title}</h1>}
+              {theh1Title && <h1>{theh1Title}</h1>}
               {theh2Title && <h2>{theh2Title}</h2>}
               {slice.primary.content && (
                 <div className="section-content">

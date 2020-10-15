@@ -86,6 +86,10 @@
     margin: 0px;
     img {
       height: 120px;
+      width:auto;
+
+      @include mobile() {
+      }
     }
   }
 }

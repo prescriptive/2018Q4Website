@@ -27,6 +27,9 @@ import LeftRightSlice from "../components/slices/LeftRightSlice"
 import EntityQuerySlice from "../components/slices/EntityQuerySlice"
 import HeroSlice from "../components/slices/HeroSlice"
 import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
+import Helmet from "react-helmet"
+// import prehead from "../images/prehead.jpg"
+// import preheadweb from "../images/prehead.webp"
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
@@ -178,6 +181,10 @@ const Page = ({ data }) => {
   console.log(node)
   return (
     <Layout slug={node.uid}>
+      {/* <Helmet>
+        <link rel="preload" href={prehead} as="image"></link>
+        <link rel="preload" href={preheadweb} as="image"></link>
+      </Helmet> */}
       <SEO site={site} page={node} />
       <PageStyle>
         {node.data.body && (
@@ -226,7 +233,7 @@ export const postQuery = graphql`
             localFile {
               childImageSharp {
                 fluid(maxWidth: 1920) {
-                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                  ...GatsbyImageSharpFluid
                 }
               }
             }
@@ -261,7 +268,7 @@ export const postQuery = graphql`
             localFile {
               childImageSharp {
                 fixed(width: 98, height: 98) {
-                  ...GatsbyImageSharpFixed_withWebp_tracedSVG
+                  ...GatsbyImageSharpFixed_withWebp_noBase64
                 }
               }
             }
@@ -302,7 +309,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                      ...GatsbyImageSharpFluid
                     }
                   }
                 }
@@ -340,7 +347,7 @@ export const postQuery = graphql`
                               localFile {
                                 childImageSharp {
                                   fluid(maxWidth: 1920) {
-                                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                                    ...GatsbyImageSharpFluid
                                   }
                                 }
                               }
@@ -378,7 +385,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                      ...GatsbyImageSharpFluid
                     }
                   }
                 }
@@ -412,7 +419,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                      ...GatsbyImageSharpFluid
                     }
                   }
                 }
@@ -463,7 +470,7 @@ export const postQuery = graphql`
                               localFile {
                                 childImageSharp {
                                   fluid(maxWidth: 1920) {
-                                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                                    ...GatsbyImageSharpFluid
                                   }
                                 }
                               }
@@ -491,7 +498,7 @@ export const postQuery = graphql`
                                             localFile {
                                               childImageSharp {
                                                 fluid(maxWidth: 1920) {
-                                                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                                                  ...GatsbyImageSharpFluid
                                                 }
                                               }
                                             }
@@ -532,7 +539,7 @@ export const postQuery = graphql`
                               localFile {
                                 childImageSharp {
                                   fluid(maxWidth: 1920) {
-                                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                                    ...GatsbyImageSharpFluid
                                   }
                                 }
                               }
@@ -545,7 +552,7 @@ export const postQuery = graphql`
                               localFile {
                                 childImageSharp {
                                   fluid(maxWidth: 1920) {
-                                    ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                                    ...GatsbyImageSharpFluid
                                   }
                                 }
                               }
@@ -584,7 +591,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                      ...GatsbyImageSharpFluid
                     }
                   }
                 }
@@ -609,7 +616,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                      ...GatsbyImageSharpFluid
                     }
                   }
                 }
@@ -652,7 +659,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                      ...GatsbyImageSharpFluid
                     }
                   }
                 }
@@ -661,7 +668,7 @@ export const postQuery = graphql`
                 localFile {
                   childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                      ...GatsbyImageSharpFluid
                     }
                   }
                 }
@@ -719,7 +726,7 @@ export const postQuery = graphql`
             localFile {
               childImageSharp {
                 fluid(maxWidth: 1920) {
-                  ...GatsbyImageSharpFluid_withWebp_tracedSVG
+                  ...GatsbyImageSharpFluid
                 }
               }
             }

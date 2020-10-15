@@ -179,6 +179,9 @@ const PodcastStyle = styled.div`
       }
       @media (max-width: ${variable.tabletWidth}) {
         width: calc(100% / 2 - 10px);
+        &:nth-child(3n + 3) {
+          margin-right: 20px;
+        }
         &:nth-child(2n + 2) {
           margin-right: 0px;
         }
