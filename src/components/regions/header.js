@@ -13,6 +13,7 @@ import MobileMenu from "../mobileMenu"
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // import { faTwitter } from "@fortawesome/free-brands-svg-icons"
 
+
 const HtmlTooltip = withStyles(theme => ({
   tooltip: {
     backgroundColor: variable.medLightGray,
@@ -188,7 +189,14 @@ function menuRender(menuitem) {
 export const Header = () => {
   const data = useStaticQuery(graphql`
     query menu {
-      allPrismicSiteInformation {
+      twittericon: file(relativePath: { eq: "tweeticon.png" }) {
+        childImageSharp {
+          fixed(width: 30, height: 24) {
+            ...GatsbyImageSharpFixed_withWebp_tracedSVG
+          }
+        }
+      }
+      site: allPrismicSiteInformation {
         nodes {
           data {
             nav {
@@ -237,13 +245,13 @@ export const Header = () => {
       }
     }
   `)
-  const nav = data.allPrismicSiteInformation.nodes[0].data.nav
-  const logo =
-    data.allPrismicSiteInformation.nodes[0].data.logo.localFile.childImageSharp
-      .fluid
+  console.log(data)
+  const nav = data.site.nodes[0].data.nav
+  const logo = data.site.nodes[0].data.logo.localFile.childImageSharp.fluid
+  const twittericon = data.twittericon.childImageSharp.fixed
   var twitter = null
-  if (data.allPrismicSiteInformation.nodes[0].data.twitter) {
-    var twitter = data.allPrismicSiteInformation.nodes[0].data.twitter.url
+  if (data.site.nodes[0].data.twitter) {
+    var twitter = data.site.nodes[0].data.twitter.url
   }
   return (
     <HeaderStyle className="header">
@@ -253,6 +261,7 @@ export const Header = () => {
             <div className="social-container">
               <a href={twitter} target="_blank" rel="noreferrer">
                 {/* <FontAwesomeIcon icon={faTwitter} /> */}
+                <Img fixed={twittericon} />
               </a>
             </div>
           </Container>
