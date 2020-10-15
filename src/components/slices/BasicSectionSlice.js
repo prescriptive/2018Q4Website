@@ -4,7 +4,7 @@ import React from "react"
 import Container from "../container"
 import { RichText, Date } from "prismic-reactjs"
 import { Link } from "gatsby"
-// import BackgroundImage from "gatsby-background-image"
+import BackgroundImage from "gatsby-background-image"
 // import { RichText } from "prismic-dom"
 import YouTube from "react-youtube"
 import ResponsiveEmbed from "react-responsive-embed"
@@ -254,13 +254,12 @@ export const BasicSectionSlice = ({ slice }) => {
   return (
     <BasicStyle>
       {fluid && (
-        // <BackgroundImage
-        //   Tag="section"
-        //   fluid={fluid}
-        //   style={{ backgroundColor: bg_color }}
-        //   className={sidebarClass}
-        // >
-        <div>
+        <BackgroundImage
+          Tag="section"
+          fluid={fluid}
+          style={{ backgroundColor: bg_color }}
+          className={sidebarClass}
+        >
           {/* <div
           className="basic-outer"
           style={{
@@ -318,7 +317,7 @@ export const BasicSectionSlice = ({ slice }) => {
               </div>
             )}
           </Container>
-          </div>
+        </BackgroundImage>
       )}
       {bg_video && (
         <div class="video-container-outer">
