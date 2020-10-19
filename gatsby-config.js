@@ -83,6 +83,12 @@ module.exports = {
     },
     `gatsby-plugin-netlify-headers`,
     {
+      resolve: 'gatsby-plugin-preconnect',
+      options: {
+        domains: ['https://www.google-analytics.com', 'https://www.googletagmanager.com'],
+      },
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Prescriptive`,
