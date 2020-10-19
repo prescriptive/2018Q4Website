@@ -62,6 +62,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-preact`,
+    // "gatsby-plugin-webpack-bundle-analyser-v2",
     {
       resolve: "gatsby-source-buzzsprout",
       options: {
@@ -83,9 +84,12 @@ module.exports = {
     },
     `gatsby-plugin-netlify-headers`,
     {
-      resolve: 'gatsby-plugin-preconnect',
+      resolve: "gatsby-plugin-preconnect",
       options: {
-        domains: ['https://www.google-analytics.com', 'https://www.googletagmanager.com'],
+        domains: [
+          "https://www.google-analytics.com",
+          "https://www.googletagmanager.com",
+        ],
       },
     },
     {

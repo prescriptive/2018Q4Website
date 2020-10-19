@@ -5,13 +5,12 @@ import * as variable from "../components/variables"
 import styled from "styled-components"
 import Container from "../components/container"
 import SEO from "../components/seo"
-import BackgroundImage from "gatsby-background-image"
+// import BackgroundImage from "gatsby-background-image"
 import Img from "gatsby-image"
 import { linkResolver } from "../utils/linkResolver"
 import prismicHtmlSerializer from "../gatsby/htmlSerializer"
 import { RichText } from "prismic-reactjs"
 import PodcastTeaser from "../components/entities/podcast/PodcastTeaser"
-import BasicSectionSlice from "../components/slices/BasicSectionSlice"
 import LeftRightSlice from "../components/slices/LeftRightSlice"
 import ColumnsSectionSlice from "../components/slices/ColumnsSectionSlice"
 import "../components/scss/blocks/podSubscribe.scss"
@@ -292,7 +291,7 @@ const PodcastStyle = styled.div`
 `
 
 // Sort and display the different slice options
-const PostSlices = ({ slices, blog, leadership, job }) => {
+const PostSlices = ({ slices }) => {
   return slices.map((slice, index) => {
     var sliceID = ""
     if (slice.primary) {
@@ -302,16 +301,16 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
     }
     const res = (() => {
       switch (slice.slice_type) {
-        case "basic_section":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-basic"
-            >
-              {<BasicSectionSlice slice={slice} />}
-            </div>
-          )
+        // case "basic_section":
+        //   return (
+        //     <div
+        //       id={"slice-id-" + sliceID}
+        //       key={index}
+        //       className="slice-wrapper slice-basic"
+        //     >
+        //       {<BasicSectionSlice slice={slice} />}
+        //     </div>
+        //   )
 
         case "left_right_section":
           return (
