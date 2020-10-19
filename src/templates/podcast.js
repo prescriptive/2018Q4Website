@@ -429,13 +429,13 @@ const Podcast = props => {
     <Layout>
       <SEO site={site} page={meta} />
       <PodHeader>
-        <BackgroundImage Tag="section" fluid={bg}>
-          <Container>
-            <div className="pod-header-container">
-              <h1>{props.data.page.title}</h1>
-            </div>
-          </Container>
-        </BackgroundImage>
+        {/* <BackgroundImage Tag="section" fluid={bg}> */}
+        <Container>
+          <div className="pod-header-container">
+            <h1>{props.data.page.title}</h1>
+          </div>
+        </Container>
+        {/* </BackgroundImage> */}
       </PodHeader>
       <PodcastStyle>
         <Container>
