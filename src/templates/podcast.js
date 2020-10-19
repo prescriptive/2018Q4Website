@@ -291,56 +291,56 @@ const PodcastStyle = styled.div`
 `
 
 // Sort and display the different slice options
-const PostSlices = ({ slices }) => {
-  return slices.map((slice, index) => {
-    var sliceID = ""
-    if (slice.primary) {
-      if (slice.primary.slice_id != undefined) {
-        var sliceID = slice.primary.slice_id.text
-      }
-    }
-    const res = (() => {
-      switch (slice.slice_type) {
-        // case "basic_section":
-        //   return (
-        //     <div
-        //       id={"slice-id-" + sliceID}
-        //       key={index}
-        //       className="slice-wrapper slice-basic"
-        //     >
-        //       {<BasicSectionSlice slice={slice} />}
-        //     </div>
-        //   )
+// const PostSlices = ({ slices }) => {
+//   return slices.map((slice, index) => {
+//     var sliceID = ""
+//     if (slice.primary) {
+//       if (slice.primary.slice_id != undefined) {
+//         var sliceID = slice.primary.slice_id.text
+//       }
+//     }
+//     const res = (() => {
+//       switch (slice.slice_type) {
+//         // case "basic_section":
+//         //   return (
+//         //     <div
+//         //       id={"slice-id-" + sliceID}
+//         //       key={index}
+//         //       className="slice-wrapper slice-basic"
+//         //     >
+//         //       {<BasicSectionSlice slice={slice} />}
+//         //     </div>
+//         //   )
 
-        case "left_right_section":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-left-right"
-            >
-              {<LeftRightSlice slice={slice} />}
-            </div>
-          )
+//         case "left_right_section":
+//           return (
+//             <div
+//               id={"slice-id-" + sliceID}
+//               key={index}
+//               className="slice-wrapper slice-left-right"
+//             >
+//               {<LeftRightSlice slice={slice} />}
+//             </div>
+//           )
 
-        case "columns_section":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-left-right"
-            >
-              {<ColumnsSectionSlice slice={slice} />}
-            </div>
-          )
+//         case "columns_section":
+//           return (
+//             <div
+//               id={"slice-id-" + sliceID}
+//               key={index}
+//               className="slice-wrapper slice-left-right"
+//             >
+//               {<ColumnsSectionSlice slice={slice} />}
+//             </div>
+//           )
 
-        default:
-          return
-      }
-    })()
-    return res
-  })
-}
+//         default:
+//           return
+//       }
+//     })()
+//     return res
+//   })
+// }
 
 // Sort and display the different slice options
 const SidebarSlices = ({ sidebar }) => {
@@ -538,7 +538,7 @@ const Podcast = props => {
         </Container>
 
         <div className="subscribe-blocker">
-          <PostSlices slices={subscribeBlock} />
+          {/* <PostSlices slices={subscribeBlock} /> */}
         </div>
 
         <Container>
@@ -555,7 +555,7 @@ const Podcast = props => {
         </Container>
 
         <div className="contact-blocker">
-          <PostSlices slices={contactBlock} />
+          {/* <PostSlices slices={contactBlock} /> */}
         </div>
       </PodcastStyle>
     </Layout>
