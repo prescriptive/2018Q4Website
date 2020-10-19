@@ -442,7 +442,7 @@ const Podcast = props => {
           <div className="pod-container">
             <div className="pod-left">
               <h2>Watch the Video</h2>
-              {podInfoYoutube && <VideoSlice video={podInfo.youtube_embed} />}
+              {/* {podInfoYoutube && <VideoSlice video={podInfo.youtube_embed} />} */}
               <div className="left-player">
                 <AudioFileStyle>
                   <h2>Listen to Audio</h2>
