@@ -5,7 +5,7 @@ import * as variable from "../components/variables"
 import styled from "styled-components"
 import Container from "../components/container"
 import SEO from "../components/seo"
-// import BackgroundImage from "gatsby-background-image"
+import BackgroundImage from "gatsby-background-image"
 import Img from "gatsby-image"
 import { linkResolver } from "../utils/linkResolver"
 import prismicHtmlSerializer from "../gatsby/htmlSerializer"
@@ -428,13 +428,13 @@ const Podcast = props => {
     <Layout>
       <SEO site={site} page={meta} />
       <PodHeader>
-        {/* <BackgroundImage Tag="section" fluid={bg}> */}
+        <BackgroundImage Tag="section" fluid={bg}>
         <Container>
           <div className="pod-header-container">
             <h1>{props.data.page.title}</h1>
           </div>
         </Container>
-        {/* </BackgroundImage> */}
+        </BackgroundImage>
       </PodHeader>
       <PodcastStyle>
         <Container>
