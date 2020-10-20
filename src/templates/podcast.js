@@ -14,9 +14,9 @@ import { RichText } from "prismic-reactjs"
 // import LeftRightSlice from "../components/slices/LeftRightSlice"
 // import ColumnsSectionSlice from "../components/slices/ColumnsSectionSlice"
 import "../components/scss/blocks/podSubscribe.scss"
-import AudioPlayer from "react-h5-audio-player"
-import { RHAP_UI } from "react-h5-audio-player"
-import "react-h5-audio-player/lib/styles.css"
+// import AudioPlayer from "react-h5-audio-player"
+// import { RHAP_UI } from "react-h5-audio-player"
+// import "react-h5-audio-player/lib/styles.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faRedoAlt } from "@fortawesome/free-solid-svg-icons"
 import { faUndoAlt } from "@fortawesome/free-solid-svg-icons"
@@ -443,7 +443,7 @@ const Podcast = props => {
               <h2>Watch the Video</h2>
               {/* {podInfoYoutube && <VideoSlice video={podInfo.youtube_embed} />} */}
               <div className="left-player">
-                <AudioFileStyle>
+                {/* <AudioFileStyle>
                   <h2>Listen to Audio</h2>
 
                   <AudioPlayer
@@ -469,7 +469,7 @@ const Podcast = props => {
                     }}
                     // other props here
                   />
-                </AudioFileStyle>
+                </AudioFileStyle> */}
               </div>
               <h2 className="show-notes">Show Notes</h2>
               <div className="top-pod-title-date">
@@ -500,7 +500,7 @@ const Podcast = props => {
                   <div className="player-image">
                     <img src={props.data.page.artwork_url} />
 
-                    <AudioFileStyle
+                    {/* <AudioFileStyle
                       style={{ position: "relative", top: "-40px" }}
                     >
                       <AudioPlayer
@@ -526,7 +526,7 @@ const Podcast = props => {
                         }}
                         // other props here
                       />
-                    </AudioFileStyle>
+                    </AudioFileStyle> */}
                   </div>
                 </div>
               </div>
