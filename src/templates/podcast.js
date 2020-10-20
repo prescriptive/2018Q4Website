@@ -10,9 +10,9 @@ import Img from "gatsby-image"
 import { linkResolver } from "../utils/linkResolver"
 import prismicHtmlSerializer from "../gatsby/htmlSerializer"
 import { RichText } from "prismic-reactjs"
-import PodcastTeaser from "../components/entities/podcast/PodcastTeaser"
-import LeftRightSlice from "../components/slices/LeftRightSlice"
-import ColumnsSectionSlice from "../components/slices/ColumnsSectionSlice"
+// import PodcastTeaser from "../components/entities/podcast/PodcastTeaser"
+// import LeftRightSlice from "../components/slices/LeftRightSlice"
+// import ColumnsSectionSlice from "../components/slices/ColumnsSectionSlice"
 import "../components/scss/blocks/podSubscribe.scss"
 import AudioPlayer from "react-h5-audio-player"
 import { RHAP_UI } from "react-h5-audio-player"
@@ -541,7 +541,7 @@ const Podcast = props => {
           {/* <PostSlices slices={subscribeBlock} /> */}
         </div>
 
-        <Container>
+        {/* <Container>
           <h2>Browse All Episodes</h2>
           <div class="podcasts-container">
             {podcasts.nodes.map((post, index) => (
@@ -552,7 +552,7 @@ const Podcast = props => {
               ></PodcastTeaser>
             ))}
           </div>
-        </Container>
+        </Container> */}
 
         <div className="contact-blocker">
           {/* <PostSlices slices={contactBlock} /> */}
