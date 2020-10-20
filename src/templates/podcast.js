@@ -1,15 +1,15 @@
 import React from "react"
 import { graphql } from "gatsby"
-import Layout from "../components/layout"
+// import Layout from "../components/layout"
 import * as variable from "../components/variables"
 import styled from "styled-components"
 import Container from "../components/container"
 import SEO from "../components/seo"
 import BackgroundImage from "gatsby-background-image"
 import Img from "gatsby-image"
-import { linkResolver } from "../utils/linkResolver"
-import prismicHtmlSerializer from "../gatsby/htmlSerializer"
-import { RichText } from "prismic-reactjs"
+// import { linkResolver } from "../utils/linkResolver"
+// import prismicHtmlSerializer from "../gatsby/htmlSerializer"
+// import { RichText } from "prismic-reactjs"
 // import PodcastTeaser from "../components/entities/podcast/PodcastTeaser"
 // import LeftRightSlice from "../components/slices/LeftRightSlice"
 // import ColumnsSectionSlice from "../components/slices/ColumnsSectionSlice"
@@ -17,9 +17,9 @@ import "../components/scss/blocks/podSubscribe.scss"
 // import AudioPlayer from "react-h5-audio-player"
 // import { RHAP_UI } from "react-h5-audio-player"
 // import "react-h5-audio-player/lib/styles.css"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faRedoAlt } from "@fortawesome/free-solid-svg-icons"
-import { faUndoAlt } from "@fortawesome/free-solid-svg-icons"
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+// import { faRedoAlt } from "@fortawesome/free-solid-svg-icons"
+// import { faUndoAlt } from "@fortawesome/free-solid-svg-icons"
 import ResponsiveEmbed from "react-responsive-embed"
 
 const AudioFileStyle = styled.div`
@@ -357,16 +357,16 @@ const SidebarSlices = ({ sidebar }) => {
             </div>
           )
 
-        case "text":
-          return (
-            <div key={index} className="slice-wrapper slice-text">
-              <RichText
-                render={slice.primary.text.raw}
-                linkResolver={linkResolver}
-                htmlSerializer={prismicHtmlSerializer}
-              />
-            </div>
-          )
+        // case "text":
+        //   return (
+        //     <div key={index} className="slice-wrapper slice-text">
+        //       <RichText
+        //         render={slice.primary.text.raw}
+        //         linkResolver={linkResolver}
+        //         htmlSerializer={prismicHtmlSerializer}
+        //       />
+        //     </div>
+        //   )
 
         default:
           return
@@ -425,7 +425,8 @@ const Podcast = props => {
   }
 
   return (
-    <Layout>
+    // <Layout>
+    <div>
       <SEO site={site} page={meta} />
       <PodHeader>
         <BackgroundImage Tag="section" fluid={bg}>
@@ -530,11 +531,10 @@ const Podcast = props => {
                   </div>
                 </div>
               </div>
-              {podInfoSidebar && <SidebarSlices sidebar={podInfoSidebar} />}
+              {/* {podInfoSidebar && <SidebarSlices sidebar={podInfoSidebar} />} */}
             </div>
           </div>
 
-          {/* <RichText render={props.data.page.description} linkResolver={linkResolver} /> */}
         </Container>
 
         <div className="subscribe-blocker">
@@ -558,7 +558,7 @@ const Podcast = props => {
           {/* <PostSlices slices={contactBlock} /> */}
         </div>
       </PodcastStyle>
-    </Layout>
+      </div>
   )
 }
 
