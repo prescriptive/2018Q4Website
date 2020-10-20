@@ -6,7 +6,7 @@ import styled from "styled-components"
 import Container from "../components/container"
 import SEO from "../components/seo"
 import BackgroundImage from "gatsby-background-image"
-import Img from "gatsby-image"
+// import Img from "gatsby-image"
 // import { linkResolver } from "../utils/linkResolver"
 // import prismicHtmlSerializer from "../gatsby/htmlSerializer"
 // import { RichText } from "prismic-reactjs"
@@ -20,7 +20,7 @@ import "../components/scss/blocks/podSubscribe.scss"
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 // import { faRedoAlt } from "@fortawesome/free-solid-svg-icons"
 // import { faUndoAlt } from "@fortawesome/free-solid-svg-icons"
-import ResponsiveEmbed from "react-responsive-embed"
+// import ResponsiveEmbed from "react-responsive-embed"
 
 const AudioFileStyle = styled.div`
   .listen {
@@ -348,14 +348,14 @@ const SidebarSlices = ({ sidebar }) => {
     console.log(slice)
     const res = (() => {
       switch (slice.slice_type) {
-        case "image":
-          return (
-            <div key={index} className="slice-wrapper slice-image">
-              <Img
-                fluid={slice.primary.image.localFile.childImageSharp.fluid}
-              />
-            </div>
-          )
+        // case "image":
+        //   return (
+        //     <div key={index} className="slice-wrapper slice-image">
+        //       <Img
+        //         fluid={slice.primary.image.localFile.childImageSharp.fluid}
+        //       />
+        //     </div>
+        //   )
 
         // case "text":
         //   return (
@@ -384,7 +384,7 @@ export const VideoSlice = ({ video }) => {
   }
   return (
     <div style={{ padding: "20px 0px 0px 0px" }}>
-      <ResponsiveEmbed src={"https://www.youtube.com/embed/" + video_id} />
+      {/* <ResponsiveEmbed src={"https://www.youtube.com/embed/" + video_id} /> */}
     </div>
   )
 }
@@ -480,7 +480,7 @@ const Podcast = props => {
               <div className="pod-image-desc">
                 {podInfoImage && (
                   <div className="pod-image">
-                    <Img fluid={podInfoImage} />
+                    {/* <Img fluid={podInfoImage} /> */}
                   </div>
                 )}
                 <div className="bottom-pod-above-title">
@@ -499,7 +499,7 @@ const Podcast = props => {
                 <div className="right-player">
                   <h2>Listen to Audio</h2>
                   <div className="player-image">
-                    <img src={props.data.page.artwork_url} />
+                    {/* <img src={props.data.page.artwork_url} /> */}
 
                     {/* <AudioFileStyle
                       style={{ position: "relative", top: "-40px" }}
