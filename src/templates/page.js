@@ -14,12 +14,12 @@ import "../components/scss/page/podcasts.scss"
 import "../components/scss/page/insights.scss"
 import "../components/scss/page/microsoft365.scss"
 import SEO from "../components/seo"
-import BasicSectionSlice from "../components/slices/BasicSectionSlice"
-import ColumnSectionSlice from "../components/slices/ColumnsSectionSlice"
-import LeftRightSlice from "../components/slices/LeftRightSlice"
-import EntityQuerySlice from "../components/slices/EntityQuerySlice"
-import HeroSlice from "../components/slices/HeroSlice"
-import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
+// import BasicSectionSlice from "../components/slices/BasicSectionSlice"
+// import ColumnSectionSlice from "../components/slices/ColumnsSectionSlice"
+// import LeftRightSlice from "../components/slices/LeftRightSlice"
+// import EntityQuerySlice from "../components/slices/EntityQuerySlice"
+// import HeroSlice from "../components/slices/HeroSlice"
+// import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
@@ -59,58 +59,58 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
         //     </div>
         //   )
 
-        case "basic_section":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-basic"
-            >
-              {<BasicSectionSlice slice={slice} />}
-            </div>
-          )
+        // case "basic_section":
+        //   return (
+        //     <div
+        //       id={"slice-id-" + sliceID}
+        //       key={index}
+        //       className="slice-wrapper slice-basic"
+        //     >
+        //       {<BasicSectionSlice slice={slice} />}
+        //     </div>
+        //   )
 
-        case "hero":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-hero"
-            >
-              {<HeroSlice slice={slice} />}
-            </div>
-          )
+        // case "hero":
+        //   return (
+        //     <div
+        //       id={"slice-id-" + sliceID}
+        //       key={index}
+        //       className="slice-wrapper slice-hero"
+        //     >
+        //       {<HeroSlice slice={slice} />}
+        //     </div>
+        //   )
 
-        case "block_reference":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-block-reference"
-            >
-              {<BlockReferenceSlice slice={slice} />}
-            </div>
-          )
+        // case "block_reference":
+        //   return (
+        //     <div
+        //       id={"slice-id-" + sliceID}
+        //       key={index}
+        //       className="slice-wrapper slice-block-reference"
+        //     >
+        //       {<BlockReferenceSlice slice={slice} />}
+        //     </div>
+        //   )
 
-        case "entity_query":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-entity-query"
-            >
-              {
-                <EntityQuerySlice
-                  slice={slice}
-                  blog={blog}
-                  leadership={leadership}
-                  job={job}
-                  podcast={podcast}
-                  podinfo={podinfo}
-                />
-              }
-            </div>
-          )
+        // case "entity_query":
+        //   return (
+        //     <div
+        //       id={"slice-id-" + sliceID}
+        //       key={index}
+        //       className="slice-wrapper slice-entity-query"
+        //     >
+        //       {
+        //         <EntityQuerySlice
+        //           slice={slice}
+        //           blog={blog}
+        //           leadership={leadership}
+        //           job={job}
+        //           podcast={podcast}
+        //           podinfo={podinfo}
+        //         />
+        //       }
+        //     </div>
+        //   )
 
         // case "slideshow":
         //   return (
@@ -123,27 +123,27 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
         //     </div>
         //   )
 
-        case "columns_section":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-columns"
-            >
-              {<ColumnSectionSlice slice={slice} />}
-            </div>
-          )
+        // case "columns_section":
+        //   return (
+        //     <div
+        //       id={"slice-id-" + sliceID}
+        //       key={index}
+        //       className="slice-wrapper slice-columns"
+        //     >
+        //       {<ColumnSectionSlice slice={slice} />}
+        //     </div>
+        //   )
 
-        case "left_right_section":
-          return (
-            <div
-              id={"slice-id-" + sliceID}
-              key={index}
-              className="slice-wrapper slice-left-right"
-            >
-              {<LeftRightSlice slice={slice} />}
-            </div>
-          )
+        // case "left_right_section":
+        //   return (
+        //     <div
+        //       id={"slice-id-" + sliceID}
+        //       key={index}
+        //       className="slice-wrapper slice-left-right"
+        //     >
+        //       {<LeftRightSlice slice={slice} />}
+        //     </div>
+        //   )
 
         default:
           return
