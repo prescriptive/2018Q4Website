@@ -61,8 +61,8 @@ module.exports = {
         prismicToolbar: false,
       },
     },
-    // `gatsby-plugin-preact`,
-    "gatsby-plugin-webpack-bundle-analyser-v2",
+    `gatsby-plugin-preact`,
+    // "gatsby-plugin-webpack-bundle-analyser-v2",
     {
       resolve: "gatsby-source-buzzsprout",
       options: {
@@ -235,12 +235,12 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: "gatsby-plugin-google-tagmanager",
-      options: {
-        id: "GTM-KWP5GHG",
-      },
-    },
+    // {
+    //   resolve: "gatsby-plugin-google-tagmanager",
+    //   options: {
+    //     id: "GTM-KWP5GHG",
+    //   },
+    // },
     `gatsby-plugin-offline`,
     "gatsby-plugin-netlify",
   ],
