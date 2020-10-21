@@ -1,7 +1,6 @@
 import React from "react"
 import * as variable from "../../variables"
 import styled from "styled-components"
-import { Link } from "gatsby"
 import Img from "gatsby-image"
 import { RichText } from "prismic-reactjs"
 import { faTwitter } from "@fortawesome/free-brands-svg-icons"
