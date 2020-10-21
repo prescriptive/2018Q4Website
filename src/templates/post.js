@@ -7,9 +7,9 @@ import Container from "../components/container"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
 import Image from "../components/slices/ImageSlice"
-import Text from "../components/slices/TextSlice"
-import Quote from "../components/slices/QuoteSlice"
-import Video from "../components/slices/VideoSlice"
+// import Text from "../components/slices/TextSlice"
+// import Quote from "../components/slices/QuoteSlice"
+// import Video from "../components/slices/VideoSlice"
 import BasicSectionSlice from "../components/slices/BasicSectionSlice"
 import BgImage from "../images/blogbg.png"
 // import linkResolver from "../utils/linkResolver"
@@ -24,19 +24,19 @@ const PostSlices = ({ slices, id }) => {
   return slices.map((slice, index) => {
     const res = (() => {
       switch (slice.slice_type) {
-        case "text":
-          return (
-            <div key={index} className="slice-wrapper slice-text">
-              {<Text slice={slice} />}
-            </div>
-          )
+        // case "text":
+        //   return (
+        //     <div key={index} className="slice-wrapper slice-text">
+        //       {<Text slice={slice} />}
+        //     </div>
+        //   )
 
-        case "quote":
-          return (
-            <div key={index} className="slice-wrapper slice-quote">
-              {<Quote slice={slice} />}
-            </div>
-          )
+        // case "quote":
+        //   return (
+        //     <div key={index} className="slice-wrapper slice-quote">
+        //       {<Quote slice={slice} />}
+        //     </div>
+        //   )
 
         case "image":
           return (
@@ -44,22 +44,22 @@ const PostSlices = ({ slices, id }) => {
               {<Image slice={slice} />}
             </div>
           )
-        case "video":
-          return (
-            <div key={index} className="slice-wrapper slice-video">
-              {<Video slice={slice} />}
-            </div>
-          )
-        case "basic_section":
-          return (
-            <div
-              id={"slice-id-" + id}
-              key={index}
-              className="slice-wrapper slice-basic"
-            >
-              {<BasicSectionSlice slice={slice} />}
-            </div>
-          )
+        // case "video":
+        //   return (
+        //     <div key={index} className="slice-wrapper slice-video">
+        //       {<Video slice={slice} />}
+        //     </div>
+        //   )
+        // case "basic_section":
+        //   return (
+        //     <div
+        //       id={"slice-id-" + id}
+        //       key={index}
+        //       className="slice-wrapper slice-basic"
+        //     >
+        //       {<BasicSectionSlice slice={slice} />}
+        //     </div>
+        //   )
         default:
           return
       }
