@@ -61,8 +61,8 @@ module.exports = {
         prismicToolbar: false,
       },
     },
-    `gatsby-plugin-preact`,
-    // "gatsby-plugin-webpack-bundle-analyser-v2",
+    // `gatsby-plugin-preact`,
+    "gatsby-plugin-webpack-bundle-analyser-v2",
     {
       resolve: "gatsby-source-buzzsprout",
       options: {

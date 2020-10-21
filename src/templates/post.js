@@ -226,7 +226,7 @@ const Post = props => {
   )
 }
 
-export default withPreview(Post)
+export default Post
 
 export const postQuery = graphql`
   query PostBySlug($uid: String!) {
