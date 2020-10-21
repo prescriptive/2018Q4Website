@@ -1,5 +1,4 @@
 import React from "react"
-import AudioFile from "../components/tokens/audioFile"
 import { Link } from "gatsby"
 
 const { RichText } = require("prismic-dom")
@@ -70,7 +69,7 @@ const htmlSerializer = (type, element, content, children) => {
       if (element.data.name) {
         if (element.data.name.includes(".mp3")) {
           // File type is .mp3
-          return <AudioFile content={content} element={element} />
+          return <div>link audio removed</div>
         }
       }
       if (element.data.link_type == "Document") {
