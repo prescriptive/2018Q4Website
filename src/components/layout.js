@@ -16,7 +16,7 @@ const Layout = ({ children, slug }) => {
 
   return (
     <div id={pageId}>
-      <Header />
+      {/* <Header /> */}
       <main>{children}</main>
       <Footer />
     </div>
