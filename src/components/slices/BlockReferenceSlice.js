@@ -11,7 +11,7 @@ import ColumnsSectionSlice from "../slices/ColumnsSectionSlice"
 const BlockReferenceStyle = styled.div``
 
 // Sort and display the different slice options
-const PostSlices = ({ slices, blog, leadership, job }) => {
+const PostSlices = ({ slices }) => {
   return slices.map((slice, index) => {
     var sliceID = ""
     if (slice.primary) {

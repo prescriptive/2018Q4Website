@@ -14,12 +14,28 @@ import "../components/scss/page/podcasts.scss"
 import "../components/scss/page/insights.scss"
 import "../components/scss/page/microsoft365.scss"
 import SEO from "../components/seo"
-import BasicSectionSlice from "../components/slices/BasicSectionSlice"
-import ColumnSectionSlice from "../components/slices/ColumnsSectionSlice"
-import LeftRightSlice from "../components/slices/LeftRightSlice"
-import EntityQuerySlice from "../components/slices/EntityQuerySlice"
-import HeroSlice from "../components/slices/HeroSlice"
-import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
+// import BasicSectionSlice from "../components/slices/BasicSectionSlice"
+// import ColumnSectionSlice from "../components/slices/ColumnsSectionSlice"
+// import LeftRightSlice from "../components/slices/LeftRightSlice"
+// import EntityQuerySlice from "../components/slices/EntityQuerySlice"
+// import HeroSlice from "../components/slices/HeroSlice"
+// import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
+import loadable from '@loadable/component'
+
+
+const BasicSectionSlice = loadable(() => import(`../components/slices/BasicSectionSlice`))
+
+const ColumnSectionSlice = loadable(() => import(`../components/slices/ColumnsSectionSlice`))
+
+const LeftRightSlice= loadable(() => import(`../components/slices/LeftRightSlice`))
+
+const EntityQuerySlice = loadable(() => import(`../components/slices/EntityQuerySlice`))
+
+const HeroSlice = loadable(() => import(`../components/slices/HeroSlice`))
+
+const BlockReferenceSlice = loadable(() => import(`../components/slices/BlockReferenceSlice`))
+
+
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
