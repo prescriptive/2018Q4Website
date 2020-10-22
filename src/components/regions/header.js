@@ -266,7 +266,7 @@ export const Header = () => {
         <Link className="logo" to="/">
           <Img fluid={logo} />
         </Link>
-        <div className="mobile-menu-container">{<MobileMenu />}</div>
+        {/* <div className="mobile-menu-container">{<MobileMenu />}</div> */}
         <ul className="main-menu">
           {nav.map((menuitem, index) => (
             <li key={index}>{menuRender(menuitem)}</li>
