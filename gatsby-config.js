@@ -62,6 +62,13 @@ module.exports = {
       },
     },
     `gatsby-plugin-preact`,
+    // `gatsby-plugin-webpack-bundle-analyser-v2`,
+    {
+      resolve: 'gatsby-plugin-preconnect',
+      options: {
+        domains: ['https://www.google-analytics.com'],
+      },
+    },
     {
       resolve: "gatsby-source-buzzsprout",
       options: {
