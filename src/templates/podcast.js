@@ -1,5 +1,5 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import * as variable from "../components/variables"
 import styled from "styled-components"
@@ -18,9 +18,6 @@ import "../components/scss/blocks/podSubscribe.scss"
 import AudioPlayer from "react-h5-audio-player"
 import { RHAP_UI } from "react-h5-audio-player"
 import "react-h5-audio-player/lib/styles.css"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faRedoAlt } from "@fortawesome/free-solid-svg-icons"
-import { faUndoAlt } from "@fortawesome/free-solid-svg-icons"
 import ResponsiveEmbed from "react-responsive-embed"
 
 const AudioFileStyle = styled.div`
@@ -346,7 +343,6 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
 // Sort and display the different slice options
 const SidebarSlices = ({ sidebar }) => {
   return sidebar.map((slice, index) => {
-    console.log(slice)
     const res = (() => {
       switch (slice.slice_type) {
         case "image":
@@ -417,7 +413,6 @@ const Podcast = props => {
       var podDesc = props.data.page.description.replace(/<[^>]*>/g, "")
       podDesc = podDesc.substring(0, 400) + "..."
     }
-    console.log(podDesc)
   }
   const meta = {
     data: props.data.page,
@@ -463,10 +458,9 @@ const Podcast = props => {
                       RHAP_UI.DURATION,
                     ]}
                     src={podcastUrl}
-                    onPlay={e => console.log("onPlay")}
                     customIcons={{
-                      rewind: <FontAwesomeIcon icon={faUndoAlt} />,
-                      forward: <FontAwesomeIcon icon={faRedoAlt} />,
+                      rewind: <Img fixed={props.data.back.childImageSharp.fixed} />,
+                      forward: <Img fixed={props.data.forward.childImageSharp.fixed} />,
                     }}
                     // other props here
                   />
@@ -520,10 +514,9 @@ const Podcast = props => {
                           RHAP_UI.DURATION,
                         ]}
                         src={podcastUrl}
-                        onPlay={e => console.log("onPlay")}
                         customIcons={{
-                          rewind: <FontAwesomeIcon icon={faUndoAlt} />,
-                          forward: <FontAwesomeIcon icon={faRedoAlt} />,
+                          rewind: <Img fixed={props.data.back.childImageSharp.fixed} />,
+                          forward: <Img fixed={props.data.forward.childImageSharp.fixed} />,
                         }}
                         // other props here
                       />
@@ -812,6 +805,20 @@ export const podcastQuery = graphql`
       id
       published_at(formatString: "MMM D Y")
       tags
+    }
+    back: file(relativePath: { eq: "back15.png" }) {
+      childImageSharp {
+        fixed(width: 28, height:32) {
+          ...GatsbyImageSharpFixed_withWebp_tracedSVG
+        }
+      }
+    }
+    forward: file(relativePath: { eq: "forward15.png" }) {
+      childImageSharp {
+        fixed(width: 28, height:32) {
+          ...GatsbyImageSharpFixed_withWebp_tracedSVG
+        }
+      }
     }
   }
 `

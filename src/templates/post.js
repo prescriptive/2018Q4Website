@@ -11,13 +11,7 @@ import Text from "../components/slices/TextSlice"
 import Quote from "../components/slices/QuoteSlice"
 import Video from "../components/slices/VideoSlice"
 import BasicSectionSlice from "../components/slices/BasicSectionSlice"
-import BgImage from "../images/blogbg.png"
-import linkResolver from "../utils/linkResolver"
-import { RichText, Date } from "prismic-reactjs"
-import { faCalendar } from "@fortawesome/free-solid-svg-icons"
-import { faUser } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { withPreview } from "gatsby-source-prismic"
+import BackgroundImage from "gatsby-background-image"
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, id }) => {
@@ -138,7 +132,6 @@ const PageStyle = styled.div`
 `
 
 const BlogHeader = styled.div`
-  background-image: url(${BgImage});
   margin-bottom: 40px;
   .blog-header-container {
     min-height: 360px;
@@ -173,12 +166,17 @@ const Post = props => {
       page={props.data.page}
       >
     </SEO>
+
       <BlogHeader>
+      <BackgroundImage
+          fluid={props.data.blogbg.childImageSharp.fluid}
+        >
         <Container>
           <div className="blog-header-container">
             <div className="blog-post-image-title">Insights</div>
           </div>
         </Container>
+        </BackgroundImage>
       </BlogHeader>
       <PageStyle>
         <Container>
@@ -194,13 +192,13 @@ const Post = props => {
               <h1>{node.title.text}</h1>
               {node.release_date && (
                 <div className="release-date">
-                  <FontAwesomeIcon icon={faCalendar} />
+          <Img fixed={props.data.calendaricon.childImageSharp.fixed} style={{marginRight: '10px'}} />
                   {node.release_date}
                 </div>
               )}
               {node.author && (
                 <div className="blog-author">
-                  <FontAwesomeIcon icon={faUser} />
+          <Img fixed={props.data.usericon.childImageSharp.fixed} style={{marginRight: '10px'}} />
                   {node.author.text}
                 </div>
               )}
@@ -226,10 +224,31 @@ const Post = props => {
   )
 }
 
-export default withPreview(Post)
+export default Post
 
 export const postQuery = graphql`
   query PostBySlug($uid: String!) {
+    blogbg: file(relativePath: { eq: "blogbg.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 1920) {
+          ...GatsbyImageSharpFluid_withWebp_tracedSVG
+        }
+      }
+    }
+    usericon: file(relativePath: { eq: "user-gray.png" }) {
+      childImageSharp {
+        fixed(width: 20, height: 20) {
+          ...GatsbyImageSharpFixed_withWebp_tracedSVG
+        }
+      }
+    }
+    calendaricon: file(relativePath: { eq: "calendar-gray.png" }) {
+      childImageSharp {
+        fixed(width: 20, height: 22) {
+          ...GatsbyImageSharpFixed_withWebp_tracedSVG
+        }
+      }
+    }
     defaultBlock: prismicBlock(
       id: { eq: "ec237610-ff7b-583b-9a83-076cc4920623" }
     ) {

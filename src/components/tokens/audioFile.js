@@ -1,20 +1,19 @@
 import React from "react"
 import styled from "styled-components"
-import { Link, RichText, Date } from "prismic-reactjs"
 import * as variable from "../variables"
 import AudioPlayer from "react-h5-audio-player"
 import { RHAP_UI } from "react-h5-audio-player"
 import "react-h5-audio-player/lib/styles.css"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faRedoAlt } from "@fortawesome/free-solid-svg-icons"
-import { faUndoAlt } from "@fortawesome/free-solid-svg-icons"
+import { useStaticQuery, graphql } from "gatsby"
+import Img from "gatsby-image"
+
 const AudioFileStyle = styled.span`
   .rhap_rewind-button {
     display: flex;
     align-items: center;
     justify-content: center;
     &:before {
-      content: "15";
+      /* content: "15"; */
       color: ${variable.darkGray};
       font-size: 10px;
       position: absolute;
@@ -29,7 +28,7 @@ const AudioFileStyle = styled.span`
     align-items: center;
     justify-content: center;
     &:before {
-      content: "15";
+      /* content: "15"; */
       color: black;
       font-size: 10px;
       position: absolute;
@@ -69,6 +68,24 @@ const AudioFileStyle = styled.span`
 `
 
 export const AudioFile = ({ content, element }) => {
+  const data = useStaticQuery(graphql`
+  query aduioquery{
+    back: file(relativePath: { eq: "back15.png" }) {
+      childImageSharp {
+        fixed(width: 28, height:32) {
+          ...GatsbyImageSharpFixed_withWebp_tracedSVG
+        }
+      }
+    }
+    forward: file(relativePath: { eq: "forward15.png" }) {
+      childImageSharp {
+        fixed(width: 28, height:32) {
+          ...GatsbyImageSharpFixed_withWebp_tracedSVG
+        }
+      }
+    }
+  }
+`)
   const fileUrl = element.data.url
   return (
     <AudioFileStyle>
@@ -89,10 +106,9 @@ export const AudioFile = ({ content, element }) => {
           RHAP_UI.DURATION,
         ]}
         src={fileUrl}
-        onPlay={e => console.log("onPlay")}
         customIcons={{
-          rewind: <FontAwesomeIcon icon={faUndoAlt} />,
-          forward: <FontAwesomeIcon icon={faRedoAlt} />,
+          rewind: <Img fixed={data.back.childImageSharp.fixed} />,
+          forward: <Img fixed={data.forward.childImageSharp.fixed} />,
         }}
         // other props here
       />

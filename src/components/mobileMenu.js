@@ -4,7 +4,6 @@ import { Link } from "gatsby"
 import { StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import * as variable from "../components/variables"
-import Container from "../components/container"
 
 const MobileContainer = styled.div`
   display: none;

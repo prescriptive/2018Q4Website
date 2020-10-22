@@ -1,4 +1,3 @@
-import PropTypes, { nominalTypeHack } from "prop-types"
 import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
@@ -10,8 +9,6 @@ import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import * as variable from "../variables"
 import MobileMenu from "../mobileMenu"
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-// import { faTwitter } from "@fortawesome/free-brands-svg-icons"
 
 
 const HtmlTooltip = withStyles(theme => ({
@@ -138,7 +135,6 @@ function menuRender(menuitem) {
           <React.Fragment>
             {menuitem.items.map((submenuitem, index) => (
               <div key={index}>
-                {console.log(submenuitem)}
                 {submenuitem.sub_nav_link.url && (
                   <Link
                     activeStyle={activeStyle}
@@ -245,7 +241,6 @@ export const Header = () => {
       }
     }
   `)
-  console.log(data)
   const nav = data.site.nodes[0].data.nav
   const logo = data.site.nodes[0].data.logo.localFile.childImageSharp.fluid
   const twittericon = data.twittericon.childImageSharp.fixed

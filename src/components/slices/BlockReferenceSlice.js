@@ -1,14 +1,9 @@
 import styled from "styled-components"
 import React from "react"
-import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
-import { Link, RichText, Date } from "prismic-reactjs"
-import YouTube from "react-youtube"
-import ResponsiveEmbed from "react-responsive-embed"
 import "../scss/blocks/globalContact.scss"
 import "../scss/blocks/dirContact.scss"
 import "../scss/blocks/podSubscribe.scss"
-import linkResolver from "../../utils/linkResolver"
 import BasicSectionSlice from "../slices/BasicSectionSlice"
 import LeftRightSlice from "../slices/LeftRightSlice"
 import ColumnsSectionSlice from "../slices/ColumnsSectionSlice"
@@ -24,7 +19,6 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
         var sliceID = slice.primary.slice_id.text
       }
     }
-    console.log(slice)
     const res = (() => {
       switch (slice.slice_type) {
         case "basic_section":
@@ -72,9 +66,7 @@ export const BlockReferenceSlice = ({ slice }) => {
   slice = slice.primary.block_reference.document.data.body
   return (
     <BlockReferenceStyle>
-      {/* <Container className="block-reference-slice-container"> */}
       <PostSlices slices={slice} />
-      {/* </Container> */}
     </BlockReferenceStyle>
   )
 }

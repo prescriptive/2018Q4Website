@@ -2,11 +2,7 @@ import styled from "styled-components"
 import React from "react"
 import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
-import { Link, RichText, Date } from "prismic-reactjs"
-import YouTube from "react-youtube"
-import ResponsiveEmbed from "react-responsive-embed"
 import "../scss/block/defaultBlogCta.scss"
-import linkResolver from "../../utils/linkResolver"
 
 const HeroStyle = styled.div`
   section {

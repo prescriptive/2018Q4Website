@@ -32,33 +32,6 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
     }
     const res = (() => {
       switch (slice.slice_type) {
-        // case "text":
-        //   return (
-        //     <div key={index} className="slice-wrapper slice-text">
-        //       {<Text slice={slice} />}
-        //     </div>
-        //   )
-
-        // case "quote":
-        //   return (
-        //     <div key={index} className="slice-wrapper slice-quote">
-        //       {<Quote slice={slice} />}
-        //     </div>
-        //   )
-
-        // case "image":
-        //   return (
-        //     <div key={index} className="slice-wrapper slice-image">
-        //       {<Image slice={slice} />}
-        //     </div>
-        //   )
-        // case "video":
-        //   return (
-        //     <div key={index} className="slice-wrapper slice-video">
-        //       {<Video slice={slice} />}
-        //     </div>
-        //   )
-
         case "basic_section":
           return (
             <div
@@ -167,6 +140,7 @@ const Page = ({ data }) => {
   const job = data.job
   const site = data.site
   const podinfo = data.podinfo
+  const blog = data.blog
   //   const site = data.site.allSite_informations.edges[0].node
   return (
     <Layout slug={node.uid}>
@@ -179,6 +153,7 @@ const Page = ({ data }) => {
             leadership={leadership}
             podcast={podcast}
             podinfo={podinfo}
+            blog={blog}
           />
         )}
       </PageStyle>
@@ -240,6 +215,7 @@ export const postQuery = graphql`
       nodes {
         data {
           bio {
+            html
             raw
           }
           linkedin {
@@ -695,13 +671,16 @@ export const postQuery = graphql`
         }
       }
     }
-    blog: allPrismicBlogPost(sort: { fields: data___release_date }) {
+    blog: allPrismicBlogPost(sort: {order: DESC, fields: data___release_date}) {
       nodes {
         uid
         data {
           release_date(formatString: "MMM D Y")
           teaser {
             html
+          }
+          author {
+            text
           }
           title {
             text

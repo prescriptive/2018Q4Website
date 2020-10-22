@@ -1,6 +1,4 @@
 import React from "react"
-import { RichText } from "prismic-reactjs"
-import linkResolver from "../../utils/linkResolver"
 import ResponsiveEmbed from "react-responsive-embed"
 import Container from "../container"
 
