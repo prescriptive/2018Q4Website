@@ -21,15 +21,6 @@ import "react-h5-audio-player/lib/styles.css"
 import ResponsiveEmbed from "react-responsive-embed"
 import loadable from '@loadable/component'
 
-
-const BasicSectionSlice = loadable(() => import(`../components/slices/BasicSectionSlice`))
-
-const ColumnsSectionSlice = loadable(() => import(`../components/slices/ColumnsSectionSlice`))
-
-const LeftRightSlice= loadable(() => import(`../components/slices/LeftRightSlice`))
-
-const PodcastTeaser = loadable(() => import(`../components/entities/podcast/PodcastTeaser`))
-
 const AudioFileStyle = styled.div`
   .listen {
     font-weight: bold;
@@ -310,6 +301,7 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
     const res = (() => {
       switch (slice.slice_type) {
         case "basic_section":
+          const BasicSectionSlice = loadable(() => import(`../components/slices/BasicSectionSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -321,6 +313,7 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
           )
 
         case "left_right_section":
+          const LeftRightSlice= loadable(() => import(`../components/slices/LeftRightSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -332,6 +325,7 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
           )
 
         case "columns_section":
+          const ColumnsSectionSlice = loadable(() => import(`../components/slices/ColumnsSectionSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -397,6 +391,7 @@ export const VideoSlice = ({ video }) => {
 }
 
 const Podcast = props => {
+  const PodcastTeaser = loadable(() => import(`../components/entities/podcast/PodcastTeaser`))
   const podcastUrl = props.data.page.audio_url
   const podcasts = props.data.podcast
   const subscribeBlock = props.data.subscribeBlock.data.body

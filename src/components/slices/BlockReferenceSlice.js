@@ -9,12 +9,6 @@ import loadable from '@loadable/component'
 // import LeftRightSlice from "../slices/LeftRightSlice"
 // import ColumnsSectionSlice from "../slices/ColumnsSectionSlice"
 
-const BasicSectionSlice = loadable(() => import(`../slices/BasicSectionSlice`))
-
-const LeftRightSlice = loadable(() => import(`../slices/LeftRightSlice`))
-
-const ColumnsSectionSlice = loadable(() => import(`../slices/ColumnsSectionSlice`))
-
 const BlockReferenceStyle = styled.div``
 
 // Sort and display the different slice options
@@ -29,6 +23,7 @@ const PostSlices = ({ slices }) => {
     const res = (() => {
       switch (slice.slice_type) {
         case "basic_section":
+          const BasicSectionSlice = loadable(() => import(`../slices/BasicSectionSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -40,6 +35,7 @@ const PostSlices = ({ slices }) => {
           )
 
         case "left_right_section":
+          const LeftRightSlice = loadable(() => import(`../slices/LeftRightSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -51,6 +47,7 @@ const PostSlices = ({ slices }) => {
           )
 
         case "columns_section":
+          const ColumnsSectionSlice = loadable(() => import(`../slices/ColumnsSectionSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}

@@ -23,17 +23,11 @@ import SEO from "../components/seo"
 import loadable from '@loadable/component'
 
 
-const BasicSectionSlice = loadable(() => import(`../components/slices/BasicSectionSlice`))
 
-const ColumnSectionSlice = loadable(() => import(`../components/slices/ColumnsSectionSlice`))
 
-const LeftRightSlice= loadable(() => import(`../components/slices/LeftRightSlice`))
 
-const EntityQuerySlice = loadable(() => import(`../components/slices/EntityQuerySlice`))
 
-const HeroSlice = loadable(() => import(`../components/slices/HeroSlice`))
 
-const BlockReferenceSlice = loadable(() => import(`../components/slices/BlockReferenceSlice`))
 
 
 
@@ -49,6 +43,7 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
     const res = (() => {
       switch (slice.slice_type) {
         case "basic_section":
+          const BasicSectionSlice = loadable(() => import(`../components/slices/BasicSectionSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -60,6 +55,7 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
           )
 
         case "hero":
+          const HeroSlice = loadable(() => import(`../components/slices/HeroSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -71,6 +67,7 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
           )
 
         case "block_reference":
+          const BlockReferenceSlice = loadable(() => import(`../components/slices/BlockReferenceSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -82,6 +79,7 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
           )
 
         case "entity_query":
+          const EntityQuerySlice = loadable(() => import(`../components/slices/EntityQuerySlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -113,6 +111,7 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
         //   )
 
         case "columns_section":
+          const ColumnSectionSlice = loadable(() => import(`../components/slices/ColumnsSectionSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -124,6 +123,7 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
           )
 
         case "left_right_section":
+          const LeftRightSlice= loadable(() => import(`../components/slices/LeftRightSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}

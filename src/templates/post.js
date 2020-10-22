@@ -14,16 +14,6 @@ import Img from "gatsby-image"
 import BackgroundImage from "gatsby-background-image"
 import loadable from '@loadable/component'
 
-const Image = loadable(() => import(`../components/slices/ImageSlice`))
-
-const Text = loadable(() => import(`../components/slices/TextSlice`))
-
-const Quote = loadable(() => import(`../components/slices/QuoteSlice`))
-
-const Video = loadable(() => import(`../components/slices/VideoSlice`))
-
-const BasicSectionSlice = loadable(() => import(`../components/slices/BasicSectionSlice`))
-
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, id }) => {
@@ -31,6 +21,7 @@ const PostSlices = ({ slices, id }) => {
     const res = (() => {
       switch (slice.slice_type) {
         case "text":
+          const Text = loadable(() => import(`../components/slices/TextSlice`))
           return (
             <div key={index} className="slice-wrapper slice-text">
               {<Text slice={slice} />}
@@ -38,6 +29,7 @@ const PostSlices = ({ slices, id }) => {
           )
 
         case "quote":
+          const Quote = loadable(() => import(`../components/slices/QuoteSlice`))
           return (
             <div key={index} className="slice-wrapper slice-quote">
               {<Quote slice={slice} />}
@@ -45,18 +37,21 @@ const PostSlices = ({ slices, id }) => {
           )
 
         case "image":
+          const Image = loadable(() => import(`../components/slices/ImageSlice`))
           return (
             <div key={index} className="slice-wrapper slice-image">
               {<Image slice={slice} />}
             </div>
           )
         case "video":
+          const Video = loadable(() => import(`../components/slices/VideoSlice`))
           return (
             <div key={index} className="slice-wrapper slice-video">
               {<Video slice={slice} />}
             </div>
           )
         case "basic_section":
+          const BasicSectionSlice = loadable(() => import(`../components/slices/BasicSectionSlice`))
           return (
             <div
               id={"slice-id-" + id}

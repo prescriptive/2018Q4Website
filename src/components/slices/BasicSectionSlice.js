@@ -7,12 +7,11 @@ import ResponsiveEmbed from "react-responsive-embed"
 import "../scss/block/defaultBlogCta.scss"
 import linkResolver from "../../utils/linkResolver"
 // import BasicSectionSliceInner from "../slices/BasicSectionSlice"
-import LeftRightSlice from "../slices/LeftRightSlice"
+// import LeftRightSlice from "../slices/LeftRightSlice"
 import * as variable from "../variables"
 import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
 import loadable from '@loadable/component'
 
-const BasicSectionSliceInner = loadable(() => import(`../slices/BasicSectionSlice`))
 
 const BasicStyle = styled.div`
     .basic-slice-container {
@@ -150,6 +149,7 @@ const PostSlices = ({ slices }) => {
     const res = (() => {
       switch (slice.slice_type) {
         case "basic_section":
+          const BasicSectionSliceInner = loadable(() => import(`../slices/BasicSectionSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -161,6 +161,7 @@ const PostSlices = ({ slices }) => {
           )
 
         case "left_right_section":
+          const LeftRightSlice = loadable(() => import(`../slices/LeftRightSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
