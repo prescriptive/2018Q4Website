@@ -10,15 +10,25 @@ import Img from "gatsby-image"
 import { linkResolver } from "../utils/linkResolver"
 import prismicHtmlSerializer from "../gatsby/htmlSerializer"
 import { RichText } from "prismic-reactjs"
-import PodcastTeaser from "../components/entities/podcast/PodcastTeaser"
-import BasicSectionSlice from "../components/slices/BasicSectionSlice"
-import LeftRightSlice from "../components/slices/LeftRightSlice"
-import ColumnsSectionSlice from "../components/slices/ColumnsSectionSlice"
+// import PodcastTeaser from "../components/entities/podcast/PodcastTeaser"
+// import BasicSectionSlice from "../components/slices/BasicSectionSlice"
+// import LeftRightSlice from "../components/slices/LeftRightSlice"
+// import ColumnsSectionSlice from "../components/slices/ColumnsSectionSlice"
 import "../components/scss/blocks/podSubscribe.scss"
 import AudioPlayer from "react-h5-audio-player"
 import { RHAP_UI } from "react-h5-audio-player"
 import "react-h5-audio-player/lib/styles.css"
 import ResponsiveEmbed from "react-responsive-embed"
+import loadable from '@loadable/component'
+
+
+const BasicSectionSlice = loadable(() => import(`../components/slices/BasicSectionSlice`))
+
+const ColumnsSectionSlice = loadable(() => import(`../components/slices/ColumnsSectionSlice`))
+
+const LeftRightSlice= loadable(() => import(`../components/slices/LeftRightSlice`))
+
+const PodcastTeaser = loadable(() => import(`../components/entities/podcast/PodcastTeaser`))
 
 const AudioFileStyle = styled.div`
   .listen {

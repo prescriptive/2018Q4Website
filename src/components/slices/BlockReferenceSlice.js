@@ -4,9 +4,16 @@ import Container from "../container"
 import "../scss/blocks/globalContact.scss"
 import "../scss/blocks/dirContact.scss"
 import "../scss/blocks/podSubscribe.scss"
-import BasicSectionSlice from "../slices/BasicSectionSlice"
-import LeftRightSlice from "../slices/LeftRightSlice"
-import ColumnsSectionSlice from "../slices/ColumnsSectionSlice"
+import loadable from '@loadable/component'
+// import BasicSectionSlice from "../slices/BasicSectionSlice"
+// import LeftRightSlice from "../slices/LeftRightSlice"
+// import ColumnsSectionSlice from "../slices/ColumnsSectionSlice"
+
+const BasicSectionSlice = loadable(() => import(`../slices/BasicSectionSlice`))
+
+const LeftRightSlice = loadable(() => import(`../slices/LeftRightSlice`))
+
+const ColumnsSectionSlice = loadable(() => import(`../slices/ColumnsSectionSlice`))
 
 const BlockReferenceStyle = styled.div``
 

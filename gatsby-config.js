@@ -62,8 +62,8 @@ module.exports = {
       },
     },
     `gatsby-plugin-preact`,
-    // `gatsby-plugin-webpack-bundle-analyser-v2`,
-    'gatsby-plugin-loadable-components-ssr',
+    `gatsby-plugin-webpack-bundle-analyser-v2`,
+    // 'gatsby-plugin-loadable-components-ssr',
     {
       resolve: 'gatsby-plugin-preconnect',
       options: {

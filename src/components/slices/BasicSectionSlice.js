@@ -2,15 +2,17 @@ import styled from "styled-components"
 import React from "react"
 import Container from "../container"
 import { RichText} from "prismic-reactjs"
-import { Link } from "gatsby"
 import BackgroundImage from "gatsby-background-image"
 import ResponsiveEmbed from "react-responsive-embed"
 import "../scss/block/defaultBlogCta.scss"
 import linkResolver from "../../utils/linkResolver"
-import BasicSectionSliceInner from "../slices/BasicSectionSlice"
+// import BasicSectionSliceInner from "../slices/BasicSectionSlice"
 import LeftRightSlice from "../slices/LeftRightSlice"
 import * as variable from "../variables"
 import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
+import loadable from '@loadable/component'
+
+const BasicSectionSliceInner = loadable(() => import(`../slices/BasicSectionSlice`))
 
 const BasicStyle = styled.div`
     .basic-slice-container {

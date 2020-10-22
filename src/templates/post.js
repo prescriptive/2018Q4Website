@@ -6,12 +6,24 @@ import styled from "styled-components"
 import Container from "../components/container"
 import SEO from "../components/seo"
 import Img from "gatsby-image"
-import Image from "../components/slices/ImageSlice"
-import Text from "../components/slices/TextSlice"
-import Quote from "../components/slices/QuoteSlice"
-import Video from "../components/slices/VideoSlice"
-import BasicSectionSlice from "../components/slices/BasicSectionSlice"
+// import Image from "../components/slices/ImageSlice"
+// import Text from "../components/slices/TextSlice"
+// import Quote from "../components/slices/QuoteSlice"
+// import Video from "../components/slices/VideoSlice"
+// import BasicSectionSlice from "../components/slices/BasicSectionSlice"
 import BackgroundImage from "gatsby-background-image"
+import loadable from '@loadable/component'
+
+const Image = loadable(() => import(`../components/slices/ImageSlice`))
+
+const Text = loadable(() => import(`../components/slices/TextSlice`))
+
+const Quote = loadable(() => import(`../components/slices/QuoteSlice`))
+
+const Video = loadable(() => import(`../components/slices/VideoSlice`))
+
+const BasicSectionSlice = loadable(() => import(`../components/slices/BasicSectionSlice`))
+
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, id }) => {
