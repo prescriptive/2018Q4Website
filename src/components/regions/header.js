@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 import Container from "../container"
-import { withStyles, makeStyles } from "@material-ui/core/styles"
+// import { withStyles, makeStyles } from "@material-ui/core/styles"
 import Tooltip from "@material-ui/core/Tooltip"
 import Fade from "@material-ui/core/Fade"
 import { useStaticQuery, graphql } from "gatsby"
@@ -11,25 +11,25 @@ import * as variable from "../variables"
 import MobileMenu from "../mobileMenu"
 
 
-const HtmlTooltip = withStyles(theme => ({
-  tooltip: {
-    backgroundColor: variable.medLightGray,
-    padding: "10px 20px",
-    fontSize: theme.typography.pxToRem(16),
-    border: "1px solid #dadde9",
-  },
-}))(Tooltip)
+// const HtmlTooltip = withStyles(theme => ({
+//   tooltip: {
+//     backgroundColor: variable.medLightGray,
+//     padding: "10px 20px",
+//     fontSize: theme.typography.pxToRem(16),
+//     border: "1px solid #dadde9",
+//   },
+// }))(Tooltip)
 
-const useStyles = makeStyles(theme => ({
-  button: {
-    fontSize: 18,
-    color: variable.medLightGray,
-    textDecoration: "none",
-    paddingTop: 10,
-    paddingBottom: 10,
-    display: "block",
-  },
-}))
+// const useStyles = makeStyles(theme => ({
+//   button: {
+//     fontSize: 18,
+//     color: variable.medLightGray,
+//     textDecoration: "none",
+//     paddingTop: 10,
+//     paddingBottom: 10,
+//     display: "block",
+//   },
+// }))
 
 const HeaderStyle = styled.header`
   .header-social-container {
@@ -126,13 +126,13 @@ function menuRender(menuitem) {
     menuitem.items[0].sub_nav_link_label.text != "Dummy"
   ) {
     return (
-      <HtmlTooltip
-        TransitionComponent={Fade}
-        interactive
-        classes="tooltip"
-        id="the-tooltip"
-        title={
-          <React.Fragment>
+      // <HtmlTooltip
+      //   TransitionComponent={Fade}
+      //   interactive
+      //   classes="tooltip"
+      //   id="the-tooltip"
+      //   title={
+         <div>
             {menuitem.items.map((submenuitem, index) => (
               <div key={index}>
                 {submenuitem.sub_nav_link.url && (
@@ -153,13 +153,11 @@ function menuRender(menuitem) {
                 )}
               </div>
             ))}
-          </React.Fragment>
-        }
-      >
-        <Link activeStyle={activeStyle} to={menuitem.primary.link.url}>
-          {menuitem.primary.label.text}
-        </Link>
-      </HtmlTooltip>
+          </div>
+      // >
+        // <Link activeStyle={activeStyle} to={menuitem.primary.link.url}>
+        //   {menuitem.primary.label.text}
+        // </Link>
     )
   } else {
     if (menuitem.primary.link.url != "") {
@@ -266,7 +264,7 @@ export const Header = () => {
         <Link className="logo" to="/">
           <Img fluid={logo} />
         </Link>
-        {/* <div className="mobile-menu-container">{<MobileMenu />}</div> */}
+        <div className="mobile-menu-container">{<MobileMenu />}</div>
         <ul className="main-menu">
           {nav.map((menuitem, index) => (
             <li key={index}>{menuRender(menuitem)}</li>
