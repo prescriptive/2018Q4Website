@@ -1,4 +1,3 @@
-import PropTypes, { nominalTypeHack } from "prop-types"
 import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
@@ -10,8 +9,6 @@ import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import * as variable from "../variables"
 import MobileMenu from "../mobileMenu"
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-// import { faTwitter } from "@fortawesome/free-brands-svg-icons"
 
 
 const HtmlTooltip = withStyles(theme => ({
@@ -113,7 +110,13 @@ const HeaderStyle = styled.header`
       }
     }
   }
+  .mobile-menu-container{
+    display:none;
+  }
   @media (max-width: ${variable.tabletWidth}) {
+    .mobile-menu-container{
+      display:block;
+    }
     ul.main-menu {
       display: none;
     }
@@ -164,6 +167,7 @@ function menuRender(menuitem) {
           {menuitem.primary.label.text}
         </Link>
       </HtmlTooltip>
+        
     )
   } else {
     if (menuitem.primary.link.url != "") {
@@ -245,7 +249,6 @@ export const Header = () => {
       }
     }
   `)
-  console.log(data)
   const nav = data.site.nodes[0].data.nav
   const logo = data.site.nodes[0].data.logo.localFile.childImageSharp.fluid
   const twittericon = data.twittericon.childImageSharp.fixed

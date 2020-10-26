@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import React from "react"
 import BackgroundImage from "gatsby-background-image"
-import Container from "../container"
 import { RichText } from "prismic-reactjs"
 import * as variable from "../variables"
 import linkResolver from "../../utils/linkResolver"

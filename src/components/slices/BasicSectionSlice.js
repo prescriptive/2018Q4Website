@@ -1,24 +1,17 @@
 import styled from "styled-components"
 import React from "react"
-// import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
-import { RichText, Date } from "prismic-reactjs"
-import { Link } from "gatsby"
+import { RichText} from "prismic-reactjs"
 import BackgroundImage from "gatsby-background-image"
-// import { RichText } from "prismic-dom"
-import YouTube from "react-youtube"
 import ResponsiveEmbed from "react-responsive-embed"
 import "../scss/block/defaultBlogCta.scss"
 import linkResolver from "../../utils/linkResolver"
-import BasicSectionSliceInner from "../slices/BasicSectionSlice"
-import LeftRightSlice from "../slices/LeftRightSlice"
+// import BasicSectionSliceInner from "../slices/BasicSectionSlice"
+// import LeftRightSlice from "../slices/LeftRightSlice"
 import * as variable from "../variables"
 import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
-// import { GatsbyImage as Img } from "@wardpeet/gatsby-image-nextgen/compat"
-// import prehead from "../../images/prehead.jpg"
-// import preheadweb from "../../images/prehead.webp"
+import loadable from '@loadable/component'
 
-// const linkResolver = require("../../utils/linkResolver")
 
 const BasicStyle = styled.div`
     .basic-slice-container {
@@ -138,12 +131,11 @@ const BasicStyle = styled.div`
   }
 `
 
-const myCustomLink = (type, element, content, children, index) => (
-  <Link key={element.data.id} to={linkResolver(element.data)}>
-    {console.log(children)}
-    <a>{content}</a>
-  </Link>
-)
+// const myCustomLink = (type, element, content, children, index) => (
+//   <Link key={element.data.id} to={linkResolver(element.data)}>
+//     <a>{content}</a>
+//   </Link>
+// )
 // Sort and display the different slice options
 const PostSlices = ({ slices }) => {
   return slices.map((slice, index) => {
@@ -157,6 +149,7 @@ const PostSlices = ({ slices }) => {
     const res = (() => {
       switch (slice.slice_type) {
         case "basic_section":
+          const BasicSectionSliceInner = loadable(() => import(`../slices/BasicSectionSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -168,6 +161,7 @@ const PostSlices = ({ slices }) => {
           )
 
         case "left_right_section":
+          const LeftRightSlice = loadable(() => import(`../slices/LeftRightSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}

@@ -2,14 +2,10 @@ import React from "react"
 import * as variable from "../../variables"
 import styled from "styled-components"
 import { Link } from "gatsby"
-import Img from "gatsby-image"
 import BackgroundImage from "gatsby-background-image"
-import { RichText, Date } from "prismic-reactjs"
-import { faCalendar } from "@fortawesome/free-solid-svg-icons"
-import { faUser } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import linkResolver from "../../../utils/linkResolver"
-import prismicHtmlSerializer from "../../../gatsby/htmlSerializer"
+import { Date } from "prismic-reactjs"
+import { useStaticQuery, graphql } from "gatsby"
+import Img from "gatsby-image"
 
 const BlogPostTeaserStyle = styled.article`
   padding: 35px;
@@ -101,12 +97,33 @@ function returnImage(post) {
   }
 }
 export const BlogPostTeaser = ({ post }) => {
+  const data = useStaticQuery(graphql`
+  query blogteaser{
+    usericon: file(relativePath: { eq: "user-gray.png" }) {
+      childImageSharp {
+        fixed(width: 20, height: 20) {
+          ...GatsbyImageSharpFixed_withWebp_tracedSVG
+        }
+      }
+    }
+    calendaricon: file(relativePath: { eq: "calendar-gray.png" }) {
+      childImageSharp {
+        fixed(width: 20, height: 22) {
+          ...GatsbyImageSharpFixed_withWebp_tracedSVG
+        }
+      }
+    }
+  }
+`)
+  const usericon = data.usericon.childImageSharp.fixed
+  const calendaricon = data.calendaricon.childImageSharp.fixed
   const dates = new Date(post.data.release_date)
   const formattedDate = Intl.DateTimeFormat("en-US", {
     year: "numeric",
     month: "short",
     day: "2-digit",
   }).format(dates)
+  console.log(post.data)
   return (
     <BlogPostTeaserStyle>
       <div className="blog-teaser-image-container">{returnImage(post)}</div>
@@ -116,24 +133,21 @@ export const BlogPostTeaser = ({ post }) => {
       </Link>
       {post.data.release_date && (
         <div className="release-date">
-          <FontAwesomeIcon icon={faCalendar} />
+          <Img fixed={calendaricon} style={{marginRight: '10px'}} />
           {formattedDate}
         </div>
       )}
       {post.data.author && (
         <div className="blog-author">
-          <FontAwesomeIcon icon={faUser} />
+          <Img fixed={usericon} style={{marginRight: '10px'}} />
           {post.data.author.text}
         </div>
       )}
       {post.data.teaser && (
-        <div className="blog-teaser">
-          <RichText
-            render={post.data.teaser.raw}
-            linkResolver={linkResolver}
-            htmlSerializer={prismicHtmlSerializer}
-          />
-        </div>
+          <div
+                className="blog-teaser"
+                dangerouslySetInnerHTML={{ __html: post.data.teaser.html }}
+              />
       )}
       <Link className="cta-button" to={"/blog/" + post.uid}>
         Read Full Article

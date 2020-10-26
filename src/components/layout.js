@@ -2,12 +2,9 @@ import React from "react"
 import PropTypes from "prop-types"
 import Header from "../components/regions/header"
 import Footer from "../components/regions/footer"
-// import PageTransition from "gatsby-v2-plugin-page-transitions"
-
 import "../components/scss/layout/layout.scss"
 
 const Layout = ({ children, slug }) => {
-  console.log(slug)
   if (slug) {
     var pageId = slug
   } else {

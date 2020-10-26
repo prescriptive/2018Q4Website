@@ -1,22 +1,18 @@
 import styled from "styled-components"
 import React from "react"
-import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
-import { Link, RichText, Date } from "prismic-reactjs"
-import YouTube from "react-youtube"
-import ResponsiveEmbed from "react-responsive-embed"
 import "../scss/blocks/globalContact.scss"
 import "../scss/blocks/dirContact.scss"
 import "../scss/blocks/podSubscribe.scss"
-import linkResolver from "../../utils/linkResolver"
-import BasicSectionSlice from "../slices/BasicSectionSlice"
-import LeftRightSlice from "../slices/LeftRightSlice"
-import ColumnsSectionSlice from "../slices/ColumnsSectionSlice"
+import loadable from '@loadable/component'
+// import BasicSectionSlice from "../slices/BasicSectionSlice"
+// import LeftRightSlice from "../slices/LeftRightSlice"
+// import ColumnsSectionSlice from "../slices/ColumnsSectionSlice"
 
 const BlockReferenceStyle = styled.div``
 
 // Sort and display the different slice options
-const PostSlices = ({ slices, blog, leadership, job }) => {
+const PostSlices = ({ slices }) => {
   return slices.map((slice, index) => {
     var sliceID = ""
     if (slice.primary) {
@@ -24,10 +20,10 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
         var sliceID = slice.primary.slice_id.text
       }
     }
-    console.log(slice)
     const res = (() => {
       switch (slice.slice_type) {
         case "basic_section":
+          const BasicSectionSlice = loadable(() => import(`../slices/BasicSectionSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -39,6 +35,7 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
           )
 
         case "left_right_section":
+          const LeftRightSlice = loadable(() => import(`../slices/LeftRightSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -50,6 +47,7 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
           )
 
         case "columns_section":
+          const ColumnsSectionSlice = loadable(() => import(`../slices/ColumnsSectionSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -72,9 +70,7 @@ export const BlockReferenceSlice = ({ slice }) => {
   slice = slice.primary.block_reference.document.data.body
   return (
     <BlockReferenceStyle>
-      {/* <Container className="block-reference-slice-container"> */}
       <PostSlices slices={slice} />
-      {/* </Container> */}
     </BlockReferenceStyle>
   )
 }

@@ -14,12 +14,22 @@ import "../components/scss/page/podcasts.scss"
 import "../components/scss/page/insights.scss"
 import "../components/scss/page/microsoft365.scss"
 import SEO from "../components/seo"
-import BasicSectionSlice from "../components/slices/BasicSectionSlice"
-import ColumnSectionSlice from "../components/slices/ColumnsSectionSlice"
-import LeftRightSlice from "../components/slices/LeftRightSlice"
-import EntityQuerySlice from "../components/slices/EntityQuerySlice"
-import HeroSlice from "../components/slices/HeroSlice"
-import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
+// import BasicSectionSlice from "../components/slices/BasicSectionSlice"
+// import ColumnSectionSlice from "../components/slices/ColumnsSectionSlice"
+// import LeftRightSlice from "../components/slices/LeftRightSlice"
+// import EntityQuerySlice from "../components/slices/EntityQuerySlice"
+// import HeroSlice from "../components/slices/HeroSlice"
+// import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
+import loadable from '@loadable/component'
+
+
+
+
+
+
+
+
+
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
@@ -32,34 +42,8 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
     }
     const res = (() => {
       switch (slice.slice_type) {
-        // case "text":
-        //   return (
-        //     <div key={index} className="slice-wrapper slice-text">
-        //       {<Text slice={slice} />}
-        //     </div>
-        //   )
-
-        // case "quote":
-        //   return (
-        //     <div key={index} className="slice-wrapper slice-quote">
-        //       {<Quote slice={slice} />}
-        //     </div>
-        //   )
-
-        // case "image":
-        //   return (
-        //     <div key={index} className="slice-wrapper slice-image">
-        //       {<Image slice={slice} />}
-        //     </div>
-        //   )
-        // case "video":
-        //   return (
-        //     <div key={index} className="slice-wrapper slice-video">
-        //       {<Video slice={slice} />}
-        //     </div>
-        //   )
-
         case "basic_section":
+          const BasicSectionSlice = loadable(() => import(`../components/slices/BasicSectionSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -71,6 +55,7 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
           )
 
         case "hero":
+          const HeroSlice = loadable(() => import(`../components/slices/HeroSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -82,6 +67,7 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
           )
 
         case "block_reference":
+          const BlockReferenceSlice = loadable(() => import(`../components/slices/BlockReferenceSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -93,6 +79,7 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
           )
 
         case "entity_query":
+          const EntityQuerySlice = loadable(() => import(`../components/slices/EntityQuerySlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -124,6 +111,7 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
         //   )
 
         case "columns_section":
+          const ColumnSectionSlice = loadable(() => import(`../components/slices/ColumnsSectionSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -135,6 +123,7 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
           )
 
         case "left_right_section":
+          const LeftRightSlice= loadable(() => import(`../components/slices/LeftRightSlice`))
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -167,6 +156,7 @@ const Page = ({ data }) => {
   const job = data.job
   const site = data.site
   const podinfo = data.podinfo
+  const blog = data.blog
   //   const site = data.site.allSite_informations.edges[0].node
   return (
     <Layout slug={node.uid}>
@@ -179,6 +169,7 @@ const Page = ({ data }) => {
             leadership={leadership}
             podcast={podcast}
             podinfo={podinfo}
+            blog={blog}
           />
         )}
       </PageStyle>
@@ -240,6 +231,7 @@ export const postQuery = graphql`
       nodes {
         data {
           bio {
+            html
             raw
           }
           linkedin {
@@ -695,13 +687,16 @@ export const postQuery = graphql`
         }
       }
     }
-    blog: allPrismicBlogPost(sort: { fields: data___release_date }) {
+    blog: allPrismicBlogPost(sort: {order: DESC, fields: data___release_date}) {
       nodes {
         uid
         data {
           release_date(formatString: "MMM D Y")
           teaser {
             html
+          }
+          author {
+            text
           }
           title {
             text

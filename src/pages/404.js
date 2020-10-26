@@ -1,8 +1,9 @@
 import React from "react"
 import Container from "../components/container"
 import Layout from "../components/layout"
-import pre404 from "../images/pre_404.png"
 import styled from "styled-components"
+import { useStaticQuery, graphql } from "gatsby"
+// import Img from "gatsby-image"
 const Style404 = styled.div`
   padding: 60px 0px;
   text-align: center;
@@ -12,20 +13,34 @@ const Style404 = styled.div`
   h1 {
     margin: 0px;
   }
-  img {
-    max-width: 600px;
-    width: 100%;
-  }
+   .gatsby-image-wrapper{
+     max-width:600px;
+     margin:0 auto;
+   }
 `
-const NotFoundPage = () => (
+export const NotFoundPage = () => {
+  const data = useStaticQuery(graphql`
+  query querynotfound{
+    notfound: file(relativePath: { eq: "pre_404.png" }) {
+      childImageSharp {
+        fluid(maxWidth: 600) {
+          ...GatsbyImageSharpFluid_withWebp_tracedSVG
+        }
+      }
+    }
+  }
+`)
+return(
   <Layout>
     <Container>
       <Style404>
         <h1>NOT FOUND</h1>
         <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-        <img src={pre404} />
+        {/* <Img fluid={data.notfound.childImageSharp.fluid} /> */}
       </Style404>
     </Container>
   </Layout>
 )
+
+}
 export default NotFoundPage

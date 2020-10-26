@@ -3,8 +3,7 @@ import * as variable from "../../variables"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
-import { RichText } from "prismic-reactjs"
-import placeholder from "../../../images/placeholder-img.jpg"
+import { useStaticQuery, graphql } from "gatsby"
 
 const PodcastTeaserStyle = styled.article`
   background-color: ${variable.lightGray};
@@ -23,19 +22,17 @@ const PodcastTeaserStyle = styled.article`
 
   .pod-image {
     img {
-      max-with: 100%;
+      max-width: 100%;
       width: 100%;
       border-radius: 4px;
     }
   }
 `
-const PodImage = ({ podinfo, post }) => {
-  var podImg = <img src={placeholder} />
-  var match = false
+const PodImage = ({ podinfo, post, placeholder }) => {
+  var podImg = <Img fluid={placeholder.childImageSharp.fluid} />
   podinfo.map((pod, index) => {
     var podcastId = "Buzzsprout__PodcastEpisode__" + pod.data.buzzsprout_id.text
     if (podcastId == post.id) {
-      console.log('true')
       podImg = <Img fluid={pod.data.podcast_image.localFile.childImageSharp.fluid} />
     }
   })
@@ -43,12 +40,22 @@ const PodImage = ({ podinfo, post }) => {
 }
 
 export const PodcastTeaser = ({ post, podinfo }) => {
-  console.log(post)
+  const data = useStaticQuery(graphql`
+  query querypodcastteaser{
+    placeholder: file(relativePath: { eq: "placeholder-img.jpg" }) {
+      childImageSharp {
+        fluid(maxWidth: 800) {
+          ...GatsbyImageSharpFluid_withWebp_tracedSVG
+        }
+      }
+    }
+  }
+`)
   return (
     <PodcastTeaserStyle>
       <Link to={"/podcast/" + post.slug}>
         <div className="pod-image">
-          <PodImage podinfo={podinfo} post={post} />
+          <PodImage podinfo={podinfo} post={post} placeholder={data.placeholder} />
         </div>
         <h2>{post.title}</h2>
         <div
