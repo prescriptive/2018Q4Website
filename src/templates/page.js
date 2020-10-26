@@ -20,16 +20,7 @@ import SEO from "../components/seo"
 // import EntityQuerySlice from "../components/slices/EntityQuerySlice"
 // import HeroSlice from "../components/slices/HeroSlice"
 // import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
-import loadable from '@loadable/component'
-
-
-
-
-
-
-
-
-
+import loadable from "@loadable/component"
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
@@ -43,7 +34,9 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
     const res = (() => {
       switch (slice.slice_type) {
         case "basic_section":
-          const BasicSectionSlice = loadable(() => import(`../components/slices/BasicSectionSlice`))
+          const BasicSectionSlice = loadable(() =>
+            import(`../components/slices/BasicSectionSlice`)
+          )
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -55,7 +48,9 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
           )
 
         case "hero":
-          const HeroSlice = loadable(() => import(`../components/slices/HeroSlice`))
+          const HeroSlice = loadable(() =>
+            import(`../components/slices/HeroSlice`)
+          )
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -67,7 +62,9 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
           )
 
         case "block_reference":
-          const BlockReferenceSlice = loadable(() => import(`../components/slices/BlockReferenceSlice`))
+          const BlockReferenceSlice = loadable(() =>
+            import(`../components/slices/BlockReferenceSlice`)
+          )
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -79,7 +76,9 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
           )
 
         case "entity_query":
-          const EntityQuerySlice = loadable(() => import(`../components/slices/EntityQuerySlice`))
+          const EntityQuerySlice = loadable(() =>
+            import(`../components/slices/EntityQuerySlice`)
+          )
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -111,7 +110,9 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
         //   )
 
         case "columns_section":
-          const ColumnSectionSlice = loadable(() => import(`../components/slices/ColumnsSectionSlice`))
+          const ColumnSectionSlice = loadable(() =>
+            import(`../components/slices/ColumnsSectionSlice`)
+          )
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -123,7 +124,9 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
           )
 
         case "left_right_section":
-          const LeftRightSlice= loadable(() => import(`../components/slices/LeftRightSlice`))
+          const LeftRightSlice = loadable(() =>
+            import(`../components/slices/LeftRightSlice`)
+          )
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -217,7 +220,7 @@ export const postQuery = graphql`
         }
       }
     }
-    podcast: allBuzzsproutPodcastEpisode {
+    podcast: allBuzzsproutPodcastEpisode(filter: { private: { eq: false } }) {
       nodes {
         title
         slug
@@ -225,6 +228,7 @@ export const postQuery = graphql`
         artist
         description
         summary
+        private
       }
     }
     leadership: allPrismicLeadership {
@@ -687,7 +691,9 @@ export const postQuery = graphql`
         }
       }
     }
-    blog: allPrismicBlogPost(sort: {order: DESC, fields: data___release_date}) {
+    blog: allPrismicBlogPost(
+      sort: { order: DESC, fields: data___release_date }
+    ) {
       nodes {
         uid
         data {
