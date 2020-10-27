@@ -3,7 +3,7 @@ import Container from "../components/container"
 import Layout from "../components/layout"
 import styled from "styled-components"
 import { useStaticQuery, graphql } from "gatsby"
-// import Img from "gatsby-image"
+import Img from "gatsby-image"
 const Style404 = styled.div`
   padding: 60px 0px;
   text-align: center;
@@ -36,7 +36,7 @@ return(
       <Style404>
         <h1>NOT FOUND</h1>
         <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-        {/* <Img fluid={data.notfound.childImageSharp.fluid} /> */}
+        <Img fluid={data.notfound.childImageSharp.fluid} />
       </Style404>
     </Container>
   </Layout>

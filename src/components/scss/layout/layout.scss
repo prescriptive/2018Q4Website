@@ -54,7 +54,10 @@ p {
     text-decoration: underline;
   }
 }
-
+img{
+  max-width:100%;
+  height:auto;
+}
 .cta-button {
   @include cta-button($darkGray);
 }

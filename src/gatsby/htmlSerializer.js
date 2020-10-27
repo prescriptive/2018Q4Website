@@ -55,6 +55,13 @@ const htmlSerializer = (type, element, content, children) => {
         return linkResolver(element.data, content, linkClass)
       }
     }
+    case "image": {
+      return (
+        <p className="block-img">
+        <img src={element.url} width={element.dimensions.width} height={element.dimensions.height} alt={element.alt} />
+        </p>
+      )
+    }
     // First differentiate between a label and a preformatted field (e.g. the Code Block slice)
     default: {
       return null

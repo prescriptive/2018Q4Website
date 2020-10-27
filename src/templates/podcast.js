@@ -294,7 +294,7 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
   return slices.map((slice, index) => {
     var sliceID = ""
     if (slice.primary) {
-      if (slice.primary.slice_id != undefined) {
+      if (slice.primary.slice_id !== undefined) {
         var sliceID = slice.primary.slice_id.text
       }
     }
@@ -380,7 +380,7 @@ const SidebarSlices = ({ sidebar }) => {
 export const VideoSlice = ({ video }) => {
   var video_id = video.embed_url.split("v=")[1]
   var ampersandPosition = video_id.indexOf("&")
-  if (ampersandPosition != -1) {
+  if (ampersandPosition !== -1) {
     video_id = video_id.substring(0, ampersandPosition)
   }
   return (
