@@ -64,12 +64,12 @@ module.exports = {
     `gatsby-plugin-preact`,
     // `gatsby-plugin-webpack-bundle-analyser-v2`,
     // 'gatsby-plugin-loadable-components-ssr',
-    {
-      resolve: "gatsby-plugin-preconnect",
-      options: {
-        domains: ["https://www.google-analytics.com"],
-      },
-    },
+    // {
+    //   resolve: "gatsby-plugin-preconnect",
+    //   options: {
+    //     domains: ["https://www.google-analytics.com"],
+    //   },
+    // },
     {
       resolve: "gatsby-source-buzzsprout",
       options: {
