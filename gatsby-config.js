@@ -233,12 +233,12 @@ module.exports = {
         },
       },
     },
-    {
-      resolve: "gatsby-plugin-google-tagmanager",
-      options: {
-        id: "GTM-KWP5GHG",
-      },
-    },
+    // {
+    //   resolve: "gatsby-plugin-google-tagmanager",
+    //   options: {
+    //     id: "GTM-KWP5GHG",
+    //   },
+    // },
     `gatsby-plugin-offline`,
     "gatsby-plugin-netlify",
   ],
