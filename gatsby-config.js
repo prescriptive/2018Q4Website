@@ -61,15 +61,30 @@ module.exports = {
         prismicToolbar: false,
       },
     },
+    {
+      resolve: '@slixites/gatsby-plugin-google-fonts',
+      options: {
+        fonts: [
+          `Libre Franklin\:500,800,900`,
+          `Roboto\:400,500,700,900` // you can also specify font weights and styles
+        ],
+        display: 'swap',
+        preconnect: true,
+        attributes: {
+            rel: 'stylesheet preload prefetch',
+            as: 'style',
+        },
+      }
+    },
     `gatsby-plugin-preact`,
     // `gatsby-plugin-webpack-bundle-analyser-v2`,
     // 'gatsby-plugin-loadable-components-ssr',
-    // {
-    //   resolve: "gatsby-plugin-preconnect",
-    //   options: {
-    //     domains: ["https://www.google-analytics.com"],
-    //   },
-    // },
+    {
+      resolve: "gatsby-plugin-preconnect",
+      options: {
+        domains: ["https://images.prismic.io"],
+      },
+    },
     {
       resolve: "gatsby-source-buzzsprout",
       options: {
@@ -148,21 +163,22 @@ module.exports = {
     // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
-      options: {
-        fonts: [
-          {
-            family: `Roboto`,
-            variants: [`400`, `500`, `700`, `900`],
-          },
-          {
-            family: `Libre Franklin`,
-            variants: [`500`, `800`, `900`],
-          },
-        ],
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-prefetch-google-fonts`,
+    //   options: {
+    //     fonts: [
+    //       {
+    //         family: `Roboto`,
+    //         variants: [`400`, `500`, `700`, `900`],
+    //       },
+    //       {
+    //         family: `Libre Franklin`,
+    //         variants: [`500`, `800`, `900`],
+    //       },
+    //     ],
+    //   },
+    // },
+    `gatsby-plugin-preload-fonts`,
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
