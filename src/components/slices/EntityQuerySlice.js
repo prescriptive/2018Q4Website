@@ -147,6 +147,12 @@ export const EntityQuerySlice = ({
   } else if (slice.primary.section_title && slice.primary.h1_title == false) {
     var theh2Title = slice.primary.section_title[0].text
   }
+  var theh2 = null
+  if(slice.primary.section_title){
+    if(slice.primary.section_title.text !== ''){
+      theh2 = slice.primary.section_title.text
+    }
+  }
   return (
     <React.Fragment>
       {fluid && (
@@ -178,7 +184,8 @@ export const EntityQuerySlice = ({
         <div style={{ backgroundColor: bg_color }}>
           <Container>
             <section>
-              {slice.primary.section_title && <h2>{slice.primary.section_title.text}</h2>}
+              {/* {console.log(theh2)} */}
+              {theh2 && <h2>{slice.primary.section_title.text}</h2>}
               <EntityQueryStyle>
                 <EntityResult
                   slice={slice}
