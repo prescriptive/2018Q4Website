@@ -31,12 +31,12 @@ const AudioFileStyle = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    &:before {
+    /* &:before {
       content: "15";
       color: ${variable.darkGray};
       font-size: 10px;
       position: absolute;
-    }
+    } */
     svg {
       font-size: 34px;
       color: ${variable.darkGray};
@@ -46,13 +46,13 @@ const AudioFileStyle = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    &:before {
+    /* &:before {
       content: "15";
       color: black;
       font-size: 10px;
       position: absolute;
       color: ${variable.darkGray};
-    }
+    } */
     svg {
       font-size: 34px;
       color: ${variable.darkGray};
@@ -206,12 +206,12 @@ const PodcastStyle = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    &:before {
+    /* &:before {
       content: "15";
       color: ${variable.darkGray};
       font-size: 10px;
       position: absolute;
-    }
+    } */
     svg {
       font-size: 34px;
       color: ${variable.darkGray};
@@ -221,13 +221,13 @@ const PodcastStyle = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    &:before {
+    /* &:before {
       content: "15";
       color: black;
       font-size: 10px;
       position: absolute;
       color: ${variable.darkGray};
-    }
+    } */
     svg {
       font-size: 34px;
       color: ${variable.darkGray};
