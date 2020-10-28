@@ -141,7 +141,6 @@ function menuRender(menuitem) {
           <React.Fragment>
             {menuitem.items.map((submenuitem, index) => (
               <div key={index}>
-                {console.log(submenuitem)}
                 {submenuitem.sub_nav_link.url && (
                   <Link
                     activeStyle={activeStyle}

@@ -147,7 +147,6 @@ export const EntityQuerySlice = ({
   } else if (slice.primary.section_title && slice.primary.h1_title == false) {
     var theh2Title = slice.primary.section_title[0].text
   }
-  console.log(theh2Title)
   return (
     <React.Fragment>
       {fluid && (
