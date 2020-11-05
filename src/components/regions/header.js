@@ -2,34 +2,10 @@ import React from "react"
 import { Link } from "gatsby"
 import styled from "styled-components"
 import Container from "../container"
-import { withStyles, makeStyles } from "@material-ui/core/styles"
-import Tooltip from "@material-ui/core/Tooltip"
-import Fade from "@material-ui/core/Fade"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import * as variable from "../variables"
 import MobileMenu from "../mobileMenu"
-
-
-const HtmlTooltip = withStyles(theme => ({
-  tooltip: {
-    backgroundColor: variable.medLightGray,
-    padding: "10px 20px",
-    fontSize: theme.typography.pxToRem(16),
-    border: "1px solid #dadde9",
-  },
-}))(Tooltip)
-
-const useStyles = makeStyles(theme => ({
-  button: {
-    fontSize: 18,
-    color: variable.medLightGray,
-    textDecoration: "none",
-    paddingTop: 10,
-    paddingBottom: 10,
-    display: "block",
-  },
-}))
 
 const HeaderStyle = styled.header`
   .header-social-container {
@@ -78,6 +54,7 @@ const HeaderStyle = styled.header`
     li {
       list-style: none;
       margin-right: 50px;
+      position: relative;
       &:last-child {
         margin-right: 0px;
         a {
@@ -101,6 +78,7 @@ const HeaderStyle = styled.header`
         font-size: 18px;
         text-transform: uppercase;
         font-weight: 400;
+        padding: 20px 0px;
         &:hover {
           color: ${variable.red};
         }
@@ -108,14 +86,42 @@ const HeaderStyle = styled.header`
           color: ${variable.red};
         }
       }
+      .sub-menu {
+        display: none;
+        background-color: ${variable.medLightGray};
+        padding: 10px 20px 0px 20px;
+        border: 1px solid #dadde9;
+        position: absolute;
+        top: 40px;
+        left: -35px;
+        z-index: 100;
+        border-radius: 2px;
+        min-width: 145px;
+        animation-duration: 4s;
+        a {
+          color: white;
+          font-size: 16px;
+          margin-bottom: 10px;
+          display: block;
+          text-transform: capitalize;
+          padding: 0px;
+          font-weight: bold;
+          &:hover {
+            color: ${variable.red};
+          }
+        }
+      }
+      &:hover .sub-menu {
+        display: block;
+      }
     }
   }
-  .mobile-menu-container{
-    display:none;
+  .mobile-menu-container {
+    display: none;
   }
   @media (max-width: ${variable.tabletWidth}) {
-    .mobile-menu-container{
-      display:block;
+    .mobile-menu-container {
+      display: block;
     }
     ul.main-menu {
       display: none;
@@ -132,41 +138,33 @@ function menuRender(menuitem) {
     menuitem.items[0].sub_nav_link_label.text != "Dummy"
   ) {
     return (
-      <HtmlTooltip
-        TransitionComponent={Fade}
-        interactive
-        classes="tooltip"
-        id="the-tooltip"
-        title={
-          <React.Fragment>
-            {menuitem.items.map((submenuitem, index) => (
-              <div key={index}>
-                {submenuitem.sub_nav_link.url && (
-                  <Link
-                    activeStyle={activeStyle}
-                    to={submenuitem.sub_nav_link.url}
-                  >
-                    {submenuitem.sub_nav_link_label.text}
-                  </Link>
-                )}
-                {submenuitem.relative_link.text && (
-                  <Link
-                    activeStyle={activeStyle}
-                    to={submenuitem.relative_link.text}
-                  >
-                    {submenuitem.sub_nav_link_label.text}
-                  </Link>
-                )}
-              </div>
-            ))}
-          </React.Fragment>
-        }
-      >
+      <div>
         <Link activeStyle={activeStyle} to={menuitem.primary.link.url}>
           {menuitem.primary.label.text}
         </Link>
-      </HtmlTooltip>
-        
+        <div className="sub-menu">
+          {menuitem.items.map((submenuitem, index) => (
+            <div key={index}>
+              {submenuitem.sub_nav_link.url && (
+                <Link
+                  activeStyle={activeStyle}
+                  to={submenuitem.sub_nav_link.url}
+                >
+                  {submenuitem.sub_nav_link_label.text}
+                </Link>
+              )}
+              {submenuitem.relative_link.text && (
+                <Link
+                  activeStyle={activeStyle}
+                  to={submenuitem.relative_link.text}
+                >
+                  {submenuitem.sub_nav_link_label.text}
+                </Link>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
     )
   } else {
     if (menuitem.primary.link.url != "") {
