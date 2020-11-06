@@ -164,7 +164,7 @@ const Page = ({ data }) => {
   return (
     <Layout slug={node.uid}>
       <SEO site={site} page={node} />
-      <PageStyle>
+      <PageStyle style={{ minHeight: "800px" }}>
         {node.data.body && (
           <PostSlices
             slices={node.data.body}
