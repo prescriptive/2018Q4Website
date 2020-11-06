@@ -269,7 +269,7 @@ export const Header = () => {
       )}
       <Container className="header-container">
         <Link className="logo" to="/">
-          <Img fluid={logo} />
+          <Img fluid={logo} alt="logo" />
         </Link>
         <div className="mobile-menu-container">{<MobileMenu />}</div>
         <ul className="main-menu">
