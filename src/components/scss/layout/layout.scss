@@ -54,9 +54,9 @@ p {
     text-decoration: underline;
   }
 }
-img{
-  max-width:100%;
-  height:auto;
+img {
+  max-width: 100%;
+  height: auto;
 }
 .cta-button {
   @include cta-button($darkGray);
@@ -79,4 +79,11 @@ img{
       color: $red;
     }
   }
+}
+.typeform-cta {
+  cursor: pointer;
+  background-color: white;
+  padding: 20px 40px;
+  border-radius: 6px;
+  color: #d23026;
 }

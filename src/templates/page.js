@@ -163,6 +163,7 @@ const Page = ({ data }) => {
   const site = data.site
   const podinfo = data.podinfo
   const blog = data.blog
+  console.log(node)
   //   const site = data.site.allSite_informations.edges[0].node
   return (
     <Layout slug={node.uid}>
@@ -176,12 +177,6 @@ const Page = ({ data }) => {
             podcast={podcast}
             podinfo={podinfo}
             blog={blog}
-          />
-        )}
-        {node.typeform_url && (
-          <ReactTypeformEmbed
-            url="https://form.typeform.com/to/LkNfiuv4"
-            popup={true}
           />
         )}
       </PageStyle>
