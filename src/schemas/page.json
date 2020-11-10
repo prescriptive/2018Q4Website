@@ -27,6 +27,13 @@
         "label": "Webinar"
       }
     },
+    "typeform_url": {
+      "type": "StructuredText",
+      "config": {
+        "single": "paragraph",
+        "label": "Typeform URL"
+      }
+    },
     "body": {
       "type": "Slices",
       "fieldset": "Slice zone",
@@ -114,7 +121,8 @@
                     "right-align",
                     "center-align",
                     "h2-light",
-                    "h3-light"
+                    "h3-light",
+                    "typeform-cta"
                   ]
                 }
               }
@@ -256,7 +264,12 @@
                   "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
                   "allowTargetBlank": true,
                   "label": "Left Content",
-                  "labels": ["cta-button", "right-align", "center-align"]
+                  "labels": [
+                    "cta-button",
+                    "right-align",
+                    "center-align",
+                    "typeform-cta"
+                  ]
                 }
               },
               "right_background_image": {
@@ -285,7 +298,8 @@
                     "right-align",
                     "center-align",
                     "h2-light",
-                    "h3-light"
+                    "h3-light",
+                    "typeform-cta"
                   ]
                 }
               },

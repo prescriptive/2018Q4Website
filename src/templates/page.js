@@ -15,6 +15,8 @@ import "../components/scss/page/podcasts.scss"
 import "../components/scss/page/insights.scss"
 import "../components/scss/page/microsoft365.scss"
 import SEO from "../components/seo"
+import { ReactTypeformEmbed } from "react-typeform-embed"
+
 // import BasicSectionSlice from "../components/slices/BasicSectionSlice"
 // import ColumnSectionSlice from "../components/slices/ColumnsSectionSlice"
 // import LeftRightSlice from "../components/slices/LeftRightSlice"
@@ -176,6 +178,12 @@ const Page = ({ data }) => {
             blog={blog}
           />
         )}
+        {node.typeform_url && (
+          <ReactTypeformEmbed
+            url="https://form.typeform.com/to/LkNfiuv4"
+            popup={true}
+          />
+        )}
       </PageStyle>
     </Layout>
   )
@@ -273,6 +281,9 @@ export const postQuery = graphql`
         meta_description
         donotindex
         webinar
+        typeform_url {
+          text
+        }
         title {
           text
         }
