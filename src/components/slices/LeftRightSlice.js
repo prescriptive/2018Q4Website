@@ -239,6 +239,9 @@ export const LeftRightSlice = ({ slice }) => {
   return (
     <LeftRightStyle>
       <div className="left-right-container">
+        {slice.primary.section_title.text && (
+          <h2>{slice.primary.section_title.text}</h2>
+        )}
         {returnLeft(slice.primary, leftWidth)}
         {returnRight(slice.primary, rightWidth)}
       </div>

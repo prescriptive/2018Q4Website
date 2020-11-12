@@ -163,7 +163,6 @@ const Page = ({ data }) => {
   const site = data.site
   const podinfo = data.podinfo
   const blog = data.blog
-  console.log(node)
   //   const site = data.site.allSite_informations.edges[0].node
   return (
     <Layout slug={node.uid}>
@@ -523,6 +522,9 @@ export const postQuery = graphql`
                             embed {
                               raw
                             }
+                            section_title {
+                              text
+                            }
                             left_background_image {
                               localFile {
                                 childImageSharp {
@@ -630,6 +632,9 @@ export const postQuery = graphql`
               left_width
               right_width
               slice_id {
+                text
+              }
+              section_title {
                 text
               }
               embed {
