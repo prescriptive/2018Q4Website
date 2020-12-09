@@ -17,7 +17,7 @@ const BlogPostTeaserStyle = styled.article`
   border-radius: 4px;
   .blog-teaser-title {
     display: block;
-    a {
+    h2 {
       font-size: 26px;
       line-height: 1.3;
       font-weight: 700;
@@ -128,7 +128,7 @@ export const BlogPostTeaser = ({ post }) => {
       <div className="blog-teaser-image-container">{returnImage(post)}</div>
 
       <Link className="blog-teaser-title" to={"/blog/" + post.uid}>
-        {post.data.title.text && post.data.title.text}
+        {post.data.title.text && <h2>{post.data.title.text}</h2>}
       </Link>
       {post.data.release_date && (
         <div className="release-date">

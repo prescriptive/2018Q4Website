@@ -9,7 +9,7 @@ const PodcastTeaserStyle = styled.article`
   background-color: ${variable.lightGray};
   padding: 35px 25px;
   border-radius: 4px;
-  a {
+  h2 {
     font-size: 27px;
     font-weight: 500;
     line-height: 36px;
@@ -63,7 +63,7 @@ export const PodcastTeaser = ({ post, podinfo }) => {
             placeholder={data.placeholder}
           />
         </div>
-        {post.title}
+        <h2>{post.title}</h2>
         <div
           key={`body`}
           className="pod-summary"
