@@ -16,6 +16,7 @@ import "../components/scss/page/insights.scss"
 import "../components/scss/page/microsoft365.scss"
 import SEO from "../components/seo"
 import { ReactTypeformEmbed } from "react-typeform-embed"
+import EntityQuerySlice from "../components/slices/EntityQuerySlice"
 
 // import BasicSectionSlice from "../components/slices/BasicSectionSlice"
 // import ColumnSectionSlice from "../components/slices/ColumnsSectionSlice"
@@ -79,9 +80,9 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
           )
 
         case "entity_query":
-          const EntityQuerySlice = loadable(() =>
-            import(`../components/slices/EntityQuerySlice`)
-          )
+          // const EntityQuerySlice = loadable(() =>
+          //   import(`../components/slices/EntityQuerySlice`)
+          // )
           return (
             <div
               id={"slice-id-" + sliceID}
