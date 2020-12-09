@@ -17,7 +17,7 @@ const BlogPostTeaserStyle = styled.article`
   border-radius: 4px;
   .blog-teaser-title {
     display: block;
-    h2 {
+    a {
       font-size: 26px;
       line-height: 1.3;
       font-weight: 700;
@@ -98,23 +98,23 @@ function returnImage(post) {
 }
 export const BlogPostTeaser = ({ post }) => {
   const data = useStaticQuery(graphql`
-  query blogteaser{
-    usericon: file(relativePath: { eq: "user-gray.png" }) {
-      childImageSharp {
-        fixed(width: 20, height: 20) {
-          ...GatsbyImageSharpFixed_withWebp_tracedSVG
+    query blogteaser {
+      usericon: file(relativePath: { eq: "user-gray.png" }) {
+        childImageSharp {
+          fixed(width: 20, height: 20) {
+            ...GatsbyImageSharpFixed_withWebp_tracedSVG
+          }
+        }
+      }
+      calendaricon: file(relativePath: { eq: "calendar-gray.png" }) {
+        childImageSharp {
+          fixed(width: 20, height: 22) {
+            ...GatsbyImageSharpFixed_withWebp_tracedSVG
+          }
         }
       }
     }
-    calendaricon: file(relativePath: { eq: "calendar-gray.png" }) {
-      childImageSharp {
-        fixed(width: 20, height: 22) {
-          ...GatsbyImageSharpFixed_withWebp_tracedSVG
-        }
-      }
-    }
-  }
-`)
+  `)
   const usericon = data.usericon.childImageSharp.fixed
   const calendaricon = data.calendaricon.childImageSharp.fixed
   const dates = new Date(post.data.release_date)
@@ -128,25 +128,25 @@ export const BlogPostTeaser = ({ post }) => {
       <div className="blog-teaser-image-container">{returnImage(post)}</div>
 
       <Link className="blog-teaser-title" to={"/blog/" + post.uid}>
-        {post.data.title.text && <h2>{post.data.title.text}</h2>}
+        {post.data.title.text && post.data.title.text}
       </Link>
       {post.data.release_date && (
         <div className="release-date">
-          <Img fixed={calendaricon} style={{marginRight: '10px'}} />
+          <Img fixed={calendaricon} style={{ marginRight: "10px" }} />
           {formattedDate}
         </div>
       )}
       {post.data.author && (
         <div className="blog-author">
-          <Img fixed={usericon} style={{marginRight: '10px'}} />
+          <Img fixed={usericon} style={{ marginRight: "10px" }} />
           {post.data.author.text}
         </div>
       )}
       {post.data.teaser && (
-          <div
-                className="blog-teaser"
-                dangerouslySetInnerHTML={{ __html: post.data.teaser.html }}
-              />
+        <div
+          className="blog-teaser"
+          dangerouslySetInnerHTML={{ __html: post.data.teaser.html }}
+        />
       )}
       <Link className="cta-button" to={"/blog/" + post.uid}>
         Read Full Article

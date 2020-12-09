@@ -9,7 +9,7 @@ const PodcastTeaserStyle = styled.article`
   background-color: ${variable.lightGray};
   padding: 35px 25px;
   border-radius: 4px;
-  h2 {
+  a {
     font-size: 27px;
     font-weight: 500;
     line-height: 36px;
@@ -33,7 +33,9 @@ const PodImage = ({ podinfo, post, placeholder }) => {
   podinfo.map((pod, index) => {
     var podcastId = "Buzzsprout__PodcastEpisode__" + pod.data.buzzsprout_id.text
     if (podcastId == post.id) {
-      podImg = <Img fluid={pod.data.podcast_image.localFile.childImageSharp.fluid} />
+      podImg = (
+        <Img fluid={pod.data.podcast_image.localFile.childImageSharp.fluid} />
+      )
     }
   })
   return podImg
@@ -41,23 +43,27 @@ const PodImage = ({ podinfo, post, placeholder }) => {
 
 export const PodcastTeaser = ({ post, podinfo }) => {
   const data = useStaticQuery(graphql`
-  query querypodcastteaser{
-    placeholder: file(relativePath: { eq: "placeholder-img.jpg" }) {
-      childImageSharp {
-        fluid(maxWidth: 800) {
-          ...GatsbyImageSharpFluid_withWebp_tracedSVG
+    query querypodcastteaser {
+      placeholder: file(relativePath: { eq: "placeholder-img.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 800) {
+            ...GatsbyImageSharpFluid_withWebp_tracedSVG
+          }
         }
       }
     }
-  }
-`)
+  `)
   return (
     <PodcastTeaserStyle>
       <Link to={"/podcast/" + post.slug}>
         <div className="pod-image">
-          <PodImage podinfo={podinfo} post={post} placeholder={data.placeholder} />
+          <PodImage
+            podinfo={podinfo}
+            post={post}
+            placeholder={data.placeholder}
+          />
         </div>
-        <h2>{post.title}</h2>
+        {post.title}
         <div
           key={`body`}
           className="pod-summary"
