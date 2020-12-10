@@ -245,11 +245,13 @@ module.exports = {
               webinarPath = "webinars/"
             }
             if (edge.data.donotindex != true) {
-              pages.push({
-                url: `${site.siteMetadata.siteUrl}/${webinarPath}${edge.uid}`,
-                changefreq: `daily`,
-                priority: 0.7,
-              })
+              if (edge.uid != "home") {
+                pages.push({
+                  url: `${site.siteMetadata.siteUrl}/${webinarPath}${edge.uid}`,
+                  changefreq: `daily`,
+                  priority: 0.7,
+                })
+              }
             }
           })
           allPrismicBlogPost.nodes.map(edge => {
