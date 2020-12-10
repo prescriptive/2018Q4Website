@@ -201,6 +201,10 @@ module.exports = {
             allPrismicPa {
               nodes {
                 uid
+                data {
+                  webinar
+                  donotindex
+                }
               }
             }
             allPrismicBlogPost {
@@ -236,11 +240,17 @@ module.exports = {
         }) => {
           let pages = []
           allPrismicPa.nodes.map(edge => {
-            pages.push({
-              url: `${site.siteMetadata.siteUrl}/${edge.uid}`,
-              changefreq: `daily`,
-              priority: 0.7,
-            })
+            var webinarPath = ""
+            if (edge.data.webinar == true) {
+              webinarPath = "webinars/"
+            }
+            if (edge.data.donotindex != true) {
+              pages.push({
+                url: `${site.siteMetadata.siteUrl}/${webinarPath}${edge.uid}`,
+                changefreq: `daily`,
+                priority: 0.7,
+              })
+            }
           })
           allPrismicBlogPost.nodes.map(edge => {
             pages.push({
