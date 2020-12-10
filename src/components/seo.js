@@ -65,7 +65,7 @@ function SEO({ site, page, lang, meta }) {
     uid = ""
     path = ""
   }
-  if (page.data.id !== null) {
+  if (page.data.audio_url != null) {
     path = "/podcast/"
     uid = page.data.slug
   }
