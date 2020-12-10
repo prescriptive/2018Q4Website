@@ -208,6 +208,15 @@ module.exports = {
                 uid
               }
             }
+            allBuzzsproutPodcastEpisode(filter: { private: { eq: false } }) {
+              nodes {
+                id
+                title
+                slug
+                buzzsproutId
+                private
+              }
+            }
             allPrismicJob {
               nodes {
                 uid
@@ -223,6 +232,7 @@ module.exports = {
           allPrismicPa,
           allPrismicBlogPost,
           allPrismicJob,
+          allBuzzsproutPodcastEpisode,
         }) => {
           let pages = []
           allPrismicPa.nodes.map(edge => {
@@ -235,6 +245,13 @@ module.exports = {
           allPrismicBlogPost.nodes.map(edge => {
             pages.push({
               url: `${site.siteMetadata.siteUrl}/blog/${edge.uid}`,
+              changefreq: `daily`,
+              priority: 0.7,
+            })
+          })
+          allBuzzsproutPodcastEpisode.nodes.map(edge => {
+            pages.push({
+              url: `${site.siteMetadata.siteUrl}/podcast/${edge.slug}`,
               changefreq: `daily`,
               priority: 0.7,
             })

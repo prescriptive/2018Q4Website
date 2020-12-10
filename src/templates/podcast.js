@@ -19,7 +19,7 @@ import AudioPlayer from "react-h5-audio-player"
 import { RHAP_UI } from "react-h5-audio-player"
 import "react-h5-audio-player/lib/styles.css"
 import ResponsiveEmbed from "react-responsive-embed"
-import loadable from '@loadable/component'
+import loadable from "@loadable/component"
 
 const AudioFileStyle = styled.div`
   .listen {
@@ -301,7 +301,9 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
     const res = (() => {
       switch (slice.slice_type) {
         case "basic_section":
-          const BasicSectionSlice = loadable(() => import(`../components/slices/BasicSectionSlice`))
+          const BasicSectionSlice = loadable(() =>
+            import(`../components/slices/BasicSectionSlice`)
+          )
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -313,7 +315,9 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
           )
 
         case "left_right_section":
-          const LeftRightSlice= loadable(() => import(`../components/slices/LeftRightSlice`))
+          const LeftRightSlice = loadable(() =>
+            import(`../components/slices/LeftRightSlice`)
+          )
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -325,7 +329,9 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
           )
 
         case "columns_section":
-          const ColumnsSectionSlice = loadable(() => import(`../components/slices/ColumnsSectionSlice`))
+          const ColumnsSectionSlice = loadable(() =>
+            import(`../components/slices/ColumnsSectionSlice`)
+          )
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -391,7 +397,9 @@ export const VideoSlice = ({ video }) => {
 }
 
 const Podcast = props => {
-  const PodcastTeaser = loadable(() => import(`../components/entities/podcast/PodcastTeaser`))
+  const PodcastTeaser = loadable(() =>
+    import(`../components/entities/podcast/PodcastTeaser`)
+  )
   const podcastUrl = props.data.page.audio_url
   const podcasts = props.data.podcast
   const subscribeBlock = props.data.subscribeBlock.data.body
@@ -464,8 +472,12 @@ const Podcast = props => {
                     ]}
                     src={podcastUrl}
                     customIcons={{
-                      rewind: <Img fixed={props.data.back.childImageSharp.fixed} />,
-                      forward: <Img fixed={props.data.forward.childImageSharp.fixed} />,
+                      rewind: (
+                        <Img fixed={props.data.back.childImageSharp.fixed} />
+                      ),
+                      forward: (
+                        <Img fixed={props.data.forward.childImageSharp.fixed} />
+                      ),
                     }}
                     // other props here
                   />
@@ -520,8 +532,16 @@ const Podcast = props => {
                         ]}
                         src={podcastUrl}
                         customIcons={{
-                          rewind: <Img fixed={props.data.back.childImageSharp.fixed} />,
-                          forward: <Img fixed={props.data.forward.childImageSharp.fixed} />,
+                          rewind: (
+                            <Img
+                              fixed={props.data.back.childImageSharp.fixed}
+                            />
+                          ),
+                          forward: (
+                            <Img
+                              fixed={props.data.forward.childImageSharp.fixed}
+                            />
+                          ),
                         }}
                         // other props here
                       />
@@ -810,17 +830,18 @@ export const podcastQuery = graphql`
       id
       published_at(formatString: "MMM D Y")
       tags
+      slug
     }
     back: file(relativePath: { eq: "back15.png" }) {
       childImageSharp {
-        fixed(width: 28, height:32) {
+        fixed(width: 28, height: 32) {
           ...GatsbyImageSharpFixed_withWebp_tracedSVG
         }
       }
     }
     forward: file(relativePath: { eq: "forward15.png" }) {
       childImageSharp {
-        fixed(width: 28, height:32) {
+        fixed(width: 28, height: 32) {
           ...GatsbyImageSharpFixed_withWebp_tracedSVG
         }
       }

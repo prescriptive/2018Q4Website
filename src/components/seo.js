@@ -65,6 +65,10 @@ function SEO({ site, page, lang, meta }) {
     uid = ""
     path = ""
   }
+  if (page.data.id !== null) {
+    path = "/podcast/"
+    uid = page.data.slug
+  }
   if (page.data.webinar == true) {
     path = "/webinars/"
   }
