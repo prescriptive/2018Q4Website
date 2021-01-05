@@ -18,7 +18,7 @@ import SEO from "../components/seo"
 import { ReactTypeformEmbed } from "react-typeform-embed"
 // import EntityQuerySlice from "../components/slices/EntityQuerySlice"
 
-import BasicSectionSlice from "../components/slices/BasicSectionSlice"
+// import BasicSectionSlice from "../components/slices/BasicSectionSlice"
 // import ColumnSectionSlice from "../components/slices/ColumnsSectionSlice"
 // import LeftRightSlice from "../components/slices/LeftRightSlice"
 // import EntityQuerySlice from "../components/slices/EntityQuerySlice"
@@ -38,9 +38,9 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
     const res = (() => {
       switch (slice.slice_type) {
         case "basic_section":
-          // const BasicSectionSlice = loadable(() =>
-          //   import(`../components/slices/BasicSectionSlice`)
-          // )
+          const BasicSectionSlice = loadable(() =>
+            import(`../components/slices/BasicSectionSlice`)
+          )
           return (
             <div
               id={"slice-id-" + sliceID}
