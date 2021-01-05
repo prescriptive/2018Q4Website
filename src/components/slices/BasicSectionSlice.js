@@ -211,7 +211,7 @@ export const BasicSectionSlice = ({ slice }) => {
       sidebarClass = "sidebar-active"
     }
   }
-  if (slice.primary.background_image.localFile.desktop != null) {
+  if (slice.primary.background_image.localFile != null) {
     desktopFluid = slice.primary.background_image.localFile.desktop.fluid
     mobileFluid = slice.primary.background_image.localFile.mobile.fluid
     mobileSmallFluid =
