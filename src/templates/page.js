@@ -373,17 +373,17 @@ export const postQuery = graphql`
                 localFile {
                   mobilesmall: childImageSharp {
                     fluid(maxWidth: 400) {
-                      ...GatsbyImageSharpFluid
+                      ...GatsbyImageSharpFluidLimitPresentationSize
                     }
                   }
                   mobile: childImageSharp {
                     fluid(maxWidth: 800) {
-                      ...GatsbyImageSharpFluid
+                      ...GatsbyImageSharpFluidLimitPresentationSize
                     }
                   }
                   desktop: childImageSharp {
                     fluid(maxWidth: 1920) {
-                      ...GatsbyImageSharpFluid
+                      ...GatsbyImageSharpFluidLimitPresentationSize
                     }
                   }
                 }
