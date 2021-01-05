@@ -372,7 +372,7 @@ export const postQuery = graphql`
               background_image {
                 localFile {
                   mobilesmall: childImageSharp {
-                    fluid(maxWidth: 412) {
+                    fluid(maxWidth: 360) {
                       ...GatsbyImageSharpFluid_withWebp_tracedSVG
                     }
                   }
