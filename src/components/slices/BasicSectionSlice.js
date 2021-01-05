@@ -221,7 +221,7 @@ export const BasicSectionSlice = ({ slice }) => {
         mobileSmallFluid,
         {
           ...desktopFluid,
-          media: `(min-width: 450px)`,
+          media: `(min-width: 413px)`,
         },
       ]
     }
