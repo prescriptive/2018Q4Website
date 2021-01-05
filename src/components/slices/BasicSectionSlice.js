@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import React from "react"
 import Container from "../container"
-import { RichText} from "prismic-reactjs"
+import { RichText } from "prismic-reactjs"
 import BackgroundImage from "gatsby-background-image"
 import ResponsiveEmbed from "react-responsive-embed"
 import "../scss/block/defaultBlogCta.scss"
@@ -10,8 +10,7 @@ import linkResolver from "../../utils/linkResolver"
 // import LeftRightSlice from "../slices/LeftRightSlice"
 import * as variable from "../variables"
 import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
-import loadable from '@loadable/component'
-
+import loadable from "@loadable/component"
 
 const BasicStyle = styled.div`
     .basic-slice-container {
@@ -149,7 +148,9 @@ const PostSlices = ({ slices }) => {
     const res = (() => {
       switch (slice.slice_type) {
         case "basic_section":
-          const BasicSectionSliceInner = loadable(() => import(`../slices/BasicSectionSlice`))
+          const BasicSectionSliceInner = loadable(() =>
+            import(`../slices/BasicSectionSlice`)
+          )
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -161,7 +162,9 @@ const PostSlices = ({ slices }) => {
           )
 
         case "left_right_section":
-          const LeftRightSlice = loadable(() => import(`../slices/LeftRightSlice`))
+          const LeftRightSlice = loadable(() =>
+            import(`../slices/LeftRightSlice`)
+          )
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -181,6 +184,7 @@ const PostSlices = ({ slices }) => {
 }
 
 export const BasicSectionSlice = ({ slice }) => {
+  console.log(slice)
   const videoOptions = {
     playerVars: {
       autoplay: 1,
@@ -190,7 +194,10 @@ export const BasicSectionSlice = ({ slice }) => {
     },
   }
   var font_color = null
-  var fluid = null
+  var desktopFluid = null
+  var mobileFluid = null
+  var mobileSmallFluid = null
+  var sources = null
   var bg_color = null
   var h1_title = false
   var bg_video = null
@@ -204,8 +211,22 @@ export const BasicSectionSlice = ({ slice }) => {
       sidebarClass = "sidebar-active"
     }
   }
-  if (slice.primary.background_image.localFile != null) {
-    fluid = slice.primary.background_image.localFile.childImageSharp.fluid
+  if (slice.primary.background_image.localFile.desktop != null) {
+    desktopFluid = slice.primary.background_image.localFile.desktop.fluid
+    mobileFluid = slice.primary.background_image.localFile.mobile.fluid
+    mobileSmallFluid =
+      slice.primary.background_image.localFile.mobilesmall.fluid
+    sources = [
+      desktopFluid,
+      {
+        ...mobileFluid,
+        media: `(max-width: 800px)`,
+      },
+      {
+        ...mobileSmallFluid,
+        media: `(max-width: 400px)`,
+      },
+    ]
   }
   if (slice.primary.background_video != null) {
     bg_video = slice.primary.background_video.url
@@ -247,10 +268,10 @@ export const BasicSectionSlice = ({ slice }) => {
   // })
   return (
     <BasicStyle>
-      {fluid && (
+      {desktopFluid && (
         <BackgroundImage
           Tag="section"
-          fluid={fluid}
+          fluid={sources}
           style={{ backgroundColor: bg_color }}
           className={sidebarClass}
         >
