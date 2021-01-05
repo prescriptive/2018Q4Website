@@ -211,22 +211,24 @@ export const BasicSectionSlice = ({ slice }) => {
       sidebarClass = "sidebar-active"
     }
   }
-  if (slice.primary.background_image.localFile != null) {
-    desktopFluid = slice.primary.background_image.localFile.desktop.fluid
-    mobileFluid = slice.primary.background_image.localFile.mobile.fluid
-    mobileSmallFluid =
-      slice.primary.background_image.localFile.mobilesmall.fluid
-    sources = [
-      desktopFluid,
-      {
-        ...mobileFluid,
-        media: `(max-width: 800px)`,
-      },
-      {
-        ...mobileSmallFluid,
-        media: `(max-width: 400px)`,
-      },
-    ]
+  if (slice.primary.background_image.localFile.desktop != null) {
+    if (slice.primary.background_image.localFile.desktop != null) {
+      desktopFluid = slice.primary.background_image.localFile.desktop.fluid
+      mobileFluid = slice.primary.background_image.localFile.mobile.fluid
+      mobileSmallFluid =
+        slice.primary.background_image.localFile.mobilesmall.fluid
+      sources = [
+        desktopFluid,
+        {
+          ...mobileFluid,
+          media: `(max-width: 800px)`,
+        },
+        {
+          ...mobileSmallFluid,
+          media: `(max-width: 400px)`,
+        },
+      ]
+    }
   }
   if (slice.primary.background_video != null) {
     bg_video = slice.primary.background_video.url
