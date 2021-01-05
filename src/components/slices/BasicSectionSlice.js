@@ -218,7 +218,10 @@ export const BasicSectionSlice = ({ slice }) => {
       mobileSmallFluid =
         slice.primary.background_image.localFile.mobilesmall.fluid
       sources = [
-        desktopFluid,
+        {
+          desktopFluid,
+          media: `(min-width: 801px)`,
+        },
         {
           ...mobileFluid,
           media: `(max-width: 800px)`,
