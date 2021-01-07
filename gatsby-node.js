@@ -16,6 +16,16 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      podcast: allPrismicPodcast {
+        nodes {
+          uid
+          data {
+            buzzsprout_id {
+              text
+            }
+          }
+        }
+      }
       buzz: allBuzzsproutPodcastEpisode(filter: { private: { eq: false } }) {
         nodes {
           id
@@ -52,22 +62,34 @@ exports.createPages = async ({ graphql, actions }) => {
     })
   })
   const podcastTemplate = path.resolve("src/templates/podcast.js")
-  pages.data.buzz.nodes.forEach(node => {
-    // var podSlug = convertToSlug(node.title)
-    // console.log(podSlug)
-    var buzzer = "Buzzsprout__PodcastEpisode__" + node.buzzsproutId
-    var buzzId = node.buzzsproutId.toString()
-    console.log(buzzId)
+  pages.data.podcast.nodes.forEach(node => {
+    var buzzer = "Buzzsprout__PodcastEpisode__" + node.data.buzzsprout_id.text
+    console.log(buzzer)
     createPage({
-      path: `/podcast/${node.slug}`,
+      path: `/podcast/${node.uid}`,
       component: podcastTemplate,
       context: {
+        uid: node.uid,
         buzzer: buzzer,
-        buzzId: buzzId,
-        id: node.id,
       },
     })
   })
+  // pages.data.buzz.nodes.forEach(node => {
+  //   // var podSlug = convertToSlug(node.title)
+  //   // console.log(podSlug)
+  //   var buzzer = "Buzzsprout__PodcastEpisode__" + node.buzzsproutId
+  //   var buzzId = node.buzzsproutId.toString()
+  //   console.log(buzzId)
+  //   createPage({
+  //     path: `/podcast/${node.slug}`,
+  //     component: podcastTemplate,
+  //     context: {
+  //       buzzer: buzzer,
+  //       buzzId: buzzId,
+  //       id: node.id,
+  //     },
+  //   })
+  // })
   //   const jobTemplate = path.resolve("src/templates/job.js")
   //   pages.data.job.nodes.forEach(node => {
   //     createPage({

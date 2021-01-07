@@ -74,13 +74,14 @@ const EntityResult = ({ slice, blog, leadership, job, podcast, podinfo }) => {
   }
 
   if (slice.primary.entity_type == "Podcast") {
-    return podcast.nodes
+    console.log(podinfo)
+    return podinfo.nodes
       .slice(0, slice.primary.entity_count)
       .map((post, index) => (
         <PodcastTeaser
           post={post}
           key={index}
-          podinfo={podinfo.nodes}
+          podinfo={podcast.nodes}
         ></PodcastTeaser>
       ))
   }
@@ -148,8 +149,8 @@ export const EntityQuerySlice = ({
     var theh2Title = slice.primary.section_title[0].text
   }
   var theh2 = null
-  if(slice.primary.section_title){
-    if(slice.primary.section_title.text !== ''){
+  if (slice.primary.section_title) {
+    if (slice.primary.section_title.text !== "") {
       theh2 = slice.primary.section_title.text
     }
   }

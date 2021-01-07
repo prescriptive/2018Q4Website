@@ -28,18 +28,18 @@ const PodcastTeaserStyle = styled.article`
     }
   }
 `
-const PodImage = ({ podinfo, post, placeholder }) => {
-  var podImg = <Img fluid={placeholder.childImageSharp.fluid} />
-  podinfo.map((pod, index) => {
-    var podcastId = "Buzzsprout__PodcastEpisode__" + pod.data.buzzsprout_id.text
-    if (podcastId == post.id) {
-      podImg = (
-        <Img fluid={pod.data.podcast_image.localFile.childImageSharp.fluid} />
-      )
-    }
-  })
-  return podImg
-}
+// const PodImage = ({ podinfo, post, placeholder }) => {
+//   var podImg = <Img fluid={placeholder.childImageSharp.fluid} />
+//   podinfo.map((pod, index) => {
+//     var podcastId = "Buzzsprout__PodcastEpisode__" + pod.data.buzzsprout_id.text
+//     if (podcastId == post.id) {
+//       podImg = (
+//         <Img fluid={pod.data.podcast_image.localFile.childImageSharp.fluid} />
+//       )
+//     }
+//   })
+//   return podImg
+// }
 
 export const PodcastTeaser = ({ post, podinfo }) => {
   const data = useStaticQuery(graphql`
@@ -55,19 +55,17 @@ export const PodcastTeaser = ({ post, podinfo }) => {
   `)
   return (
     <PodcastTeaserStyle>
-      <Link to={"/podcast/" + post.slug}>
+      <Link to={"/podcast/" + post.uid}>
         <div className="pod-image">
-          <PodImage
-            podinfo={podinfo}
-            post={post}
-            placeholder={data.placeholder}
+          <Img
+            fluid={post.data.podcast_image.localFile.childImageSharp.fluid}
           />
         </div>
-        <h2>{post.title}</h2>
+        <h2>{post.data.title.text}</h2>
         <div
           key={`body`}
           className="pod-summary"
-          dangerouslySetInnerHTML={{ __html: post.summary }}
+          dangerouslySetInnerHTML={{ __html: podinfo.summary }}
         />
       </Link>
     </PodcastTeaserStyle>

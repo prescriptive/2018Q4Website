@@ -405,7 +405,7 @@ const Podcast = props => {
   const subscribeBlock = props.data.subscribeBlock.data.body
   const contactBlock = props.data.contactBlock.data.body
   const bg = props.data.bgImage.childImageSharp.fluid
-  const allPodInfo = props.data.allpodinfo.nodes
+  const allPodInfo = props.data.allpodinfo
   const site = props.data.site
   var podDesc = ""
   if (props.data.podinfo) {
@@ -563,11 +563,11 @@ const Podcast = props => {
         <Container>
           <h2>Browse All Episodes</h2>
           <div class="podcasts-container">
-            {podcasts.nodes.map((post, index) => (
+            {allPodInfo.nodes.map((post, index) => (
               <PodcastTeaser
                 post={post}
                 key={index}
-                podinfo={allPodInfo}
+                podinfo={podcasts.nodes}
               ></PodcastTeaser>
             ))}
           </div>
@@ -584,7 +584,7 @@ const Podcast = props => {
 export default Podcast
 
 export const podcastQuery = graphql`
-  query PodcastById($buzzer: String!, $buzzId: String!) {
+  query PodcastById($uid: String!, $buzzer: String!) {
     bgImage: file(relativePath: { eq: "pod.png" }) {
       childImageSharp {
         fluid(maxWidth: 1920) {
@@ -748,8 +748,12 @@ export const podcastQuery = graphql`
     }
     allpodinfo: allPrismicPodcast {
       nodes {
+        uid
         data {
           buzzsprout_id {
+            text
+          }
+          title {
             text
           }
           podcast_image {
@@ -765,9 +769,8 @@ export const podcastQuery = graphql`
         }
       }
     }
-    podinfo: prismicPodcast(
-      data: { buzzsprout_id: { text: { eq: $buzzId } } }
-    ) {
+    podinfo: prismicPodcast(uid: { eq: $uid }) {
+      uid
       data {
         buzzsprout_id {
           text

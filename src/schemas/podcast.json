@@ -7,6 +7,12 @@
         "label": "Title"
       }
     },
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "uid"
+      }
+    },
     "buzzsprout_id": {
       "type": "StructuredText",
       "config": {

@@ -208,8 +208,12 @@ export const postQuery = graphql`
     }
     podinfo: allPrismicPodcast {
       nodes {
+        uid
         data {
           buzzsprout_id {
+            text
+          }
+          title {
             text
           }
           podcast_image {
