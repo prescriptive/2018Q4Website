@@ -64,7 +64,6 @@ exports.createPages = async ({ graphql, actions }) => {
   const podcastTemplate = path.resolve("src/templates/podcast.js")
   pages.data.podcast.nodes.forEach(node => {
     var buzzer = "Buzzsprout__PodcastEpisode__" + node.data.buzzsprout_id.text
-    console.log(buzzer)
     createPage({
       path: `/podcast/${node.uid}`,
       component: podcastTemplate,

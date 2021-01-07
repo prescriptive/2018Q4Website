@@ -746,7 +746,9 @@ export const podcastQuery = graphql`
         slug
       }
     }
-    allpodinfo: allPrismicPodcast {
+    allpodinfo: allPrismicPodcast(
+      sort: { fields: first_publication_date, order: DESC }
+    ) {
       nodes {
         uid
         data {
