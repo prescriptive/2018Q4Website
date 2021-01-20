@@ -269,7 +269,7 @@ export const BasicSectionSlice = ({ slice }) => {
       {desktopFluid && (
         <BackgroundImage
           Tag="section"
-          fluid={sources}
+          fluid={desktopFluid}
           style={{ backgroundColor: bg_color }}
           className={sidebarClass}
         >
