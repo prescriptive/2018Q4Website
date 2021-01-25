@@ -2,8 +2,6 @@ import React from "react"
 import AudioFile from "../components/tokens/audioFile"
 import { Link } from "gatsby"
 
-
-
 const linkResolver = (doc, content, linkClass) => {
   // Route for blog posts
   if (doc.type === "blog_post") {
@@ -36,9 +34,9 @@ const linkResolver = (doc, content, linkClass) => {
 }
 
 const htmlSerializer = (type, element, content, children) => {
-  var link = ''
+  var link = ""
   switch (type) {
-    case "hyperlink": 
+    case "hyperlink":
       if (element.data.name) {
         if (element.data.name.includes(".mp3")) {
           // File type is .mp3
@@ -56,19 +54,33 @@ const htmlSerializer = (type, element, content, children) => {
         link = linkResolver(element.data, content, linkClass)
       }
       return link
-    case "image": 
-      const width =  element.dimensions.width ? element.dimensions.width : ""
-      const height =  element.dimensions.height ? element.dimensions.height : ""
-      const alt =  element.alt ? element.alt : ""
-      if(element.url){
-        return (
-          <p className="block-img">
-          <img src={element.url} width={width} height={height} alt={alt} />
-          </p>
-        )
-      }
-      else{
-        return ''
+    case "image":
+      const width = element.dimensions.width ? element.dimensions.width : ""
+      const height = element.dimensions.height ? element.dimensions.height : ""
+      const alt = element.alt ? element.alt : ""
+      if (element.url) {
+        if (element.linkTo) {
+          return (
+            <a href={element.linkTo.url} target="_blank">
+              <p className="block-img">
+                <img
+                  src={element.url}
+                  width={width}
+                  height={height}
+                  alt={alt}
+                />
+              </p>
+            </a>
+          )
+        } else {
+          return (
+            <p className="block-img">
+              <img src={element.url} width={width} height={height} alt={alt} />
+            </p>
+          )
+        }
+      } else {
+        return ""
       }
     // First differentiate between a label and a preformatted field (e.g. the Code Block slice)
     default: {
