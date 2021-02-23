@@ -5,10 +5,9 @@ import Footer from "../components/regions/footer"
 import "../components/scss/layout/layout.scss"
 
 const Layout = ({ children, slug }) => {
+  var pageId = ""
   if (slug) {
-    var pageId = slug
-  } else {
-    var pageId = ""
+    pageId = slug
   }
 
   return (

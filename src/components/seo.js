@@ -4,8 +4,8 @@ import Helmet from "react-helmet"
 function SEO({ site, page, lang, meta }) {
   var noIndex = "index"
   if (page.data.donotindex) {
-    if (page.data.donotindex == true) {
-      var noIndex = "noindex"
+    if (page.data.donotindex === true) {
+      noIndex = "noindex"
     }
   }
   var ogImage = ""
@@ -18,12 +18,12 @@ function SEO({ site, page, lang, meta }) {
     ogImage = page.data.artwork_url
   }
   var metaDescription = ""
-  if (page.type == "pa") {
+  if (page.type === "pa") {
     if (page.data.meta_description) {
       metaDescription = page.data.meta_description
     }
   }
-  if (page.type == "blog_post") {
+  if (page.type === "blog_post") {
     if (page.data.meta_description) {
       metaDescription = page.data.meta_description
     } else {
@@ -34,17 +34,7 @@ function SEO({ site, page, lang, meta }) {
       metaDescription = metaDescription.substring(0, 400) + "..."
     }
   }
-  var twitterPlayer = ""
-  if (page.data.audio_url) {
-    var twitterCard = "summary_large_image"
-    var twitterPlayer = {
-      name: `twitter:player`,
-      content: page.data.audio_url,
-    }
-  } else {
-    var twitterCard = "summary_large_image"
-  }
-
+  var twitterCard = "summary_large_image"
   if (page.desc) {
     metaDescription = page.desc
   }
@@ -55,13 +45,13 @@ function SEO({ site, page, lang, meta }) {
   const siteUrl = site.nodes[0].data.site_url.text
   var uid = page.uid
   var path = "/"
-  if (page.type == "blog_post") {
+  if (page.type === "blog_post") {
     path = "/blog/"
   }
-  if (page.type == "job") {
+  if (page.type === "job") {
     path = "/job-opportunity/"
   }
-  if (page.uid == "home") {
+  if (page.uid === "home") {
     uid = ""
     path = ""
   }
@@ -69,7 +59,7 @@ function SEO({ site, page, lang, meta }) {
     path = "/podcast/"
     uid = page.data.slug
   }
-  if (page.data.webinar == true) {
+  if (page.data.webinar === true) {
     path = "/webinars/"
   }
   const canonical = siteUrl + path + uid

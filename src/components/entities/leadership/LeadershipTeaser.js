@@ -79,23 +79,23 @@ const LeadershipTeaserStyle = styled.article`
 `
 export const LeadershipTeaser = ({ post }) => {
   const data = useStaticQuery(graphql`
-  query queryleader{
-    linkedinicon: file(relativePath: { eq: "linkedinwhite.png" }) {
-      childImageSharp {
-        fixed(width: 25, height:25) {
-          ...GatsbyImageSharpFixed_withWebp_tracedSVG
+    query queryleader {
+      linkedinicon: file(relativePath: { eq: "linkedinwhite.png" }) {
+        childImageSharp {
+          fixed(width: 25, height: 25) {
+            ...GatsbyImageSharpFixed_withWebp_tracedSVG
+          }
+        }
+      }
+      twittericon: file(relativePath: { eq: "tweeticon.png" }) {
+        childImageSharp {
+          fixed(width: 32, height: 25) {
+            ...GatsbyImageSharpFixed_withWebp_tracedSVG
+          }
         }
       }
     }
-    twittericon: file(relativePath: { eq: "tweeticon.png" }) {
-      childImageSharp {
-        fixed(width: 32, height:25) {
-          ...GatsbyImageSharpFixed_withWebp_tracedSVG
-        }
-      }
-    }
-  }
-`)
+  `)
   return (
     <LeadershipTeaserStyle>
       <div className="photo-name">
@@ -107,19 +107,27 @@ export const LeadershipTeaser = ({ post }) => {
           <div className="leader-title">{post.data.title.text}</div>
         </div>
       </div>
-                  <div
-                className="leader-bio"
-                dangerouslySetInnerHTML={{ __html: post.data.bio.html }}
-              />
+      <div
+        className="leader-bio"
+        dangerouslySetInnerHTML={{ __html: post.data.bio.html }}
+      />
       <div className="leader-social">
         {post.data.twitter && (
-          <a target="_blank" href={post.data.twitter.url}>
-          <Img fixed={data.twittericon.childImageSharp.fixed} />
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={post.data.twitter.url}
+          >
+            <Img fixed={data.twittericon.childImageSharp.fixed} />
           </a>
         )}
         {post.data.linkedin && (
-          <a target="_blank" href={post.data.linkedin.url}>
-          <Img fixed={data.linkedinicon.childImageSharp.fixed} />
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={post.data.linkedin.url}
+          >
+            <Img fixed={data.linkedinicon.childImageSharp.fixed} />
           </a>
         )}
       </div>

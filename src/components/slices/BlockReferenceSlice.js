@@ -4,7 +4,7 @@ import Container from "../container"
 import "../scss/blocks/globalContact.scss"
 import "../scss/blocks/dirContact.scss"
 import "../scss/blocks/podSubscribe.scss"
-import loadable from '@loadable/component'
+import loadable from "@loadable/component"
 // import BasicSectionSlice from "../slices/BasicSectionSlice"
 // import LeftRightSlice from "../slices/LeftRightSlice"
 // import ColumnsSectionSlice from "../slices/ColumnsSectionSlice"
@@ -16,14 +16,16 @@ const PostSlices = ({ slices }) => {
   return slices.map((slice, index) => {
     var sliceID = ""
     if (slice.primary) {
-      if (slice.primary.slice_id != undefined) {
-        var sliceID = slice.primary.slice_id.text
+      if (slice.primary.slice_id !== undefined) {
+        sliceID = slice.primary.slice_id.text
       }
     }
     const res = (() => {
       switch (slice.slice_type) {
         case "basic_section":
-          const BasicSectionSlice = loadable(() => import(`../slices/BasicSectionSlice`))
+          const BasicSectionSlice = loadable(() =>
+            import(`../slices/BasicSectionSlice`)
+          )
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -35,7 +37,9 @@ const PostSlices = ({ slices }) => {
           )
 
         case "left_right_section":
-          const LeftRightSlice = loadable(() => import(`../slices/LeftRightSlice`))
+          const LeftRightSlice = loadable(() =>
+            import(`../slices/LeftRightSlice`)
+          )
           return (
             <div
               id={"slice-id-" + sliceID}
@@ -47,7 +51,9 @@ const PostSlices = ({ slices }) => {
           )
 
         case "columns_section":
-          const ColumnsSectionSlice = loadable(() => import(`../slices/ColumnsSectionSlice`))
+          const ColumnsSectionSlice = loadable(() =>
+            import(`../slices/ColumnsSectionSlice`)
+          )
           return (
             <div
               id={"slice-id-" + sliceID}

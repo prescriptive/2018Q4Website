@@ -5,7 +5,7 @@ import Container from "../container"
 export const VideoSlice = ({ slice }) => {
   var video_id = slice.primary.video_embed.embed_url.split("v=")[1]
   var ampersandPosition = video_id.indexOf("&")
-  if (ampersandPosition != -1) {
+  if (ampersandPosition !== -1) {
     video_id = video_id.substring(0, ampersandPosition)
   }
   return (

@@ -2,7 +2,10 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 const linkResolver = require("./src/utils/linkResolver")
-
+const plugins = []
+if (process.env.NODE_ENV === `production`) {
+  plugins.push(`gatsby-plugin-preact`)
+}
 module.exports = {
   siteMetadata: {
     title: `Prescriptive Solutions`,
@@ -76,9 +79,7 @@ module.exports = {
         },
       },
     },
-
-    `gatsby-plugin-preact`,
-    // `gatsby-plugin-webpack-bundle-analyser-v2`,
+    // `gatsby-plugin-webpack-bundle-analyser-v2`,s
     "gatsby-plugin-loadable-components-ssr",
     {
       resolve: "gatsby-plugin-preconnect",

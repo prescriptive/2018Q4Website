@@ -43,12 +43,13 @@ const htmlSerializer = (type, element, content, children) => {
           link = <AudioFile content={content} element={element} />
         }
       }
-      if (element.data.link_type == "Document") {
-        if (children[0].props != null) {
-          var linkClass = children[0].props.className
-          if (children[0].props.className != undefined) {
+      if (element.data.link_type === "Document") {
+        if (children[0].props) {
+          var linkClass = ""
+          if (children[0].props.className) {
+            linkClass = children[0].props.className
           } else {
-            var linkClass = ""
+            linkClass = ""
           }
         }
         link = linkResolver(element.data, content, linkClass)
@@ -61,7 +62,11 @@ const htmlSerializer = (type, element, content, children) => {
       if (element.url) {
         if (element.linkTo) {
           return (
-            <a href={element.linkTo.url} target="_blank">
+            <a
+              href={element.linkTo.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <p className="block-img">
                 <img
                   src={element.url}

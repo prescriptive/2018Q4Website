@@ -69,23 +69,23 @@ const AudioFileStyle = styled.span`
 
 export const AudioFile = ({ content, element }) => {
   const data = useStaticQuery(graphql`
-  query aduioquery{
-    back: file(relativePath: { eq: "back15.png" }) {
-      childImageSharp {
-        fixed(width: 28, height:32) {
-          ...GatsbyImageSharpFixed_withWebp_tracedSVG
+    query aduioquery {
+      back: file(relativePath: { eq: "back15.png" }) {
+        childImageSharp {
+          fixed(width: 28, height: 32) {
+            ...GatsbyImageSharpFixed_withWebp_tracedSVG
+          }
+        }
+      }
+      forward: file(relativePath: { eq: "forward15.png" }) {
+        childImageSharp {
+          fixed(width: 28, height: 32) {
+            ...GatsbyImageSharpFixed_withWebp_tracedSVG
+          }
         }
       }
     }
-    forward: file(relativePath: { eq: "forward15.png" }) {
-      childImageSharp {
-        fixed(width: 28, height:32) {
-          ...GatsbyImageSharpFixed_withWebp_tracedSVG
-        }
-      }
-    }
-  }
-`)
+  `)
   const fileUrl = element.data.url
   return (
     <AudioFileStyle>
@@ -98,7 +98,7 @@ export const AudioFile = ({ content, element }) => {
         layout="horizontal"
         customControlsSection={[]}
         customProgressBarSection={[
-          ,
+          "",
           RHAP_UI.MAIN_CONTROLS,
           RHAP_UI.PROGRESS_BAR,
           RHAP_UI.CURRENT_TIME,

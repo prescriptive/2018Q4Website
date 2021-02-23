@@ -134,8 +134,8 @@ const activeStyle = {
 
 function menuRender(menuitem) {
   if (
-    menuitem.items[0].sub_nav_link_label.text != "" &&
-    menuitem.items[0].sub_nav_link_label.text != "Dummy"
+    menuitem.items[0].sub_nav_link_label.text !== "" &&
+    menuitem.items[0].sub_nav_link_label.text !== "Dummy"
   ) {
     return (
       <div>
@@ -156,7 +156,7 @@ function menuRender(menuitem) {
               {submenuitem.relative_link.text && (
                 <Link
                   activeStyle={activeStyle}
-                  to={submenuitem.relative_link.text}
+                  to={"/" + submenuitem.relative_link.text}
                 >
                   {submenuitem.sub_nav_link_label.text}
                 </Link>
@@ -167,7 +167,7 @@ function menuRender(menuitem) {
       </div>
     )
   } else {
-    if (menuitem.primary.link.url != "") {
+    if (menuitem.primary.link.url !== "") {
       return (
         <Link activeStyle={activeStyle} to={menuitem.primary.link.url}>
           {menuitem.primary.label.text}
@@ -251,7 +251,7 @@ export const Header = () => {
   const twittericon = data.twittericon.childImageSharp.fixed
   var twitter = null
   if (data.site.nodes[0].data.twitter) {
-    var twitter = data.site.nodes[0].data.twitter.url
+    twitter = data.site.nodes[0].data.twitter.url
   }
   return (
     <HeaderStyle className="header">
@@ -259,7 +259,7 @@ export const Header = () => {
         <div className="header-social-container">
           <Container>
             <div className="social-container">
-              <a href={twitter} target="_blank" rel="noreferrer">
+              <a href={twitter} target="_blank" rel="noopener noreferrer">
                 {/* <FontAwesomeIcon icon={faTwitter} /> */}
                 <Img fixed={twittericon} />
               </a>

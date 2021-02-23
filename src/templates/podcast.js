@@ -295,7 +295,7 @@ const PostSlices = ({ slices, blog, leadership, job }) => {
     var sliceID = ""
     if (slice.primary) {
       if (slice.primary.slice_id !== undefined) {
-        var sliceID = slice.primary.slice_id.text
+        sliceID = slice.primary.slice_id.text
       }
     }
     const res = (() => {
@@ -421,9 +421,9 @@ const Podcast = props => {
       var podInfoSidebar = podInfo.body
     }
     if (podInfo.meta_description.text) {
-      var podDesc = podInfo.meta_description.text
+      podDesc = podInfo.meta_description.text
     } else {
-      var podDesc = props.data.page.description.replace(/<[^>]*>/g, "")
+      podDesc = props.data.page.description.replace(/<[^>]*>/g, "")
       podDesc = podDesc.substring(0, 400) + "..."
     }
   }
@@ -463,7 +463,7 @@ const Podcast = props => {
                     layout="horizontal"
                     customControlsSection={[]}
                     customProgressBarSection={[
-                      ,
+                      "",
                       RHAP_UI.MAIN_CONTROLS,
                       RHAP_UI.PROGRESS_BAR,
                       RHAP_UI.CURRENT_TIME,
@@ -510,7 +510,7 @@ const Podcast = props => {
                 <div className="right-player">
                   <h2>Listen to Audio</h2>
                   <div className="player-image">
-                    <img src={props.data.page.artwork_url} />
+                    <img alt="" src={props.data.page.artwork_url} />
 
                     <AudioFileStyle
                       style={{ position: "relative", top: "-40px" }}
@@ -523,7 +523,7 @@ const Podcast = props => {
                         layout="horizontal"
                         customControlsSection={[]}
                         customProgressBarSection={[
-                          ,
+                          "",
                           RHAP_UI.MAIN_CONTROLS,
                           RHAP_UI.PROGRESS_BAR,
                           RHAP_UI.CURRENT_TIME,

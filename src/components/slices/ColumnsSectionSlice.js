@@ -2,7 +2,7 @@ import styled from "styled-components"
 import React from "react"
 import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
-import { RichText} from "prismic-reactjs"
+import { RichText } from "prismic-reactjs"
 import * as variable from "../variables"
 import linkResolver from "../../utils/linkResolver"
 import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
@@ -62,14 +62,10 @@ const ColumnStyle = styled.div`
 
 function ColumnsSectionSlice({ slice }) {
   var fluid = null
-  var bgColor = null
   var columnCount = null
   var items = null
   if (slice.primary.background_image.localFile != null) {
     fluid = slice.primary.background_image.localFile.childImageSharp.fluid
-  }
-  if (slice.primary.background_color != null) {
-    bgColor = slice.primary.background_color
   }
   if (slice.primary.column_count != null) {
     columnCount = slice.primary.column_count

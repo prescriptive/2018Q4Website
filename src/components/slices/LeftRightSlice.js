@@ -231,10 +231,10 @@ export const LeftRightSlice = ({ slice }) => {
   var leftWidth = 50
   var rightWidth = 50
   if (slice.primary.right_width) {
-    var leftWidth = slice.primary.left_width
+    leftWidth = slice.primary.left_width
   }
   if (slice.primary.right_width) {
-    var rightWidth = slice.primary.right_width
+    rightWidth = slice.primary.right_width
   }
   return (
     <LeftRightStyle>

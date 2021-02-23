@@ -4,7 +4,7 @@ import BackgroundImage from "gatsby-background-image"
 import Container from "../container"
 import BlogPostTeaser from "../entities/blog_post/BlogPostTeaser"
 import LeadershipTeaser from "../entities/leadership/LeadershipTeaser"
-import JobTeaser from "../entities/job/JobTeaser"
+// import JobTeaser from "../entities/job/JobTeaser"
 import PodcastTeaser from "../entities/podcast/PodcastTeaser"
 import * as variable from "../variables"
 
@@ -39,19 +39,7 @@ const EntityQueryStyle = styled.div`
 
 // Sort and display the different slice options
 const EntityResult = ({ slice, blog, leadership, job, podcast, podinfo }) => {
-  // return slices.map((slice, index) => {
-  //   const res = () => {
-  //     switch (slice.slice_type) {
-  //       case "text":
-  //         return (
-  //           <div key={index} className="slice-wrapper slice-text">
-  //             {<Text slice={slice} />}
-  //           </div>
-  //         )
-  //     }
-  //   }
-  // })
-  if (slice.primary.entity_type == "Leadership") {
+  if (slice.primary.entity_type === "Leadership") {
     return leadership.nodes
       .slice(0, slice.primary.entity_count)
       .map((post, index) => (
@@ -59,7 +47,7 @@ const EntityResult = ({ slice, blog, leadership, job, podcast, podinfo }) => {
       ))
   }
 
-  if (slice.primary.entity_type == "Blog Post") {
+  if (slice.primary.entity_type === "Blog Post") {
     return blog.nodes
       .slice(0, slice.primary.entity_count)
       .map((post, index) => (
@@ -67,14 +55,13 @@ const EntityResult = ({ slice, blog, leadership, job, podcast, podinfo }) => {
       ))
   }
 
-  if (slice.primary.entity_type == "Job") {
-    return job.nodes
-      .slice(0, slice.primary.entity_count)
-      .map((post, index) => <JobTeaser post={post} key={index}></JobTeaser>)
-  }
+  // if (slice.primary.entity_type == "Job") {
+  //   return job.nodes
+  //     .slice(0, slice.primary.entity_count)
+  //     .map((post, index) => <JobTeaser post={post} key={index}></JobTeaser>)
+  // }
 
-  if (slice.primary.entity_type == "Podcast") {
-    console.log(podinfo)
+  if (slice.primary.entity_type === "Podcast") {
     return podinfo.nodes
       .slice(0, slice.primary.entity_count)
       .map((post, index) => (
@@ -85,10 +72,6 @@ const EntityResult = ({ slice, blog, leadership, job, podcast, podinfo }) => {
         ></PodcastTeaser>
       ))
   }
-
-  // {blog.nodes.slice(0, entityCount).map((post, index) => (
-  //   <BlogPostTeaser post={post} key={index}></BlogPostTeaser>
-  // ))}
 }
 
 export const EntityQuerySlice = ({
@@ -101,53 +84,16 @@ export const EntityQuerySlice = ({
 }) => {
   var fluid = null
 
-  var h1_title = false
-
   var bg_color = null
 
-  var entityCount = null
-
-  var entity = null
-
-  var entityType = null
-
-  if (slice.primary.type == "e") {
-    entity = leadership
-    entityType = "leadership"
-  }
-  if (slice.primary.type == "Leadership") {
-    entity = leadership
-    entityType = "leadership"
-  }
-  if (slice.primary.type == "Blog Post") {
-    entity = blog
-    entityType = "leadership"
-  }
-
-  if (slice.primary.background_imageSharp != null) {
+  if (slice.primary.background_image.localFile !== null) {
     fluid = slice.primary.background_image.localFile.childImageSharp.fluid
   }
 
-  if (slice.primary.background_color != null) {
+  if (slice.primary.background_color !== null) {
     bg_color = slice.primary.background_color
   }
 
-  if (slice.primary.number_of_entities != null) {
-    var entityCount = slice.primary.number_of_entities
-  }
-
-  // if (slice.primary.h1_title != null) {
-  //   h1_title = slice.primary.h1_title
-  // }
-  var theh1Title = null
-  var theh2Title = null
-  if (slice.primary.section_title && slice.primary.h1_title == true) {
-    var theh1Title = slice.primary.section_title.text
-  } else if (slice.primary.section_title && slice.primary.h1_title == false) {
-    var theh2Title = slice.primary.section_title.text
-  } else if (slice.primary.section_title && slice.primary.h1_title == false) {
-    var theh2Title = slice.primary.section_title[0].text
-  }
   var theh2 = null
   if (slice.primary.section_title) {
     if (slice.primary.section_title.text !== "") {

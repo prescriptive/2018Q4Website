@@ -15,15 +15,7 @@ import "../components/scss/page/podcasts.scss"
 import "../components/scss/page/insights.scss"
 import "../components/scss/page/microsoft365.scss"
 import SEO from "../components/seo"
-import { ReactTypeformEmbed } from "react-typeform-embed"
-// import EntityQuerySlice from "../components/slices/EntityQuerySlice"
 
-// import BasicSectionSlice from "../components/slices/BasicSectionSlice"
-// import ColumnSectionSlice from "../components/slices/ColumnsSectionSlice"
-// import LeftRightSlice from "../components/slices/LeftRightSlice"
-// import EntityQuerySlice from "../components/slices/EntityQuerySlice"
-// import HeroSlice from "../components/slices/HeroSlice"
-// import BlockReferenceSlice from "../components/slices/BlockReferenceSlice"
 import loadable from "@loadable/component"
 
 // Sort and display the different slice options
@@ -31,8 +23,8 @@ const PostSlices = ({ slices, blog, leadership, job, podcast, podinfo }) => {
   return slices.map((slice, index) => {
     var sliceID = ""
     if (slice.primary) {
-      if (slice.primary.slice_id != undefined) {
-        var sliceID = slice.primary.slice_id.text
+      if (slice.primary.slice_id !== undefined) {
+        sliceID = slice.primary.slice_id.text
       }
     }
     const res = (() => {

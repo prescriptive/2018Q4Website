@@ -3,7 +3,6 @@ import * as variable from "../../variables"
 import styled from "styled-components"
 import { Link } from "gatsby"
 import Img from "gatsby-image"
-import { useStaticQuery, graphql } from "gatsby"
 
 const PodcastTeaserStyle = styled.article`
   background-color: ${variable.lightGray};
@@ -42,17 +41,6 @@ const PodcastTeaserStyle = styled.article`
 // }
 
 export const PodcastTeaser = ({ post, podinfo }) => {
-  const data = useStaticQuery(graphql`
-    query querypodcastteaser {
-      placeholder: file(relativePath: { eq: "placeholder-img.jpg" }) {
-        childImageSharp {
-          fluid(maxWidth: 800) {
-            ...GatsbyImageSharpFluid_withWebp_tracedSVG
-          }
-        }
-      }
-    }
-  `)
   return (
     <PodcastTeaserStyle>
       <Link to={"/podcast/" + post.uid}>

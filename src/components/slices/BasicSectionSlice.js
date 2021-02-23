@@ -140,8 +140,8 @@ const PostSlices = ({ slices }) => {
   return slices.map((slice, index) => {
     var sliceID = ""
     if (slice.primary) {
-      if (slice.primary.slice_id != undefined) {
-        var sliceID = slice.primary.slice_id.text
+      if (slice.primary.slice_id !== undefined) {
+        sliceID = slice.primary.slice_id.text
       }
     }
 
@@ -184,69 +184,46 @@ const PostSlices = ({ slices }) => {
 }
 
 export const BasicSectionSlice = ({ slice }) => {
-  console.log(slice)
-  const videoOptions = {
-    playerVars: {
-      autoplay: 1,
-      controls: 0,
-      rel: 0,
-      showinfo: 0,
-    },
-  }
   var font_color = null
   var desktopFluid = null
-  var mobileFluid = null
-  var mobileSmallFluid = null
-  var sources = null
   var bg_color = null
-  var h1_title = false
   var bg_video = null
   var video_id = null
   var bg_video_image = false
   var sidebar = null
   var sidebarClass = ""
   if (slice.items != null) {
-    if (slice.items[0].sidebar_block_reference.document != null) {
+    if (slice.items[0].sidebar_block_reference.document !== null) {
       sidebar = slice.items[0].sidebar_block_reference.document.data.body
       sidebarClass = "sidebar-active"
     }
   }
-  if (slice.primary.background_image.localFile != null) {
-    if (slice.primary.background_image.localFile.desktop != null) {
+  if (slice.primary.background_image.localFile !== null) {
+    if (slice.primary.background_image.localFile.desktop !== null) {
       desktopFluid = slice.primary.background_image.localFile.desktop.fluid
-      mobileFluid = slice.primary.background_image.localFile.mobile.fluid
-      mobileSmallFluid =
-        slice.primary.background_image.localFile.mobilesmall.fluid
-      sources = [
-        mobileSmallFluid,
-        {
-          ...desktopFluid,
-          media: `(min-width: 361px)`,
-        },
-      ]
     }
   }
-  if (slice.primary.background_video != null) {
+  if (slice.primary.background_video !== null) {
     bg_video = slice.primary.background_video.url
   }
-  if (slice.primary.youtube_background.embed_url != null) {
-    var video_id = slice.primary.youtube_background.embed_url.split("v=")[1]
+  if (slice.primary.youtube_background.embed_url !== null) {
+    video_id = slice.primary.youtube_background.embed_url.split("v=")[1]
     var ampersandPosition = video_id.indexOf("&")
-    if (ampersandPosition != -1) {
+    if (ampersandPosition !== -1) {
       video_id = video_id.substring(0, ampersandPosition)
     }
   }
   if (
-    slice.primary.background_video.id == null &&
-    slice.primary.background_image.localFile == null &&
-    slice.primary.youtube_background.embed_url == null
+    slice.primary.background_video.id === null &&
+    slice.primary.background_image.localFile === null &&
+    slice.primary.youtube_background.embed_url === null
   ) {
     bg_video_image = true
   }
-  if (slice.primary.background_color != null) {
+  if (slice.primary.background_color !== null) {
     bg_color = slice.primary.background_color
   }
-  if (slice.primary.font_color != null) {
+  if (slice.primary.font_color !== null) {
     font_color = slice.primary.font_color
   }
   // if (slice.primary.h1_title != null) {
@@ -254,10 +231,10 @@ export const BasicSectionSlice = ({ slice }) => {
   // }
   var theh1Title = null
   var theh2Title = null
-  if (slice.primary.section_title && slice.primary.h1_title == true) {
-    var theh1Title = slice.primary.section_title.text
-  } else if (slice.primary.section_title && slice.primary.h1_title == false) {
-    var theh2Title = slice.primary.section_title.text
+  if (slice.primary.section_title && slice.primary.h1_title === true) {
+    theh1Title = slice.primary.section_title.text
+  } else if (slice.primary.section_title && slice.primary.h1_title === false) {
+    theh2Title = slice.primary.section_title.text
   }
   // const content = slice.primary.content.raw.map(function(slice, index) {
   //   if (slice.type === "heading1") {
