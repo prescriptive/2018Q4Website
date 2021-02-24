@@ -199,8 +199,9 @@ export const BasicSectionSlice = ({ slice }) => {
     }
   }
   if (slice.primary.background_image.localFile !== null) {
-    if (slice.primary.background_image.localFile.desktop !== null) {
-      desktopFluid = slice.primary.background_image.localFile.desktop.fluid
+    if (slice.primary.background_image.localFile.childImageSharp !== null) {
+      desktopFluid =
+        slice.primary.background_image.localFile.childImageSharp.fluid
     }
   }
   if (slice.primary.background_video !== null) {

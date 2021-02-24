@@ -12,8 +12,7 @@ import Img from "gatsby-image"
 // import Video from "../components/slices/VideoSlice"
 // import BasicSectionSlice from "../components/slices/BasicSectionSlice"
 import BackgroundImage from "gatsby-background-image"
-import loadable from '@loadable/component'
-
+import loadable from "@loadable/component"
 
 // Sort and display the different slice options
 const PostSlices = ({ slices, id }) => {
@@ -29,7 +28,9 @@ const PostSlices = ({ slices, id }) => {
           )
 
         case "quote":
-          const Quote = loadable(() => import(`../components/slices/QuoteSlice`))
+          const Quote = loadable(() =>
+            import(`../components/slices/QuoteSlice`)
+          )
           return (
             <div key={index} className="slice-wrapper slice-quote">
               {<Quote slice={slice} />}
@@ -37,21 +38,27 @@ const PostSlices = ({ slices, id }) => {
           )
 
         case "image":
-          const Image = loadable(() => import(`../components/slices/ImageSlice`))
+          const Image = loadable(() =>
+            import(`../components/slices/ImageSlice`)
+          )
           return (
             <div key={index} className="slice-wrapper slice-image">
               {<Image slice={slice} />}
             </div>
           )
         case "video":
-          const Video = loadable(() => import(`../components/slices/VideoSlice`))
+          const Video = loadable(() =>
+            import(`../components/slices/VideoSlice`)
+          )
           return (
             <div key={index} className="slice-wrapper slice-video">
               {<Video slice={slice} />}
             </div>
           )
         case "basic_section":
-          const BasicSectionSlice = loadable(() => import(`../components/slices/BasicSectionSlice`))
+          const BasicSectionSlice = loadable(() =>
+            import(`../components/slices/BasicSectionSlice`)
+          )
           return (
             <div
               id={"slice-id-" + id}
@@ -168,21 +175,15 @@ const Post = props => {
 
   return (
     <Layout>
-      <SEO 
-      site={site} 
-      page={props.data.page}
-      >
-    </SEO>
+      <SEO site={site} page={props.data.page}></SEO>
 
       <BlogHeader>
-      <BackgroundImage
-          fluid={props.data.blogbg.childImageSharp.fluid}
-        >
-        <Container>
-          <div className="blog-header-container">
-            <div className="blog-post-image-title">Insights</div>
-          </div>
-        </Container>
+        <BackgroundImage fluid={props.data.blogbg.childImageSharp.fluid}>
+          <Container>
+            <div className="blog-header-container">
+              <div className="blog-post-image-title">Insights</div>
+            </div>
+          </Container>
         </BackgroundImage>
       </BlogHeader>
       <PageStyle>
@@ -199,13 +200,19 @@ const Post = props => {
               <h1>{node.title.text}</h1>
               {node.release_date && (
                 <div className="release-date">
-          <Img fixed={props.data.calendaricon.childImageSharp.fixed} style={{marginRight: '10px'}} />
+                  <Img
+                    fixed={props.data.calendaricon.childImageSharp.fixed}
+                    style={{ marginRight: "10px" }}
+                  />
                   {node.release_date}
                 </div>
               )}
               {node.author && (
                 <div className="blog-author">
-          <Img fixed={props.data.usericon.childImageSharp.fixed} style={{marginRight: '10px'}} />
+                  <Img
+                    fixed={props.data.usericon.childImageSharp.fixed}
+                    style={{ marginRight: "10px" }}
+                  />
                   {node.author.text}
                 </div>
               )}
@@ -256,9 +263,7 @@ export const postQuery = graphql`
         }
       }
     }
-    defaultBlock: prismicBlock(
-      id: { eq: "ec237610-ff7b-583b-9a83-076cc4920623" }
-    ) {
+    defaultBlock: prismicBlock(uid: { eq: "blog-sidebar-contact" }) {
       data {
         body {
           ... on PrismicBlockBodyBasicSection {
