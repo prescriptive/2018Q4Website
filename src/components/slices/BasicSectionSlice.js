@@ -192,6 +192,7 @@ export const BasicSectionSlice = ({ slice }) => {
   var bg_video_image = false
   var sidebar = null
   var sidebarClass = ""
+  console.log(slice)
   if (slice.items != null) {
     if (slice.items[0].sidebar_block_reference.document !== null) {
       sidebar = slice.items[0].sidebar_block_reference.document.data.body

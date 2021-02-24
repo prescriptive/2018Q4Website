@@ -610,9 +610,7 @@ export const podcastQuery = graphql`
         }
       }
     }
-    contactBlock: prismicBlocks(
-      id: { eq: "82cd060c-8d0b-5e93-b730-63abec35e126" }
-    ) {
+    contactBlock: prismicBlocks(uid: { eq: "global-contact" }) {
       data {
         body {
           ... on PrismicBlocksBodyLeftRightSection {
@@ -693,9 +691,7 @@ export const podcastQuery = graphql`
         }
       }
     }
-    subscribeBlock: prismicBlocks(
-      id: { eq: "cc6385d2-62fa-5b5a-a79c-70d3d5199b56" }
-    ) {
+    subscribeBlock: prismicBlocks(uid: { eq: "pod-subscribe" }) {
       data {
         body {
           ... on PrismicBlocksBodyColumnsSection {

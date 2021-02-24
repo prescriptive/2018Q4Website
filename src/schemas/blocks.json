@@ -7,6 +7,12 @@
         "label": "Block Title"
       }
     },
+    "uid": {
+      "type": "UID",
+      "config": {
+        "label": "UID"
+      }
+    },
     "body": {
       "type": "Slices",
       "fieldset": "Slice zone",
@@ -80,7 +86,11 @@
                   "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
                   "allowTargetBlank": true,
                   "label": "Content",
-                  "labels": ["cta-button", "right-align", "center-align"]
+                  "labels": [
+                    "cta-button",
+                    "right-align",
+                    "center-align"
+                  ]
                 }
               }
             },
@@ -89,7 +99,9 @@
                 "type": "Link",
                 "config": {
                   "select": "document",
-                  "customtypes": ["blocks"],
+                  "customtypes": [
+                    "blocks"
+                  ],
                   "label": "Sidebar Block Reference"
                 }
               }
@@ -143,7 +155,11 @@
                   "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
                   "allowTargetBlank": true,
                   "label": "Left Content",
-                  "labels": ["cta-button", "right-align", "center-align"]
+                  "labels": [
+                    "cta-button",
+                    "right-align",
+                    "center-align"
+                  ]
                 }
               },
               "right_background_image": {
@@ -167,7 +183,11 @@
                   "multi": "paragraph, preformatted, heading1, heading2, heading3, heading4, heading5, heading6, strong, em, hyperlink, image, embed, list-item, o-list-item, o-list-item",
                   "allowTargetBlank": true,
                   "label": "Right Content",
-                  "labels": ["cta-button", "right-align", "center-align"]
+                  "labels": [
+                    "cta-button",
+                    "right-align",
+                    "center-align"
+                  ]
                 }
               }
             },
