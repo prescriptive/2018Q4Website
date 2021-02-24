@@ -216,9 +216,10 @@ export const BasicSectionSlice = ({ slice }) => {
     }
   }
   if (
-    slice.primary.background_video.id === null &&
-    slice.primary.background_image.localFile === null &&
-    slice.primary.youtube_background.embed_url === null
+    slice.primary.background_video.id === null ||
+    (slice.primary.background_video.id === undefined &&
+      slice.primary.background_image.localFile === null &&
+      slice.primary.youtube_background.embed_url === null)
   ) {
     bg_video_image = true
   }
@@ -235,8 +236,12 @@ export const BasicSectionSlice = ({ slice }) => {
   var theh2Title = null
   if (slice.primary.section_title && slice.primary.h1_title === true) {
     theh1Title = slice.primary.section_title.text
-  } else if (slice.primary.section_title && slice.primary.h1_title === false) {
+  } else if (
+    (slice.primary.section_title && slice.primary.h1_title === null) ||
+    (slice.primary.section_title && slice.primary.h1_title === false)
+  ) {
     theh2Title = slice.primary.section_title.text
+    console.log(theh2Title)
   }
   // const content = slice.primary.content.raw.map(function(slice, index) {
   //   if (slice.type === "heading1") {

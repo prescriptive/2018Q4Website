@@ -13,6 +13,7 @@ module.exports = {
     author: `Digett`,
     siteUrl: `https://www.prescriptive.solutions`,
   },
+  flags: { PRESERVE_WEBPACK_CACHE: true },
   plugins: [
     `gatsby-plugin-react-helmet`,
     {
