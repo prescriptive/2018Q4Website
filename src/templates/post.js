@@ -13,7 +13,7 @@ import Img from "gatsby-image"
 // import BasicSectionSlice from "../components/slices/BasicSectionSlice"
 import BackgroundImage from "gatsby-background-image"
 import loadable from "@loadable/component"
-
+import { withPreview } from "gatsby-source-prismic"
 // Sort and display the different slice options
 const PostSlices = ({ slices, id }) => {
   return slices.map((slice, index) => {
@@ -238,7 +238,7 @@ const Post = props => {
   )
 }
 
-export default Post
+export default withPreview(Post)
 
 export const postQuery = graphql`
   query PostBySlug($uid: String!) {
