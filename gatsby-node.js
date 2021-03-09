@@ -1,6 +1,7 @@
 const path = require("path")
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
+
   const pages = await graphql(`
     {
       blog: allPrismicBlogPost {

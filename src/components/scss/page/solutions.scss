@@ -1,3 +1,5 @@
+@import "./src/components/scss/variables.scss";
+@import "./src/components/scss/mixins.scss";
 #slice-id-solutions-hero {
   section {
     padding: 0px;
@@ -76,8 +78,8 @@
   }
 }
 #slice-id-new-service-solution {
-  a{
-    color:white;
+  a {
+    color: white;
   }
   .left-right-container {
     @include mobile() {
@@ -93,7 +95,7 @@
         font-weight: 900;
         font-size: 27px;
         line-height: 36px;
-        strong{
+        strong {
           color: white;
         }
       }
@@ -120,9 +122,8 @@
         font-weight: 900;
         font-size: 27px;
         line-height: 36px;
-        strong{
+        strong {
           color: white;
-
         }
       }
       p {

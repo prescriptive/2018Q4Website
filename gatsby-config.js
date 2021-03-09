@@ -103,8 +103,10 @@ module.exports = {
     {
       resolve: "gatsby-plugin-sass",
       options: {
-        data: '@import "variables.scss"; @import "mixins.scss";',
-        includePaths: ["src/components/scss"],
+        sassOptions: {
+          data: `@import "./src/components/scss/variables.scss"; @import "./src/components/scss/mixins.scss";`,
+          includePaths: ["src/components/scss"],
+        },
       },
     },
     `gatsby-plugin-netlify-headers`,
@@ -120,36 +122,36 @@ module.exports = {
         icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
-    {
-      resolve: `gatsby-plugin-favicon`,
-      options: {
-        logo: "./src/images/favicon.png",
+    // {
+    //   resolve: `gatsby-plugin-favicon`,
+    //   options: {
+    //     logo: "./src/images/favicon.png",
 
-        // WebApp Manifest Configuration
-        appName: null, // Inferred with your package.json
-        appDescription: null,
-        developerName: null,
-        developerURL: null,
-        dir: "auto",
-        lang: "en-US",
-        background: "#fff",
-        theme_color: "#fff",
-        display: "standalone",
-        orientation: "any",
-        version: "1.0",
+    //     // WebApp Manifest Configuration
+    //     appName: null, // Inferred with your package.json
+    //     appDescription: null,
+    //     developerName: null,
+    //     developerURL: null,
+    //     dir: "auto",
+    //     lang: "en-US",
+    //     background: "#fff",
+    //     theme_color: "#fff",
+    //     display: "standalone",
+    //     orientation: "any",
+    //     version: "1.0",
 
-        icons: {
-          android: true,
-          appleIcon: true,
-          appleStartup: true,
-          coast: false,
-          favicons: true,
-          firefox: true,
-          yandex: false,
-          windows: false,
-        },
-      },
-    },
+    //     icons: {
+    //       android: true,
+    //       appleIcon: true,
+    //       appleStartup: true,
+    //       coast: false,
+    //       favicons: true,
+    //       firefox: true,
+    //       yandex: false,
+    //       windows: false,
+    //     },
+    //   },
+    // },
     `gatsby-plugin-preload-fonts`,
     {
       resolve: `gatsby-plugin-sitemap`,

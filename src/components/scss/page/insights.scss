@@ -1,3 +1,5 @@
+@import "./src/components/scss/variables.scss";
+@import "./src/components/scss/mixins.scss";
 #slice-id-blog-webinar-podcast {
   .column-item {
     padding: 35px;
@@ -90,9 +92,9 @@
   }
 }
 
-#slice-id-insights-team-pre{
-  section{
-    padding:20px 0px;
-    max-width:800px;
+#slice-id-insights-team-pre {
+  section {
+    padding: 20px 0px;
+    max-width: 800px;
   }
 }
