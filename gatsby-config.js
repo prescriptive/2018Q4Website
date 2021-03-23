@@ -214,7 +214,7 @@ module.exports = {
           allPrismicPa,
           allPrismicBlogPost,
           allPrismicJob,
-          allBuzzsproutPodcastEpisode,
+          allPrismicPodcast,
         }) => {
           let pages = []
           allPrismicPa.nodes.map(edge => {
