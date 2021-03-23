@@ -185,6 +185,11 @@ module.exports = {
                 uid
               }
             }
+            allPrismicPodcast {
+              nodes {
+                uid
+              }
+            }
             allBuzzsproutPodcastEpisode(filter: { private: { eq: false } }) {
               nodes {
                 id
@@ -234,9 +239,9 @@ module.exports = {
               priority: 0.7,
             })
           })
-          allBuzzsproutPodcastEpisode.nodes.map(edge => {
+          allPrismicPodcast.nodes.map(edge => {
             pages.push({
-              url: `${site.siteMetadata.siteUrl}/podcast/${edge.slug}`,
+              url: `${site.siteMetadata.siteUrl}/podcast/${edge.uid}`,
               changefreq: `daily`,
               priority: 0.7,
             })
