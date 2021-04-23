@@ -2,6 +2,7 @@ import React from "react"
 import { RichText } from "prismic-reactjs"
 import linkResolver from "../../utils/linkResolver"
 import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
+import { withPreview } from 'gatsby-source-prismic'
 
 const TextSlice = props => {
   return (
@@ -14,5 +15,4 @@ const TextSlice = props => {
     </div>
   )
 }
-
-export default TextSlice
+export default withPreview(TextSlice)
