@@ -9,7 +9,9 @@ const linkResolver = doc => {
   if (doc.type === "podcast") {
     return "/podcast/" + doc.uid
   }
-
+  if (doc.type === "leadership") {
+    return "/about"
+  }
   // Homepage route fallback
   return "/"
 }
