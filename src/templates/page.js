@@ -15,7 +15,7 @@ import "../components/scss/page/podcasts.scss"
 import "../components/scss/page/insights.scss"
 import "../components/scss/page/microsoft365.scss"
 import SEO from "../components/seo"
-
+import { withPreview } from 'gatsby-source-prismic'
 import loadable from "@loadable/component"
 
 // Sort and display the different slice options
@@ -175,7 +175,7 @@ const Page = ({ data }) => {
     </Layout>
   )
 }
-export default Page
+export default withPreview(Page)
 
 export const postQuery = graphql`
   query PageBySlug($uid: String!) {
