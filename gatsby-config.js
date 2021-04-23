@@ -62,7 +62,7 @@ module.exports = {
           block: require("./src/schemas/block.json"),
           podcast: require("./src/schemas/podcast.json"),
         },
-        prismicToolbar: false,
+        prismicToolbar: true,
       },
     },
     {
