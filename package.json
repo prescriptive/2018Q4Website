@@ -87,7 +87,7 @@
   "license": "MIT",
   "scripts": {
     "preload-fonts": "gatsby-preload-fonts",
-    "build": "gatsby build --log-pages",
+    "build": "gatsby tart",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
