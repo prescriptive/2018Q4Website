@@ -13,8 +13,22 @@ const FooterStyle = styled.footer`
     color: white;
     a{
       color:white;
-      margin-top:10px;
       display:block;
+    }
+  }
+  .footer-flex{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    @media (max-width: ${variable.mobileWidth}) {
+      flex-direction:column;
+    }
+    > div{
+      margin-right:60px;
+      @media (max-width: ${variable.mobileWidth}) {
+        margin-right:0px;
+        margin-bottom:10px;
+      }
     }
   }
 `
@@ -23,8 +37,10 @@ export const Footer = () => {
   return (
     <FooterStyle>
       <Container className="footer-container">
-        <div>&copy; {new Date().getFullYear()} Prescriptive Data Solutions</div>
-        <div className="privacy-link"><Link to="/prescriptive-data-solutions-llc-privacy-policy">Privacy Policy</Link></div>
+        <div className="footer-flex">
+          <div>&copy; {new Date().getFullYear()} Prescriptive Data Solutions</div>
+          <div className="privacy-link"><Link to="/prescriptive-data-solutions-llc-privacy-policy">Privacy Policy</Link></div>
+        </div>
       </Container>
     </FooterStyle>
   )
