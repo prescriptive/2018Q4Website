@@ -264,7 +264,7 @@ module.exports = {
     //     id: "GTM-KWP5GHG",
     //   },
     // },
-    `gatsby-plugin-offline`,
+    // `gatsby-plugin-offline`,
     "gatsby-plugin-netlify",
   ],
 }
