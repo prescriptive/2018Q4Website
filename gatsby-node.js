@@ -74,6 +74,7 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     })
   })
+
   // pages.data.buzz.nodes.forEach(node => {
   //   // var podSlug = convertToSlug(node.title)
   //   // console.log(podSlug)
