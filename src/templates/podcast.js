@@ -20,6 +20,7 @@ import { RHAP_UI } from "react-h5-audio-player"
 import "react-h5-audio-player/lib/styles.css"
 import ResponsiveEmbed from "react-responsive-embed"
 import loadable from "@loadable/component"
+import { withPreview } from 'gatsby-source-prismic'
 
 const AudioFileStyle = styled.div`
   .listen {
@@ -581,8 +582,7 @@ const Podcast = props => {
   )
 }
 
-export default Podcast
-
+export default withPreview(Podcast)
 export const podcastQuery = graphql`
   query PodcastById($uid: String!, $buzzer: String!) {
     bgImage: file(relativePath: { eq: "pod.png" }) {

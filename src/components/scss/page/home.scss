@@ -41,11 +41,16 @@
   }
 }
 
+
 #slice-id-home-it-solution {
   background-color: $lightGray;
-  section {
-    @include mobile() {
-      padding: 20px 0px;
+  .gatsby-image-wrapper{
+    padding: 60px 0px 65px 0px;
+    section{
+      padding:0px;
+      > h2{
+        margin-top:0px;
+      }
     }
   }
   h2 {

@@ -38,7 +38,7 @@ module.exports = {
           // Return true to download the image or false to skip.
           return true
         },
-        linkResolver: ({ node, key, value }) => doc => {
+        linkResolver: ({ node, key, value }) => (doc) => {
           // Your link resolver
           if (doc.type === "blog_post") {
             return "/blog/" + doc.uid
@@ -52,6 +52,7 @@ module.exports = {
         // PrismJS highlighting for labels and slices
         repositoryName: `prescriptive`,
         accessToken: `${process.env.API_KEY}`,
+        releaseID: `${process.env.PRISMIC_RELEASE_ID}`,
         schemas: {
           pa: require("./src/schemas/page.json"),
           blog_post: require("./src/schemas/blog_post.json"),
@@ -62,7 +63,7 @@ module.exports = {
           block: require("./src/schemas/block.json"),
           podcast: require("./src/schemas/podcast.json"),
         },
-        prismicToolbar: false,
+        prismicToolbar: true,
       },
     },
     {
@@ -81,7 +82,7 @@ module.exports = {
       },
     },
     // `gatsby-plugin-webpack-bundle-analyser-v2`,s
-    "gatsby-plugin-loadable-components-ssr",
+    // "gatsby-plugin-loadable-components-ssr",
     {
       resolve: "gatsby-plugin-preconnect",
       options: {
@@ -217,7 +218,7 @@ module.exports = {
           allPrismicPodcast,
         }) => {
           let pages = []
-          allPrismicPa.nodes.map(edge => {
+          allPrismicPa.nodes.map((edge) => {
             var webinarPath = ""
             if (edge.data.webinar == true) {
               webinarPath = "webinars/"
@@ -232,21 +233,21 @@ module.exports = {
               }
             }
           })
-          allPrismicBlogPost.nodes.map(edge => {
+          allPrismicBlogPost.nodes.map((edge) => {
             pages.push({
               url: `${site.siteMetadata.siteUrl}/blog/${edge.uid}`,
               changefreq: `daily`,
               priority: 0.7,
             })
           })
-          allPrismicPodcast.nodes.map(edge => {
+          allPrismicPodcast.nodes.map((edge) => {
             pages.push({
               url: `${site.siteMetadata.siteUrl}/podcast/${edge.uid}`,
               changefreq: `daily`,
               priority: 0.7,
             })
           })
-          allPrismicJob.nodes.map(edge => {
+          allPrismicJob.nodes.map((edge) => {
             pages.push({
               url: `${site.siteMetadata.siteUrl}/job-opportunity/${edge.uid}`,
               changefreq: `daily`,
@@ -263,7 +264,78 @@ module.exports = {
     //     id: "GTM-KWP5GHG",
     //   },
     // },
-    `gatsby-plugin-offline`,
+    `gatsby-plugin-force-trailing-slashes`,
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        workboxConfig: {
+          runtimeCaching: [
+            {
+              urlPattern: /(\.js$|\.css$|static\/)/,
+              handler: `CacheFirst`,
+            },
+            {
+              urlPattern: /^https?:.*\/page-data\/.*\/(page-data|app-data)\.json$/,
+              handler: `NetworkFirst`,
+              options: {
+                networkTimeoutSeconds: 1,
+              },
+            },
+            {
+              urlPattern: /^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)$/,
+              handler: `StaleWhileRevalidate`,
+            },
+            {
+              urlPattern: /^https?:\/\/fonts\.googleapis\.com\/css/,
+              handler: `StaleWhileRevalidate`,
+            },
+            {
+              urlPattern: /\/$/,
+              handler: `NetworkFirst`,
+              options: {
+                networkTimeoutSeconds: 1,
+              },
+            },
+          ],
+        },
+      },
+    },
+    `gatsby-plugin-force-trailing-slashes`,
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        workboxConfig: {
+          runtimeCaching: [
+            {
+              urlPattern: /(\.js$|\.css$|static\/)/,
+              handler: `CacheFirst`,
+            },
+            {
+              urlPattern: /^https?:.*\/page-data\/.*\/(page-data|app-data)\.json$/,
+              handler: `NetworkFirst`,
+              options: {
+                networkTimeoutSeconds: 1,
+              },
+            },
+            {
+              urlPattern: /^https?:.*\.(png|jpg|jpeg|webp|svg|gif|tiff|js|woff|woff2|json|css)$/,
+              handler: `StaleWhileRevalidate`,
+            },
+            {
+              urlPattern: /^https?:\/\/fonts\.googleapis\.com\/css/,
+              handler: `StaleWhileRevalidate`,
+            },
+            {
+              urlPattern: /\/$/,
+              handler: `NetworkFirst`,
+              options: {
+                networkTimeoutSeconds: 1,
+              },
+            },
+          ],
+        },
+      },
+    },
     "gatsby-plugin-netlify",
   ],
 }

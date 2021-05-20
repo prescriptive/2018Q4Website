@@ -4,6 +4,11 @@ import Layout from "../components/layout"
 import styled from "styled-components"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
+import { withUnpublishedPreview } from 'gatsby-source-prismic'
+import { pageTemplate } from '../templates/page'
+import { postTemplate } from '../templates/post'
+import { podcastTemplate } from '../templates/podcast'
+
 const Style404 = styled.div`
   padding: 60px 0px;
   text-align: center;
@@ -43,4 +48,14 @@ return(
 )
 
 }
-export default NotFoundPage
+
+export default withUnpublishedPreview(NotFoundPage, {
+  templateMap: {
+    page: pageTemplate,
+    podcast: podcastTemplate,
+    post: postTemplate,
+    prismicPage: pageTemplate,
+    prismicPodcast: podcastTemplate,
+    prismicPost: postTemplate,
+  },
+})
