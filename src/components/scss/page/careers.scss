@@ -210,7 +210,8 @@
         background-position: center center;
       }
       @include mobile() {
-        background-position: center center;
+        background-position: -250px 100px;
+        background-size:500px;
       }
     }
   }
@@ -232,6 +233,9 @@
       }
       h2{
         font-size:54px;
+          @include mobile() {
+            margin-bottom:175px;
+          }
         @include mobilesmall() {
           font-size:34px;
           line-height:44px;
