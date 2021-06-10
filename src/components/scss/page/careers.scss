@@ -261,3 +261,67 @@
     }
   }
 }
+
+#slice-id-phase-2-rocks-new{
+  background-color:#8CCEF8;
+  section{
+    @include mobile(){
+      padding:20px 0px;
+    }
+  }
+  .gatsby-image-wrapper{
+    &:before{
+      background-size:90%;
+      background-position:center bottom;
+    }
+  }
+
+  .column{
+    .column-item{
+      &:nth-child(1){
+        @include mobile(){
+          width:100% !important;
+        }
+        h2{
+          font-size:54px;
+          @include mobile(){
+            font-size:38px;
+          }
+        }
+        .block-img{
+          display:none;
+          @include mobile() {
+            display:block;
+          }
+        }
+        p{
+          display:flex;
+          justify-content: flex-end;
+          @include tablet() {
+            justify-content: flex-start;
+          }
+          @include mobile() {
+            justify-content: flex-start;
+          }
+          a{
+            margin-top:40px;
+            @include cta-button($red);
+            span{
+              color:white;
+            }
+        }
+      }
+      }
+      &:nth-child(2){
+        width: calc(100% / 2 - 40px);
+
+        @include mobile() {
+          width:100% !important;
+          .block-img{
+            display:none;
+          }
+        }
+      }
+    }
+  }
+}
