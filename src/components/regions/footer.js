@@ -9,6 +9,7 @@ const FooterStyle = styled.footer`
   background-color: ${variable.darkGray};
   text-align: center;
   color: white;
+  line-height: 24px;
   div {
     color: white;
     a{

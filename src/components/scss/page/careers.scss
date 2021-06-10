@@ -264,10 +264,17 @@
 
 #slice-id-phase-2-rocks-new{
   background-color:#8CCEF8;
-  section{
+  h2{
+    font-size:54px;
+    color:#2E2E2E;
+    margin-top:100px;
     @include mobile(){
-      padding:20px 0px;
+      font-size:38px;
+      margin-top:40px;
     }
+  }
+  section{
+    padding:0px 0px 60px 0px;
   }
   .gatsby-image-wrapper{
     &:before{
@@ -282,12 +289,7 @@
         @include mobile(){
           width:100% !important;
         }
-        h2{
-          font-size:54px;
-          @include mobile(){
-            font-size:38px;
-          }
-        }
+
         .block-img{
           display:none;
           @include mobile() {
@@ -297,6 +299,7 @@
         p{
           display:flex;
           justify-content: flex-end;
+          color:black;
           @include tablet() {
             justify-content: flex-start;
           }
