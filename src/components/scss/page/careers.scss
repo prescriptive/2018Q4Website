@@ -13,6 +13,10 @@
         font-weight: 800;
         font-size: 54px;
         line-height: 72px;
+        @include mobilesmall() {
+          font-size:34px;
+          line-height:44px;
+        }
       }
     }
   }
@@ -56,6 +60,8 @@
   .column-item {
     background-color: white;
     padding-bottom: 48px;
+    box-shadow: 6px 6px 8px 0px #00000040;
+
   }
   ul {
     padding: 0 24px 0px 44px;
@@ -147,6 +153,10 @@
         margin-bottom: 40px;
         text-align: right;
         display: block;
+        @include mobilesmall() {
+          font-size:34px;
+          line-height:44px;
+        }
       }
       p {
         margin: 0px;
@@ -179,5 +189,158 @@
   }
   h2 {
     color: $darkGray;
+    font-size:54px;
+    margin-bottom:10px;
+    @include mobilesmall() {
+      font-size:34px;
+      line-height:44px;
+    }
+  }
+  p{
+    font-size:18px;
+    line-height:24px;
+  }
+}
+#slice-id-phase-2-rocks{
+  .gatsby-image-wrapper{
+    &::before{
+      background-size:87%;
+      background-position: center bottom;
+      @include tablet() {
+        background-position: center center;
+      }
+      @include mobile() {
+        background-position: -250px 100px;
+        background-size:500px;
+      }
+    }
+  }
+  section{
+    padding:60px 0px 200px 0px;
+    @include tablet() {
+      padding:60px 0px 60px 0px;
+    }
+    @include mobile() {
+      padding:60px 0px 60px 0px;
+    }
+    .section-content{
+      max-width:570px;
+      @include tablet() {
+        max-width:470px;
+      }
+      @include mobile() {
+        max-width:100%;
+      }
+      h2{
+        font-size:54px;
+          @include mobile() {
+            margin-bottom:175px;
+          }
+        @include mobilesmall() {
+          font-size:34px;
+          line-height:44px;
+        }
+      }
+      p{
+        display:flex;
+        justify-content: flex-end;
+        @include tablet() {
+          justify-content: flex-start;
+        }
+        @include mobile() {
+          justify-content: flex-start;
+        }
+        a{
+          margin-top:40px;
+        .cta-button{
+          background-color:$red;
+
+        }
+      }
+      }
+    }
+  }
+}
+
+#slice-id-phase-2-rocks-new{
+  background-color:#8CCEF8;
+  h2{
+    font-size:54px;
+    color:#2E2E2E;
+    margin-top:100px;
+    @include mobile(){
+      font-size:38px;
+      margin-top:40px;
+    }
+  }
+  section{
+    padding:0px 0px 60px 0px;
+  }
+  .gatsby-image-wrapper{
+    &:before{
+      background-size:90%;
+      background-position:center bottom;
+    }
+  }
+
+  .column{
+    @include mobile(){
+      flex-direction:column-reverse;
+    }
+    .column-item{
+      margin:0px;
+      &:nth-child(1){
+        // width: calc(100% / 2 - 80px);
+        padding-right:40px;
+        @include mobile(){
+          width:100% !important;
+        }
+
+        .block-img{
+          display:none;
+          @include mobile() {
+            display:block;
+          }
+        }
+        p{
+          display:flex;
+          justify-content: flex-end;
+          color:black;
+          a{
+            margin-top:40px;
+            @include cta-button($red);
+            span{
+              color:white;
+            }
+        }
+      }
+      }
+      &:nth-child(2){
+        @include mobile(){
+          width:100% !important;
+        }
+.block-img{
+  margin:0px;
+  &:nth-child(1){
+    @include tablet(){
+          display:none
+    }
+    @include mobile(){
+      display:block;
+    }
+  }
+  &:nth-child(2){
+    display:none;
+    @include tablet(){
+          display:block;
+    }
+    @include mobile(){
+      display:none;
+    }
+  }
+}
+
+      }
+    }
   }
 }
