@@ -5,6 +5,7 @@ const Container = styled.div`
   display: block;
   padding: 0px 5%;
   margin: 0 auto;
+  box-sizing: content-box;
   @media (max-width: ${variable.tabletWidth}) {
     max-width: ${variable.tabletWidth};
   }
