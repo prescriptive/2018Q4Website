@@ -70,6 +70,8 @@
     "react-player": "^2.6.0",
     "react-responsive-embed": "^2.1.0",
     "react-stack-grid": "^0.7.1",
+    "react-sticky": "^6.0.3",
+    "react-sticky-box": "^0.9.3",
     "react-stonecutter": "^0.3.10",
     "react-typeform-embed": "^0.2.1",
     "react-youtube": "^7.9.0",

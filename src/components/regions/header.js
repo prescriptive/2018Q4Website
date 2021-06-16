@@ -9,7 +9,6 @@ import MobileMenu from "../mobileMenu"
 import thetwittericon from "../../images/twitter.png"
 import linkedinicon from "../../images/LinkedIN.png"
 import logowhite from "../../images/logo-white.png"
-
 const HeaderStyle = styled.header`
   background-color: rgba(0,0,0,0.31);
   position:absolute;
