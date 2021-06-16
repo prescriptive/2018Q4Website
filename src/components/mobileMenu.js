@@ -69,7 +69,7 @@ const MenuWrapper = styled.div`
   width: 100%;
   max-width: 240px;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   transition: ${props =>
     props.open ? "all 0.25s ease-out" : "all 0.6s ease-out"};
 
