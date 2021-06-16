@@ -35,8 +35,9 @@ const HeaderStyle = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* padding-top: 5px;
-    padding-bottom: 5px; */
+    @media (max-width: ${variable.tabletWidth}) {
+     height:50px;
+    }
   }
   .logo {
     max-width: 190px;
@@ -80,12 +81,11 @@ const HeaderStyle = styled.header`
       }
       .sub-menu {
         display: none;
-        background-color: ${variable.medLightGray};
+        background-color: rgba(0, 0, 0, 0.31);
         padding: 10px 20px 0px 20px;
-        border: 1px solid #dadde9;
         position: absolute;
-        top: 40px;
-        left: -35px;
+        top: 37px;
+        left: -20px;
         z-index: 100;
         border-radius: 2px;
         min-width: 145px;
@@ -97,7 +97,7 @@ const HeaderStyle = styled.header`
           display: block;
           text-transform: capitalize;
           padding: 0px;
-          font-weight: bold;
+          font-weight: 400;
           &:hover {
             color: ${variable.red};
           }
@@ -121,6 +121,9 @@ const HeaderStyle = styled.header`
     display:flex;
     justify-content:space-between;
     align-items:center;
+    @media (max-width: ${variable.tabletWidth}) {
+      display:none;
+    }
   }
   @media (max-width: ${variable.tabletWidth}) {
     .mobile-menu-container {
@@ -270,12 +273,13 @@ export const Header = () => {
           ))}
         </ul>
         <div className="social-holder">
-        <a href="#"><img src={thetwittericon}/></a>
-        <a href="#"
+        <a href="https://www.linkedin.com/company/prescriptive.solutions"
+        ><img src={linkedinicon}/></a>
+        <a href="https://twitter.com/PDS_Technology"
         style={{
           marginLeft:"10px",
         }}
-        ><img src={linkedinicon}/></a>
+        ><img src={thetwittericon}/></a>
         </div>
         </div>
       </Container>
