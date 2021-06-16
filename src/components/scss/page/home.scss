@@ -76,6 +76,9 @@
     .column-item {
       background-color: white;
       padding-bottom: 48px;
+      background: #FFFFFF;
+      box-shadow: 6px 6px 7px rgba(0, 0, 0, 0.25);
+      border-radius: 4px;
     }
   }
   .block-img {
@@ -103,7 +106,7 @@
       }
     }
     &:nth-child(1) {
-      background-color: $medLightGray;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 6.77%, rgba(255, 255, 255, 0.19) 100%), #2E2E2E;
       color: $offWhite;
       display: flex;
       justify-content: flex-end;
