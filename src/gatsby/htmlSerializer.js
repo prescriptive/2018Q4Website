@@ -1,6 +1,7 @@
 import React from "react"
 import AudioFile from "../components/tokens/audioFile"
 import { Link } from "gatsby"
+import { AnchorLink } from "gatsby-plugin-anchor-links";
 
 const linkResolver = (doc, content, linkClass) => {
   // Route for blog posts
@@ -36,6 +37,15 @@ const linkResolver = (doc, content, linkClass) => {
 const htmlSerializer = (type, element, content, children) => {
   var link = ""
   switch (type) {
+    case "label":
+      if (element.data.label) {
+        if (element.data.label == "phase-2-anchor") {
+          return 
+          <AnchorLink to="/careers-culture#slice-id-phase-2-rocks-new" title="Phase 2">
+          {content}
+        </AnchorLink>
+        }
+      }
     case "hyperlink":
       if (element.data.name) {
         if (element.data.name.includes(".mp3")) {

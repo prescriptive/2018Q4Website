@@ -12,6 +12,9 @@
     align-items: center;
     justify-content: left;
     min-height: calc(100vh);
+    @include mobile(){
+      min-height: calc(100vh - 100px);
+    }
   }
   .section-content {
     max-width: 605px;
