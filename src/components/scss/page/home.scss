@@ -11,7 +11,10 @@
     display: flex;
     align-items: center;
     justify-content: left;
-    min-height: calc(100vh - 155px);
+    min-height: calc(100vh);
+    @include mobile(){
+      min-height: calc(100vh - 100px);
+    }
   }
   .section-content {
     max-width: 605px;
@@ -44,6 +47,8 @@
 #slice-id-home-it-solution {
   background-color: $lightGray;
   section {
+    padding-top:20px;
+    padding-bottom:40px;
     @include mobile() {
       padding: 20px 0px;
     }
@@ -76,6 +81,9 @@
     .column-item {
       background-color: white;
       padding-bottom: 48px;
+      background: #FFFFFF;
+      box-shadow: 6px 6px 7px rgba(0, 0, 0, 0.25);
+      border-radius: 4px;
     }
   }
   .block-img {
@@ -96,6 +104,11 @@
   }
 }
 #slice-id-home-process {
+  .left-right-container{
+    @include mobile(){
+      padding:0px;
+    }
+  }
   section {
     &:nth-child(2) {
       @include mobile() {
@@ -103,21 +116,26 @@
       }
     }
     &:nth-child(1) {
-      background-color: $medLightGray;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0) 6.77%, rgba(255, 255, 255, 0.19) 100%), #2E2E2E;
       color: $offWhite;
       display: flex;
       justify-content: flex-end;
       align-items: center;
+      @include mobile() {
+        padding:20px 0px;
+      }
       > div {
         max-width: calc(#{$desktop-width} / 2);
         display: block;
-        padding: 0px 20px;
+        padding: 0px 20px 0px 0px;
         margin: 0;
         @include tablet() {
           max-width: calc(#{$tablet-width} / 2);
+          padding: 0px 20px 0px 20px;
         }
         @include mobile() {
           max-width: calc(#{$mobile-width} / 1);
+          padding: 0px 20px 0px 20px;
         }
       }
       h2 {

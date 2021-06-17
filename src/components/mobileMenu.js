@@ -3,7 +3,8 @@ import { Link } from "gatsby"
 import { StaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import * as variable from "../components/variables"
-
+import thetwittericon from "../images/twitter.png"
+import linkedinicon from "../images/LinkedIN.png"
 const activeStyle = {
   color: variable.red,
 }
@@ -17,14 +18,14 @@ const MenuToggle = styled.div`
   transition: all 0.25s ease-in;
   cursor: pointer;
   margin-left: auto;
-  top: ${props => (props.open ? "28px" : "auto")};
-  right: ${props => (props.open ? "20px" : "auto")};
+  top: ${props => (props.open ? "5px" : "auto")};
+  right: ${props => (props.open ? "5%" : "auto")};
   span {
     display: block;
     position: absolute;
     height: 7px;
     width: 100%;
-    background: #000000;
+    background: white;
     border-radius: 10px;
     opacity: 1;
     left: 0;
@@ -37,7 +38,7 @@ const MenuToggle = styled.div`
     transform-origin: left center;
   }
   span:nth-child(2) {
-    top: ${props => (props.open ? 0 : "calc(50% - 3.5px)")};
+    top: ${props => (props.open ? 0 : "calc(50% - 4px)")};
     left: ${props => (props.open ? "calc(50% - 3.5px)" : null)};
     width: ${props => (props.open ? "7px" : null)};
     height: ${props => (props.open ? "100%" : null)};
@@ -68,10 +69,10 @@ const MenuWrapper = styled.div`
   width: 100%;
   max-width: 240px;
   height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(0, 0, 0, 0.7);
   transition: ${props =>
     props.open ? "all 0.25s ease-out" : "all 0.6s ease-out"};
-  box-shadow: 0px 4px 20px -5px #e8e8e8;
+
   padding: 40px 30px;
   ul {
     padding-left: 0px;
@@ -89,7 +90,7 @@ const MenuWrapper = styled.div`
     a {
       display: block !important;
       text-align: left;
-      color: ${variable.darkGray};
+      color: white;
       text-decoration: none;
       font-size: 27px;
       &:focus {
@@ -114,6 +115,12 @@ const MenuWrapper = styled.div`
       a {
         font-size: 16px;
       }
+    }
+  }
+  .social-holder-mobile{
+    img{
+      width:26px;
+      height:26px;
     }
   }
 `
@@ -290,6 +297,15 @@ class Mobilemenu extends React.Component {
                     )
                   )}
                 </ul>
+              </div>
+              <div className="social-holder-mobile">
+              <a href="https://www.linkedin.com/company/prescriptive.solutions"
+              ><img src={linkedinicon}/></a>
+              <a href="https://twitter.com/PDS_Technology"
+              style={{
+                marginLeft:"10px",
+              }}
+              ><img src={thetwittericon}/></a>
               </div>
             </MenuWrapper>
           </>

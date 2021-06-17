@@ -265,6 +265,12 @@ module.exports = {
     // },
     `gatsby-plugin-force-trailing-slashes`,
     {
+      resolve: "gatsby-plugin-anchor-links",
+      options: {
+        offset: -100
+      }
+    },
+    {
       resolve: `gatsby-plugin-offline`,
       options: {
         workboxConfig: {

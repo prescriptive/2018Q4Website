@@ -6,11 +6,16 @@ import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 import * as variable from "../variables"
 import MobileMenu from "../mobileMenu"
-
+import thetwittericon from "../../images/twitter.png"
+import linkedinicon from "../../images/LinkedIN.png"
+import logowhite from "../../images/logo-white.png"
 const HeaderStyle = styled.header`
+  background-color: rgba(0,0,0,0.31);
+  position:absolute;
+  z-index:9;
+  width:100%;
   .header-social-container {
     background-color: ${variable.darkGray};
-    padding: 12px 0px;
     @media (max-width: ${variable.tabletWidth}) {
       display: none;
     }
@@ -25,17 +30,17 @@ const HeaderStyle = styled.header`
       }
     }
   }
-  background-color: ${variable.offWhite};
   .header-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 24px;
-    padding-bottom: 24px;
+    @media (max-width: ${variable.tabletWidth}) {
+     height:50px;
+    }
   }
   .logo {
-    max-width: 293px;
-    width: 293px;
+    max-width: 190px;
+    width: 190px;
     img {
       max-width: 100%;
     }
@@ -51,34 +56,21 @@ const HeaderStyle = styled.header`
     justify-content: space-between;
     align-items: center;
     padding: 0px;
+    margin-right:80px;
     li {
       list-style: none;
       margin-right: 50px;
       position: relative;
-      &:last-child {
-        margin-right: 0px;
-        a {
-          background-color: ${variable.darkGray};
-          color: white;
-          padding: 15px 30px;
-          border-radius: 4px;
-          &:hover {
-            background-color: ${variable.medGray};
-            transition: all 0.3s ease;
-            color: white;
-          }
-          &[aria-current] {
-            color: white !important;
-          }
-        }
+      &:last-child{
+        margin-right:0px;
       }
       a {
         text-decoration: none;
-        color: ${variable.medLightGray};
+        color: white;
         font-size: 18px;
         text-transform: uppercase;
         font-weight: 400;
-        padding: 20px 0px;
+        padding: 15px 0px;
         &:hover {
           color: ${variable.red};
         }
@@ -88,12 +80,11 @@ const HeaderStyle = styled.header`
       }
       .sub-menu {
         display: none;
-        background-color: ${variable.medLightGray};
+        background-color: rgba(0, 0, 0, 0.31);
         padding: 10px 20px 0px 20px;
-        border: 1px solid #dadde9;
         position: absolute;
-        top: 40px;
-        left: -35px;
+        top: 37px;
+        left: -20px;
         z-index: 100;
         border-radius: 2px;
         min-width: 145px;
@@ -105,7 +96,7 @@ const HeaderStyle = styled.header`
           display: block;
           text-transform: capitalize;
           padding: 0px;
-          font-weight: bold;
+          font-weight: 400;
           &:hover {
             color: ${variable.red};
           }
@@ -118,6 +109,20 @@ const HeaderStyle = styled.header`
   }
   .mobile-menu-container {
     display: none;
+  }
+  .social-holder{
+    img{
+      width:26px;
+      height:26px;
+    }
+  }
+  .menu-social-holder{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    @media (max-width: ${variable.tabletWidth}) {
+      display:none;
+    }
   }
   @media (max-width: ${variable.tabletWidth}) {
     .mobile-menu-container {
@@ -255,28 +260,27 @@ export const Header = () => {
   }
   return (
     <HeaderStyle className="header">
-      {twitter && (
-        <div className="header-social-container">
-          <Container>
-            <div className="social-container">
-              <a href={twitter} target="_blank" rel="noopener noreferrer">
-                {/* <FontAwesomeIcon icon={faTwitter} /> */}
-                <Img fixed={twittericon} />
-              </a>
-            </div>
-          </Container>
-        </div>
-      )}
       <Container className="header-container">
         <Link className="logo" to="/">
-          <Img fluid={logo} alt="logo" />
+          <img src={logowhite} alt="logo" />
         </Link>
         <div className="mobile-menu-container">{<MobileMenu />}</div>
+        <div className="menu-social-holder">
         <ul className="main-menu">
           {nav.map((menuitem, index) => (
             <li key={index}>{menuRender(menuitem)}</li>
           ))}
         </ul>
+        <div className="social-holder">
+        <a href="https://www.linkedin.com/company/prescriptive.solutions"
+        ><img src={linkedinicon}/></a>
+        <a href="https://twitter.com/PDS_Technology"
+        style={{
+          marginLeft:"10px",
+        }}
+        ><img src={thetwittericon}/></a>
+        </div>
+        </div>
       </Container>
     </HeaderStyle>
   )
