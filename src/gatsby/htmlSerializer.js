@@ -40,10 +40,12 @@ const htmlSerializer = (type, element, content, children) => {
     case "label":
       if (element.data.label) {
         if (element.data.label == "phase-2-anchor") {
-          return 
-          <AnchorLink to="/careers-culture#slice-id-phase-2-rocks-new" title="Phase 2">
-          {content}
-        </AnchorLink>
+          return (
+            <AnchorLink to="/careers-culture/#slice-id-phase-2-rocks-new" title="Phase 2">
+            {content}
+          </AnchorLink>
+          )
+ 
         }
       }
     case "hyperlink":
