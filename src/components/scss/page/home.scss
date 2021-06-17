@@ -127,7 +127,7 @@
       > div {
         max-width: calc(#{$desktop-width} / 2);
         display: block;
-        padding: 0px 20px 0px 0px;
+        padding: 0px 20px 0px 20px;
         margin: 0;
         @include tablet() {
           max-width: calc(#{$tablet-width} / 2);

@@ -272,9 +272,9 @@ export const Header = () => {
           ))}
         </ul>
         <div className="social-holder">
-        <a href="https://www.linkedin.com/company/prescriptive.solutions"
+        <a target="_blank" href="https://www.linkedin.com/company/prescriptive.solutions"
         ><img src={linkedinicon}/></a>
-        <a href="https://twitter.com/PDS_Technology"
+        <a target="_blank" href="https://twitter.com/PDS_Technology"
         style={{
           marginLeft:"10px",
         }}
