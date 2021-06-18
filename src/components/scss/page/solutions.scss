@@ -89,6 +89,9 @@
   section {
     > div{
       padding:0px 20px 0px 0px;
+      @include mobile() {
+        padding:0px 20px;
+      }
     }
     &:nth-child(1) {
       background: linear-gradient(
@@ -98,6 +101,7 @@
       padding-left:5%;
       @include mobile() {
         padding:20px 0px;
+        min-height:auto;
       }
       h2 {
         color: white;
@@ -114,6 +118,9 @@
     }
     &:nth-child(2) {
       background-color: $offWhite;
+      @include mobile(){
+        height:300px;
+      }
     }
   }
 }
@@ -126,6 +133,9 @@
   section {
     > div{
       padding: 0px 20px 0px 0px;
+      @include mobile() {
+        padding:0px 20px;
+      }
     }
     &:nth-child(1) {
       background: linear-gradient(
@@ -152,6 +162,36 @@
       &:before {
         background-size: 528px 402px !important;
       }
+      .block-img{
+        text-align:center;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          width:100%;
+      }
+      @include mobile() {
+        padding:0px 0px;
+        .block-img{
+          height:300px;
+          text-align:center;
+          img{
+            height:100%;
+            width:auto;
+          }
+        }
+      }
+      @include mobilesmall() {
+        .block-img{
+          height:auto;
+          text-align:center;
+          display:flex;
+          align-items:center;
+          img{
+            height:auto;
+            width:100%;
+          }
+        }
+      }
       background-color: $offWhite;
     }
   }
@@ -161,10 +201,14 @@
   section {
     > div{
       padding:0px 0px 0px 20px;
+      @include mobile() {
+        padding:0px 20px;
+      }
     }
     &:nth-child(1) {
       @include mobile() {
-        min-height: 450px;
+        // min-height: 450px;
+        height:300px;
       }
     }
     &:nth-child(2) {
