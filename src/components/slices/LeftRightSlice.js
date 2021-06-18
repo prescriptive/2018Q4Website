@@ -5,31 +5,11 @@ import { RichText } from "prismic-reactjs"
 import * as variable from "../variables"
 import linkResolver from "../../utils/linkResolver"
 import prismicHtmlSerializer from "../../gatsby/htmlSerializer"
-import Container from "../container"
 
 const LeftRightStyle = styled.div`
   ._form {
     display: block;
   }
-  .full-width-content{
-    display: flex;
-    z-index:1;
-    /* width:${variable.desktopWidth}; */
-    padding:30px 5%;
-    max-width:${variable.desktopWidth};
-  }
-  .full-left-right{
-    position: absolute;
-    width: 100%;
-    display: flex;
-    height: 100%;
-  }
-  .full-width-content-inner{
-      max-width: calc(50% - 20px);
-      @media (max-width: ${variable.mobileWidth}) {
-        max-width:100%;
-      }
-    }
   .left-right-container {
     display: flex;
     flex-wrap: wrap;
@@ -247,49 +227,6 @@ function returnRight(primary, rightWidth) {
   )
 }
 
-function returnFull(slice, leftWidth, rightWidth) {
-  console.log(slice.primary.full_width_content)
-  if(slice.primary.full_width_content !== undefined){
-    if(slice.primary.full_width_content.raw.length > 0){
-      return (
-        <React.Fragment>
-        <Container className="full-width-content">
-        <div className="full-width-content-inner">
-        <RichText
-          render={slice.primary.full_width_content.raw}
-          linkResolver={linkResolver}
-          htmlSerializer={prismicHtmlSerializer}
-        />
-        </div>
-      </Container>
-      <div className="full-left-right">
-        {returnLeft(slice.primary, leftWidth)}
-        {returnRight(slice.primary, rightWidth)}
-        </div>
-        </React.Fragment>
-        )
-    }
-    else{
-      return(
-        <React.Fragment>
-        {returnLeft(slice.primary, leftWidth)}
-        {returnRight(slice.primary, rightWidth)}
-        </React.Fragment>
-      )
-    }
-  }
-  else{
-    return(
-      <React.Fragment>
-      {returnLeft(slice.primary, leftWidth)}
-      {returnRight(slice.primary, rightWidth)}
-      </React.Fragment>
-    )
-  }
-
-
-}
-
 export const LeftRightSlice = ({ slice }) => {
   var leftWidth = 50
   var rightWidth = 50
@@ -301,13 +238,13 @@ export const LeftRightSlice = ({ slice }) => {
   }
   return (
     <LeftRightStyle>
-
       <div className="left-right-container">
         {slice.primary.section_title.text && (
           <h2>{slice.primary.section_title.text}</h2>
         )}
-        {returnFull(slice, leftWidth, rightWidth )}
-        </div>
+        {returnLeft(slice.primary, leftWidth)}
+        {returnRight(slice.primary, rightWidth)}
+      </div>
     </LeftRightStyle>
   )
 }
