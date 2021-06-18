@@ -1,43 +1,68 @@
 @import "./src/components/scss/variables.scss";
 @import "./src/components/scss/mixins.scss";
 #slice-id-contact-top {
-  background-image: url(../../../images/contact-bg.png);
-  background-size: cover;
-  color: $medGray;
-  .left-right-container {
-    max-width: $desktop-width;
-    display: flex;
-    padding: 140px 20px 80px 20px;
-    margin: 0 auto;
-    align-items: flex-start;
+  .left-right-container{
+    max-width:1200px;
+    margin:0 auto;
+    padding:0px 5%;
+    box-sizing: content-box;
+    section{
+      >div{
+        padding:0px;
+        width:100%;
+        max-width:100%;
+      }
+      &:nth-child(1){
+        width:calc(70% - 100px);
+        @include mobile(){
+          width:100%;
+        }
+      }
+      &:nth-child(2){
+        width:calc(30%);
+        @include mobile() {
+                  width: calc(100%);
+                  margin-top: 40px;
+                  margin-bottom:60px;
+                }
+                > div {
+                  max-width: 100%;
+                  padding: 0px;
+                }
+                > div{
+                  padding: 0px 0px 0px 20px;
+                  @include mobile() {
+                    padding:0px 20px;
+                  }
+                }
+                @include mobile() {
+                  padding: 0px 0px;
+                }
+                .section-content {
+                  background-color: $lightGray;
+                  padding: 48px 30px;
+                  border-radius: 4px;
+                  overflow: hidden;
+                  p {
+                    margin: 0px 0px 10px 0px;
+                    word-break: break-all;
+                    strong {
+                      color: $medGray;
+                    }
+                  }
+                }
+      }
+    }
   }
-  h1 {
+    h1 {
     color: $medGray;
-    margin-top: 0px;
+    margin-top: 60px;
     line-height: 1;
   }
   p {
     color: $medGray;
   }
-  @media (max-width: $tablet-width) {
-    max-width: $tablet-width;
-  }
-  @media (max-width: $mobile-width) {
-    max-width: $mobile-width;
-    padding: 0px 15px;
-  }
-  section {
-    padding: 0px;
-    &:nth-child(1) {
-      width: calc(70% - 100px);
-      @include mobile() {
-        width: calc(100%);
-      }
-      > div {
-        max-width: 100%;
-        padding: 0px;
-      }
-      form {
+        form {
         padding: 0px;
         width: 100%;
         margin: 0px;
@@ -73,37 +98,36 @@
           }
         }
       }
-    }
-    &:nth-child(2) {
-      width: 30%;
-      @include mobile() {
-        width: calc(100%);
-        margin-top: 40px;
-      }
-      > div {
-        max-width: 100%;
-        padding: 0px;
-      }
-      .section-content {
-        background-color: $lightGray;
-        padding: 48px 30px;
-        border-radius: 4px;
-        overflow: hidden;
-        p {
-          margin: 0px 0px 10px 0px;
-          word-break: break-all;
-          strong {
-            color: $medGray;
-          }
-        }
-      }
-    }
-  }
 }
 
 #slice-id-contact-google {
   background-color: $offWhite;
   color: $medGray;
+  .left-right-container{
+    max-width:1200px;
+    margin:0 auto;
+    padding:0px 5%;
+    box-sizing: content-box;
+    section{
+      > div{
+        padding:0px;
+        width:100%;
+        max-width:100%;
+      }
+      &:nth-child(1){
+        width:(49%);
+        @include mobile() {
+          width:100%;
+        }
+      }
+      &:nth-child(2){
+        width:(49%);
+        @include mobile() {
+          width:100%;
+        }
+      }
+    }
+  }
   h2 {
     font-style: normal;
     font-weight: 500;
@@ -115,6 +139,129 @@
     color: $medGray;
   }
 }
+
+// #slice-id-contact-top {
+//   background-image: url(../../../images/contact-bg.png);
+//   background-size: cover;
+//   color: $medGray;
+//   .left-right-container {
+//     max-width: $desktop-width;
+//     display: flex;
+//     padding: 140px 0px 80px 0px;
+//     margin: 0 auto;
+//     align-items: flex-start;
+//   }
+//   h1 {
+//     color: $medGray;
+//     margin-top: 0px;
+//     line-height: 1;
+//   }
+//   p {
+//     color: $medGray;
+//   }
+//   @media (max-width: $tablet-width) {
+//     max-width: $tablet-width;
+//   }
+//   @media (max-width: $mobile-width) {
+//     max-width: $mobile-width;
+//     padding: 0px 15px;
+//   }
+//   section {
+//     padding: 0px;
+//     &:nth-child(1) {
+//       > div{
+//         padding: 0px 20px 0px 0px;
+//         @include mobile() {
+//           padding:0px 20px;
+//         }
+//       }
+//       padding-left:5%;
+//       @include mobile() {
+//         padding: 0px 0px;
+//       }
+//       width: calc(70% - 100px);
+//       @include mobile() {
+//         width: calc(100%);
+//       }
+//       > div {
+//         max-width: 100%;
+//         padding: 0px;
+//       }
+//       form {
+//         padding: 0px;
+//         width: 100%;
+//         margin: 0px;
+//         background-color: transparent !important;
+//         color: $medGray;
+//         ._button-wrapper {
+//           display: flex;
+//           justify-content: flex-end;
+//           button {
+//             background-color: $greenGray !important;
+//             padding: 10px 25px !important;
+//           }
+//         }
+//         ._form_element {
+//           display: flex;
+//           justify-content: space-between;
+//           margin-bottom: 20px;
+//           label {
+//             width: 100px;
+//             text-align: right;
+//             color: $medGray;
+//             font-weight: normal;
+//           }
+//           ._field-wrapper {
+//             width: calc(100% - 120px);
+//             input,
+//             textarea {
+//               border: 0px;
+//               border-bottom: thin solid $medGray;
+//               border-radius: 0px;
+//               background-color: transparent !important;
+//             }
+//           }
+//         }
+//       }
+//     }
+//     &:nth-child(2) {
+//       width: 30%;
+//       @include mobile() {
+//         width: calc(100%);
+//         margin-top: 40px;
+//       }
+//       > div {
+//         max-width: 100%;
+//         padding: 0px;
+//       }
+//       > div{
+//         padding: 0px 0px 0px 20px;
+//         @include mobile() {
+//           padding:0px 20px;
+//         }
+//       }
+//       padding-right:5%;
+//       @include mobile() {
+//         padding: 0px 0px;
+//       }
+//       .section-content {
+//         background-color: $lightGray;
+//         padding: 48px 30px;
+//         border-radius: 4px;
+//         overflow: hidden;
+//         p {
+//           margin: 0px 0px 10px 0px;
+//           word-break: break-all;
+//           strong {
+//             color: $medGray;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+
 
 #slice-id-contact-contact {
   section {
