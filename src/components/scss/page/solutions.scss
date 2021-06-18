@@ -78,29 +78,6 @@
   }
 }
 #slice-id-new-service-solution {
-  .full-width-content{
-    min-height:513px;
-    }
-    .full-width-content-inner{
-      display:flex;
-      justify-content:center;
-      flex-direction:column;
-    }
-  h2 {
-    color: white;
-    font-weight: 900;
-    font-size: 27px;
-    line-height: 36px;
-    strong {
-      color: white;
-    }
-  }
-  p {
-    color: white;
-  }
-  *{
-    color:white;
-  }
   a {
     color: white;
   }
@@ -148,38 +125,10 @@
   }
 }
 #slice-id-solutions-azure {
-  *{
-    color:white !important;
-  }
-  .full-width-content{
-    min-height: 513px;
-  }
-  .full-width-content-inner{
-    display:flex;
-    justify-content:center;
-    flex-direction:column;
-  }
-  .full-left-right{
-    @include mobile() {
-      flex-direction: column-reverse;
-    }
-  }
   .left-right-container {
     @include mobile() {
       flex-direction: column-reverse;
     }
-  }
-  h2 {
-    color: white;
-    font-weight: 900;
-    font-size: 27px;
-    line-height: 36px;
-    strong {
-      color: white;
-    }
-  }
-  p {
-    color: white;
   }
   section {
     > div{
@@ -210,7 +159,6 @@
       }
     }
     &:nth-child(2) {
-      
       &:before {
         background-size: 528px 402px !important;
       }
@@ -250,27 +198,6 @@
 }
 
 #slice-id-solutions-disaster {
-  *{
-    color:white !important;
-  }
-  .full-width-content{
-  justify-content:flex-end;
-  min-height:513px;
-  }
-  .full-width-content-inner{
-    display:flex;
-    justify-content:center;
-    flex-direction:column;
-  }
-  h2 {
-    font-weight: 900;
-    font-size: 27px;
-    color: white;
-    line-height: 36px;
-  }
-  p {
-    color: white;
-  }
   section {
     > div{
       padding:0px 0px 0px 20px;
@@ -279,7 +206,6 @@
       }
     }
     &:nth-child(1) {
-
       @include mobile() {
         // min-height: 450px;
         height:300px;
@@ -298,7 +224,15 @@
       @include mobile() {
         min-height: auto;
       }
-
+      h2 {
+        font-weight: 900;
+        font-size: 27px;
+        color: white;
+        line-height: 36px;
+      }
+      p {
+        color: white;
+      }
     }
   }
 }
