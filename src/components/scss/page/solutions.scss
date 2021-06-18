@@ -87,9 +87,18 @@
     }
   }
   section {
+    > div{
+      padding:0px 20px 0px 0px;
+    }
     &:nth-child(1) {
-      background-color: $medLightGray;
+      background: linear-gradient(
+        180deg
+        ,hsla(0,0%,100%,0) 6.77%,hsla(0,0%,100%,.19)),#2e2e2e;
       min-height: 513px;
+      padding-left:5%;
+      @include mobile() {
+        padding:20px 0px;
+      }
       h2 {
         color: white;
         font-weight: 900;
@@ -115,8 +124,17 @@
     }
   }
   section {
+    > div{
+      padding: 0px 20px 0px 0px;
+    }
     &:nth-child(1) {
-      background-color: $medLightGray;
+      background: linear-gradient(
+        180deg
+        ,hsla(0,0%,100%,0) 6.77%,hsla(0,0%,100%,.19)),#2e2e2e;
+      padding-left:5%;
+      @include mobile() {
+        padding:20px 0px;
+      }
       h2 {
         color: white;
         font-weight: 900;
@@ -141,6 +159,9 @@
 
 #slice-id-solutions-disaster {
   section {
+    > div{
+      padding:0px 0px 0px 20px;
+    }
     &:nth-child(1) {
       @include mobile() {
         min-height: 450px;
@@ -148,8 +169,14 @@
     }
     &:nth-child(2) {
       min-height: 513px;
-      background-color: $medLightGray;
+      background: linear-gradient(
+        180deg
+        ,hsla(0,0%,100%,0) 6.77%,hsla(0,0%,100%,.19)),#2e2e2e;
       color: white;
+      padding-right:5%;
+      @include mobile() {
+        padding:20px 0px;
+      }
       @include mobile() {
         min-height: auto;
       }

@@ -121,17 +121,18 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
+      padding-left:5%;
       @include mobile() {
         padding:20px 0px;
       }
       > div {
         max-width: calc(#{$desktop-width} / 2);
         display: block;
-        padding: 0px 20px 0px 20px;
+        padding: 0px 20px 0px 0px;
         margin: 0;
         @include tablet() {
           max-width: calc(#{$tablet-width} / 2);
-          padding: 0px 20px 0px 20px;
+          padding: 0px 20px 0px 0px;
         }
         @include mobile() {
           max-width: calc(#{$mobile-width} / 1);
