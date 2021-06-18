@@ -189,6 +189,7 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
+      padding-left:5%;
       @include mobile() {
         padding:20px 0px;
       }
@@ -196,11 +197,11 @@
       > div {
         max-width: calc(#{$desktop-width} / 2 - 20px);
         display: block;
-        padding: 0px 20px 0px 5%;
+        padding: 0px 20px 0px 0px;
         margin: 0;
         @include tablet() {
           max-width: calc(#{$tablet-width} / 2);
-          padding: 0px 20px 0px 5%;
+          padding: 0px 20px 0px 0px;
         }
         @include mobile() {
           max-width: calc(#{$mobile-width} / 1);
@@ -318,10 +319,5 @@
   a{
     color:white;
     font-weight:700;
-  }
-}
-#home{
-  footer{
-    // margin-top:75px;
   }
 }
