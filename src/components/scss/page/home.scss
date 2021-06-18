@@ -104,9 +104,77 @@
   }
 }
 #slice-id-home-process {
+  position:relative;
   .left-right-container{
     @include mobile(){
       padding:0px;
+    }
+  }
+  .full-width-content{
+
+    *{
+      color:white;
+    }
+
+    ol {
+      padding: 0px;
+      li {
+        list-style: none;
+        margin-bottom: 24px;
+        display: flex;
+        font-size: 18px;
+        line-height: 24px;
+        color: white;
+        &:before {
+          background-color: white;
+          color: $medLightGray;
+          border-radius: 50%;
+          min-height: 26px;
+          min-width: 26px;
+          width: 26px;
+          height: 26px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 20px;
+          font-size: 18px;
+        }
+        &:nth-child(1) {
+          &:before {
+            content: "1";
+          }
+        }
+        &:nth-child(2) {
+          &:before {
+            content: "2";
+          }
+        }
+        &:nth-child(3) {
+          &:before {
+            content: "3";
+          }
+        }
+        &:nth-child(4) {
+          &:before {
+            content: "4";
+          }
+        }
+        &:nth-child(5) {
+          &:before {
+            content: "5";
+          }
+        }
+        &:nth-child(6) {
+          &:before {
+            content: "6";
+          }
+        }
+        &:nth-child(7) {
+          &:before {
+            content: "7";
+          }
+        }
+      }
     }
   }
   section {
@@ -124,14 +192,15 @@
       @include mobile() {
         padding:20px 0px;
       }
+      
       > div {
-        max-width: calc(#{$desktop-width} / 2);
+        max-width: calc(#{$desktop-width} / 2 - 20px);
         display: block;
-        padding: 0px 20px 0px 20px;
+        padding: 0px 20px 0px 5%;
         margin: 0;
         @include tablet() {
           max-width: calc(#{$tablet-width} / 2);
-          padding: 0px 20px 0px 20px;
+          padding: 0px 20px 0px 5%;
         }
         @include mobile() {
           max-width: calc(#{$mobile-width} / 1);
@@ -140,66 +209,6 @@
       }
       h2 {
         color: white;
-      }
-      ol {
-        padding: 0px;
-        li {
-          list-style: none;
-          margin-bottom: 24px;
-          display: flex;
-          font-size: 18px;
-          line-height: 24px;
-          color: white;
-          &:before {
-            background-color: white;
-            color: $medLightGray;
-            border-radius: 50%;
-            min-height: 26px;
-            min-width: 26px;
-            width: 26px;
-            height: 26px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 20px;
-            font-size: 18px;
-          }
-          &:nth-child(1) {
-            &:before {
-              content: "1";
-            }
-          }
-          &:nth-child(2) {
-            &:before {
-              content: "2";
-            }
-          }
-          &:nth-child(3) {
-            &:before {
-              content: "3";
-            }
-          }
-          &:nth-child(4) {
-            &:before {
-              content: "4";
-            }
-          }
-          &:nth-child(5) {
-            &:before {
-              content: "5";
-            }
-          }
-          &:nth-child(6) {
-            &:before {
-              content: "6";
-            }
-          }
-          &:nth-child(7) {
-            &:before {
-              content: "7";
-            }
-          }
-        }
       }
     }
   }
@@ -296,6 +305,7 @@
   color:white;
   text-align:center;
   background-color: rgb(210, 48, 38);
+  z-index:9;
   section{
     padding:0px;
 

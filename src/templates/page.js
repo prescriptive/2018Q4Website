@@ -517,6 +517,7 @@ export const postQuery = graphql`
                           id
                           slice_type
                           primary {
+                            
                             active_campaign_form_number
                             embed {
                               raw
@@ -533,6 +534,7 @@ export const postQuery = graphql`
                                 }
                               }
                             }
+                            
                             left_content {
                               html
                               raw
@@ -667,6 +669,9 @@ export const postQuery = graphql`
               }
               right_content {
                 html
+                raw
+              }
+              full_width_content {
                 raw
               }
               left_content {
