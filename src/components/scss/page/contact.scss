@@ -117,6 +117,12 @@
       }
       &:nth-child(1){
         width:(49%);
+        .section-embed{
+          margin-top:24px;
+          @include mobile(){
+            margin-top:0px;
+          }
+        }
         @include mobile() {
           width:100%;
         }
